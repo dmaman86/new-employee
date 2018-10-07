@@ -8,7 +8,7 @@
   "description": "APIRest employee management with NodeJS, Express, Mongodb, Angular and Heroku",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Maman",
