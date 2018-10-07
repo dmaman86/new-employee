@@ -152,6 +152,10 @@ function updateUser(req, res) {
     let id = req.params.id;
     let body = _.pick( req.body, ['name', 'last_name','email', 'password','img', 'role', 'status'] );
 
+    if ( body.password ) {
+        body.password = bcrypt.hashSync( body.password, 10 );
+    }
+
     User.findByIdAndUpdate( id, body, { new: true }, (err, userDB) => {
 
         if(err){
