@@ -8,7 +8,7 @@
   "description": "APIRest employee management with NodeJS, Express, Mongodb, Angular and Heroku",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Maman",
@@ -21,7 +21,7 @@
     "jwt-simple": "^0.5.5",
     "moment": "^2.22.2",
     "mongoose": "^5.3.1",
-    "mongoose-paginate": "^5.0.3",
+    "mongoose-pagination": "^1.0.0",
     "mongoose-unique-validator": "^2.0.2",
     "underscore": "^1.9.1"
   }
