@@ -1,0 +1,28 @@
+{
+  "name": "new_employee-project",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.11.3",
+    "npm": "5.6.0"
+  },
+  "description": "APIRest employee management with NodeJS, Express, Mongodb, Angular and Heroku",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Maman",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "core-js": "^2.5.7",
+    "express": "^4.16.3",
+    "jwt-simple": "^0.5.5",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.1",
+    "mongoose-paginate": "^5.0.3",
+    "mongoose-unique-validator": "^2.0.2",
+    "underscore": "^1.9.1"
+  }
+}
