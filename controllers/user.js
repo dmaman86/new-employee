@@ -150,7 +150,7 @@ function getUser(req, res) {
 
 function updateUser(req, res) {
     let id = req.params.id;
-    let body = _.pick( req.body, ['name', 'email', 'img', 'role', 'status'] );
+    let body = _.pick( req.body, ['name', 'last_name','email', 'password','img', 'role', 'status'] );
 
     User.findByIdAndUpdate( id, body, { new: true }, (err, userDB) => {
 
