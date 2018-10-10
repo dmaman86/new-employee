@@ -1,3 +1,82 @@
-<p>
-  user-week works!
-</p>
+<br>
+<div class="alert alert-success" *ngIf="status == 'success'">
+  Values Save!
+</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">
+  Please check values!
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><span class="long">Morning</span></th>
+      <th><span class="long">Afternoon</span></th>
+      <th><span class="long">Night</span></th>
+      <th><span class="long">Weekend</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ count_morning }}</td>
+      <td>{{ count_afternoon }}</td>
+      <td>{{ count_night }}</td>
+      <td>{{ count_weekend }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<hr>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th *ngFor="let d of days; let i = index">
+        <!--<span class="long">{{ d }} {{  res[0] + i + "/" + res[1] }}</span>-->
+        <span class="long">{{ dates[d] | date }}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>morning</td>
+      <td *ngFor="let day of days">
+        <input
+          type="button"
+          value="{{ this.week[day].morning }}"
+          (click)="setValue( day, 'morning' )"
+          (dblclick)="resetValue(day, 'morning')">
+      </td>
+    </tr>
+    <tr>
+      <td>afternoon</td>
+      <td *ngFor="let day of days">
+        <input
+          type="button"
+          value="{{ this.week[day].afternoon }}"
+          (click)="setValue( day, 'afternoon' )"
+          (dblclick)="resetValue(day, 'afternoon')">
+      </td>
+    </tr>
+    <tr>
+      <td>night</td>
+      <td *ngFor="let day of days">
+        <input
+          type="button"
+          value="{{ this.week[day].night }}"
+          (click)="setValue( day, 'night' )"
+          (dblclick)="resetValue(day, 'night')">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="form-group row">
+  <div class="col-sm-10">
+    <button 
+      type="submit"
+      class="btn btn-primary"
+      (click)="sendValues()">Send Values</button>
+  </div>
+</div>

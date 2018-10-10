@@ -8,7 +8,7 @@ var RequestWeekUser = Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    numberWeek: Number,
+    numberWeek: String,
     sunday: {
         morning: String,
         afternoon: String,

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Message } from '../models/message';
+import { RequestWeekUser } from '../models/requestWeek_user';
 import { GLOBAL } from './global';
 
 @Injectable()
@@ -91,6 +92,12 @@ export class UserService {
         const params = JSON.stringify( user );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put( this.url + 'admin-update-user/' + user._id, params, { headers: headers });
+    }
+
+    saveRequestUser( requestUser: RequestWeekUser ): Observable<any> {
+        const params = JSON.stringify( requestUser );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
     }
 
 }

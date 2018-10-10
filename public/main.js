@@ -1,5 +1,284 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "../node_modules/moment/locale sync recursive ^\\.\\/.*$":
+/*!***************************************************!*\
+  !*** ../node_modules/moment/locale sync ^\.\/.*$ ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": "../node_modules/moment/locale/af.js",
+	"./af.js": "../node_modules/moment/locale/af.js",
+	"./ar": "../node_modules/moment/locale/ar.js",
+	"./ar-dz": "../node_modules/moment/locale/ar-dz.js",
+	"./ar-dz.js": "../node_modules/moment/locale/ar-dz.js",
+	"./ar-kw": "../node_modules/moment/locale/ar-kw.js",
+	"./ar-kw.js": "../node_modules/moment/locale/ar-kw.js",
+	"./ar-ly": "../node_modules/moment/locale/ar-ly.js",
+	"./ar-ly.js": "../node_modules/moment/locale/ar-ly.js",
+	"./ar-ma": "../node_modules/moment/locale/ar-ma.js",
+	"./ar-ma.js": "../node_modules/moment/locale/ar-ma.js",
+	"./ar-sa": "../node_modules/moment/locale/ar-sa.js",
+	"./ar-sa.js": "../node_modules/moment/locale/ar-sa.js",
+	"./ar-tn": "../node_modules/moment/locale/ar-tn.js",
+	"./ar-tn.js": "../node_modules/moment/locale/ar-tn.js",
+	"./ar.js": "../node_modules/moment/locale/ar.js",
+	"./az": "../node_modules/moment/locale/az.js",
+	"./az.js": "../node_modules/moment/locale/az.js",
+	"./be": "../node_modules/moment/locale/be.js",
+	"./be.js": "../node_modules/moment/locale/be.js",
+	"./bg": "../node_modules/moment/locale/bg.js",
+	"./bg.js": "../node_modules/moment/locale/bg.js",
+	"./bm": "../node_modules/moment/locale/bm.js",
+	"./bm.js": "../node_modules/moment/locale/bm.js",
+	"./bn": "../node_modules/moment/locale/bn.js",
+	"./bn.js": "../node_modules/moment/locale/bn.js",
+	"./bo": "../node_modules/moment/locale/bo.js",
+	"./bo.js": "../node_modules/moment/locale/bo.js",
+	"./br": "../node_modules/moment/locale/br.js",
+	"./br.js": "../node_modules/moment/locale/br.js",
+	"./bs": "../node_modules/moment/locale/bs.js",
+	"./bs.js": "../node_modules/moment/locale/bs.js",
+	"./ca": "../node_modules/moment/locale/ca.js",
+	"./ca.js": "../node_modules/moment/locale/ca.js",
+	"./cs": "../node_modules/moment/locale/cs.js",
+	"./cs.js": "../node_modules/moment/locale/cs.js",
+	"./cv": "../node_modules/moment/locale/cv.js",
+	"./cv.js": "../node_modules/moment/locale/cv.js",
+	"./cy": "../node_modules/moment/locale/cy.js",
+	"./cy.js": "../node_modules/moment/locale/cy.js",
+	"./da": "../node_modules/moment/locale/da.js",
+	"./da.js": "../node_modules/moment/locale/da.js",
+	"./de": "../node_modules/moment/locale/de.js",
+	"./de-at": "../node_modules/moment/locale/de-at.js",
+	"./de-at.js": "../node_modules/moment/locale/de-at.js",
+	"./de-ch": "../node_modules/moment/locale/de-ch.js",
+	"./de-ch.js": "../node_modules/moment/locale/de-ch.js",
+	"./de.js": "../node_modules/moment/locale/de.js",
+	"./dv": "../node_modules/moment/locale/dv.js",
+	"./dv.js": "../node_modules/moment/locale/dv.js",
+	"./el": "../node_modules/moment/locale/el.js",
+	"./el.js": "../node_modules/moment/locale/el.js",
+	"./en-au": "../node_modules/moment/locale/en-au.js",
+	"./en-au.js": "../node_modules/moment/locale/en-au.js",
+	"./en-ca": "../node_modules/moment/locale/en-ca.js",
+	"./en-ca.js": "../node_modules/moment/locale/en-ca.js",
+	"./en-gb": "../node_modules/moment/locale/en-gb.js",
+	"./en-gb.js": "../node_modules/moment/locale/en-gb.js",
+	"./en-ie": "../node_modules/moment/locale/en-ie.js",
+	"./en-ie.js": "../node_modules/moment/locale/en-ie.js",
+	"./en-il": "../node_modules/moment/locale/en-il.js",
+	"./en-il.js": "../node_modules/moment/locale/en-il.js",
+	"./en-nz": "../node_modules/moment/locale/en-nz.js",
+	"./en-nz.js": "../node_modules/moment/locale/en-nz.js",
+	"./eo": "../node_modules/moment/locale/eo.js",
+	"./eo.js": "../node_modules/moment/locale/eo.js",
+	"./es": "../node_modules/moment/locale/es.js",
+	"./es-do": "../node_modules/moment/locale/es-do.js",
+	"./es-do.js": "../node_modules/moment/locale/es-do.js",
+	"./es-us": "../node_modules/moment/locale/es-us.js",
+	"./es-us.js": "../node_modules/moment/locale/es-us.js",
+	"./es.js": "../node_modules/moment/locale/es.js",
+	"./et": "../node_modules/moment/locale/et.js",
+	"./et.js": "../node_modules/moment/locale/et.js",
+	"./eu": "../node_modules/moment/locale/eu.js",
+	"./eu.js": "../node_modules/moment/locale/eu.js",
+	"./fa": "../node_modules/moment/locale/fa.js",
+	"./fa.js": "../node_modules/moment/locale/fa.js",
+	"./fi": "../node_modules/moment/locale/fi.js",
+	"./fi.js": "../node_modules/moment/locale/fi.js",
+	"./fo": "../node_modules/moment/locale/fo.js",
+	"./fo.js": "../node_modules/moment/locale/fo.js",
+	"./fr": "../node_modules/moment/locale/fr.js",
+	"./fr-ca": "../node_modules/moment/locale/fr-ca.js",
+	"./fr-ca.js": "../node_modules/moment/locale/fr-ca.js",
+	"./fr-ch": "../node_modules/moment/locale/fr-ch.js",
+	"./fr-ch.js": "../node_modules/moment/locale/fr-ch.js",
+	"./fr.js": "../node_modules/moment/locale/fr.js",
+	"./fy": "../node_modules/moment/locale/fy.js",
+	"./fy.js": "../node_modules/moment/locale/fy.js",
+	"./gd": "../node_modules/moment/locale/gd.js",
+	"./gd.js": "../node_modules/moment/locale/gd.js",
+	"./gl": "../node_modules/moment/locale/gl.js",
+	"./gl.js": "../node_modules/moment/locale/gl.js",
+	"./gom-latn": "../node_modules/moment/locale/gom-latn.js",
+	"./gom-latn.js": "../node_modules/moment/locale/gom-latn.js",
+	"./gu": "../node_modules/moment/locale/gu.js",
+	"./gu.js": "../node_modules/moment/locale/gu.js",
+	"./he": "../node_modules/moment/locale/he.js",
+	"./he.js": "../node_modules/moment/locale/he.js",
+	"./hi": "../node_modules/moment/locale/hi.js",
+	"./hi.js": "../node_modules/moment/locale/hi.js",
+	"./hr": "../node_modules/moment/locale/hr.js",
+	"./hr.js": "../node_modules/moment/locale/hr.js",
+	"./hu": "../node_modules/moment/locale/hu.js",
+	"./hu.js": "../node_modules/moment/locale/hu.js",
+	"./hy-am": "../node_modules/moment/locale/hy-am.js",
+	"./hy-am.js": "../node_modules/moment/locale/hy-am.js",
+	"./id": "../node_modules/moment/locale/id.js",
+	"./id.js": "../node_modules/moment/locale/id.js",
+	"./is": "../node_modules/moment/locale/is.js",
+	"./is.js": "../node_modules/moment/locale/is.js",
+	"./it": "../node_modules/moment/locale/it.js",
+	"./it.js": "../node_modules/moment/locale/it.js",
+	"./ja": "../node_modules/moment/locale/ja.js",
+	"./ja.js": "../node_modules/moment/locale/ja.js",
+	"./jv": "../node_modules/moment/locale/jv.js",
+	"./jv.js": "../node_modules/moment/locale/jv.js",
+	"./ka": "../node_modules/moment/locale/ka.js",
+	"./ka.js": "../node_modules/moment/locale/ka.js",
+	"./kk": "../node_modules/moment/locale/kk.js",
+	"./kk.js": "../node_modules/moment/locale/kk.js",
+	"./km": "../node_modules/moment/locale/km.js",
+	"./km.js": "../node_modules/moment/locale/km.js",
+	"./kn": "../node_modules/moment/locale/kn.js",
+	"./kn.js": "../node_modules/moment/locale/kn.js",
+	"./ko": "../node_modules/moment/locale/ko.js",
+	"./ko.js": "../node_modules/moment/locale/ko.js",
+	"./ky": "../node_modules/moment/locale/ky.js",
+	"./ky.js": "../node_modules/moment/locale/ky.js",
+	"./lb": "../node_modules/moment/locale/lb.js",
+	"./lb.js": "../node_modules/moment/locale/lb.js",
+	"./lo": "../node_modules/moment/locale/lo.js",
+	"./lo.js": "../node_modules/moment/locale/lo.js",
+	"./lt": "../node_modules/moment/locale/lt.js",
+	"./lt.js": "../node_modules/moment/locale/lt.js",
+	"./lv": "../node_modules/moment/locale/lv.js",
+	"./lv.js": "../node_modules/moment/locale/lv.js",
+	"./me": "../node_modules/moment/locale/me.js",
+	"./me.js": "../node_modules/moment/locale/me.js",
+	"./mi": "../node_modules/moment/locale/mi.js",
+	"./mi.js": "../node_modules/moment/locale/mi.js",
+	"./mk": "../node_modules/moment/locale/mk.js",
+	"./mk.js": "../node_modules/moment/locale/mk.js",
+	"./ml": "../node_modules/moment/locale/ml.js",
+	"./ml.js": "../node_modules/moment/locale/ml.js",
+	"./mn": "../node_modules/moment/locale/mn.js",
+	"./mn.js": "../node_modules/moment/locale/mn.js",
+	"./mr": "../node_modules/moment/locale/mr.js",
+	"./mr.js": "../node_modules/moment/locale/mr.js",
+	"./ms": "../node_modules/moment/locale/ms.js",
+	"./ms-my": "../node_modules/moment/locale/ms-my.js",
+	"./ms-my.js": "../node_modules/moment/locale/ms-my.js",
+	"./ms.js": "../node_modules/moment/locale/ms.js",
+	"./mt": "../node_modules/moment/locale/mt.js",
+	"./mt.js": "../node_modules/moment/locale/mt.js",
+	"./my": "../node_modules/moment/locale/my.js",
+	"./my.js": "../node_modules/moment/locale/my.js",
+	"./nb": "../node_modules/moment/locale/nb.js",
+	"./nb.js": "../node_modules/moment/locale/nb.js",
+	"./ne": "../node_modules/moment/locale/ne.js",
+	"./ne.js": "../node_modules/moment/locale/ne.js",
+	"./nl": "../node_modules/moment/locale/nl.js",
+	"./nl-be": "../node_modules/moment/locale/nl-be.js",
+	"./nl-be.js": "../node_modules/moment/locale/nl-be.js",
+	"./nl.js": "../node_modules/moment/locale/nl.js",
+	"./nn": "../node_modules/moment/locale/nn.js",
+	"./nn.js": "../node_modules/moment/locale/nn.js",
+	"./pa-in": "../node_modules/moment/locale/pa-in.js",
+	"./pa-in.js": "../node_modules/moment/locale/pa-in.js",
+	"./pl": "../node_modules/moment/locale/pl.js",
+	"./pl.js": "../node_modules/moment/locale/pl.js",
+	"./pt": "../node_modules/moment/locale/pt.js",
+	"./pt-br": "../node_modules/moment/locale/pt-br.js",
+	"./pt-br.js": "../node_modules/moment/locale/pt-br.js",
+	"./pt.js": "../node_modules/moment/locale/pt.js",
+	"./ro": "../node_modules/moment/locale/ro.js",
+	"./ro.js": "../node_modules/moment/locale/ro.js",
+	"./ru": "../node_modules/moment/locale/ru.js",
+	"./ru.js": "../node_modules/moment/locale/ru.js",
+	"./sd": "../node_modules/moment/locale/sd.js",
+	"./sd.js": "../node_modules/moment/locale/sd.js",
+	"./se": "../node_modules/moment/locale/se.js",
+	"./se.js": "../node_modules/moment/locale/se.js",
+	"./si": "../node_modules/moment/locale/si.js",
+	"./si.js": "../node_modules/moment/locale/si.js",
+	"./sk": "../node_modules/moment/locale/sk.js",
+	"./sk.js": "../node_modules/moment/locale/sk.js",
+	"./sl": "../node_modules/moment/locale/sl.js",
+	"./sl.js": "../node_modules/moment/locale/sl.js",
+	"./sq": "../node_modules/moment/locale/sq.js",
+	"./sq.js": "../node_modules/moment/locale/sq.js",
+	"./sr": "../node_modules/moment/locale/sr.js",
+	"./sr-cyrl": "../node_modules/moment/locale/sr-cyrl.js",
+	"./sr-cyrl.js": "../node_modules/moment/locale/sr-cyrl.js",
+	"./sr.js": "../node_modules/moment/locale/sr.js",
+	"./ss": "../node_modules/moment/locale/ss.js",
+	"./ss.js": "../node_modules/moment/locale/ss.js",
+	"./sv": "../node_modules/moment/locale/sv.js",
+	"./sv.js": "../node_modules/moment/locale/sv.js",
+	"./sw": "../node_modules/moment/locale/sw.js",
+	"./sw.js": "../node_modules/moment/locale/sw.js",
+	"./ta": "../node_modules/moment/locale/ta.js",
+	"./ta.js": "../node_modules/moment/locale/ta.js",
+	"./te": "../node_modules/moment/locale/te.js",
+	"./te.js": "../node_modules/moment/locale/te.js",
+	"./tet": "../node_modules/moment/locale/tet.js",
+	"./tet.js": "../node_modules/moment/locale/tet.js",
+	"./tg": "../node_modules/moment/locale/tg.js",
+	"./tg.js": "../node_modules/moment/locale/tg.js",
+	"./th": "../node_modules/moment/locale/th.js",
+	"./th.js": "../node_modules/moment/locale/th.js",
+	"./tl-ph": "../node_modules/moment/locale/tl-ph.js",
+	"./tl-ph.js": "../node_modules/moment/locale/tl-ph.js",
+	"./tlh": "../node_modules/moment/locale/tlh.js",
+	"./tlh.js": "../node_modules/moment/locale/tlh.js",
+	"./tr": "../node_modules/moment/locale/tr.js",
+	"./tr.js": "../node_modules/moment/locale/tr.js",
+	"./tzl": "../node_modules/moment/locale/tzl.js",
+	"./tzl.js": "../node_modules/moment/locale/tzl.js",
+	"./tzm": "../node_modules/moment/locale/tzm.js",
+	"./tzm-latn": "../node_modules/moment/locale/tzm-latn.js",
+	"./tzm-latn.js": "../node_modules/moment/locale/tzm-latn.js",
+	"./tzm.js": "../node_modules/moment/locale/tzm.js",
+	"./ug-cn": "../node_modules/moment/locale/ug-cn.js",
+	"./ug-cn.js": "../node_modules/moment/locale/ug-cn.js",
+	"./uk": "../node_modules/moment/locale/uk.js",
+	"./uk.js": "../node_modules/moment/locale/uk.js",
+	"./ur": "../node_modules/moment/locale/ur.js",
+	"./ur.js": "../node_modules/moment/locale/ur.js",
+	"./uz": "../node_modules/moment/locale/uz.js",
+	"./uz-latn": "../node_modules/moment/locale/uz-latn.js",
+	"./uz-latn.js": "../node_modules/moment/locale/uz-latn.js",
+	"./uz.js": "../node_modules/moment/locale/uz.js",
+	"./vi": "../node_modules/moment/locale/vi.js",
+	"./vi.js": "../node_modules/moment/locale/vi.js",
+	"./x-pseudo": "../node_modules/moment/locale/x-pseudo.js",
+	"./x-pseudo.js": "../node_modules/moment/locale/x-pseudo.js",
+	"./yo": "../node_modules/moment/locale/yo.js",
+	"./yo.js": "../node_modules/moment/locale/yo.js",
+	"./zh-cn": "../node_modules/moment/locale/zh-cn.js",
+	"./zh-cn.js": "../node_modules/moment/locale/zh-cn.js",
+	"./zh-hk": "../node_modules/moment/locale/zh-hk.js",
+	"./zh-hk.js": "../node_modules/moment/locale/zh-hk.js",
+	"./zh-tw": "../node_modules/moment/locale/zh-tw.js",
+	"./zh-tw.js": "../node_modules/moment/locale/zh-tw.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return id;
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "../node_modules/moment/locale sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
 /***/ "./node_modules/core-js/es7/reflect.js":
 /*!*********************************************!*\
   !*** ./node_modules/core-js/es7/reflect.js ***!
@@ -6471,7 +6750,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  user-week works!\n</p>\n"
+module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button \n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -6486,6 +6765,12 @@ module.exports = "<p>\n  user-week works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserWeekComponent", function() { return UserWeekComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _models_shift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/shift */ "./src/app/models/shift.ts");
+/* harmony import */ var _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/requestWeek_user */ "./src/app/models/requestWeek_user.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6496,18 +6781,243 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
 var UserWeekComponent = /** @class */ (function () {
-    function UserWeekComponent() {
+    function UserWeekComponent(_route, _router, _userService) {
+        this._route = _route;
+        this._router = _router;
+        this._userService = _userService;
+        this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        this.shift = ['morning', 'afternoon', 'nigth'];
+        this.dates = [];
+        this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('');
+        this.identity = this._userService.getIdentity();
+        this.count_morning = 0;
+        this.count_afternoon = 0;
+        this.count_night = 0;
+        this.count_weekend = 0;
+        this.week = [];
+        for (var i = 0; i < this.days.length; i++) {
+            var tmp = this.days[i];
+            this.week[tmp] = new _models_shift__WEBPACK_IMPORTED_MODULE_1__["Shift"]('', '', '');
+        }
+        this.number_week = this.getWeekNumber(new Date());
+        console.log(this.number_week);
+        var d = new Date();
+        console.log(this.number_week);
+        this.dates = this.getFirstAndLastDates(this.number_week);
+        console.log(this.dates);
     }
     UserWeekComponent.prototype.ngOnInit = function () {
+        this.requestUser.setId(this.identity._id);
+        this.requestUser.setLevel(this.identity.level);
+    };
+    UserWeekComponent.prototype.getWeekNumber = function (full_date) {
+        // Copy date so don't modify original
+        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7);
+        // Return array of year and week number
+        return [full_date.getUTCFullYear(), weekNo + 1];
+    };
+    UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
+        // const moment = require('moment');
+        var year = numberWeek[0];
+        var week = numberWeek[1];
+        var dates = [];
+        for (var i = 0; i < this.days.length; i++) {
+            var d = this.days[i];
+            var test = moment__WEBPACK_IMPORTED_MODULE_5__().day(d).year(year).week(week).toDate();
+            dates[d] = test;
+        }
+        console.log(dates);
+        return dates;
+    };
+    UserWeekComponent.prototype.setValue = function (day, per) {
+        switch (per) {
+            case 'morning':
+                if (this.week[day][per] === 'V') {
+                    break;
+                }
+                else if (day === 'saturday') {
+                    this.week[day][per] = 'V';
+                    this.count_weekend++;
+                    break;
+                }
+                else {
+                    this.week[day][per] = 'V';
+                    this.count_morning++;
+                    break;
+                }
+            case 'afternoon':
+                if (this.week[day][per] === 'V') {
+                    break;
+                }
+                else if (day === 'friday' || day === 'saturday') {
+                    this.week[day][per] = 'V';
+                    this.count_weekend++;
+                    break;
+                }
+                else {
+                    this.week[day][per] = 'V';
+                    this.count_afternoon++;
+                    break;
+                }
+            case 'night':
+                if (this.week[day][per] === 'V') {
+                    break;
+                }
+                else if (day === 'friday' || day === 'saturday') {
+                    this.week[day][per] = 'V';
+                    this.count_weekend++;
+                    break;
+                }
+                else {
+                    this.week[day][per] = 'V';
+                    this.count_night++;
+                    break;
+                }
+        }
+        console.log(this.week);
+        console.log(this.count_morning, this.count_afternoon, this.count_night, this.count_weekend);
+    };
+    UserWeekComponent.prototype.resetValue = function (day, per) {
+        switch (per) {
+            case 'morning':
+                this.week[day][per] = '';
+                if (day === 'saturday') {
+                    this.count_weekend--;
+                }
+                else {
+                    this.count_morning--;
+                }
+                break;
+            case 'afternoon':
+                this.week[day][per] = '';
+                if (day === 'friday' || day === 'saturday') {
+                    this.count_weekend--;
+                }
+                else {
+                    this.count_afternoon--;
+                }
+                break;
+            case 'night':
+                this.week[day][per] = '';
+                if (day === 'friday' || day === 'saturday') {
+                    this.count_weekend--;
+                }
+                else {
+                    this.count_night--;
+                }
+                break;
+        }
+        console.log(this.week);
+        console.log(this.count_morning, this.count_afternoon, this.count_night, this.count_weekend);
+    };
+    UserWeekComponent.prototype.sendValues = function () {
+        var _this = this;
+        if (this.count_morning > 0 &&
+            this.count_afternoon > 1 &&
+            this.count_night > 1 &&
+            this.count_weekend > 0) {
+            this.requestUser.setNumberWeek(String(this.number_week[1]));
+            for (var i = 0; i < this.days.length; i++) {
+                var d = this.days[i];
+                for (var j = 0; j < this.shift.length; j++) {
+                    var s = this.shift[j];
+                    this.requestUser.setShift(d, s, this.week[d][s]);
+                }
+            }
+            this.status = 'success';
+            if (this.status === 'success') {
+                this.count_morning = 0;
+                this.count_afternoon = 0;
+                this.count_night = 0;
+                this.count_weekend = 0;
+            }
+            this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
+                if (response.ok) {
+                    for (var i = 0; i < _this.days.length; i++) {
+                        var d = _this.days[i];
+                        for (var j = 0; j < _this.shift.length; j++) {
+                            var s = _this.shift[j];
+                            _this.week[d][s] = response.requestUser[d][s];
+                            _this.updateValues(d, s);
+                        }
+                    }
+                    window.location.reload();
+                }
+            }, function (error) {
+                var errorMessage = error;
+                console.log(errorMessage);
+                if (errorMessage !== null) {
+                    _this.status = 'error';
+                }
+            });
+        }
+        else {
+            this.status = 'error';
+        }
+    };
+    UserWeekComponent.prototype.updateValues = function (d, s) {
+        switch (s) {
+            case 'morning':
+                if (d === 'saturday') {
+                    if (this.week[d][s] === 'V') {
+                        this.count_weekend++;
+                    }
+                    break;
+                }
+                else if (this.week[d][s] === 'V') {
+                    this.count_morning++;
+                    break;
+                }
+                break;
+            case 'afternoon':
+                if (d === 'friday' || d === 'saturday') {
+                    if (this.week[d][s] === 'V') {
+                        this.count_weekend++;
+                    }
+                    break;
+                }
+                else if (this.week[d][s] === 'V') {
+                    this.count_afternoon++;
+                    break;
+                }
+                break;
+            case 'night':
+                if (d === 'friday' || d === 'saturday') {
+                    if (this.week[d][s] === 'V') {
+                        this.count_weekend++;
+                    }
+                    break;
+                }
+                else if (this.week[d][s] === 'V') {
+                    this.count_night++;
+                    break;
+                }
+                break;
+        }
     };
     UserWeekComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-week',
             template: __webpack_require__(/*! ./user-week.component.html */ "./src/app/components/user-week/user-week.component.html"),
-            styles: [__webpack_require__(/*! ./user-week.component.css */ "./src/app/components/user-week/user-week.component.css")]
+            styles: [__webpack_require__(/*! ./user-week.component.css */ "./src/app/components/user-week/user-week.component.css")],
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], UserWeekComponent);
     return UserWeekComponent;
 }());
@@ -6533,6 +7043,109 @@ var Message = /** @class */ (function () {
         this.date = date;
     }
     return Message;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/requestWeek_user.ts":
+/*!********************************************!*\
+  !*** ./src/app/models/requestWeek_user.ts ***!
+  \********************************************/
+/*! exports provided: RequestWeekUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestWeekUser", function() { return RequestWeekUser; });
+/* harmony import */ var _shift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shift */ "./src/app/models/shift.ts");
+
+var RequestWeekUser = /** @class */ (function () {
+    function RequestWeekUser(id) {
+        this._id = id;
+        // this.name = name;
+        // this.last_name = this.last_name;
+        // this.email = this.email;
+        this.sunday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.monday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.tuesday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.wednesday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.thursday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.friday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+        this.saturday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
+    }
+    RequestWeekUser.prototype.setId = function (id) {
+        this._id = id;
+    };
+    RequestWeekUser.prototype.getId = function () {
+        return this._id;
+    };
+    /*public setName( name ) {
+        this.name = name;
+    }
+
+    public getName() {
+        return this.name;
+    }
+
+    public setLastName( last_name ) {
+        this.last_name = last_name;
+    }
+
+    public getLastName() {
+        return this.last_name;
+    }
+
+    public setEmail( email ) {
+        this.email = email;
+    }
+
+    public getEmail() {
+        return this.email;
+    }*/
+    RequestWeekUser.prototype.setNumberWeek = function (num) {
+        this.numberWeek = num;
+    };
+    RequestWeekUser.prototype.getNumberWeek = function () {
+        return this.numberWeek;
+    };
+    RequestWeekUser.prototype.setLevel = function (level) {
+        this.level = level;
+    };
+    RequestWeekUser.prototype.getLevel = function () {
+        return this.level;
+    };
+    RequestWeekUser.prototype.setShift = function (day, shift, value) {
+        this[day][shift] = value;
+    };
+    RequestWeekUser.prototype.getShift = function (day, shift) {
+        return this[day][shift];
+    };
+    return RequestWeekUser;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/shift.ts":
+/*!*********************************!*\
+  !*** ./src/app/models/shift.ts ***!
+  \*********************************/
+/*! exports provided: Shift */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Shift", function() { return Shift; });
+var Shift = /** @class */ (function () {
+    function Shift(morning, afternoon, night) {
+        this.morning = morning;
+        this.afternoon = afternoon;
+        this.night = night;
+    }
+    return Shift;
 }());
 
 
@@ -6679,6 +7292,11 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(user);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put(this.url + 'admin-update-user/' + user._id, params, { headers: headers });
+    };
+    UserService.prototype.saveRequestUser = function (requestUser) {
+        var params = JSON.stringify(requestUser);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post(this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
     };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
