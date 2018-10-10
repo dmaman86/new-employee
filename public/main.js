@@ -5453,6 +5453,9 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.ngOnInit = function () {
         this.identity = this._userService.getIdentity();
         console.log(this.identity);
+        if (!this.identity) {
+            this._router.navigate(['/login']);
+        }
     };
     AppComponent.prototype.ngDoCheck = function () {
         this.identity = this._userService.getIdentity();
