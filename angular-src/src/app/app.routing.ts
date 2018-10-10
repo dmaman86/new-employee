@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UserWeekComponent } from './components/user-week/user-week.component';
+import { AboutMeComponent } from './components/about-me/about-me.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -18,6 +20,8 @@ const appRoutes: Routes = [
     { path: 'edit-user', component: EditUserComponent },
     { path: 'contacts', component: ContactsComponent },
     { path: 'user-week', component: UserWeekComponent },
+    { path: 'about-me', component: AboutMeComponent },
+    { path: 'profile', component: ProfileComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

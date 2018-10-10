@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'Please fill in all the fields';
+    this.title = 'SIGN UP (please fill in all the fields)';
     this.user = new User('', '', '', '', '', '', '');
   }
 

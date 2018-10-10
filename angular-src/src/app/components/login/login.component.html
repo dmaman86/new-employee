@@ -13,7 +13,7 @@
       <div class="form-group row">
         <label for="inputEmail3"
          class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <input type="email"
                 name="email"
                 #email="ngModel"
@@ -27,7 +27,7 @@
       <div class="form-group row">
         <label for="inputPassword3"
                class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
+        <div class="col-sm-6">
           <input type="password"
                  class="form-control"
                   name="password"
@@ -43,7 +43,7 @@
           <button 
             type="submit"
             class="btn btn-primary"
-            [disabled]="!loginForm.form.valid">Sign in</button>
+            [disabled]="!loginForm.form.valid">Log In</button>
             <a class="nav-item nav-link disabled" (click)="newUser()">New User? Click me</a>
         </div>
       </div>

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'Sign In please';
+    this.title = 'Log In';
     this.user = new User('', '', '', '', '', 'USER', 'USER');
   }
 

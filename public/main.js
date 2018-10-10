@@ -5414,7 +5414,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"identity\">\n    <div class=\"navbar-nav\">\n      <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\" routerLinkActive=\"active\">About Me</a>\n    </div>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"!identity\">\n    <div class=\"navbar-nav\">\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/login']\">Login</a>\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\">About Me</a>\n    </div>\n  </div>\n\n</nav>\n\n<div class=\"container main-container\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"identity\">\n    <div class=\"navbar-nav\">\n      <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n      <a class=\"nav-item nav-link disabled\" [routerLink]=\"['/about-me']\" routerLinkActive=\"active\">About Me</a>\n    </div>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"!identity\">\n    <div class=\"navbar-nav\">\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/login']\">Login</a>\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"nav-item nav-link disabled\" [routerLink]=\"['/about-me']\">About Me</a>\n    </div>\n  </div>\n\n</nav>\n\n<div class=\"container main-container\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -5510,6 +5510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
 /* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
+/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5531,6 +5533,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -5544,7 +5548,9 @@ var AppModule = /** @class */ (function () {
                 _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_9__["ContactsComponent"],
                 _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_10__["EditUserComponent"],
                 _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
-                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"]
+                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"],
+                _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__["AboutMeComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__["ProfileComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -5584,8 +5590,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/contacts/contacts.component */ "./src/app/components/contacts/contacts.component.ts");
 /* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
 /* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
+/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 
 // import components
+
+
 
 
 
@@ -5601,10 +5611,78 @@ var appRoutes = [
     { path: 'edit-user', component: _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_6__["EditUserComponent"] },
     { path: 'contacts', component: _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_5__["ContactsComponent"] },
     { path: 'user-week', component: _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_7__["UserWeekComponent"] },
+    { path: 'about-me', component: _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_8__["AboutMeComponent"] },
+    { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"] },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 var appRoutingProviders = [];
 var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(appRoutes);
+
+
+/***/ }),
+
+/***/ "./src/app/components/about-me/about-me.component.css":
+/*!************************************************************!*\
+  !*** ./src/app/components/about-me/about-me.component.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "h1 {\n\tfont-family: Verdana;\n\tfont-weight: bold;\n\ttext-align: center;\n\tpadding-top: 25px;\n\tpadding-bottom: 25px;\n\tcolor: #acd1b2;\n}\nh2 {\n\tfont-family: Verdana;\n\tfont-weight: bold;\n\ttext-align: center;\n\tpadding-top: 25px;\n\tpadding-bottom: 25px;\n\tcolor: #acd1b2;\n}\n#name {\n\tposition: relative;\n\ttop: -10px;\n\tborder-top-left-radius: 15px;\n\tborder-top-right-radius: 15px;\n}\n#email{\n\tfloat:right;\n\tmargin-right:5px;\n\tpadding-top:5px;\n\tfont-size:16px;\n\tfont-family: Verdana, sans-serif;\n\tcolor:#ffffff;\n}\nh1:hover\n{\n\tbackground-color:#102372;\n}\nh2:hover\n{\n\tbackground-color:#102372;\n}"
+
+/***/ }),
+
+/***/ "./src/app/components/about-me/about-me.component.html":
+/*!*************************************************************!*\
+  !*** ./src/app/components/about-me/about-me.component.html ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"header\">\n  <h1 class=\"hover\">Welcome to my app Employee Management</h1>\n  <p id=\"name\">David Alejandro Maman</p>\n  <a href=\"mailto:dmaman86@gmail.com\"><p id=\"email\">dmaman86@gmail.com</p></a>\n</div>\n<h2>Things I like to do:</h2>\n\n\n<h2>About me:</h2>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/about-me/about-me.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/components/about-me/about-me.component.ts ***!
+  \***********************************************************/
+/*! exports provided: AboutMeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutMeComponent", function() { return AboutMeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AboutMeComponent = /** @class */ (function () {
+    function AboutMeComponent() {
+    }
+    AboutMeComponent.prototype.ngOnInit = function () {
+    };
+    AboutMeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-about-me',
+            template: __webpack_require__(/*! ./about-me.component.html */ "./src/app/components/about-me/about-me.component.html"),
+            styles: [__webpack_require__(/*! ./about-me.component.css */ "./src/app/components/about-me/about-me.component.css")],
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AboutMeComponent);
+    return AboutMeComponent;
+}());
+
 
 
 /***/ }),
@@ -5884,7 +5962,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a href=\"#\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6011,7 +6089,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a href=\"#\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
+module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6106,7 +6184,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-10\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-10\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Sign in</button>\n            <a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n\n"
+module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-6\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-6\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Log In</button>\n            <a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n\n"
 
 /***/ }),
 
@@ -6142,7 +6220,7 @@ var LoginComponent = /** @class */ (function () {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
-        this.title = 'Sign In please';
+        this.title = 'Log In';
         this.user = new _models_user__WEBPACK_IMPORTED_MODULE_2__["User"]('', '', '', '', '', 'USER', 'USER');
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -6218,6 +6296,69 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/profile/profile.component.css":
+/*!**********************************************************!*\
+  !*** ./src/app/components/profile/profile.component.css ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/profile/profile.component.html":
+/*!***********************************************************!*\
+  !*** ./src/app/components/profile/profile.component.html ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  profile works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/profile/profile.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/profile/profile.component.ts ***!
+  \*********************************************************/
+/*! exports provided: ProfileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent() {
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+    };
+    ProfileComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-profile',
+            template: __webpack_require__(/*! ./profile.component.html */ "./src/app/components/profile/profile.component.html"),
+            styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/components/profile/profile.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProfileComponent);
+    return ProfileComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/register/register.component.css":
 /*!************************************************************!*\
   !*** ./src/app/components/register/register.component.css ***!
@@ -6236,7 +6377,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\n\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n        Register success!! \n        <a [routerLink]=\"['/login']\">Sign In Here</a>\n      </div>\n    \n      <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n       Please try again in another data\n      </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                required\n                placeholder=\"First Name\">\n          <div *ngIf=\"name.errors?.required\"\n                class=\"form-control-feedback\">\n                Name is required!\n          </div>\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 required\n                 placeholder=\"Last Name\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              required\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"Email\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              required\n              placeholder=\"Password\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!registerForm.form.valid\">Sign in</button>\n  </form>"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\n\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n        Register success!! \n        <a [routerLink]=\"['/login']\">Sign In Here</a>\n      </div>\n    \n      <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n       Please try again in another data\n      </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                required\n                placeholder=\"First Name\">\n          <div *ngIf=\"name.errors?.required\"\n                class=\"form-control-feedback\">\n                Name is required!\n          </div>\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 required\n                 placeholder=\"Last Name\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              required\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"Email\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              required\n              placeholder=\"Password\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!registerForm.form.valid\">Sign Up</button>\n  </form>"
 
 /***/ }),
 
@@ -6272,7 +6413,7 @@ var RegisterComponent = /** @class */ (function () {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
-        this.title = 'Please fill in all the fields';
+        this.title = 'SIGN UP (please fill in all the fields)';
         this.user = new _models_user__WEBPACK_IMPORTED_MODULE_2__["User"]('', '', '', '', '', '', '');
     }
     RegisterComponent.prototype.ngOnInit = function () {

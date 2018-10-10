@@ -15,7 +15,7 @@
           <a class="nav-item nav-link active" [routerLink]="['/home-admin']" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </div>
       <a class="nav-item nav-link disabled" (click)="logout()" routerLinkActive="active">LogOut</a>
-      <a class="nav-item nav-link disabled" href="#" routerLinkActive="active">About Me</a>
+      <a class="nav-item nav-link disabled" [routerLink]="['/about-me']" routerLinkActive="active">About Me</a>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
       <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
-      <a class="nav-item nav-link disabled" href="#">About Me</a>
+      <a class="nav-item nav-link disabled" [routerLink]="['/about-me']">About Me</a>
     </div>
   </div>
 

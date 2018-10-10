@@ -15,6 +15,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
+import { AboutMeComponent } from './components/about-me/about-me.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
     ContactsComponent,
     EditUserComponent,
     HomeComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    AboutMeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
