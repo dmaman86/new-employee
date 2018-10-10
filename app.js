@@ -14,14 +14,14 @@ var request_routes = require('./routes/requestWeekUser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'angular-src/dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // habilitar la carpeta public
 // app.use(express.static(path.resolve(__dirname, '/dist/')));
 
 // Index Route
 app.get('*', (req, res) => {
-    res.sendFile( path.join( __dirname, 'angular-src/dist/index.html'))
+    res.sendFile( path.join( __dirname, 'public/index.html'))
 })
 
 // cors
