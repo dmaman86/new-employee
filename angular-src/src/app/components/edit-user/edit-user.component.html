@@ -1,0 +1,64 @@
+<h1>{{ title }}</h1>
+<hr>
+<form #updateForm="ngForm" (ngSubmit)="onSubmit( updateForm )">
+
+    <!--<div class="alert alert-success" *ngIf="status == 'success' ">
+        Register success!! 
+        <a [routerLink]="['/login']">Sign In Here</a>
+      </div>
+    
+      <div class="alert alert-danger" *ngIf="status == 'error' ">
+       Please try again in another data
+      </div>-->
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <label for="inputName4">First Name</label>
+          <input type="text"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="user.name"
+                class="form-control"
+                placeholder="{{ user.name }}">
+        </div>
+  
+        <div class="form-group col-md-6">
+          <label for="inputLastName4">Last Name</label>
+          <input type="text"
+                  name="last_name"
+                  #last_name="ngModel"
+                  [(ngModel)]="user.last_name"
+                 class="form-control"
+                 placeholder="{{ user.last_name }}">
+        </div>
+  
+      </div>
+
+      <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <input type="email"
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="user.email"
+              class="form-control"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              placeholder="{{ user.email }}">
+      </div>
+
+      <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input type="password"
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="user.password"
+              class="form-control"
+              placeholder="{{ user.password }}">
+      </div>
+    
+    <button
+       type="submit"
+       class="btn btn-primary"
+      [disabled]="!updateForm.form.valid">Update Data</button>
+  </form>
+
+

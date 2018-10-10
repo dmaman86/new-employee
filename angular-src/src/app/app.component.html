@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <a class="navbar-brand" href="#">{{ title }}</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" *ngIf="identity">
+    <div class="navbar-nav">
+      <div *ngIf="this.identity.level == 'USER_ROLE'">
+          <a class="nav-item nav-link active" [routerLink]="['/home']" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </div>
+      <div *ngIf="this.identity.level == 'ADMIN_ROLE'">
+          <a class="nav-item nav-link active" [routerLink]="['/home-admin']" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </div>
+      <a class="nav-item nav-link disabled" (click)="logout()" routerLinkActive="active">LogOut</a>
+      <a class="nav-item nav-link disabled" href="#" routerLinkActive="active">About Me</a>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup" *ngIf="!identity">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
+      <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
+      <a class="nav-item nav-link disabled" href="#">About Me</a>
+    </div>
+  </div>
+
+</nav>
+
+<div class="container main-container">
+  <router-outlet></router-outlet>
+</div>
