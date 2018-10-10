@@ -34,14 +34,5 @@ app.use('/api', user_routes);
 app.use('/api', message_routes);
 app.use('/api', request_routes);
 
-// Index Route
-app.get('/', (req, res) => {
-    res.send('invaild endpoint');
-  });
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-  });
-
 // exports
 module.exports = app;
