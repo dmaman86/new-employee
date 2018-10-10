@@ -8,6 +8,7 @@ var app = express();
 // upload routes
 var user_routes = require('./routes/user');
 var message_routes = require('./routes/message');
+var request_routes = require('./routes/requestWeekUser');
 
 // middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api', user_routes);
 app.use('/api', message_routes);
+app.use('/api', request_routes);
 
 // Index Route
 app.get('/', (req, res) => {
