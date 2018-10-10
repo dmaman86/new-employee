@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 
 // habilitar la carpeta public
 // app.use(express.static(path.resolve(__dirname, '/dist/')));
-// Index Route
 
+// Index Route
 app.get('*', (req, res) => {
-    res.sendFile( path.join( __dirname, 'angular-src/dist/angular-src/index.html'))
+    res.sendFile( path.join( __dirname, '/dist/angular-src/index.html'))
 })
 
 // cors
