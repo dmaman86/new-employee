@@ -28,6 +28,15 @@ export class AppComponent implements OnInit, DoCheck {
     this.identity = this._userService.getIdentity();
   }
 
+  comeBack() {
+    if ( this.identity.role === 'ADMIN_ROLE' ) {
+      this._router.navigate(['/home-admin']);
+    }
+    if ( this.identity.role === 'USER_ROLE' ) {
+      this._router.navigate(['/home']);
+    }
+  }
+
   logout() {
     localStorage.clear();
     this.identity = null;

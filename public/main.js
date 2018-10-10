@@ -5414,7 +5414,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <a class=\"navbar-brand\" href=\"#\">{{ title }}</a>\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"identity\">\n    <div class=\"navbar-nav\">\n      <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\" routerLinkActive=\"active\">About Me</a>\n    </div>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"!identity\">\n    <div class=\"navbar-nav\">\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/login']\">Login</a>\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\">About Me</a>\n    </div>\n  </div>\n\n</nav>\n\n<div class=\"container main-container\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"identity\">\n    <div class=\"navbar-nav\">\n      <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\" routerLinkActive=\"active\">About Me</a>\n    </div>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"!identity\">\n    <div class=\"navbar-nav\">\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/login']\">Login</a>\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"nav-item nav-link disabled\" href=\"#\">About Me</a>\n    </div>\n  </div>\n\n</nav>\n\n<div class=\"container main-container\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -5456,6 +5456,14 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.ngDoCheck = function () {
         this.identity = this._userService.getIdentity();
+    };
+    AppComponent.prototype.comeBack = function () {
+        if (this.identity.role === 'ADMIN_ROLE') {
+            this._router.navigate(['/home-admin']);
+        }
+        if (this.identity.role === 'USER_ROLE') {
+            this._router.navigate(['/home']);
+        }
     };
     AppComponent.prototype.logout = function () {
         localStorage.clear();
@@ -6511,8 +6519,8 @@ var UserService = /** @class */ (function () {
         return this._http.delete(this.url + 'delete-message/' + messageId, { headers: headers });
     };
     UserService.prototype.getUsers = function () {
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.get(this.url + 'users', { headers: headers });
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get(this.url + 'users/', { headers: headers });
     };
     UserService.prototype.deleteUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());

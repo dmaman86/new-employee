@@ -19,11 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // habilitar la carpeta public
 // app.use(express.static(path.resolve(__dirname, '/dist/')));
 
-// Index Route
-app.get('*', (req, res) => {
-    res.sendFile( path.join( __dirname, 'public/index.html'))
-})
-
 // cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -38,6 +33,11 @@ app.use((req, res, next) => {
 app.use('/api', user_routes);
 app.use('/api', message_routes);
 app.use('/api', request_routes);
+
+// Index Route
+app.get('*', (req, res) => {
+    res.sendFile( path.join( __dirname, 'public/index.html'))
+});
 
 // exports
 module.exports = app;

@@ -72,8 +72,8 @@ export class UserService {
     }
 
     getUsers(): Observable<any> {
-        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.get( this.url + 'users', { headers: headers });
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get( this.url + 'users/', { headers: headers });
     }
 
     deleteUser( user: User ): Observable<any> {
