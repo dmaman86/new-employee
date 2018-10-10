@@ -17,7 +17,11 @@ app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // habilitar la carpeta public
-app.use(express.static(path.resolve(__dirname, '/dist/')));
+// app.use(express.static(path.resolve(__dirname, '/dist/')));
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use( express.static( distDir ) );
 
 // cors
 app.use((req, res, next) => {
