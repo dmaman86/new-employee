@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 // Index Route
 
 app.get('*', (req, res) => {
-    res.sendFile( path.join( __dirname, 'angular-src/dist/index.html'))
+    res.sendFile( path.join( __dirname, 'angular-src/dist/angular-src/index.html'))
 })
 
 // cors
