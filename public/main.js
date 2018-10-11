@@ -6792,7 +6792,7 @@ var UserWeekComponent = /** @class */ (function () {
         this._router = _router;
         this._userService = _userService;
         this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-        this.shift = ['morning', 'afternoon', 'nigth'];
+        this.shift = ['morning', 'afternoon', 'night'];
         this.dates = [];
         this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('');
         this.identity = this._userService.getIdentity();
@@ -6813,8 +6813,45 @@ var UserWeekComponent = /** @class */ (function () {
         console.log(this.dates);
     }
     UserWeekComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.requestUser.setId(this.identity._id);
         this.requestUser.setLevel(this.identity.level);
+        this.requestUser.setNumberWeek(String(this.number_week[1]));
+        this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
+            if (!response.ok) {
+                alert(response.message);
+            }
+            if (response.ok) {
+                console.log(response.request);
+                if (response.request) {
+                    for (var i = 0; i < _this.days.length; i++) {
+                        var d = _this.days[i];
+                        for (var j = 0; j < _this.shift.length; j++) {
+                            var s = _this.shift[j];
+                            _this.week[d][s] = response.request[d][s];
+                            _this.updateValues(d, s);
+                        }
+                    }
+                }
+                if (response.request.length > 0) {
+                    console.log(response.request);
+                    for (var i = 0; i < _this.days.length; i++) {
+                        var d = _this.days[i];
+                        for (var j = 0; j < _this.shift.length; j++) {
+                            var s = _this.shift[j];
+                            _this.week[d][s] = response.request[d][s];
+                            _this.updateValues(d, s);
+                        }
+                    }
+                }
+            }
+        }, function (error) {
+            var errorMessage = error;
+            console.log(errorMessage);
+            if (errorMessage !== null) {
+                _this.status = 'error';
+            }
+        });
     };
     UserWeekComponent.prototype.getWeekNumber = function (full_date) {
         // Copy date so don't modify original
@@ -6929,7 +6966,6 @@ var UserWeekComponent = /** @class */ (function () {
             this.count_afternoon > 1 &&
             this.count_night > 1 &&
             this.count_weekend > 0) {
-            this.requestUser.setNumberWeek(String(this.number_week[1]));
             for (var i = 0; i < this.days.length; i++) {
                 var d = this.days[i];
                 for (var j = 0; j < this.shift.length; j++) {
@@ -7292,6 +7328,11 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(user);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put(this.url + 'admin-update-user/' + user._id, params, { headers: headers });
+    };
+    UserService.prototype.getRequestUser = function (requestUser) {
+        var params = JSON.stringify(requestUser);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post(this.url + 'get-request-user', params, { headers: headers });
     };
     UserService.prototype.saveRequestUser = function (requestUser) {
         var params = JSON.stringify(requestUser);

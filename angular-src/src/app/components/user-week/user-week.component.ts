@@ -24,7 +24,7 @@ export class UserWeekComponent implements OnInit {
   public shifts: Shift;
   public requestUser: RequestWeekUser;
   public days: any[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-  public shift: any[] = ['morning', 'afternoon', 'nigth'];
+  public shift: any[] = ['morning', 'afternoon', 'night'];
   public number_week: any;
   public dates: any[];
 
@@ -57,6 +57,46 @@ export class UserWeekComponent implements OnInit {
   ngOnInit() {
     this.requestUser.setId( this.identity._id );
     this.requestUser.setLevel( this.identity.level );
+    this.requestUser.setNumberWeek( String(this.number_week[1]) );
+
+    this._userService.getRequestUser( this.requestUser ).subscribe(
+      response => {
+        if ( !response.ok ) {
+          alert( response.message );
+        }
+        if ( response.ok ) {
+          console.log( response.request );
+          if ( response.request ) {
+            for ( let i = 0; i < this.days.length; i++ ) {
+              const d = this.days[i];
+              for ( let j = 0; j < this.shift.length; j++) {
+                const s = this.shift[j];
+                this.week[d][s] = response.request[d][s];
+                this.updateValues(d, s);
+              }
+            }
+          }
+          if ( response.request.length > 0 ) {
+            console.log( response.request );
+            for ( let i = 0; i < this.days.length; i++ ) {
+              const d = this.days[i];
+              for ( let j = 0; j < this.shift.length; j++) {
+                const s = this.shift[j];
+                this.week[d][s] = response.request[d][s];
+                this.updateValues(d, s);
+              }
+            }
+          }
+        }
+
+      }, error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if ( errorMessage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
   getWeekNumber( full_date ) {
@@ -168,8 +208,6 @@ export class UserWeekComponent implements OnInit {
       this.count_afternoon > 1 &&
       this.count_night > 1 &&
       this.count_weekend > 0 ) {
-
-        this.requestUser.setNumberWeek( String(this.number_week[1]) );
 
         for ( let i = 0; i < this.days.length; i++ ) {
           const d = this.days[i];

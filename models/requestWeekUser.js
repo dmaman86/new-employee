@@ -9,6 +9,9 @@ var RequestWeekUser = Schema({
         ref: 'User'
     },
     numberWeek: String,
+    created_at: {
+        type: String
+    },
     sunday: {
         morning: String,
         afternoon: String,

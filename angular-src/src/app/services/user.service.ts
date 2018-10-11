@@ -94,6 +94,12 @@ export class UserService {
         return this._http.put( this.url + 'admin-update-user/' + user._id, params, { headers: headers });
     }
 
+    getRequestUser( requestUser: RequestWeekUser ): Observable<any> {
+        const params = JSON.stringify( requestUser );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'get-request-user', params, { headers: headers });
+    }
+
     saveRequestUser( requestUser: RequestWeekUser ): Observable<any> {
         const params = JSON.stringify( requestUser );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
