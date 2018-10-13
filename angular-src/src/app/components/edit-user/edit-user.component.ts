@@ -36,7 +36,7 @@ export class EditUserComponent implements OnInit {
     this.temp = this.user;
     this._userService.updateUser( this.user ).subscribe(
       response => {
-        console.log(response);
+        console.log( response.ok );
         if ( response.ok ) {
           this.identity = response.user;
           localStorage.setItem( 'identity', JSON.stringify( this.identity ));

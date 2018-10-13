@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { GLOBAL } from '../../services/global';
 
 @Component({
   selector: 'app-contacts',
@@ -17,6 +18,13 @@ export class ContactsComponent implements OnInit {
   public users: User [] = [];
   public identity;
   public status;
+  public token;
+  public page;
+  public next_page;
+  public prev_page;
+  public total;
+  public pages;
+  public url: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -24,13 +32,14 @@ export class ContactsComponent implements OnInit {
     private _userService: UserService
   ) {
     this.title = 'List Contacts';
-    this.user = this._userService.getIdentity();
-    this.identity = this.user;
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
     this.temp_user = new User('', '', '', '', '', '', '');
   }
 
   ngOnInit() {
-    this._userService.getUsers().subscribe(
+    /*this._userService.getUsers().subscribe(
       response => {
         console.log( response );
         for (let i = 0; i < response.users.length; i++) {
@@ -44,12 +53,64 @@ export class ContactsComponent implements OnInit {
           this.status = 'error';
         }
       }
+    );*/
+    this.currentPage();
+  }
+
+  currentPage() {
+    this._route.params.subscribe( params => {
+      let page = params['page'];
+      this.page = page;
+
+      if ( !params['page'] ) {
+        page = 1;
+      }
+
+      if ( !page ) {
+        page = 1;
+      } else {
+        this.next_page = page + 1;
+        this.prev_page = page - 1;
+
+        if ( this.prev_page <= 0 ) {
+          this.prev_page = 1;
+        }
+      }
+      this.getUsers( page );
+    });
+  }
+
+  getUsers( page ) {
+    this._userService.getUsers( page ).subscribe(
+      response => {
+        console.log( response );
+        if ( !response.users ) {
+          this.status = 'error';
+        } else {
+          this.total = response.total;
+          this.users = response.users;
+          this.pages = response.pages;
+
+          if ( page > this.pages ) {
+            this._router.navigate(['/contacts', 1]);
+          }
+        }
+      }, error => {
+        const errorMensage = <any>error;
+        console.log( errorMensage );
+
+        if ( errorMensage !== null ) {
+          this.status = 'error';
+        }
+      }
     );
   }
 
   editUser( userId ) {
     console.log(userId);
     this.status = 'edit';
+
+    console.log( this.users );
 
     for (let i = 0; i < this.users.length; i++) {
       if ( this.users[i]._id === userId ) {
@@ -61,6 +122,8 @@ export class ContactsComponent implements OnInit {
         this.temp_user.level = this.users[i].level;
       }
     }
+
+    console.log( this.temp_user );
   }
 
   deleteUser( userId ) {

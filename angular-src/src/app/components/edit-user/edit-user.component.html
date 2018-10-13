@@ -2,14 +2,9 @@
 <hr>
 <form #updateForm="ngForm" (ngSubmit)="onSubmit( updateForm )">
 
-    <!--<div class="alert alert-success" *ngIf="status == 'success' ">
-        Register success!! 
-        <a [routerLink]="['/login']">Sign In Here</a>
-      </div>
-    
-      <div class="alert alert-danger" *ngIf="status == 'error' ">
-       Please try again in another data
-      </div>-->
+    <div class="alert alert-danger" *ngIf="status == 'error' ">
+        Please try in another values
+    </div>
     <div class="form-row">
 
         <div class="form-group col-md-6">

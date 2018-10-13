@@ -72,9 +72,9 @@ export class UserService {
         return this._http.delete( this.url + 'delete-message/' +  messageId, { headers: headers });
     }
 
-    getUsers(): Observable<any> {
+    getUsers( page = null ): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
-        return this._http.get( this.url + 'users/', { headers: headers });
+        return this._http.get( this.url + 'users/' + page, { headers: headers });
     }
 
     deleteUser( user: User ): Observable<any> {

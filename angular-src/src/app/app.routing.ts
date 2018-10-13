@@ -19,6 +19,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'edit-user', component: EditUserComponent },
     { path: 'contacts', component: ContactsComponent },
+    { path: 'contacts/:page', component: ContactsComponent },
     { path: 'user-week', component: UserWeekComponent },
     { path: 'about-me', component: AboutMeComponent },
     { path: 'profile', component: ProfileComponent },
