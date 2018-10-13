@@ -29,11 +29,6 @@
 
       <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
 </div>
-<!-- paginacion -->
-<ul class="pagination pull-right">
-  <li *ngIf="page > 1"><a [routerLink]="['/contacts', prev_page]">Prev</a></li>
-  <li *ngIf="pages !== page"><a [routerLink]="['/contacts', next_page]">Next</a></li>
-</ul>
 
 <div *ngIf="this.identity.role == 'ADMIN_ROLE'">
     <table class="table" >
