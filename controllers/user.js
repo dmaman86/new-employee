@@ -6,6 +6,8 @@ var bcrypt = require('bcrypt');
 var jwt = require('../services/jwt');
 var mongoosePaginate = require('mongoose-pagination');
 var _ = require('underscore');
+var fs = require('fs');
+var path = require('path');
 
 
 function home(req, res){
@@ -228,6 +230,87 @@ function deleteUser(req, res) {
     });
 }
 
+//subir archivos de imagen/avatar de usuario
+function uploadImagen(req, res){
+
+    var userId = req.params.id;
+
+    if(req.files){
+        var file_path = req.files.image.path;
+        console.log(file_path);
+        /*si fuera en windows tendria que ser asi:
+        var file_split = file_path.split('\\');
+        esto es porque el fichero en mac/linux la direcion es de otra manera */
+        var file_split = file_path.split('/');
+        console.log(file_split);
+
+        var file_name = file_split[2];
+        console.log(file_name);
+
+        var ext_split = file_name.split('\.');
+        console.log(ext_split);
+        var file_ext = ext_split[1];
+
+        if(userId != req.user.sub){
+            return removeFilesofUploads(res, file_path, 'You do not have permission to update user data');
+        }
+
+        if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif'){
+            //actualizar documento de usuario logeado
+            User.findByIdAndUpdate(userId, { image: file_name }, { new: true}, (err, userUpdated) => {
+                if( err ){
+                    return res.status(500).send({
+                        ok: false,
+                        message: `Error in request: ${ err }`
+                    });
+                }
+
+                if( !userUpdated ) {
+                    return res.status(404).send({
+                        ok: false,
+                        message: 'The user could not be updated'
+                    });
+                }
+
+                return res.status(200).send({
+                    ok: true,
+                    user: userUpdated
+                });
+            })
+        }
+        else{
+            return removeFilesofUploads(res, file_path, 'Extension is not valid');
+        }
+
+    }
+    else{
+        return res.status(200).send({
+            message: 'No images have been uploaded'
+        });
+    }
+}
+
+function removeFilesofUploads(res, file_path, message){
+    fs.unlink(file_path, (err) => {
+        return res.status(200).send({ message: message });
+    });
+}
+
+function getImageFile(req, res) {
+    var image_file = req.params.imageFile;
+    var path_file = './uploads/users/' + image_file;
+
+    fs.exists( path_file, ( exists ) => {
+        if ( exists ) {
+            return res.sendFile( path.resolve( path_file ) );
+        } else {
+            return res.status(200).send({
+                ok: false,
+                message: 'This image not exist'
+            });
+        }
+    });
+}
 
 module.exports = {
     home,
@@ -237,5 +320,7 @@ module.exports = {
     getUser,
     updateUser,
     adminUpdateUser,
-    deleteUser
+    deleteUser,
+    uploadImagen,
+    getImageFile
 }
