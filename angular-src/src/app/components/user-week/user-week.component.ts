@@ -57,7 +57,8 @@ export class UserWeekComponent implements OnInit {
   ngOnInit() {
     this.requestUser.setId( this.identity._id );
     this.requestUser.setLevel( this.identity.level );
-    this.requestUser.setNumberWeek( String(this.number_week[1]) );
+    this.requestUser.setNumberWeek( String(this.checkSunday( this.number_week[1] )));
+    // this.requestUser.setNumberWeek( String(this.number_week[1]) );
 
     this._userService.getRequestUser( this.requestUser ).subscribe(
       response => {
@@ -97,6 +98,7 @@ export class UserWeekComponent implements OnInit {
         }
       }
     );
+    this.checkDay();
   }
 
   getWeekNumber( full_date ) {
@@ -116,8 +118,15 @@ export class UserWeekComponent implements OnInit {
   getFirstAndLastDates( numberWeek ) {
     // const moment = require('moment');
     const year = numberWeek[0];
-    const week = numberWeek[1];
+    let week = numberWeek[1];
     const dates = [];
+
+    const day = new Date().getDay();
+
+    if ( day === 0 ) {
+      week++;
+    }
+    console.log( week );
 
     for ( let i = 0; i < this.days.length; i++) {
       const d = this.days[i];
@@ -288,6 +297,30 @@ export class UserWeekComponent implements OnInit {
       }
       break;
     }
+  }
+
+  checkDay() {
+    const d  = new Date();
+    const day = d.getDay();
+    const hour = d.getHours();
+
+    if ( day > 3 ) {
+      if ( hour > 9 ) {
+        console.log( `you can't send`);
+        this.status = 'denied';
+      }
+    } else {
+      console.log( 'you can send' );
+      this.status = 'send';
+    }
+  }
+
+  checkSunday( numberWeek: number ) {
+    const day = new Date().getDay();
+    if ( day === 0 ) {
+      numberWeek++;
+    }
+    return numberWeek;
   }
 
 }

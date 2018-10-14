@@ -6040,21 +6040,6 @@ var ContactsComponent = /** @class */ (function () {
         this.temp_user = new _models_user__WEBPACK_IMPORTED_MODULE_2__["User"]('', '', '', '', '', '', '');
     }
     ContactsComponent.prototype.ngOnInit = function () {
-        /*this._userService.getUsers().subscribe(
-          response => {
-            console.log( response );
-            for (let i = 0; i < response.users.length; i++) {
-              this.users[i] = response.users[i];
-            }
-            console.log( this.users );
-          }, error => {
-            const errorMensage = <any>error;
-            console.log(errorMensage);
-            if ( errorMensage != null ) {
-              this.status = 'error';
-            }
-          }
-        );*/
         this.currentPage();
     };
     ContactsComponent.prototype.currentPage = function () {
@@ -6894,7 +6879,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button \n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n"
+module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n  Sorry, but you'll have to wait next week or contact the administrator\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button\n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -6960,7 +6945,8 @@ var UserWeekComponent = /** @class */ (function () {
         var _this = this;
         this.requestUser.setId(this.identity._id);
         this.requestUser.setLevel(this.identity.level);
-        this.requestUser.setNumberWeek(String(this.number_week[1]));
+        this.requestUser.setNumberWeek(String(this.checkSunday(this.number_week[1])));
+        // this.requestUser.setNumberWeek( String(this.number_week[1]) );
         this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
             if (!response.ok) {
                 alert(response.message);
@@ -6996,6 +6982,7 @@ var UserWeekComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
         });
+        this.checkDay();
     };
     UserWeekComponent.prototype.getWeekNumber = function (full_date) {
         // Copy date so don't modify original
@@ -7015,6 +7002,11 @@ var UserWeekComponent = /** @class */ (function () {
         var year = numberWeek[0];
         var week = numberWeek[1];
         var dates = [];
+        var day = new Date().getDay();
+        if (day === 0) {
+            week++;
+        }
+        console.log(week);
         for (var i = 0; i < this.days.length; i++) {
             var d = this.days[i];
             var test = moment__WEBPACK_IMPORTED_MODULE_5__().day(d).year(year).week(week).toDate();
@@ -7187,6 +7179,28 @@ var UserWeekComponent = /** @class */ (function () {
                 }
                 break;
         }
+    };
+    UserWeekComponent.prototype.checkDay = function () {
+        var d = new Date();
+        var day = d.getDay();
+        var hour = d.getHours();
+        if (day > 3) {
+            if (hour > 9) {
+                console.log("you can't send");
+                this.status = 'denied';
+            }
+        }
+        else {
+            console.log('you can send');
+            this.status = 'send';
+        }
+    };
+    UserWeekComponent.prototype.checkSunday = function (numberWeek) {
+        var day = new Date().getDay();
+        if (day === 0) {
+            numberWeek++;
+        }
+        return numberWeek;
     };
     UserWeekComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

@@ -39,21 +39,6 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*this._userService.getUsers().subscribe(
-      response => {
-        console.log( response );
-        for (let i = 0; i < response.users.length; i++) {
-          this.users[i] = response.users[i];
-        }
-        console.log( this.users );
-      }, error => {
-        const errorMensage = <any>error;
-        console.log(errorMensage);
-        if ( errorMensage != null ) {
-          this.status = 'error';
-        }
-      }
-    );*/
     this.currentPage();
   }
 

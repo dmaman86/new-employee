@@ -5,6 +5,9 @@
 <div class="alert alert-danger" *ngIf="status == 'error'">
   Please check values!
 </div>
+<div class="alert alert-danger" *ngIf="status == 'denied'">
+  Sorry, but you'll have to wait next week or contact the administrator
+</div>
 
 <table class="table table-bordered">
   <thead>
@@ -74,7 +77,7 @@
 
 <div class="form-group row">
   <div class="col-sm-10">
-    <button 
+    <button
       type="submit"
       class="btn btn-primary"
       (click)="sendValues()">Send Values</button>
