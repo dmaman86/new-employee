@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeAdminComponent } from './components/home-admin/home-admin.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     HomeAdminComponent,
     AboutMeComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

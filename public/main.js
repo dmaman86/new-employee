@@ -5693,7 +5693,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n  <ul class=\"nav navbar-nav navbar-right\" *ngIf=\"identity\">\n    <li class=\"avatar\">\n      <img src=\"{{ url + 'get-image-user/' + identity.img }}\" *ngIf=\"identity && identity.img\"/>\n    </li>\n  </ul>\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"identity\">\n    <div class=\"navbar-nav\">\n      <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n          <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n      </div>\n      <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n      <a class=\"nav-item nav-link disabled\" [routerLink]=\"['/about-me']\" routerLinkActive=\"active\">About Me</a>\n    </div>\n  </div>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarNavAltMarkup\" *ngIf=\"!identity\">\n    <div class=\"navbar-nav\">\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/login']\">Login</a>\n      <a class=\"nav-item nav-link\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"nav-item nav-link disabled\" [routerLink]=\"['/about-me']\">About Me</a>\n    </div>\n  </div>\n\n</nav>\n\n<div class=\"container main-container\">\n  <router-outlet></router-outlet>\n</div>-->\n\n<div class=\"navigation col-lg-12\">\n  <nav class=\"navbar navbar-default\">\n    <div class=\"container-fluid\">\n\n      <!--<div class=\"navbar-header\">\n          <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n      </div>-->\n      <a class=\"navbar-brand\" (click)=\"comeBack()\">{{ title }}</a>\n\n      <ul class=\"nav navbar-nav\" *ngIf=\"identity\">\n          <div *ngIf=\"this.identity.level == 'USER_ROLE'\">\n            <li>\n              <a class=\"nav-item nav-link active\" [routerLink]=\"['/home']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n            </li>\n          </div>\n          <div *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n            <li>\n              <a class=\"nav-item nav-link active\" [routerLink]=\"['/home-admin']\" routerLinkActive=\"active\">Home <span class=\"sr-only\">(current)</span></a>\n            </li>\n          </div>\n          <li>\n            <a class=\"nav-item nav-link disabled\" (click)=\"logout()\" routerLinkActive=\"active\">LogOut</a>\n          </li>\n          <li>\n            <a class=\"nav-item nav-link disabled\" [routerLink]=\"['/about-me']\" routerLinkActive=\"active\">About Me</a>\n          </li>\n      </ul>\n\n      <ul class=\"nav navbar navbar-nav navbar-right\" *ngIf=\"!identity\">\n        <li>\n          <a [routerLink]=\"['/login']\" [routerLinkActive]=\"['active']\">\n            <span class=\"glyphicon glyphicon-log-in\"></span>\n            Login</a>\n        </li>\n        <li>\n          <a [routerLink]=\"['/register']\" [routerLinkActive]=\"['active']\">\n          <span class=\"glyphicon glyphicon-user\"></span>\n          Register</a>\n        </li>\n        <li>\n            <a [routerLink]=\"['/about-me']\" [routerLinkActive]=\"['active']\">\n            <span class=\"glyphicon glyphicon-user\"></span>\n            About Me</a>\n          </li>\n      </ul>\n\n      <ul class=\"nav navbar-nav navbar-right\" *ngIf=\"identity\">\n        <li class=\"avatar\">\n          <!-- cargar imagen del usuario -->\n          <img src=\"{{ url + 'get-image-user/' + identity.img }}\" *ngIf=\"identity && identity.img\"/>\n        </li>\n        <!--<li class=\"dropdown\">\n          <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n            {{ identity.name }} <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a href=\"#\">\n              <span class=\"glyphicon glyphicon-user\"></span>\n              Mi Perfil</a>\n            </li>\n            <li>\n              <a [routerLink]=\"['/mis-datos']\">\n              <span class=\"glyphicon glyphicon-cog\"></span>\n              Mis Datos</a>\n            </li>\n            <li>\n              <a class=\"pointer\" (click)=\"logout()\">\n              <span class=\"glyphicon glyphicon-log-out\"></span>\n              Cerrar Sesion</a>\n            </li>\n          </ul>\n        </li>-->\n      </ul>\n      \n    </div>\n  </nav>\n</div>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<app-navbar></app-navbar>\n<div class=\"container main-container\">\n\t<router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -5797,6 +5797,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
 /* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
 /* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5810,6 +5811,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // routing
 
 // components
+
 
 
 
@@ -5835,7 +5837,8 @@ var AppModule = /** @class */ (function () {
                 _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
                 _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"],
                 _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__["AboutMeComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__["ProfileComponent"]
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__["ProfileComponent"],
+                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -6781,6 +6784,92 @@ var RegisterComponent = /** @class */ (function () {
             _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], RegisterComponent);
     return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/shared/navbar/navbar.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/components/shared/navbar/navbar.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">\n    <!--<img src=\"assets/img/A-64.png\" width=\"30\" height=\"30\" alt=\"\">-->\n    {{ title }}\n  </a>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <!-- active -->\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'USER_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home-admin']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" (click)=\"logout()\" >Log Out</a>\n      </li>\n      \n    </ul>\n  </div>\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"!identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <!-- active -->\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['login']\">Login </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['register']\">Register</a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n      \n    </ul>\n  </div>\n</nav>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/components/shared/navbar/navbar.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/components/shared/navbar/navbar.component.ts ***!
+  \**************************************************************/
+/*! exports provided: NavbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavbarComponent", function() { return NavbarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/global */ "./src/app/services/global.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var NavbarComponent = /** @class */ (function () {
+    function NavbarComponent(_route, _router, _userService) {
+        this._route = _route;
+        this._router = _router;
+        this._userService = _userService;
+        this.title = 'Employee Management Application';
+        this.url = _services_global__WEBPACK_IMPORTED_MODULE_3__["GLOBAL"].url;
+    }
+    NavbarComponent.prototype.ngOnInit = function () {
+        this.identity = this._userService.getIdentity();
+        console.log(this.identity);
+        if (!this.identity) {
+            this._router.navigate(['/login']);
+        }
+    };
+    NavbarComponent.prototype.ngDoCheck = function () {
+        this.identity = this._userService.getIdentity();
+    };
+    NavbarComponent.prototype.comeBack = function () {
+        if (this.identity.role === 'ADMIN_ROLE') {
+            this._router.navigate(['/home-admin']);
+        }
+        if (this.identity.role === 'USER_ROLE') {
+            this._router.navigate(['/home']);
+        }
+    };
+    NavbarComponent.prototype.logout = function () {
+        localStorage.clear();
+        this.identity = null;
+        this._router.navigate(['/login']);
+    };
+    NavbarComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-navbar',
+            template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/components/shared/navbar/navbar.component.html"),
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+    ], NavbarComponent);
+    return NavbarComponent;
 }());
 
 
