@@ -6639,7 +6639,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  profile works!\n</p>\n"
+module.exports = "<h1>{{ identity.name }} {{ identity.last_name }}</h1>\n<hr>\n\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<img src=\"{{ url + 'get-image-user/' + identity.img }}\" class=\"img-fluid\" [alt]=\"identity.name\">\n\t\t<br><br>\n    <a *ngIf=\"identity.role === 'USER_ROLE'\" [routerLink]=\"['/home']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n    <a *ngIf=\"identity.role === 'ADMIN_ROLE'\" [routerLink]=\"['/home-admin']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n\t</div>\n\t<div class=\"col-md-8\">\n    <h3>Full Name</h3>\n\t\t<p>{{ identity.name + ' ' + identity.last_name }}</p>\n    <hr>\n    <h3>Email</h3>\n\t\t<p>{{ identity.email }}</p>\n    <hr>\n    <h3>Role</h3>\n\t\t<p>{{ identity.role }}</p>\n\t\t<hr>\n\t\t<h3>Level</h3>\n\t\t<p>{{ identity.level }}</p>\n\t\t<hr>\n\t</div>\n</div>\n\n"
 
 /***/ }),
 
@@ -6654,6 +6654,8 @@ module.exports = "<p>\n  profile works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/global */ "./src/app/services/global.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6664,8 +6666,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent() {
+    function ProfileComponent(_userService) {
+        this._userService = _userService;
+        this.identity = this._userService.getIdentity();
+        this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["GLOBAL"].url;
     }
     ProfileComponent.prototype.ngOnInit = function () {
     };
@@ -6673,9 +6680,10 @@ var ProfileComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-profile',
             template: __webpack_require__(/*! ./profile.component.html */ "./src/app/components/profile/profile.component.html"),
-            styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/components/profile/profile.component.css")]
+            styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/components/profile/profile.component.css")],
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
     ], ProfileComponent);
     return ProfileComponent;
 }());
