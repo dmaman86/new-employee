@@ -5786,25 +5786,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
-/* harmony import */ var _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/contacts/contacts.component */ "./src/app/components/contacts/contacts.component.ts");
-/* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
-/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
-/* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/shared/footer/footer.component */ "./src/app/components/shared/footer/footer.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
+/* harmony import */ var _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/contacts/contacts.component */ "./src/app/components/contacts/contacts.component.ts");
+/* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
+/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
+/* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/shared/footer/footer.component */ "./src/app/components/shared/footer/footer.component.ts");
+/* harmony import */ var _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/dialog/dialog.component */ "./src/app/components/dialog/dialog.component.ts");
+/* harmony import */ var _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/update-week/update-week.component */ "./src/app/components/update-week/update-week.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -5824,35 +5830,47 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"],
-                _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_8__["UserWeekComponent"],
-                _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_9__["ContactsComponent"],
-                _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_10__["EditUserComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_11__["HomeComponent"],
-                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"],
-                _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__["AboutMeComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__["ProfileComponent"],
-                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"],
-                _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_16__["FooterComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"],
+                _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_10__["UserWeekComponent"],
+                _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_11__["ContactsComponent"],
+                _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_12__["EditUserComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
+                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_14__["HomeAdminComponent"],
+                _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_15__["AboutMeComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"],
+                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_17__["NavbarComponent"],
+                _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_18__["FooterComponent"],
+                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__["DialogComponent"],
+                _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_20__["UpdateWeekComponent"]
+            ],
+            entryComponents: [
+                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__["DialogComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _app_routing__WEBPACK_IMPORTED_MODULE_4__["routing"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
+                _app_routing__WEBPACK_IMPORTED_MODULE_6__["routing"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"]
             ],
             providers: [
-                _app_routing__WEBPACK_IMPORTED_MODULE_4__["appRoutingProviders"]
+                _app_routing__WEBPACK_IMPORTED_MODULE_6__["appRoutingProviders"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -5883,8 +5901,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
 /* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
 /* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/update-week/update-week.component */ "./src/app/components/update-week/update-week.component.ts");
 
 // import components
+
 
 
 
@@ -5905,6 +5925,7 @@ var appRoutes = [
     { path: 'user-week', component: _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_7__["UserWeekComponent"] },
     { path: 'about-me', component: _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_8__["AboutMeComponent"] },
     { path: 'profile', component: _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_9__["ProfileComponent"] },
+    { path: 'update-week', component: _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_10__["UpdateWeekComponent"] },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 var appRoutingProviders = [];
@@ -6169,6 +6190,88 @@ var ContactsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/dialog/dialog.component.css":
+/*!********************************************************!*\
+  !*** ./src/app/components/dialog/dialog.component.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/dialog/dialog.component.html":
+/*!*********************************************************!*\
+  !*** ./src/app/components/dialog/dialog.component.html ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h2 mat-dialog-title>{{ title }}</h2>\n\n<form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"form-group row\">\n      <label>Method</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" name=\"method\" #method=\"ngModel\" [(ngModel)]=\"requestWeek.method\">\n      </div>\n      <label>Morning</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" name=\"morning\" #morning=\"ngModel\" [(ngModel)]=\"requestWeek.morning\">\n      </div>\n      <label>Afternoon</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" name=\"afternoon\" #afternoon=\"ngModel\" [(ngModel)]=\"requestWeek.afternoon\">\n      </div>\n      <label>Night</label>\n      <div class=\"col-sm-10\">\n        <input type=\"text\" name=\"night\" #night=\"ngModel\" [(ngModel)]=\"requestWeek.night\">\n      </div>\n  </div>\n</form>\n\n<mat-dialog-actions>\n  <button mat-button mat-dialog-close>Cancel</button>\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!weekRequest.form.valid\">Save</button>\n</mat-dialog-actions>"
+
+/***/ }),
+
+/***/ "./src/app/components/dialog/dialog.component.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/components/dialog/dialog.component.ts ***!
+  \*******************************************************/
+/*! exports provided: DialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DialogComponent", function() { return DialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/requestWeek */ "./src/app/models/requestWeek.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var DialogComponent = /** @class */ (function () {
+    function DialogComponent(dialogRef, data, _userSerive) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this._userSerive = _userSerive;
+        this.title = 'Update Request Week';
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '');
+    }
+    DialogComponent.prototype.ngOnInit = function () {
+    };
+    DialogComponent.prototype.onSubmit = function () {
+        console.log(this.requestWeek);
+    };
+    DialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-dialog',
+            template: __webpack_require__(/*! ./dialog.component.html */ "./src/app/components/dialog/dialog.component.html"),
+            styles: [__webpack_require__(/*! ./dialog.component.css */ "./src/app/components/dialog/dialog.component.css")],
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+    ], DialogComponent);
+    return DialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/edit-user/edit-user.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/components/edit-user/edit-user.component.css ***!
@@ -6290,7 +6393,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n                <!--<li><a (click)=\"openDialog()\">Update Request Week</a></li>-->\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6306,8 +6409,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeAdminComponent", function() { return HomeAdminComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _models_message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/message */ "./src/app/models/message.ts");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _models_message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/message */ "./src/app/models/message.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialog/dialog.component */ "./src/app/components/dialog/dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6321,15 +6426,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var HomeAdminComponent = /** @class */ (function () {
-    function HomeAdminComponent(_route, _router, _userService) {
+    function HomeAdminComponent(_route, _router, _userService, dialog) {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
+        this.dialog = dialog;
         this.user = this._userService.getIdentity();
         this.identity = this.user;
-        this.text = new _models_message__WEBPACK_IMPORTED_MODULE_2__["Message"]('', '', '');
-        this.message = new _models_message__WEBPACK_IMPORTED_MODULE_2__["Message"]('', '', '');
+        this.text = new _models_message__WEBPACK_IMPORTED_MODULE_3__["Message"]('', '', '');
+        this.message = new _models_message__WEBPACK_IMPORTED_MODULE_3__["Message"]('', '', '');
     }
     HomeAdminComponent.prototype.ngOnInit = function () {
         this.refreshTextArea();
@@ -6381,16 +6489,24 @@ var HomeAdminComponent = /** @class */ (function () {
             }
         });
     };
+    HomeAdminComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["DialogComponent"]);
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            console.log(result);
+        });
+    };
     HomeAdminComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home-admin',
             template: __webpack_require__(/*! ./home-admin.component.html */ "./src/app/components/home-admin/home-admin.component.html"),
             styles: [__webpack_require__(/*! ./home-admin.component.css */ "./src/app/components/home-admin/home-admin.component.css")],
-            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]]
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+            _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
     ], HomeAdminComponent);
     return HomeAdminComponent;
 }());
@@ -6936,6 +7052,118 @@ var NavbarComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/update-week/update-week.component.css":
+/*!******************************************************************!*\
+  !*** ./src/app/components/update-week/update-week.component.css ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/update-week/update-week.component.html":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/update-week/update-week.component.html ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n</div>\n\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"form-group row\">\n    <label class=\"col-sm-2 col-form-label\">Method</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n            name=\"method\"\n            #method=\"ngModel\"\n            [(ngModel)]=\"requestWeek.method\"\n            class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Morning</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n            name=\"morning\"\n            #morning=\"ngModel\"\n            [(ngModel)]=\"requestWeek.morning\"\n            class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n            name=\"afternoon\"\n            #afternoon=\"ngModel\"\n            [(ngModel)]=\"requestWeek.afternoon\"\n            class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Night</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n            name=\"night\"\n            #night=\"ngModel\"\n            [(ngModel)]=\"requestWeek.night\"\n            class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Weekend</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n            name=\"weekend\"\n            #weekend=\"ngModel\"\n            [(ngModel)]=\"requestWeek.weekend\"\n            class=\"form-cotrol\">\n    </div>\n  </div>\n  <div class=\"form-group row\">\n    <div class=\"col-sm-10\">\n      <button \n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"!weekRequest.form.valid\">Send</button>\n    </div>\n  </div>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/components/update-week/update-week.component.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/update-week/update-week.component.ts ***!
+  \*****************************************************************/
+/*! exports provided: UpdateWeekComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateWeekComponent", function() { return UpdateWeekComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/requestWeek */ "./src/app/models/requestWeek.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var UpdateWeekComponent = /** @class */ (function () {
+    function UpdateWeekComponent(_route, _router, _userService) {
+        this._route = _route;
+        this._router = _router;
+        this._userService = _userService;
+        this.title = 'Update Week Request';
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '');
+        this.week = this._userService.getWeekId();
+    }
+    UpdateWeekComponent.prototype.ngOnInit = function () {
+        console.log(this.week);
+    };
+    UpdateWeekComponent.prototype.onSubmit = function () {
+        var _this = this;
+        console.log(this.requestWeek);
+        console.log(this.week);
+        if (!this.week) {
+            this._userService.setValuesRequest(this.requestWeek).subscribe(function (response) {
+                if (response.ok) {
+                    console.log(response.week);
+                    localStorage.setItem('week', JSON.stringify(response.week._id));
+                    _this.status = 'success';
+                }
+            }, function (error) {
+                var errorMessage = error;
+                console.log(errorMessage);
+                if (errorMessage !== null) {
+                    _this.status = 'error';
+                }
+            });
+        }
+        else {
+            this._userService.updateValuesRequest(this.week, this.requestWeek).subscribe(function (response) {
+                if (response.ok) {
+                    _this.status = 'success';
+                }
+            }, function (error) {
+                var errorMessage = error;
+                console.log(errorMessage);
+                if (errorMessage !== null) {
+                    _this.status = 'error';
+                }
+            });
+        }
+    };
+    UpdateWeekComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-update-week',
+            template: __webpack_require__(/*! ./update-week.component.html */ "./src/app/components/update-week/update-week.component.html"),
+            styles: [__webpack_require__(/*! ./update-week.component.css */ "./src/app/components/update-week/update-week.component.css")],
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+    ], UpdateWeekComponent);
+    return UpdateWeekComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/user-week/user-week.component.css":
 /*!**************************************************************!*\
   !*** ./src/app/components/user-week/user-week.component.css ***!
@@ -6972,9 +7200,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_shift__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/shift */ "./src/app/models/shift.ts");
 /* harmony import */ var _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/requestWeek_user */ "./src/app/models/requestWeek_user.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _models_requestWeek__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../models/requestWeek */ "./src/app/models/requestWeek.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6990,6 +7219,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserWeekComponent = /** @class */ (function () {
     function UserWeekComponent(_route, _router, _userService) {
         this._route = _route;
@@ -6999,6 +7229,7 @@ var UserWeekComponent = /** @class */ (function () {
         this.shift = ['morning', 'afternoon', 'night'];
         this.dates = [];
         this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('');
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_4__["RequestWeek"]('', '', '', '', '');
         this.identity = this._userService.getIdentity();
         this.count_morning = 0;
         this.count_afternoon = 0;
@@ -7018,6 +7249,8 @@ var UserWeekComponent = /** @class */ (function () {
     }
     UserWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.setValuesRequest();
+        // console.log( this.requestWeek );
         this.requestUser.setId(this.identity._id);
         this.requestUser.setLevel(this.identity.level);
         this.requestUser.setNumberWeek(String(this.checkSunday(this.number_week[1])));
@@ -7084,7 +7317,7 @@ var UserWeekComponent = /** @class */ (function () {
         console.log(week);
         for (var i = 0; i < this.days.length; i++) {
             var d = this.days[i];
-            var test = moment__WEBPACK_IMPORTED_MODULE_5__().day(d).year(year).week(week).toDate();
+            var test = moment__WEBPACK_IMPORTED_MODULE_6__().day(d).year(year).week(week).toDate();
             dates[d] = test;
         }
         console.log(dates);
@@ -7277,16 +7510,36 @@ var UserWeekComponent = /** @class */ (function () {
         }
         return numberWeek;
     };
+    UserWeekComponent.prototype.setValuesRequest = function () {
+        var _this = this;
+        this._userService.getValuesRequest().subscribe(function (response) {
+            if (response.ok) {
+                console.log(response.values);
+                _this.requestWeek.method = response.values.method;
+                _this.requestWeek.morning = response.values.morning;
+                _this.requestWeek.afternoon = response.values.afternoon;
+                _this.requestWeek.night = response.values.night;
+                _this.requestWeek.weekend = response.values.weekend;
+                console.log(_this.requestWeek);
+            }
+        }, function (error) {
+            var errorMessage = error;
+            console.log(errorMessage);
+            if (errorMessage !== null) {
+                _this.status = 'error';
+            }
+        });
+    };
     UserWeekComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-week',
             template: __webpack_require__(/*! ./user-week.component.html */ "./src/app/components/user-week/user-week.component.html"),
             styles: [__webpack_require__(/*! ./user-week.component.css */ "./src/app/components/user-week/user-week.component.css")],
-            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]]
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
+            _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
     ], UserWeekComponent);
     return UserWeekComponent;
 }());
@@ -7312,6 +7565,31 @@ var Message = /** @class */ (function () {
         this.date = date;
     }
     return Message;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/models/requestWeek.ts":
+/*!***************************************!*\
+  !*** ./src/app/models/requestWeek.ts ***!
+  \***************************************/
+/*! exports provided: RequestWeek */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestWeek", function() { return RequestWeek; });
+var RequestWeek = /** @class */ (function () {
+    function RequestWeek(method, morning, afternoon, night, weekend) {
+        this.method = method;
+        this.morning = morning;
+        this.afternoon = afternoon;
+        this.night = night;
+        this.weekend = weekend;
+    }
+    return RequestWeek;
 }());
 
 
@@ -7519,6 +7797,16 @@ var UserService = /** @class */ (function () {
         }
         return this.identity;
     };
+    UserService.prototype.getWeekId = function () {
+        var week = JSON.parse(localStorage.getItem('week'));
+        if (week !== 'undefined') {
+            this.week = week;
+        }
+        else {
+            this.week = null;
+        }
+        return this.week;
+    };
     UserService.prototype.getToken = function () {
         var token = localStorage.getItem('token');
         if (token !== 'undefined') {
@@ -7572,6 +7860,20 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(requestUser);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.post(this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
+    };
+    UserService.prototype.setValuesRequest = function (requestWeek) {
+        var params = JSON.stringify(requestWeek);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post(this.url + 'set-request-week', params, { headers: headers });
+    };
+    UserService.prototype.updateValuesRequest = function (weekId, requestWeek) {
+        var params = JSON.stringify(requestWeek);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put(this.url + 'update-request-week/' + weekId, params, { headers: headers });
+    };
+    UserService.prototype.getValuesRequest = function () {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.get(this.url + 'get-request-week/', { headers: headers });
     };
     UserService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),

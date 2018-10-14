@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<form #weekRequest="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+      <label>Method</label>
+      <div class="col-sm-10">
+        <input type="text" name="method" #method="ngModel" [(ngModel)]="requestWeek.method">
+      </div>
+      <label>Morning</label>
+      <div class="col-sm-10">
+        <input type="text" name="morning" #morning="ngModel" [(ngModel)]="requestWeek.morning">
+      </div>
+      <label>Afternoon</label>
+      <div class="col-sm-10">
+        <input type="text" name="afternoon" #afternoon="ngModel" [(ngModel)]="requestWeek.afternoon">
+      </div>
+      <label>Night</label>
+      <div class="col-sm-10">
+        <input type="text" name="night" #night="ngModel" [(ngModel)]="requestWeek.night">
+      </div>
+  </div>
+</form>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!weekRequest.form.valid">Save</button>
+</mat-dialog-actions>

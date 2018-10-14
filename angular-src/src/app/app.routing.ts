@@ -11,6 +11,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UserWeekComponent } from './components/user-week/user-week.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateWeekComponent } from './components/update-week/update-week.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
     { path: 'user-week', component: UserWeekComponent },
     { path: 'about-me', component: AboutMeComponent },
     { path: 'profile', component: ProfileComponent },
+    { path: 'update-week', component: UpdateWeekComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

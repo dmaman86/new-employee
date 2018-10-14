@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Message } from '../models/message';
 import { RequestWeekUser } from '../models/requestWeek_user';
+import { RequestWeek } from '../models/requestWeek';
 import { GLOBAL } from './global';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class UserService {
 
     public url: string;
     public identity;
+    public week;
     public token;
     public status;
 
@@ -42,6 +44,16 @@ export class UserService {
             this.identity = null;
         }
         return this.identity;
+    }
+
+    getWeekId() {
+        const week = JSON.parse( localStorage.getItem( 'week' ) );
+        if ( week !== 'undefined' ) {
+            this.week = week;
+        } else {
+            this.week = null;
+        }
+        return this.week;
     }
 
     getToken() {
@@ -104,6 +116,23 @@ export class UserService {
         const params = JSON.stringify( requestUser );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.post( this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
+    }
+
+    setValuesRequest( requestWeek: RequestWeek ): Observable<any> {
+        const params = JSON.stringify( requestWeek );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'set-request-week', params, { headers: headers });
+    }
+
+    updateValuesRequest( weekId, requestWeek: RequestWeek ): Observable<any> {
+        const params = JSON.stringify( requestWeek );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put( this.url + 'update-request-week/' + weekId, params, { headers: headers });
+    }
+
+    getValuesRequest(): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.get( this.url + 'get-request-week/', { headers: headers });
     }
 
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import { User } from '../../models/user';
 import { Message } from '../../models/message';
 import { UserService } from '../../services/user.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-home-admin',
@@ -21,7 +23,8 @@ export class HomeAdminComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    public dialog: MatDialog
   ) {
     this.user = this._userService.getIdentity();
     this.identity = this.user;
@@ -85,6 +88,15 @@ export class HomeAdminComponent implements OnInit {
         }
       }
     );
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open( DialogComponent );
+
+    dialogRef.afterClosed().subscribe( result => {
+      console.log( 'The dialog was closed' );
+      console.log( result );
+    });
   }
 
 }

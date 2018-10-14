@@ -1,0 +1,63 @@
+<div class="col-log-5">
+  <h1>{{ title }}</h1>
+</div>
+
+<div class="alert alert-success" *ngIf="status == 'success'">
+  Values Save!
+</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">
+  Please check values!
+</div>
+
+<form #weekRequest="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Method</label>
+    <div class="col-sm-10">
+      <input type="text"
+            name="method"
+            #method="ngModel"
+            [(ngModel)]="requestWeek.method"
+            class="form-cotrol">
+    </div>
+    <label class="col-sm-2 col-form-label">Morning</label>
+    <div class="col-sm-10">
+      <input type="text"
+            name="morning"
+            #morning="ngModel"
+            [(ngModel)]="requestWeek.morning"
+            class="form-cotrol">
+    </div>
+    <label class="col-sm-2 col-form-label">Afternoon</label>
+    <div class="col-sm-10">
+      <input type="text"
+            name="afternoon"
+            #afternoon="ngModel"
+            [(ngModel)]="requestWeek.afternoon"
+            class="form-cotrol">
+    </div>
+    <label class="col-sm-2 col-form-label">Night</label>
+    <div class="col-sm-10">
+      <input type="text"
+            name="night"
+            #night="ngModel"
+            [(ngModel)]="requestWeek.night"
+            class="form-cotrol">
+    </div>
+    <label class="col-sm-2 col-form-label">Weekend</label>
+    <div class="col-sm-10">
+      <input type="text"
+            name="weekend"
+            #weekend="ngModel"
+            [(ngModel)]="requestWeek.weekend"
+            class="form-cotrol">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button 
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!weekRequest.form.valid">Send</button>
+    </div>
+  </div>
+</form>

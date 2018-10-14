@@ -3,6 +3,7 @@ import { Shift } from '../../models/shift';
 import { RequestWeekUser } from '../../models/requestWeek_user';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
+import { RequestWeek } from '../../models/requestWeek';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
 
@@ -27,6 +28,7 @@ export class UserWeekComponent implements OnInit {
   public shift: any[] = ['morning', 'afternoon', 'night'];
   public number_week: any;
   public dates: any[];
+  public requestWeek: RequestWeek;
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,6 +37,7 @@ export class UserWeekComponent implements OnInit {
   ) {
     this.dates = [];
     this.requestUser = new RequestWeekUser('');
+    this.requestWeek = new RequestWeek('', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.count_morning = 0;
     this.count_afternoon = 0;
@@ -55,6 +58,8 @@ export class UserWeekComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setValuesRequest();
+    // console.log( this.requestWeek );
     this.requestUser.setId( this.identity._id );
     this.requestUser.setLevel( this.identity.level );
     this.requestUser.setNumberWeek( String(this.checkSunday( this.number_week[1] )));
@@ -321,6 +326,31 @@ export class UserWeekComponent implements OnInit {
       numberWeek++;
     }
     return numberWeek;
+  }
+
+
+  setValuesRequest() {
+    this._userService.getValuesRequest().subscribe(
+      response => {
+        if ( response.ok ) {
+          console.log( response.values );
+          this.requestWeek.method = response.values.method;
+          this.requestWeek.morning = response.values.morning;
+          this.requestWeek.afternoon = response.values.afternoon;
+          this.requestWeek.night = response.values.night;
+          this.requestWeek.weekend = response.values.weekend;
+
+
+          console.log( this.requestWeek );
+        }
+      }, error => {
+        const errorMessage = <any>error;
+        console.log(errorMessage);
+        if ( errorMessage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
 }
