@@ -18,6 +18,7 @@ import { HomeAdminComponent } from './components/home-admin/home-admin.component
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     HomeAdminComponent,
     AboutMeComponent,
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

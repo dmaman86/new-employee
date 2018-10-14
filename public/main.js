@@ -5798,6 +5798,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
 /* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
 /* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
+/* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/shared/footer/footer.component */ "./src/app/components/shared/footer/footer.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5811,6 +5812,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // routing
 
 // components
+
 
 
 
@@ -5838,7 +5840,8 @@ var AppModule = /** @class */ (function () {
                 _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_12__["HomeAdminComponent"],
                 _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_13__["AboutMeComponent"],
                 _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_14__["ProfileComponent"],
-                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"]
+                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"],
+                _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_16__["FooterComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -5928,7 +5931,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"animated fadeIn fast\">Employee Management App</h1>\n<hr>\n<p class=\"animated fadeIn\">\n\tThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n</p>\n"
+module.exports = "<h1 class=\"animated fadeIn fast\">Employee Management App</h1>\n<hr>\n<p class=\"animated fadeIn\">\n\tThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.\n\tSections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form,\n\taccompanied by English versions from the 1914 translation by H.\n\tRackham.\n</p>\n\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -5994,7 +5997,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<div *ngIf=\"this.identity.role == 'USER_ROLE'\">\n    <table class=\"table\" >\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <!--<th scope=\"row\">{{ i+1 }}</th>-->\n            <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n      <br/>\n\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n</div>\n\n<div *ngIf=\"this.identity.role == 'ADMIN_ROLE'\">\n    <table class=\"table\" >\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n            <th scope=\"col\">Role</th>\n            <th scope=\"col\">Level</th>\n            <th></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <th scope=\"row\">{{ i+1 }}</th>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n            <td>{{ user.role }}</td>\n            <td>{{ user.level }}</td>\n            <td *ngIf=\"identity._id != user._id\">\n              <input type=\"button\" (click)=\"editUser( user._id )\"\n                class=\"btn btn-primary\" value=\"Edit\"/>\n              <input type=\"button\" (click)=\"deleteUser( user._id )\"\n                class=\"btn btn-danger\" value=\"Delete\"/>\n            </td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n</div>\n\n<div *ngIf=\"status == 'edit'\">\n  <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n    <p>\n      <label>Name:</label>\n      <label>{{ temp_user.name }}</label>\n    </p>\n    <p>\n      <label>Last Name:</label>\n      <label>{{ temp_user.last_name }}</label>\n    </p>\n    <p>\n      <label>Email:</label>\n      <label>{{ temp_user.email }}</label>\n    </p>\n    <p>\n      <label>Role:</label>\n      <input \n        type=\"text\"\n        name=\"role\"\n        #role=\"ngModel\"\n        [(ngModel)]=\"temp_user.role\"\n        class=\"form-control\"\n        placeholder=\"temp_user.role\"/>\n    </p>\n    <p>\n        <label>Level:</label>\n        <input \n          type=\"text\"\n          name=\"level\"\n          #level=\"ngModel\"\n          [(ngModel)]=\"temp_user.level\"\n          class=\"form-control\"\n          placeholder=\"temp_user.level\"/>\n      </p>\n      <input \n        type=\"submit\"\n        value=\"Send\"\n        class=\"btn btn-warning\"\n        [disabled]=\"!userEdit.form.valid\"/>\n  </form>\n</div>\n\n\n"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<div *ngIf=\"this.identity.role == 'USER_ROLE'\">\n    <table class=\"table\" >\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <!--<th scope=\"row\">{{ i+1 }}</th>-->\n            <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n      <br/>\n\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n</div>\n\n<div *ngIf=\"this.identity.role == 'ADMIN_ROLE'\">\n    <table class=\"table\" >\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n            <th scope=\"col\">Role</th>\n            <th scope=\"col\">Level</th>\n            <th></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <th scope=\"row\">{{ i+1 }}</th>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n            <td>{{ user.role }}</td>\n            <td>{{ user.level }}</td>\n            <td *ngIf=\"identity._id != user._id\">\n              <input type=\"button\" (click)=\"editUser( user._id )\"\n                class=\"btn btn-primary\" value=\"Edit\"/>\n              <input type=\"button\" (click)=\"deleteUser( user._id )\"\n                class=\"btn btn-danger\" value=\"Delete\"/>\n            </td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n</div>\n\n<div *ngIf=\"status == 'edit'\">\n  <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n    <p>\n      <label>Name:</label>\n      <label>{{ temp_user.name }}</label>\n    </p>\n    <p>\n      <label>Last Name:</label>\n      <label>{{ temp_user.last_name }}</label>\n    </p>\n    <p>\n      <label>Email:</label>\n      <label>{{ temp_user.email }}</label>\n    </p>\n    <p>\n      <label>Role:</label>\n      <input \n        type=\"text\"\n        name=\"role\"\n        #role=\"ngModel\"\n        [(ngModel)]=\"temp_user.role\"\n        class=\"form-control\"\n        placeholder=\"temp_user.role\"/>\n    </p>\n    <p>\n        <label>Level:</label>\n        <input \n          type=\"text\"\n          name=\"level\"\n          #level=\"ngModel\"\n          [(ngModel)]=\"temp_user.level\"\n          class=\"form-control\"\n          placeholder=\"temp_user.level\"/>\n      </p>\n      <input \n        type=\"submit\"\n        value=\"Send\"\n        class=\"btn btn-warning\"\n        [disabled]=\"!userEdit.form.valid\"/>\n  </form>\n</div>\n\n<app-footer></app-footer>\n\n\n"
 
 /***/ }),
 
@@ -6184,7 +6187,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #updateForm=\"ngForm\" (ngSubmit)=\"onSubmit( updateForm )\">\n\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n        Please try in another values\n    </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.name }}\">\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 placeholder=\"{{ user.last_name }}\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"{{ user.email }}\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              placeholder=\"{{ user.password }}\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!updateForm.form.valid\">Update Data</button>\n  </form>\n\n\n"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #updateForm=\"ngForm\" (ngSubmit)=\"onSubmit( updateForm )\">\n\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n        Please try in another values\n    </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.name }}\">\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 placeholder=\"{{ user.last_name }}\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"{{ user.email }}\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              placeholder=\"{{ user.password }}\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!updateForm.form.valid\">Update Data</button>\n  </form>\n\n  <app-footer></app-footer>\n\n\n"
 
 /***/ }),
 
@@ -6287,7 +6290,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6414,7 +6417,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n\n\n\n"
+module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6509,7 +6512,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-6\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-6\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Log In</button>\n            <a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n\n"
+module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-6\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-6\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Log In</button>\n            <a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 
@@ -6639,7 +6642,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ identity.name }} {{ identity.last_name }}</h1>\n<hr>\n\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<img src=\"{{ url + 'get-image-user/' + identity.img }}\" class=\"img-fluid\" [alt]=\"identity.name\">\n\t\t<br><br>\n    <a *ngIf=\"identity.role === 'USER_ROLE'\" [routerLink]=\"['/home']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n    <a *ngIf=\"identity.role === 'ADMIN_ROLE'\" [routerLink]=\"['/home-admin']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n\t</div>\n\t<div class=\"col-md-8\">\n    <h3>Full Name</h3>\n\t\t<p>{{ identity.name + ' ' + identity.last_name }}</p>\n    <hr>\n    <h3>Email</h3>\n\t\t<p>{{ identity.email }}</p>\n    <hr>\n    <h3>Role</h3>\n\t\t<p>{{ identity.role }}</p>\n\t\t<hr>\n\t\t<h3>Level</h3>\n\t\t<p>{{ identity.level }}</p>\n\t\t<hr>\n\t</div>\n</div>\n\n"
+module.exports = "<h1>Profile of {{ identity.name }} {{ identity.last_name }}</h1>\n<hr>\n\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<img src=\"{{ url + 'get-image-user/' + identity.img }}\" class=\"img-fluid\" [alt]=\"identity.name\">\n\t\t<br><br>\n    <a *ngIf=\"identity.role === 'USER_ROLE'\" [routerLink]=\"['/home']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n    <a *ngIf=\"identity.role === 'ADMIN_ROLE'\" [routerLink]=\"['/home-admin']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n\t</div>\n\t<div class=\"col-md-8\">\n    <h3>Full Name</h3>\n\t\t<p>{{ identity.name + ' ' + identity.last_name }}</p>\n    <hr>\n    <h3>Email</h3>\n\t\t<p>{{ identity.email }}</p>\n    <hr>\n    <h3>Role</h3>\n\t\t<p>{{ identity.role }}</p>\n\t\t<hr>\n\t\t<h3>Level</h3>\n\t\t<p>{{ identity.level }}</p>\n\t\t<hr>\n\t</div>\n</div>\n\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 
@@ -6710,7 +6713,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\n\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n        Register success!! \n        <a [routerLink]=\"['/login']\">Sign In Here</a>\n    </div>\n    \n      <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n       Please try again in another data\n      </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                required\n                placeholder=\"First Name\">\n          <div *ngIf=\"name.errors?.required\"\n                class=\"form-control-feedback\">\n                Name is required!\n          </div>\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 required\n                 placeholder=\"Last Name\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              required\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"Email\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              required\n              placeholder=\"Password\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!registerForm.form.valid\">Sign Up</button>\n  </form>"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\n\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n        Register success!! \n        <a [routerLink]=\"['/login']\">Sign In Here</a>\n    </div>\n    \n      <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n       Please try again in another data\n      </div>\n    <div class=\"form-row\">\n\n        <div class=\"form-group col-md-6\">\n          <label for=\"inputName4\">First Name</label>\n          <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                required\n                placeholder=\"First Name\">\n          <div *ngIf=\"name.errors?.required\"\n                class=\"form-control-feedback\">\n                Name is required!\n          </div>\n        </div>\n  \n        <div class=\"form-group col-md-6\">\n          <label for=\"inputLastName4\">Last Name</label>\n          <input type=\"text\"\n                  name=\"last_name\"\n                  #last_name=\"ngModel\"\n                  [(ngModel)]=\"user.last_name\"\n                 class=\"form-control\"\n                 required\n                 placeholder=\"Last Name\">\n        </div>\n  \n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputEmail\">Email</label>\n          <input type=\"email\"\n              name=\"email\"\n              #email=\"ngModel\"\n              [(ngModel)]=\"user.email\"\n              class=\"form-control\"\n              required\n              pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n              placeholder=\"Email\">\n      </div>\n\n      <div class=\"form-group\">\n          <label for=\"inputPassword\">Password</label>\n          <input type=\"password\"\n              name=\"password\"\n              #password=\"ngModel\"\n              [(ngModel)]=\"user.password\"\n              class=\"form-control\"\n              required\n              placeholder=\"Password\">\n      </div>\n    \n    <button\n       type=\"submit\"\n       class=\"btn btn-primary\"\n      [disabled]=\"!registerForm.form.valid\">Sign Up</button>\n  </form>\n\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -6757,20 +6760,11 @@ var RegisterComponent = /** @class */ (function () {
         this._userService.register(this.user).subscribe(function (response) {
             if (response.user && response.user._id) {
                 _this.status = 'success';
-                _this.sendToAdmin(_this.user);
                 form.reset();
             }
             else {
                 _this.status = 'error';
             }
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    RegisterComponent.prototype.sendToAdmin = function (user) {
-        console.log(user);
-        this._userService.updateAdmin(user).subscribe(function (response) {
-            console.log(response);
         }, function (error) {
             console.log(error);
         });
@@ -6787,6 +6781,69 @@ var RegisterComponent = /** @class */ (function () {
             _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], RegisterComponent);
     return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/shared/footer/footer.component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/components/shared/footer/footer.component.css ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#footer {\n    position:absolute;\n    bottom:0;\n    width:100%;\n    height:60px;   /* Height of the footer */\n }"
+
+/***/ }),
+
+/***/ "./src/app/components/shared/footer/footer.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/components/shared/footer/footer.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Footer -->\n<footer id=\"footer\">\n  <!-- Copyright -->\n  <div class=\"footer-copyright text-center py-3\">© 2018 Copyright:\n    <a href=\"mailto:dmaman86@gmail.com\" target=\"_top\"> David Maman</a>\n  </div>\n  <!-- Copyright -->\n\n</footer>\n<!-- Footer -->\n"
+
+/***/ }),
+
+/***/ "./src/app/components/shared/footer/footer.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/components/shared/footer/footer.component.ts ***!
+  \**************************************************************/
+/*! exports provided: FooterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var FooterComponent = /** @class */ (function () {
+    function FooterComponent() {
+    }
+    FooterComponent.prototype.ngOnInit = function () {
+    };
+    FooterComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-footer',
+            template: __webpack_require__(/*! ./footer.component.html */ "./src/app/components/shared/footer/footer.component.html"),
+            styles: [__webpack_require__(/*! ./footer.component.css */ "./src/app/components/shared/footer/footer.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], FooterComponent);
+    return FooterComponent;
 }());
 
 
@@ -6897,7 +6954,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n  Sorry, but you'll have to wait next week or contact the administrator\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button\n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n"
+module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n  Sorry, but you'll have to wait next week or contact the administrator\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button\n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -7442,11 +7499,6 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(user);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
         return this._http.post(this.url + 'register', params, { headers: headers });
-    };
-    UserService.prototype.updateAdmin = function (user) {
-        var params = JSON.stringify(user);
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.post(this.url + 'update-admin', params, { headers: headers });
     };
     UserService.prototype.signup = function (user, gettoken) {
         if (gettoken === void 0) { gettoken = 'false'; }

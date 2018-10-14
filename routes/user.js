@@ -18,7 +18,6 @@ api.put('/admin-update-user/:id', md_auth.ensureAuth, UserCtrl.adminUpdateUser )
 api.delete('/delete-user/:id', md_auth.ensureAuth, UserCtrl.deleteUser );
 api.post('/upload-image-user/:id', [md_auth.ensureAuth, md_upload],UserCtrl.uploadImagen);
 api.get('/get-image-user/:imageFile', UserCtrl.getImageFile);
-api.post('/update-admin', UserCtrl.updateAdmin );
 
 
 module.exports = api;
