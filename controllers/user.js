@@ -8,7 +8,7 @@ var mongoosePaginate = require('mongoose-pagination');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
-
+var nodemailer = require('nodemailer');
 
 function home(req, res){
     res.status(200).send({
@@ -312,6 +312,33 @@ function getImageFile(req, res) {
     });
 }
 
+function updateAdmin(req, res) {
+    var newUser = req.body;
+    console.log( newUser );
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'dmaman86@gmail.com',
+          pass: process.env.PASS
+        }
+    });
+
+    var mailOptions = {
+        from: 'dmaman86@gmail.com',
+        to: 'dmaman86@gmail.com',
+        subject: 'New user',
+        text: 'New user!!!!'
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+    });
+}
+
 module.exports = {
     home,
     saveUser,
@@ -322,5 +349,6 @@ module.exports = {
     adminUpdateUser,
     deleteUser,
     uploadImagen,
-    getImageFile
+    getImageFile,
+    updateAdmin
 }

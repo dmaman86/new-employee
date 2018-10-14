@@ -5917,7 +5917,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "h1 {\n\tfont-family: Verdana;\n\tfont-weight: bold;\n\ttext-align: center;\n\tpadding-top: 25px;\n\tpadding-bottom: 25px;\n\tcolor: #acd1b2;\n}\nh2 {\n\tfont-family: Verdana;\n\tfont-weight: bold;\n\ttext-align: center;\n\tpadding-top: 25px;\n\tpadding-bottom: 25px;\n\tcolor: #acd1b2;\n}\n#name {\n\tposition: relative;\n\ttop: -10px;\n\tborder-top-left-radius: 15px;\n\tborder-top-right-radius: 15px;\n}\n#email{\n\tfloat:right;\n\tmargin-right:5px;\n\tpadding-top:5px;\n\tfont-size:16px;\n\tfont-family: Verdana, sans-serif;\n\tcolor:#ffffff;\n}\nh1:hover\n{\n\tbackground-color:#102372;\n}\nh2:hover\n{\n\tbackground-color:#102372;\n}"
+module.exports = ""
 
 /***/ }),
 
@@ -5928,7 +5928,7 @@ module.exports = "h1 {\n\tfont-family: Verdana;\n\tfont-weight: bold;\n\ttext-al
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"header\">\n  <h1 class=\"hover\">Welcome to my app Employee Management</h1>\n  <p id=\"name\">David Alejandro Maman</p>\n  <a href=\"mailto:dmaman86@gmail.com\"><p id=\"email\">dmaman86@gmail.com</p></a>\n</div>\n<h2>Things I like to do:</h2>\n\n\n<h2>About me:</h2>\n"
+module.exports = "<h1 class=\"animated fadeIn fast\">Employee Management App</h1>\n<hr>\n<p class=\"animated fadeIn\">\n\tThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n</p>\n"
 
 /***/ }),
 
@@ -6753,14 +6753,24 @@ var RegisterComponent = /** @class */ (function () {
     };
     RegisterComponent.prototype.onSubmit = function (form) {
         var _this = this;
+        console.log(this.user);
         this._userService.register(this.user).subscribe(function (response) {
             if (response.user && response.user._id) {
                 _this.status = 'success';
+                _this.sendToAdmin(_this.user);
                 form.reset();
             }
             else {
                 _this.status = 'error';
             }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    RegisterComponent.prototype.sendToAdmin = function (user) {
+        console.log(user);
+        this._userService.updateAdmin(user).subscribe(function (response) {
+            console.log(response);
         }, function (error) {
             console.log(error);
         });
@@ -7432,6 +7442,11 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(user);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
         return this._http.post(this.url + 'register', params, { headers: headers });
+    };
+    UserService.prototype.updateAdmin = function (user) {
+        var params = JSON.stringify(user);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post(this.url + 'update-admin', params, { headers: headers });
     };
     UserService.prototype.signup = function (user, gettoken) {
         if (gettoken === void 0) { gettoken = 'false'; }

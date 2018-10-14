@@ -24,6 +24,12 @@ export class UserService {
         return this._http.post( this.url + 'register', params, { headers : headers });
     }
 
+    updateAdmin( user: any ): Observable<any> {
+        const params = JSON.stringify( user );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'update-admin', params, { headers: headers });
+    }
+
     signup( user: any, gettoken = 'false'): Observable<any> {
         if ( gettoken !== 'false') {
             user.gettoken = gettoken;
