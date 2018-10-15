@@ -20,7 +20,7 @@ export class DialogComponent implements OnInit {
     private _userSerive: UserService
   ) {
     this.title = 'Update Request Week';
-    this.requestWeek = new RequestWeek('', '', '', '', '');
+    this.requestWeek = new RequestWeek('', '', '', '', '', '');
   }
 
   ngOnInit() {

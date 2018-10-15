@@ -6248,7 +6248,7 @@ var DialogComponent = /** @class */ (function () {
         this.data = data;
         this._userSerive = _userSerive;
         this.title = 'Update Request Week';
-        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '');
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '', '');
     }
     DialogComponent.prototype.ngOnInit = function () {
     };
@@ -6910,7 +6910,7 @@ var RegisterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#footer {\n    position:absolute;\n    bottom:0;\n    width:100%;\n    height:60px;   /* Height of the footer */\n }"
+module.exports = "#footer {\n    bottom: 0;\n    left: 0;\n    right: 0;\n    height:100px;\n }"
 
 /***/ }),
 
@@ -7107,7 +7107,7 @@ var UpdateWeekComponent = /** @class */ (function () {
         this._router = _router;
         this._userService = _userService;
         this.title = 'Update Week Request';
-        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '');
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '', '');
         this.week = this._userService.getWeekId();
     }
     UpdateWeekComponent.prototype.ngOnInit = function () {
@@ -7182,7 +7182,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n  Sorry, but you'll have to wait next week or contact the administrator\n</div>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th><span class=\"long\">Morning</span></th>\n      <th><span class=\"long\">Afternoon</span></th>\n      <th><span class=\"long\">Night</span></th>\n      <th><span class=\"long\">Weekend</span></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>{{ count_morning }}</td>\n      <td>{{ count_afternoon }}</td>\n      <td>{{ count_night }}</td>\n      <td>{{ count_weekend }}</td>\n    </tr>\n  </tbody>\n</table>\n\n<br>\n<hr>\n\n<table class=\"table table-bordered\">\n  <thead>\n    <tr>\n      <th></th>\n      <th *ngFor=\"let d of days; let i = index\">\n        <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n        <span class=\"long\">{{ dates[d] | date }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>morning</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].morning }}\"\n          (click)=\"setValue( day, 'morning' )\"\n          (dblclick)=\"resetValue(day, 'morning')\">\n      </td>\n    </tr>\n    <tr>\n      <td>afternoon</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].afternoon }}\"\n          (click)=\"setValue( day, 'afternoon' )\"\n          (dblclick)=\"resetValue(day, 'afternoon')\">\n      </td>\n    </tr>\n    <tr>\n      <td>night</td>\n      <td *ngFor=\"let day of days\">\n        <input\n          type=\"button\"\n          value=\"{{ this.week[day].night }}\"\n          (click)=\"setValue( day, 'night' )\"\n          (dblclick)=\"resetValue(day, 'night')\">\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<div class=\"form-group row\">\n  <div class=\"col-sm-10\">\n    <button\n      type=\"submit\"\n      class=\"btn btn-primary\"\n      (click)=\"sendValues()\">Send Values</button>\n  </div>\n</div>\n\n<app-footer></app-footer>\n"
+module.exports = "<div class=\"container\">\n    <br>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n      Values Save!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n      Please check values!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n      Sorry, but you'll have to wait next week or contact the administrator\n    </div>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">{{ requestWeek.method }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}</td>\n          <td>{{ requestWeek.afternoon }}</td>\n          <td>{{ requestWeek.night }}</td>\n          <td>{{ requestWeek.weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <br>\n    <hr>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>morning</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">\n          </td>\n        </tr>\n        <tr>\n          <td>afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">\n          </td>\n        </tr>\n        <tr>\n          <td>night</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <div class=\"form-group row\">\n      <div class=\"col-sm-10\">\n        <button\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Values</button>\n      </div>\n    </div>\n</div>\n<br>\n<br>\n<br>\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 
@@ -7204,6 +7204,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7220,6 +7222,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserWeekComponent = /** @class */ (function () {
     function UserWeekComponent(_route, _router, _userService) {
         this._route = _route;
@@ -7229,7 +7232,7 @@ var UserWeekComponent = /** @class */ (function () {
         this.shift = ['morning', 'afternoon', 'night'];
         this.dates = [];
         this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('');
-        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_4__["RequestWeek"]('', '', '', '', '');
+        this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_4__["RequestWeek"]('', '', '', '', '', '');
         this.identity = this._userService.getIdentity();
         this.count_morning = 0;
         this.count_afternoon = 0;
@@ -7246,11 +7249,10 @@ var UserWeekComponent = /** @class */ (function () {
         console.log(this.number_week);
         this.dates = this.getFirstAndLastDates(this.number_week);
         console.log(this.dates);
+        this.setValuesRequest();
     }
     UserWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.setValuesRequest();
-        // console.log( this.requestWeek );
         this.requestUser.setId(this.identity._id);
         this.requestUser.setLevel(this.identity.level);
         this.requestUser.setNumberWeek(String(this.checkSunday(this.number_week[1])));
@@ -7406,10 +7408,10 @@ var UserWeekComponent = /** @class */ (function () {
     };
     UserWeekComponent.prototype.sendValues = function () {
         var _this = this;
-        if (this.count_morning > 0 &&
-            this.count_afternoon > 1 &&
-            this.count_night > 1 &&
-            this.count_weekend > 0) {
+        if (this.count_morning >= Number(this.requestWeek.morning) &&
+            this.count_afternoon >= Number(this.requestWeek.afternoon) &&
+            this.count_night >= Number(this.requestWeek.night) &&
+            this.count_weekend >= Number(this.requestWeek.weekend)) {
             for (var i = 0; i < this.days.length; i++) {
                 var d = this.days[i];
                 for (var j = 0; j < this.shift.length; j++) {
@@ -7434,7 +7436,8 @@ var UserWeekComponent = /** @class */ (function () {
                             _this.updateValues(d, s);
                         }
                     }
-                    window.location.reload();
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()('Submitted successfully', 'You have sent correctly', 'success');
+                    // window.location.reload();
                 }
             }, function (error) {
                 var errorMessage = error;
@@ -7515,6 +7518,7 @@ var UserWeekComponent = /** @class */ (function () {
         this._userService.getValuesRequest().subscribe(function (response) {
             if (response.ok) {
                 console.log(response.values);
+                _this.requestWeek._id = response.values._id;
                 _this.requestWeek.method = response.values.method;
                 _this.requestWeek.morning = response.values.morning;
                 _this.requestWeek.afternoon = response.values.afternoon;
@@ -7582,7 +7586,8 @@ var Message = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestWeek", function() { return RequestWeek; });
 var RequestWeek = /** @class */ (function () {
-    function RequestWeek(method, morning, afternoon, night, weekend) {
+    function RequestWeek(_id, method, morning, afternoon, night, weekend) {
+        this._id = _id;
         this.method = method;
         this.morning = morning;
         this.afternoon = afternoon;

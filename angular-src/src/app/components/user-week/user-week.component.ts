@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { RequestWeek } from '../../models/requestWeek';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-week',
@@ -37,7 +38,7 @@ export class UserWeekComponent implements OnInit {
   ) {
     this.dates = [];
     this.requestUser = new RequestWeekUser('');
-    this.requestWeek = new RequestWeek('', '', '', '', '');
+    this.requestWeek = new RequestWeek('', '', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.count_morning = 0;
     this.count_afternoon = 0;
@@ -55,11 +56,10 @@ export class UserWeekComponent implements OnInit {
     console.log( this.number_week );
     this.dates = this.getFirstAndLastDates( this.number_week );
     console.log( this.dates );
+    this.setValuesRequest();
   }
 
   ngOnInit() {
-    this.setValuesRequest();
-    // console.log( this.requestWeek );
     this.requestUser.setId( this.identity._id );
     this.requestUser.setLevel( this.identity.level );
     this.requestUser.setNumberWeek( String(this.checkSunday( this.number_week[1] )));
@@ -218,10 +218,10 @@ export class UserWeekComponent implements OnInit {
   }
 
   sendValues() {
-    if (  this.count_morning > 0 &&
-      this.count_afternoon > 1 &&
-      this.count_night > 1 &&
-      this.count_weekend > 0 ) {
+    if (  this.count_morning >= Number( this.requestWeek.morning ) &&
+      this.count_afternoon >= Number( this.requestWeek.afternoon ) &&
+      this.count_night >= Number( this.requestWeek.night ) &&
+      this.count_weekend >= Number( this.requestWeek.weekend ) ) {
 
         for ( let i = 0; i < this.days.length; i++ ) {
           const d = this.days[i];
@@ -251,7 +251,8 @@ export class UserWeekComponent implements OnInit {
                   this.updateValues(d, s);
                 }
               }
-              window.location.reload();
+              swal('Submitted successfully', 'You have sent correctly' , 'success');
+              // window.location.reload();
             }
           }, error => {
           const errorMessage = <any>error;
@@ -334,6 +335,7 @@ export class UserWeekComponent implements OnInit {
       response => {
         if ( response.ok ) {
           console.log( response.values );
+          this.requestWeek._id = response.values._id;
           this.requestWeek.method = response.values.method;
           this.requestWeek.morning = response.values.morning;
           this.requestWeek.afternoon = response.values.afternoon;

@@ -22,7 +22,7 @@ export class UpdateWeekComponent implements OnInit {
     private _userService: UserService
   ) {
     this.title = 'Update Week Request';
-    this.requestWeek = new RequestWeek('', '', '', '', '');
+    this.requestWeek = new RequestWeek('', '', '', '', '', '');
     this.week = this._userService.getWeekId();
   }
 
