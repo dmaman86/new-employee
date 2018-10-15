@@ -7444,7 +7444,9 @@ var UserWeekComponent = /** @class */ (function () {
                         showConfirmButton: false,
                         timer: 5000
                     });
-                    window.location.reload();
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
                 }
             }, function (error) {
                 var errorMessage = error;

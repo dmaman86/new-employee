@@ -259,7 +259,9 @@ export class UserWeekComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 5000
               });
-              window.location.reload();
+              setTimeout( () => {
+                window.location.reload();
+              }, 2000);
             }
           }, error => {
           const errorMessage = <any>error;
