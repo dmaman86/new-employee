@@ -7442,13 +7442,9 @@ var UserWeekComponent = /** @class */ (function () {
                         type: 'success',
                         title: 'Submitted successfully',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 5000
                     });
                     window.location.reload();
-                    /*setTimeout( () => {
-                      swal('Submitted successfully', 'You have sent correctly' , 'success');
-                    }, 2000);
-                    window.location.reload();*/
                 }
             }, function (error) {
                 var errorMessage = error;

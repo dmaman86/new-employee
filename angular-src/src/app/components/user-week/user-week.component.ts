@@ -257,7 +257,7 @@ export class UserWeekComponent implements OnInit {
                 type: 'success',
                 title: 'Submitted successfully',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 5000
               });
               window.location.reload();
             }
