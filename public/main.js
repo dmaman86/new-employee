@@ -7223,6 +7223,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+/*import * as swal from 'sweetalert';*/
 var UserWeekComponent = /** @class */ (function () {
     function UserWeekComponent(_route, _router, _userService) {
         this._route = _route;
@@ -7436,8 +7437,18 @@ var UserWeekComponent = /** @class */ (function () {
                             _this.updateValues(d, s);
                         }
                     }
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()('Submitted successfully', 'You have sent correctly', 'success');
-                    // window.location.reload();
+                    sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'Submitted successfully',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    window.location.reload();
+                    /*setTimeout( () => {
+                      swal('Submitted successfully', 'You have sent correctly' , 'success');
+                    }, 2000);
+                    window.location.reload();*/
                 }
             }, function (error) {
                 var errorMessage = error;

@@ -7,6 +7,7 @@ import { RequestWeek } from '../../models/requestWeek';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
 import swal from 'sweetalert2';
+/*import * as swal from 'sweetalert';*/
 
 @Component({
   selector: 'app-user-week',
@@ -251,8 +252,14 @@ export class UserWeekComponent implements OnInit {
                   this.updateValues(d, s);
                 }
               }
-              swal('Submitted successfully', 'You have sent correctly' , 'success');
-              // window.location.reload();
+              swal({
+                position: 'top-end',
+                type: 'success',
+                title: 'Submitted successfully',
+                showConfirmButton: false,
+                timer: 3000
+              });
+              window.location.reload();
             }
           }, error => {
           const errorMessage = <any>error;

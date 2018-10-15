@@ -26,6 +26,7 @@
     "core-js": "^2.5.4",
     "ng2-opd-popup": "^1.1.21",
     "rxjs": "~6.2.0",
+    "sweetalert": "^2.1.0",
     "sweetalert2": "^7.28.5",
     "zone.js": "~0.8.26"
   },
