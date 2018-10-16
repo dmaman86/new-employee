@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { GLOBAL } from '../../services/global';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contacts',
@@ -15,8 +16,8 @@ export class ContactsComponent implements OnInit {
   public title: string;
   public user: User;
   public temp_user: User;
-  public users: User [] = [];
-  public usersToSearch: User [] = [];
+  public users: User [];
+  public usersToSearch: User [];
   public identity;
   public status;
   public token;
@@ -39,24 +40,13 @@ export class ContactsComponent implements OnInit {
     this.url = GLOBAL.url;
     this.temp_user = new User('', '', '', '', '', '', '');
     this.values = '';
+    this.usersToSearch = [];
+    this.users = [];
   }
 
   ngOnInit() {
-    // this.currentPage();
-    this._userService.getUsersToSearch().subscribe(
-      response => {
-        if ( response.ok ) {
-          this.usersToSearch = response.users;
-        }
-      }, error => {
-        const errorMensage = <any>error;
-        console.log( errorMensage );
-
-        if ( errorMensage !== null ) {
-          this.status = 'error';
-        }
-      }
-    );
+    this.newGetUsers();
+    console.log( this.newGetUsers() );
   }
 
   currentPage() {
@@ -80,6 +70,24 @@ export class ContactsComponent implements OnInit {
       }
       this.getUsers( page );
     });
+  }
+
+  newGetUsers() {
+    this._userService.getUsersToSearch().subscribe(
+      response => {
+        if ( response.ok ) {
+          console.log( response.users );
+          this.usersToSearch = response.users;
+        }
+      }, error => {
+        const errorMensage = <any>error;
+        console.log( errorMensage );
+
+        if ( errorMensage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
   getUsers( page ) {
@@ -112,16 +120,16 @@ export class ContactsComponent implements OnInit {
     console.log(userId);
     this.status = 'edit';
 
-    console.log( this.users );
+    console.log( this.usersToSearch );
 
-    for (let i = 0; i < this.users.length; i++) {
-      if ( this.users[i]._id === userId ) {
-        this.temp_user._id = this.users[i]._id;
-        this.temp_user.name = this.users[i].name;
-        this.temp_user.last_name = this.users[i].last_name;
-        this.temp_user.email = this.users[i].email;
-        this.temp_user.role = this.users[i].role;
-        this.temp_user.level = this.users[i].level;
+    for (let i = 0; i < this.usersToSearch.length; i++) {
+      if ( this.usersToSearch[i]._id === userId ) {
+        this.temp_user._id = this.usersToSearch[i]._id;
+        this.temp_user.name = this.usersToSearch[i].name;
+        this.temp_user.last_name = this.usersToSearch[i].last_name;
+        this.temp_user.email = this.usersToSearch[i].email;
+        this.temp_user.role = this.usersToSearch[i].role;
+        this.temp_user.level = this.usersToSearch[i].level;
       }
     }
 
@@ -129,14 +137,14 @@ export class ContactsComponent implements OnInit {
   }
 
   deleteUser( userId ) {
-    for (let i = 0; i < this.users.length; i++) {
-      if ( this.users[i]._id === userId ) {
-        this.temp_user._id = this.users[i]._id;
-        this.temp_user.name = this.users[i].name;
-        this.temp_user.last_name = this.users[i].last_name;
-        this.temp_user.email = this.users[i].email;
-        this.temp_user.role = this.users[i].role;
-        this.temp_user.level = this.users[i].level;
+    for (let i = 0; i < this.usersToSearch.length; i++) {
+      if ( this.usersToSearch[i]._id === userId ) {
+        this.temp_user._id = this.usersToSearch[i]._id;
+        this.temp_user.name = this.usersToSearch[i].name;
+        this.temp_user.last_name = this.usersToSearch[i].last_name;
+        this.temp_user.email = this.usersToSearch[i].email;
+        this.temp_user.role = this.usersToSearch[i].role;
+        this.temp_user.level = this.usersToSearch[i].level;
       }
     }
 
@@ -145,7 +153,16 @@ export class ContactsComponent implements OnInit {
       response => {
         console.log( response );
         if ( response.ok ) {
-          window.location.reload();
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'User was delete',
+            showConfirmButton: false,
+            timer: 5000
+          });
+          setTimeout( () => {
+            window.location.reload();
+          }, 2000);
         }
       }, error => {
         const errorMensage = <any>error;
@@ -166,8 +183,16 @@ export class ContactsComponent implements OnInit {
         if ( !response.ok ) {
           this.status = 'error';
         } else {
-          this.status = 'success';
-          window.location.reload();
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'User was update',
+            showConfirmButton: false,
+            timer: 5000
+          });
+          setTimeout( () => {
+            window.location.reload();
+          }, 2000);
         }
       }, error => {
         const errorMensage = <any>error;

@@ -6037,6 +6037,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/user */ "./src/app/models/user.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var _services_global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/global */ "./src/app/services/global.ts");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6051,34 +6053,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ContactsComponent = /** @class */ (function () {
     function ContactsComponent(_route, _router, _userService) {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
-        this.users = [];
-        this.usersToSearch = [];
         this.title = 'List Contacts';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_4__["GLOBAL"].url;
         this.temp_user = new _models_user__WEBPACK_IMPORTED_MODULE_2__["User"]('', '', '', '', '', '', '');
         this.values = '';
+        this.usersToSearch = [];
+        this.users = [];
     }
     ContactsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        // this.currentPage();
-        this._userService.getUsersToSearch().subscribe(function (response) {
-            if (response.ok) {
-                _this.usersToSearch = response.users;
-            }
-        }, function (error) {
-            var errorMensage = error;
-            console.log(errorMensage);
-            if (errorMensage !== null) {
-                _this.status = 'error';
-            }
-        });
+        this.newGetUsers();
+        console.log(this.newGetUsers());
     };
     ContactsComponent.prototype.currentPage = function () {
         var _this = this;
@@ -6099,6 +6091,21 @@ var ContactsComponent = /** @class */ (function () {
                 }
             }
             _this.getUsers(page);
+        });
+    };
+    ContactsComponent.prototype.newGetUsers = function () {
+        var _this = this;
+        this._userService.getUsersToSearch().subscribe(function (response) {
+            if (response.ok) {
+                console.log(response.users);
+                _this.usersToSearch = response.users;
+            }
+        }, function (error) {
+            var errorMensage = error;
+            console.log(errorMensage);
+            if (errorMensage !== null) {
+                _this.status = 'error';
+            }
         });
     };
     ContactsComponent.prototype.getUsers = function (page) {
@@ -6127,36 +6134,45 @@ var ContactsComponent = /** @class */ (function () {
     ContactsComponent.prototype.editUser = function (userId) {
         console.log(userId);
         this.status = 'edit';
-        console.log(this.users);
-        for (var i = 0; i < this.users.length; i++) {
-            if (this.users[i]._id === userId) {
-                this.temp_user._id = this.users[i]._id;
-                this.temp_user.name = this.users[i].name;
-                this.temp_user.last_name = this.users[i].last_name;
-                this.temp_user.email = this.users[i].email;
-                this.temp_user.role = this.users[i].role;
-                this.temp_user.level = this.users[i].level;
+        console.log(this.usersToSearch);
+        for (var i = 0; i < this.usersToSearch.length; i++) {
+            if (this.usersToSearch[i]._id === userId) {
+                this.temp_user._id = this.usersToSearch[i]._id;
+                this.temp_user.name = this.usersToSearch[i].name;
+                this.temp_user.last_name = this.usersToSearch[i].last_name;
+                this.temp_user.email = this.usersToSearch[i].email;
+                this.temp_user.role = this.usersToSearch[i].role;
+                this.temp_user.level = this.usersToSearch[i].level;
             }
         }
         console.log(this.temp_user);
     };
     ContactsComponent.prototype.deleteUser = function (userId) {
         var _this = this;
-        for (var i = 0; i < this.users.length; i++) {
-            if (this.users[i]._id === userId) {
-                this.temp_user._id = this.users[i]._id;
-                this.temp_user.name = this.users[i].name;
-                this.temp_user.last_name = this.users[i].last_name;
-                this.temp_user.email = this.users[i].email;
-                this.temp_user.role = this.users[i].role;
-                this.temp_user.level = this.users[i].level;
+        for (var i = 0; i < this.usersToSearch.length; i++) {
+            if (this.usersToSearch[i]._id === userId) {
+                this.temp_user._id = this.usersToSearch[i]._id;
+                this.temp_user.name = this.usersToSearch[i].name;
+                this.temp_user.last_name = this.usersToSearch[i].last_name;
+                this.temp_user.email = this.usersToSearch[i].email;
+                this.temp_user.role = this.usersToSearch[i].role;
+                this.temp_user.level = this.usersToSearch[i].level;
             }
         }
         console.log(this.temp_user);
         this._userService.deleteUser(this.temp_user).subscribe(function (response) {
             console.log(response);
             if (response.ok) {
-                window.location.reload();
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'User was delete',
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         }, function (error) {
             var errorMensage = error;
@@ -6175,8 +6191,16 @@ var ContactsComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
             else {
-                _this.status = 'success';
-                window.location.reload();
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'User was update',
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             }
         }, function (error) {
             var errorMensage = error;
