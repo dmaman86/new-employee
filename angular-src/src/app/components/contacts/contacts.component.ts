@@ -25,6 +25,7 @@ export class ContactsComponent implements OnInit {
   public total;
   public pages;
   public url: string;
+  public values: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class ContactsComponent implements OnInit {
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
     this.temp_user = new User('', '', '', '', '', '', '');
+    this.values = '';
   }
 
   ngOnInit() {
@@ -161,6 +163,25 @@ export class ContactsComponent implements OnInit {
         }
       }
     );
+  }
+
+  onKey(event: any) { // without type info
+    this.values = event.target.value;
+    console.log( this.values );
+    let filter, table, tr, td;
+    table = document.getElementById('myTable');
+    filter = this.values.toUpperCase();
+    tr = table.getElementsByTagName('tr');
+    for ( let i = 0; i < tr.length; i++ ) {
+      td = tr[i].getElementsByTagName('td')[1];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
   }
 
 }

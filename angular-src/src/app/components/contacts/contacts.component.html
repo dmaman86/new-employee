@@ -1,7 +1,12 @@
 <h1>{{ title }}</h1>
 <hr>
+<input 
+    type="text"
+    id="myInput" 
+    (keyup)="onKey($event)"
+    placeholder="Search for names">
 <div *ngIf="this.identity.role == 'USER_ROLE'">
-    <table class="table" >
+    <table class="table" id="myTable">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -32,7 +37,7 @@
 </div>
 
 <div *ngIf="this.identity.role == 'ADMIN_ROLE'">
-    <table class="table" >
+    <table class="table" id="myTable">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -46,7 +51,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users; let i = index">
-            <th scope="row">{{ i+1 }}</th>
+            <td scope="row">{{ i+1 }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
