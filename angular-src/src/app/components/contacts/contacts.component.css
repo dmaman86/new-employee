@@ -6,4 +6,36 @@
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
-  }
+}
+table {
+  max-width:980px;
+  table-layout:fixed;
+  margin:auto;
+}
+th, td {
+    /*padding:5px 10px;*/
+    /*border:1px solid #000;*/
+}
+
+#check {
+  width: 100px;
+  word-wrap: break-word;
+}
+thead, tfoot {
+    background:#f9f9f9;
+    display:table;
+    width:100%;
+    width:calc(100% - 18px);
+}
+tbody {
+    height:300px;
+    overflow:auto;
+    overflow-x:hidden;
+    display:block;
+    width:100%;
+}
+tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
