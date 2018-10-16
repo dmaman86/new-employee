@@ -6,8 +6,8 @@
     (keyup)="onKey($event)"
     placeholder="Search for names">
 <div *ngIf="this.identity.role == 'USER_ROLE'">
-    <table class="table table-striped table-bordered" id="dtVerticalScrollExample">
-        <thead>
+    <table class="table table-striped table-bordered" id="myTable">
+        <thead class="thead-dark">
           <tr>
             <th scope="col" id="check"></th>
             <th scope="col">First Name</th>
@@ -36,57 +36,52 @@
       <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
 </div>
 
-<div *ngIf="this.identity.role === 'ADMIN_ROLE'">
-  <table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm table-fixed" cellspacing="0" width="100%">
-    <thead>
-        <th class="th-sm">#
-        </th>
-        <th class="th-sm">First Name
-        </th>
-        <th class="th-sm">Last Name
-        </th>
-        <th class="th-sm">Email
-        </th>
-        <th class="th-sm">Role
-        </th>
-        <th class="th-sm">Level
-        </th>
-        <th class="th-sm">
-        </th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of usersToSearch; let i = index">
-          <td>{{ i+1 }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.last_name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.level }}</td>
-          <td *ngIf="identity._id != user._id">
-            <input type="button" (click)="editUser( user._id )"
-              class="btn btn-primary" value="Edit"/>
-            <input type="button" (click)="deleteUser( user._id )"
-              class="btn btn-danger" value="Delete"/>
-          </td>
-      </tr>
-    </tbody>
-    <tfoot>
+<!--<div *ngIf="this.identity.role === 'ADMIN_ROLE'">
+  <table class="table tex-sm" id="users">
+    <thead class="thead-dark">
       <tr>
-        <th>#</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Level</th>
-        <th></th>
+          <th>#
+            </th>
+            <th>First Name
+            </th>
+            <th>Last Name
+            </th>
+            <th>Email
+            </th>
+            <th>Role
+            </th>
+            <th>Level
+            </th>
+            <th>
+            </th>
       </tr>
-    </tfoot>
+    </thead>
   </table>
-</div>
+  <div class="list-container-h30 scrolled-y">
+      <table class="table table-striped table-hover text-sm">
+          <tbody>
+              <tr *ngFor="let user of usersToSearch; let i = index">
+                  <td>{{ i+1 }}</td>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.last_name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>{{ user.level }}</td>
+                  <td *ngIf="identity._id != user._id">
+                    <input type="button" (click)="editUser( user._id )"
+                      class="btn btn-primary" value="Edit"/>
+                    <input type="button" (click)="deleteUser( user._id )"
+                      class="btn btn-danger" value="Delete"/>
+                  </td>
+              </tr>
+            </tbody>
+      </table>
+  </div>
+</div>-->
 
-<!--<div *ngIf="this.identity.role == 'ADMIN_ROLE'">
+<div *ngIf="this.identity.role == 'ADMIN_ROLE'">
     <table class="table table-striped table-bordered" id="myTable">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">First Name</th>
@@ -115,7 +110,7 @@
           
         </tbody>
       </table>
-</div>-->
+</div>
 
 <div *ngIf="status == 'edit'">
   <form #userEdit="ngForm" (ngSubmit)="onSubmit()">

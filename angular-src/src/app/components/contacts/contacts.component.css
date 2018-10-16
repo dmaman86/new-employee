@@ -1,4 +1,3 @@
-
 #myInput {
     background-position: 10px 10px;
     background-repeat: no-repeat;
@@ -8,24 +7,3 @@
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
-.table-fixed tbody{
-    height: 200px;
-    overflow-y:auto !important;
-    width: 100%;
-}
-  
-/*.table-fixed thead {
-    width: 97%;
-  }*/
-  /*.table-fixed tbody {
-    height: 230px;
-    overflow-y: auto;
-    width: 100%;
-  }
-  .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-    display: block;
-  }
-  .table-fixed tbody td, .table-fixed thead > tr> th {
-    float: left;
-    border-bottom-width: 0;
-  }*/
