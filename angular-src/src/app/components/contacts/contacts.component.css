@@ -8,9 +8,9 @@
     margin-bottom: 12px;
 }
 table {
-  /*max-width:980px;
+  /*max-width:980px;*/
   table-layout:fixed;
-  margin:auto;*/
+  margin:auto;
 }
 th, td {
     /*padding:5px 10px;*/

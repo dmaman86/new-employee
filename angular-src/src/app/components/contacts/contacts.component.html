@@ -6,7 +6,7 @@
     (keyup)="onKey($event)"
     placeholder="Search for names">
 <div *ngIf="this.identity.role == 'USER_ROLE'">
-    <table class="table" id="myTable">
+    <table class="table table-striped" id="myTable">
         <thead>
           <tr>
             <th scope="col" id="check"></th>
@@ -37,22 +37,22 @@
 </div>
 
 <div *ngIf="this.identity.role == 'ADMIN_ROLE'">
-    <table class="table" id="myTable">
+    <table class="table table-striped" id="myTable">
         <thead>
           <tr>
-            <th id="check" scope="col"></th>
+            <th scope="col">#</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col">Level</th>
-            <th scope="col"></th>
+            <th scope="col">Update</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of usersToSearch; let i = index">
-            <td id="check">{{ i+1 }}</td>
-            <td>{{ user.name }}</td>
+            <td scope="row">{{ i+1 }}</td>
+            <td>{{ user.name | slice:0:5 }}</td>
             <td>{{ user.last_name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
