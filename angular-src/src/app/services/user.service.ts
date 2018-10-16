@@ -89,6 +89,11 @@ export class UserService {
         return this._http.get( this.url + 'users/' + page, { headers: headers });
     }
 
+    getUsersToSearch(): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get( this.url + 'get-users', { headers: headers });
+    }
+
     deleteUser( user: User ): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.delete( this.url + 'delete-user/' + user._id, { headers: headers } );

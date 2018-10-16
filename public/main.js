@@ -6018,7 +6018,7 @@ module.exports = "#myInput {\n    background-position: 10px 10px;\n    backgroun
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<input \n    type=\"text\"\n    id=\"myInput\" \n    (keyup)=\"onKey($event)\"\n    placeholder=\"Search for names\">\n<div *ngIf=\"this.identity.role == 'USER_ROLE'\">\n    <table class=\"table\" id=\"myTable\">\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <!--<th scope=\"row\">{{ i+1 }}</th>-->\n            <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n      <br/>\n\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n</div>\n\n<div *ngIf=\"this.identity.role == 'ADMIN_ROLE'\">\n    <table class=\"table\" id=\"myTable\">\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n            <th scope=\"col\">Role</th>\n            <th scope=\"col\">Level</th>\n            <th></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users; let i = index\">\n            <td scope=\"row\">{{ i+1 }}</td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n            <td>{{ user.role }}</td>\n            <td>{{ user.level }}</td>\n            <td *ngIf=\"identity._id != user._id\">\n              <input type=\"button\" (click)=\"editUser( user._id )\"\n                class=\"btn btn-primary\" value=\"Edit\"/>\n              <input type=\"button\" (click)=\"deleteUser( user._id )\"\n                class=\"btn btn-danger\" value=\"Delete\"/>\n            </td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>\n</div>\n\n<div *ngIf=\"status == 'edit'\">\n  <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n    <p>\n      <label>Name:</label>\n      <label>{{ temp_user.name }}</label>\n    </p>\n    <p>\n      <label>Last Name:</label>\n      <label>{{ temp_user.last_name }}</label>\n    </p>\n    <p>\n      <label>Email:</label>\n      <label>{{ temp_user.email }}</label>\n    </p>\n    <p>\n      <label>Role:</label>\n      <input \n        type=\"text\"\n        name=\"role\"\n        #role=\"ngModel\"\n        [(ngModel)]=\"temp_user.role\"\n        class=\"form-control\"\n        placeholder=\"temp_user.role\"/>\n    </p>\n    <p>\n        <label>Level:</label>\n        <input \n          type=\"text\"\n          name=\"level\"\n          #level=\"ngModel\"\n          [(ngModel)]=\"temp_user.level\"\n          class=\"form-control\"\n          placeholder=\"temp_user.level\"/>\n      </p>\n      <input \n        type=\"submit\"\n        value=\"Send\"\n        class=\"btn btn-warning\"\n        [disabled]=\"!userEdit.form.valid\"/>\n  </form>\n</div>\n\n<app-footer></app-footer>\n\n\n"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<input \n    type=\"text\"\n    id=\"myInput\" \n    (keyup)=\"onKey($event)\"\n    placeholder=\"Search for names\">\n<div *ngIf=\"this.identity.role == 'USER_ROLE'\">\n    <table class=\"table\" id=\"myTable\">\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of usersToSearch; let i = index\">\n            <!--<th scope=\"row\">{{ i+1 }}</th>-->\n            <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <!--<ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>-->\n      <br/>\n\n      <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n</div>\n\n<div *ngIf=\"this.identity.role == 'ADMIN_ROLE'\">\n    <table class=\"table\" id=\"myTable\">\n        <thead>\n          <tr>\n            <th scope=\"col\"></th>\n            <th scope=\"col\">First Name</th>\n            <th scope=\"col\">Last Name</th>\n            <th scope=\"col\">Email</th>\n            <th scope=\"col\">Role</th>\n            <th scope=\"col\">Level</th>\n            <th></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of usersToSearch; let i = index\">\n            <td scope=\"row\">{{ i+1 }}</td>\n            <td>{{ user.name }}</td>\n            <td>{{ user.last_name }}</td>\n            <td>{{ user.email }}</td>\n            <td>{{ user.role }}</td>\n            <td>{{ user.level }}</td>\n            <td *ngIf=\"identity._id != user._id\">\n              <input type=\"button\" (click)=\"editUser( user._id )\"\n                class=\"btn btn-primary\" value=\"Edit\"/>\n              <input type=\"button\" (click)=\"deleteUser( user._id )\"\n                class=\"btn btn-danger\" value=\"Delete\"/>\n            </td>\n          </tr>\n          \n        </tbody>\n      </table>\n      <!-- paginacion -->\n      <!--<ul class=\"pagination pull-right\">\n        <li *ngIf=\"page > 1\"><a [routerLink]=\"['/contacts', prev_page]\">Prev</a></li>\n        <li *ngIf=\"pages !== page\"><a [routerLink]=\"['/contacts', next_page]\">Next</a></li>\n      </ul>-->\n</div>\n\n<div *ngIf=\"status == 'edit'\">\n  <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n    <p>\n      <label>Name:</label>\n      <label>{{ temp_user.name }}</label>\n    </p>\n    <p>\n      <label>Last Name:</label>\n      <label>{{ temp_user.last_name }}</label>\n    </p>\n    <p>\n      <label>Email:</label>\n      <label>{{ temp_user.email }}</label>\n    </p>\n    <p>\n      <label>Role:</label>\n      <input \n        type=\"text\"\n        name=\"role\"\n        #role=\"ngModel\"\n        [(ngModel)]=\"temp_user.role\"\n        class=\"form-control\"\n        placeholder=\"temp_user.role\"/>\n    </p>\n    <p>\n        <label>Level:</label>\n        <input \n          type=\"text\"\n          name=\"level\"\n          #level=\"ngModel\"\n          [(ngModel)]=\"temp_user.level\"\n          class=\"form-control\"\n          placeholder=\"temp_user.level\"/>\n      </p>\n      <input \n        type=\"submit\"\n        value=\"Send\"\n        class=\"btn btn-warning\"\n        [disabled]=\"!userEdit.form.valid\"/>\n  </form>\n</div>\n\n<app-footer></app-footer>\n\n\n"
 
 /***/ }),
 
@@ -6057,6 +6057,7 @@ var ContactsComponent = /** @class */ (function () {
         this._router = _router;
         this._userService = _userService;
         this.users = [];
+        this.usersToSearch = [];
         this.title = 'List Contacts';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -6065,7 +6066,19 @@ var ContactsComponent = /** @class */ (function () {
         this.values = '';
     }
     ContactsComponent.prototype.ngOnInit = function () {
-        this.currentPage();
+        var _this = this;
+        // this.currentPage();
+        this._userService.getUsersToSearch().subscribe(function (response) {
+            if (response.ok) {
+                _this.usersToSearch = response.users;
+            }
+        }, function (error) {
+            var errorMensage = error;
+            console.log(errorMensage);
+            if (errorMensage !== null) {
+                _this.status = 'error';
+            }
+        });
     };
     ContactsComponent.prototype.currentPage = function () {
         var _this = this;
@@ -6175,11 +6188,26 @@ var ContactsComponent = /** @class */ (function () {
     };
     ContactsComponent.prototype.onKey = function (event) {
         this.values = event.target.value;
-        console.log(this.values);
+        console.log(this.usersToSearch);
         var filter, table, tr, td;
         table = document.getElementById('myTable');
         filter = this.values.toUpperCase();
+        console.log(filter);
         tr = table.getElementsByTagName('tr');
+        /*for ( let i = 0; i < this.usersToSearch.length; i++ ) {
+          console.log( this.usersToSearch[i] );
+          td = this.usersToSearch[i].name.toUpperCase();
+          console.log( td );
+          if ( td ) {
+            if ( td.indexOf( filter ) > -1 ) {
+              console.log( tr[++i] );
+              tr[++i].style.display = '';
+            } else {
+              tr[++i].style.display = 'none';
+              tr[i].style.display = 'none';
+            }
+          }
+        }*/
         for (var i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName('td')[1];
             if (td) {
@@ -7870,6 +7898,10 @@ var UserService = /** @class */ (function () {
         if (page === void 0) { page = null; }
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
         return this._http.get(this.url + 'users/' + page, { headers: headers });
+    };
+    UserService.prototype.getUsersToSearch = function () {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get(this.url + 'get-users', { headers: headers });
     };
     UserService.prototype.deleteUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());

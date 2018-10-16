@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users; let i = index">
+          <tr *ngFor="let user of usersToSearch; let i = index">
             <!--<th scope="row">{{ i+1 }}</th>-->
             <td><input type="checkbox" id="{{user.email}}"></td>
             <td>{{ user.name }}</td>
@@ -27,10 +27,10 @@
         </tbody>
       </table>
       <!-- paginacion -->
-      <ul class="pagination pull-right">
+      <!--<ul class="pagination pull-right">
         <li *ngIf="page > 1"><a [routerLink]="['/contacts', prev_page]">Prev</a></li>
         <li *ngIf="pages !== page"><a [routerLink]="['/contacts', next_page]">Next</a></li>
-      </ul>
+      </ul>-->
       <br/>
 
       <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
@@ -50,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users; let i = index">
+          <tr *ngFor="let user of usersToSearch; let i = index">
             <td scope="row">{{ i+1 }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.last_name }}</td>
@@ -68,10 +68,10 @@
         </tbody>
       </table>
       <!-- paginacion -->
-      <ul class="pagination pull-right">
+      <!--<ul class="pagination pull-right">
         <li *ngIf="page > 1"><a [routerLink]="['/contacts', prev_page]">Prev</a></li>
         <li *ngIf="pages !== page"><a [routerLink]="['/contacts', next_page]">Next</a></li>
-      </ul>
+      </ul>-->
 </div>
 
 <div *ngIf="status == 'edit'">

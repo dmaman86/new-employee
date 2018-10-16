@@ -129,6 +129,27 @@ function getAllUsers( req, res ) {
     });
 }
 
+function getUsers(req, res){
+    User.find().exec( (err, result) => {
+        if(err){
+            return res.status(500).send({
+                ok: false,
+                message: `Error in request ${ err }`
+            });
+        }
+        if( !result ) {
+            return res.status(404).send({
+                ok: false,
+                message: 'No users to show'
+            });
+        }
+        res.status(200).send({
+            ok: true,
+            users: result
+        });
+    });
+}
+
 function getUser(req, res) {
     var userId = req.params.id;
 
@@ -317,6 +338,7 @@ module.exports = {
     saveUser,
     loginUser,
     getAllUsers,
+    getUsers,
     getUser,
     updateUser,
     adminUpdateUser,

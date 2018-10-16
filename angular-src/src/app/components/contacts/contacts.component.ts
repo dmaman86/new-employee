@@ -16,6 +16,7 @@ export class ContactsComponent implements OnInit {
   public user: User;
   public temp_user: User;
   public users: User [] = [];
+  public usersToSearch: User [] = [];
   public identity;
   public status;
   public token;
@@ -41,7 +42,21 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentPage();
+    // this.currentPage();
+    this._userService.getUsersToSearch().subscribe(
+      response => {
+        if ( response.ok ) {
+          this.usersToSearch = response.users;
+        }
+      }, error => {
+        const errorMensage = <any>error;
+        console.log( errorMensage );
+
+        if ( errorMensage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
   }
 
   currentPage() {
@@ -167,11 +182,13 @@ export class ContactsComponent implements OnInit {
 
   onKey(event: any) { // without type info
     this.values = event.target.value;
-    console.log( this.values );
+    console.log( this.usersToSearch );
     let filter, table, tr, td;
     table = document.getElementById('myTable');
     filter = this.values.toUpperCase();
+    console.log( filter );
     tr = table.getElementsByTagName('tr');
+
     for ( let i = 0; i < tr.length; i++ ) {
       td = tr[i].getElementsByTagName('td')[1];
       if (td) {

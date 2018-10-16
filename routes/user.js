@@ -12,6 +12,7 @@ api.get('/home', UserCtrl.home );
 api.post('/register', UserCtrl.saveUser );
 api.post('/login', UserCtrl.loginUser );
 api.get('/users/:page?', md_auth.ensureAuth, UserCtrl.getAllUsers );
+api.get('/get-users', md_auth.ensureAuth, UserCtrl.getUsers );
 api.get('/user/:id', md_auth.ensureAuth, UserCtrl.getUser );
 api.put('/update-user/:id', md_auth.ensureAuth, UserCtrl.updateUser );
 api.put('/admin-update-user/:id', md_auth.ensureAuth, UserCtrl.adminUpdateUser );
