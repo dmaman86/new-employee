@@ -184,7 +184,7 @@ export class ContactsComponent implements OnInit {
     this.values = event.target.value;
     console.log( this.usersToSearch );
     let filter, table, tr, td;
-    table = document.getElementById('myTable');
+    table = document.getElementById('dtVerticalScrollExample');
     filter = this.values.toUpperCase();
     console.log( filter );
     tr = table.getElementsByTagName('tr');
