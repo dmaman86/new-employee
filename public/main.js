@@ -6007,7 +6007,7 @@ var AboutMeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n#myInput {\n    background-position: 10px 10px;\n    background-repeat: no-repeat;\n    width: 100%;\n    font-size: 16px;\n    padding: 12px 20px 12px 40px;\n    border: 1px solid #ddd;\n    margin-bottom: 12px;\n}\n/*table {\n  max-width:980px;\n  table-layout:fixed;\n  margin:auto;\n}\nth, td {\n    padding:5px 10px;\n    border:1px solid #000;\n    word-wrap: break-word;\n}\n\n#check {\n  width: 100px;\n  word-wrap: break-word;\n}\nthead, tfoot {\n    background:#f9f9f9;\n    display:table;\n    width:100%;\n    width:calc(100% - 18px);\n}\ntbody {\n    height:300px;\n    overflow:auto;\n    overflow-x:hidden;\n    display:block;\n    width:100%;\n}\ntbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;\n}*/"
+module.exports = "\n#myInput {\n    background-position: 10px 10px;\n    background-repeat: no-repeat;\n    width: 100%;\n    font-size: 16px;\n    padding: 12px 20px 12px 40px;\n    border: 1px solid #ddd;\n    margin-bottom: 12px;\n}\ntbody{\n    height:200px;\n    overflow-y:auto;\n    width: 100%;\n}"
 
 /***/ }),
 
