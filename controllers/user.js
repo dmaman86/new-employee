@@ -130,7 +130,7 @@ function getAllUsers( req, res ) {
 }
 
 function getUsers(req, res){
-    User.find().exec( (err, result) => {
+    User.find({ status: true }).exec( (err, result) => {
         if(err){
             return res.status(500).send({
                 ok: false,
