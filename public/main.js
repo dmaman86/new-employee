@@ -6143,6 +6143,7 @@ var ContactsComponent = /** @class */ (function () {
                 this.temp_user.email = this.usersToSearch[i].email;
                 this.temp_user.role = this.usersToSearch[i].role;
                 this.temp_user.level = this.usersToSearch[i].level;
+                this.temp_user.password = '';
             }
         }
         console.log(this.temp_user);
@@ -6185,7 +6186,7 @@ var ContactsComponent = /** @class */ (function () {
     ContactsComponent.prototype.onSubmit = function () {
         var _this = this;
         console.log(this.temp_user);
-        this._userService.updateUser(this.temp_user).subscribe(function (response) {
+        this._userService.adminUpdateUser(this.temp_user).subscribe(function (response) {
             console.log(response);
             if (!response.ok) {
                 _this.status = 'error';
@@ -6366,6 +6367,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _models_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/user */ "./src/app/models/user.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6375,6 +6378,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -6393,19 +6397,44 @@ var EditUserComponent = /** @class */ (function () {
     };
     EditUserComponent.prototype.onSubmit = function (form) {
         var _this = this;
+        console.log(form.value);
         console.log(this.user);
-        this.temp = this.user;
+        // this.temp = this.user;
+        this.user.name = form.value.name;
+        this.user.last_name = form.value.last_name;
+        this.user.email = form.value.email;
+        if (form.value.password === undefined) {
+            this.user.password = '';
+        }
+        else {
+            this.user.password = form.value.password;
+        }
+        console.log(this.user);
         this._userService.updateUser(this.user).subscribe(function (response) {
             console.log(response.ok);
             if (response.ok) {
                 _this.identity = response.user;
                 localStorage.setItem('identity', JSON.stringify(_this.identity));
-                if (_this.identity.role === 'USER_ROLE') {
-                    _this._router.navigate(['/home']);
-                }
-                else {
-                    _this._router.navigate(['/home-admin']);
-                }
+                /*if ( this.identity.role === 'USER_ROLE') {
+                  this._router.navigate(['/home']);
+                } else {
+                  this._router.navigate(['/home-admin']);
+                }*/
+                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'You are update your data',
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+                setTimeout(function () {
+                    if (_this.identity.role === 'USER_ROLE') {
+                        _this._router.navigate(['/home']);
+                    }
+                    else {
+                        _this._router.navigate(['/home-admin']);
+                    }
+                }, 2000);
             }
         }, function (error) {
             var errorMensage = error;
@@ -7240,7 +7269,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <br>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n      Values Save!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n      Please check values!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n      Sorry, but you'll have to wait next week or contact the administrator\n    </div>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">Do you need to{{ requestWeek.method }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}</td>\n          <td>{{ requestWeek.afternoon }}</td>\n          <td>{{ requestWeek.night }}</td>\n          <td>{{ requestWeek.weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <br>\n    <hr>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>morning</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">\n          </td>\n        </tr>\n        <tr>\n          <td>afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">\n          </td>\n        </tr>\n        <tr>\n          <td>night</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <div class=\"form-group row\">\n      <div class=\"col-sm-10\">\n        <button\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Values</button>\n      </div>\n    </div>\n</div>\n<br>\n<br>\n<br>\n<app-footer></app-footer>\n\n"
+module.exports = "<div class=\"container\">\n    <br>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n      Values Save!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n      Please check values!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n      Sorry, but you'll have to wait next week or contact the administrator\n    </div>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">Do you need to {{ requestWeek.method }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}</td>\n          <td>{{ requestWeek.afternoon }}</td>\n          <td>{{ requestWeek.night }}</td>\n          <td>{{ requestWeek.weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <br>\n    <hr>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>morning</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">\n          </td>\n        </tr>\n        <tr>\n          <td>afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">\n          </td>\n        </tr>\n        <tr>\n          <td>night</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <div class=\"form-group row\">\n      <div class=\"col-sm-10\">\n        <button\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Values</button>\n      </div>\n    </div>\n</div>\n<br>\n<br>\n<br>\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 

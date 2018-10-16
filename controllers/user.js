@@ -84,7 +84,7 @@ function loginUser(req, res) {
                 token: jwt.createToken(user)
             });
         }
-
+        user.password = undefined; // this is to not return password
         return res.status(200).send({ user });
     });
 }
@@ -143,6 +143,9 @@ function getUsers(req, res){
                 message: 'No users to show'
             });
         }
+        for( var i = 0; i < result.length; i++){
+            result[i].password = undefined;
+        }
         res.status(200).send({
             ok: true,
             users: result
@@ -163,7 +166,7 @@ function getUser(req, res) {
         if(err) return res.status(500).send({message: `Error in request: ${ err }`});
 
         if(!user) return res.status(404).send({message: 'user not exist'});
-
+        delete user.password;
         return res.status(200).send({
             user
         });
@@ -172,14 +175,69 @@ function getUser(req, res) {
 }
 
 function updateUser(req, res) {
-    let id = req.params.id;
-    let body = _.pick( req.body, ['name', 'last_name','email', 'password','img', 'role', 'status'] );
+    var id = req.params.id;
+    // let body = _.pick( req.body, ['name', 'last_name','email','img', 'role', 'status'] );
+    var update = req.body;
 
-    if ( body.password ) {
-        body.password = bcrypt.hashSync( body.password, 10 );
+    console.log( update );
+
+    if(id != req.user.sub){
+        return res.status(500).send({
+            message: 'You cant update this user'
+        });
     }
 
-    User.findByIdAndUpdate( id, body, { new: true }, (err, userDB) => {
+    if ( update.password.length > 0 ) {
+        update.password = bcrypt.hashSync( update.password, 10 );
+        console.log( update );
+        User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
+            if(err){
+                return res.status(500).send({
+                    ok: false,
+                    message: `Error in request update ${ err }`
+                });
+            }
+    
+            if(!userUpdated){
+                return res.status(404).send({
+                    ok: false,
+                    message: 'Something wrong, this update faild'
+                });
+            }
+            userUpdated.password = undefined;
+            return res.status(200).send({ 
+                ok: true,
+                user: userUpdated 
+            });
+        });
+    } else {
+        getDataUser( id ).then( (value) => {
+            update.password = value.password;
+            console.log( update );
+            User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
+                if(err){
+                    return res.status(500).send({
+                        ok: false,
+                        message: `Error in request update ${ err }`
+                    });
+                }
+        
+                if(!userUpdated){
+                    return res.status(404).send({
+                        ok: false,
+                        message: 'Something wrong, this update faild'
+                    });
+                }
+                userUpdated.password = undefined;
+                return res.status(200).send({ 
+                    ok: true,
+                    user: userUpdated
+                });
+            });
+        });
+    }
+
+    /*User.findByIdAndUpdate( id, body, { new: true }, (err, userDB) => {
 
         if(err){
             return res.status(400).send({
@@ -191,11 +249,11 @@ function updateUser(req, res) {
             ok: true,
             user: userDB
         });
-    });
+    });*/
 }
 
 function adminUpdateUser(req, res) {
-    var userId = req.params.id;
+    /*var userId = req.params.id;
     var body = _.pick( req.body, ['name', 'last_name', 'email', 'img', 'role', 'status']);
 
     if ( req.user.role === 'ADMIN_ROLE' ) {
@@ -216,7 +274,50 @@ function adminUpdateUser(req, res) {
             ok: false,
             message: `You can't update this user`
         });
+    }*/
+    var userId = req.params.id;
+    var update = req.body;
+
+    console.log( 'line 281 ' + req.user.role );
+
+    if( req.user.role !== 'ADMIN_ROLE' ) {
+        return res.status(500).send({
+            ok: false,
+            message: `You can't update this user`
+        });
     }
+    getDataUser( userId ).then( (value) => {
+        update.password = value.password;
+        User.findByIdAndUpdate( userId, update, (err, userUpdated) => {
+            if( err ) {
+                return res.status(500).send({
+                    ok: false,
+                    message: `Error in request ${ err }`
+                });
+            }
+            if( !userUpdated ) {
+                return res.status(404).send({
+                    ok: false,
+                    message: 'User not exist'
+                });
+            }
+            delete userUpdated.password;
+            res.status(200).send({
+                ok: true,
+                user: userUpdated
+            });
+        })
+    })
+}
+
+async function getDataUser( userId ) {
+    var temp = await User.findById(userId, (err, user) => {
+        if(err) return hangleError(err);
+        
+        return user;
+    });
+
+    return temp;
 }
 
 // we don't delete any user, we change status to false

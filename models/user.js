@@ -30,7 +30,7 @@ var UserSchema = Schema({
     },
     password:{
         type: String,
-        required: true
+        /*required: true*/
     },
     img:{
         type: String,
@@ -55,14 +55,14 @@ var UserSchema = Schema({
     }
 });
 
-UserSchema.methods.toJSON = function() {
+/*UserSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
 
     delete userObject.password;
 
     return userObject;
-}
+}*/
 
 UserSchema.plugin( uniqueValidated, { message: '{PATH} must be unique' } );
 

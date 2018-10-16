@@ -130,6 +130,7 @@ export class ContactsComponent implements OnInit {
         this.temp_user.email = this.usersToSearch[i].email;
         this.temp_user.role = this.usersToSearch[i].role;
         this.temp_user.level = this.usersToSearch[i].level;
+        this.temp_user.password = '';
       }
     }
 
@@ -177,7 +178,7 @@ export class ContactsComponent implements OnInit {
 
   onSubmit() {
     console.log( this.temp_user );
-    this._userService.updateUser( this.temp_user ).subscribe(
+    this._userService.adminUpdateUser( this.temp_user ).subscribe(
       response => {
         console.log( response );
         if ( !response.ok ) {
