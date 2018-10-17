@@ -46,7 +46,7 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit() {
     this.newGetUsers();
-    console.log( this.newGetUsers() );
+    // console.log( this.newGetUsers() );
   }
 
   currentPage() {
@@ -76,12 +76,12 @@ export class ContactsComponent implements OnInit {
     this._userService.getUsersToSearch().subscribe(
       response => {
         if ( response.ok ) {
-          console.log( response.users );
+          // console.log( response.users );
           this.usersToSearch = response.users;
         }
       }, error => {
         const errorMensage = <any>error;
-        console.log( errorMensage );
+        // console.log( errorMensage );
 
         if ( errorMensage !== null ) {
           this.status = 'error';
@@ -93,7 +93,7 @@ export class ContactsComponent implements OnInit {
   getUsers( page ) {
     this._userService.getUsers( page ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( !response.users ) {
           this.status = 'error';
         } else {
@@ -107,7 +107,7 @@ export class ContactsComponent implements OnInit {
         }
       }, error => {
         const errorMensage = <any>error;
-        console.log( errorMensage );
+        // console.log( errorMensage );
 
         if ( errorMensage !== null ) {
           this.status = 'error';
@@ -117,10 +117,10 @@ export class ContactsComponent implements OnInit {
   }
 
   editUser( userId ) {
-    console.log(userId);
+    // console.log(userId);
     this.status = 'edit';
 
-    console.log( this.usersToSearch );
+    // console.log( this.usersToSearch );
 
     for (let i = 0; i < this.usersToSearch.length; i++) {
       if ( this.usersToSearch[i]._id === userId ) {
@@ -134,7 +134,7 @@ export class ContactsComponent implements OnInit {
       }
     }
 
-    console.log( this.temp_user );
+    // console.log( this.temp_user );
   }
 
   deleteUser( userId ) {
@@ -149,10 +149,10 @@ export class ContactsComponent implements OnInit {
       }
     }
 
-    console.log( this.temp_user );
+    // console.log( this.temp_user );
     this._userService.deleteUser( this.temp_user ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( response.ok ) {
           swal({
             position: 'top-end',
@@ -167,7 +167,7 @@ export class ContactsComponent implements OnInit {
         }
       }, error => {
         const errorMensage = <any>error;
-        console.log( errorMensage );
+        // console.log( errorMensage );
 
         if ( errorMensage != null) {
           this.status = 'error';
@@ -177,10 +177,10 @@ export class ContactsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log( this.temp_user );
+    // console.log( this.temp_user );
     this._userService.adminUpdateUser( this.temp_user ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( !response.ok ) {
           this.status = 'error';
         } else {
@@ -197,7 +197,7 @@ export class ContactsComponent implements OnInit {
         }
       }, error => {
         const errorMensage = <any>error;
-        console.log( errorMensage );
+        // console.log( errorMensage );
 
         if ( errorMensage != null) {
           this.status = 'error';
@@ -208,11 +208,11 @@ export class ContactsComponent implements OnInit {
 
   onKey(event: any) { // without type info
     this.values = event.target.value;
-    console.log( this.usersToSearch );
+    // console.log( this.usersToSearch );
     let filter, table, tr, td;
     table = document.getElementById('myTable');
     filter = this.values.toUpperCase();
-    console.log( filter );
+    // console.log( filter );
     tr = table.getElementsByTagName('tr');
 
     for ( let i = 0; i < tr.length; i++ ) {

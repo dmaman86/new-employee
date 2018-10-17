@@ -32,20 +32,20 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log( this.user );
+    // console.log( this.user );
     this._userService.getMessage().subscribe(
       response => {
 
         if ( response.ok ) {
 
-          console.log( response.message );
+          // console.log( response.message );
           this.message._id = response.message._id;
           this.message.text = response.message.text;
           this.message.date = response.message.created_at;
         }
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }

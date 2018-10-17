@@ -5734,7 +5734,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         this.identity = this._userService.getIdentity();
-        console.log(this.identity);
+        // console.log(this.identity);
         if (!this.identity) {
             this._router.navigate(['/login']);
         }
@@ -5952,7 +5952,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"animated fadeIn fast\">Employee Management App</h1>\n<hr>\n<p class=\"animated fadeIn\">\n\tThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.\n\tSections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form,\n\taccompanied by English versions from the 1914 translation by H.\n\tRackham.\n</p>\n\n<app-footer></app-footer>"
+module.exports = "<h1 class=\"animated fadeIn fast\">Employee Management App</h1>\n<hr>\n<p class=\"animated fadeIn\">\n\tMy name is David Maman, I am a developer and this is my second project.\n\t<br>\n\tMy first project was an application to send messages to Android.\n\tA very challenging project where I learned a lot about how to work on a server and client side.\n\tThe project was developed on a server side in PHP and a client side in JAVA.\n</p>\n<h3>About 'Employee Managament':</h3>\n<p class=\"animated fadeIn\">\n\tFor a few years I have been working as a security guard, currently working at the 'President's Residence'.\n\t<br>\n\tWorking as a security man means working shifts during the week.\n\tUntil a few years ago employee management was manually, employees send to the manager what they can / can not work during a week and the manager tries to embed by that.\n\tIf this is a small amount of workers then there is no problem, but if it is a lot of employees placement can be very problematic.\n\tHere my project, try to provide management solution\n</p>\n<h3>How It Works:</h3>\n<p class=\"animated fadeIn\">\n\tRegistration is solely for the employee.<br>\n\tTo register you need to contact the manager.<br>\n\tAfter log in there are several options and administrator notifications.<br>\n\tOption in Home Page:<br>\n\t<li>Profile page</li>\n\t<li>The Edit Personal Details page on this page does not require updating your password.</li>\n\t<li>Contact page: List of contacts in the system records. Mailing option is currently inactive.</li>\n\t<li>Week page: Here the employee is shown the number of shifts required for \"opening\".</li>\n\n\tTo receive admin privileges please contact me by e-mail.\n</p>\n\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -6070,7 +6070,7 @@ var ContactsComponent = /** @class */ (function () {
     }
     ContactsComponent.prototype.ngOnInit = function () {
         this.newGetUsers();
-        console.log(this.newGetUsers());
+        // console.log( this.newGetUsers() );
     };
     ContactsComponent.prototype.currentPage = function () {
         var _this = this;
@@ -6097,12 +6097,12 @@ var ContactsComponent = /** @class */ (function () {
         var _this = this;
         this._userService.getUsersToSearch().subscribe(function (response) {
             if (response.ok) {
-                console.log(response.users);
+                // console.log( response.users );
                 _this.usersToSearch = response.users;
             }
         }, function (error) {
             var errorMensage = error;
-            console.log(errorMensage);
+            // console.log( errorMensage );
             if (errorMensage !== null) {
                 _this.status = 'error';
             }
@@ -6111,7 +6111,7 @@ var ContactsComponent = /** @class */ (function () {
     ContactsComponent.prototype.getUsers = function (page) {
         var _this = this;
         this._userService.getUsers(page).subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             if (!response.users) {
                 _this.status = 'error';
             }
@@ -6125,16 +6125,16 @@ var ContactsComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMensage = error;
-            console.log(errorMensage);
+            // console.log( errorMensage );
             if (errorMensage !== null) {
                 _this.status = 'error';
             }
         });
     };
     ContactsComponent.prototype.editUser = function (userId) {
-        console.log(userId);
+        // console.log(userId);
         this.status = 'edit';
-        console.log(this.usersToSearch);
+        // console.log( this.usersToSearch );
         for (var i = 0; i < this.usersToSearch.length; i++) {
             if (this.usersToSearch[i]._id === userId) {
                 this.temp_user._id = this.usersToSearch[i]._id;
@@ -6146,7 +6146,7 @@ var ContactsComponent = /** @class */ (function () {
                 this.temp_user.password = '';
             }
         }
-        console.log(this.temp_user);
+        // console.log( this.temp_user );
     };
     ContactsComponent.prototype.deleteUser = function (userId) {
         var _this = this;
@@ -6160,9 +6160,9 @@ var ContactsComponent = /** @class */ (function () {
                 this.temp_user.level = this.usersToSearch[i].level;
             }
         }
-        console.log(this.temp_user);
+        // console.log( this.temp_user );
         this._userService.deleteUser(this.temp_user).subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             if (response.ok) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
                     position: 'top-end',
@@ -6177,7 +6177,7 @@ var ContactsComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMensage = error;
-            console.log(errorMensage);
+            // console.log( errorMensage );
             if (errorMensage != null) {
                 _this.status = 'error';
             }
@@ -6185,9 +6185,9 @@ var ContactsComponent = /** @class */ (function () {
     };
     ContactsComponent.prototype.onSubmit = function () {
         var _this = this;
-        console.log(this.temp_user);
+        // console.log( this.temp_user );
         this._userService.adminUpdateUser(this.temp_user).subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             if (!response.ok) {
                 _this.status = 'error';
             }
@@ -6205,7 +6205,7 @@ var ContactsComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMensage = error;
-            console.log(errorMensage);
+            // console.log( errorMensage );
             if (errorMensage != null) {
                 _this.status = 'error';
             }
@@ -6213,11 +6213,11 @@ var ContactsComponent = /** @class */ (function () {
     };
     ContactsComponent.prototype.onKey = function (event) {
         this.values = event.target.value;
-        console.log(this.usersToSearch);
+        // console.log( this.usersToSearch );
         var filter, table, tr, td;
         table = document.getElementById('myTable');
         filter = this.values.toUpperCase();
-        console.log(filter);
+        // console.log( filter );
         tr = table.getElementsByTagName('tr');
         for (var i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName('td')[1];
@@ -6397,8 +6397,8 @@ var EditUserComponent = /** @class */ (function () {
     };
     EditUserComponent.prototype.onSubmit = function (form) {
         var _this = this;
-        console.log(form.value);
-        console.log(this.user);
+        // console.log( form.value );
+        // console.log( this.user );
         // this.temp = this.user;
         this.user.name = form.value.name;
         this.user.last_name = form.value.last_name;
@@ -6409,9 +6409,9 @@ var EditUserComponent = /** @class */ (function () {
         else {
             this.user.password = form.value.password;
         }
-        console.log(this.user);
+        // console.log( this.user );
         this._userService.updateUser(this.user).subscribe(function (response) {
-            console.log(response.ok);
+            // console.log( response.ok );
             if (response.ok) {
                 _this.identity = response.user;
                 localStorage.setItem('identity', JSON.stringify(_this.identity));
@@ -6438,7 +6438,7 @@ var EditUserComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMensage = error;
-            console.log(errorMensage);
+            // console.log(errorMensage);
             if (errorMensage != null) {
                 _this.status = 'error';
             }
@@ -6531,24 +6531,24 @@ var HomeAdminComponent = /** @class */ (function () {
     };
     HomeAdminComponent.prototype.onSubmit = function (form) {
         var _this = this;
-        console.log(form.value);
+        // console.log( form.value );
         this.text.text = form.value.text;
-        console.log(this.text);
+        // console.log( this.text );
         this._userService.sendMessage(this.text).subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             if (response.ok) {
                 _this.status = 'success';
                 form.reset();
                 _this.refreshTextArea();
             }
         }, function (error) {
-            console.log(error);
+            // console.log( <any>error );
         });
     };
     HomeAdminComponent.prototype.refreshTextArea = function () {
         var _this = this;
         this._userService.getMessage().subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             if (response.ok) {
                 _this.message._id = response.message._id;
                 _this.message.text = response.message.text;
@@ -6556,7 +6556,7 @@ var HomeAdminComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -6564,13 +6564,13 @@ var HomeAdminComponent = /** @class */ (function () {
     };
     HomeAdminComponent.prototype.deleteMessage = function () {
         var _this = this;
-        console.log(this.message._id);
+        // console.log( this.message._id );
         this._userService.deleteMessage(this.message._id).subscribe(function (response) {
-            console.log(response);
+            // console.log( response );
             _this.refreshTextArea();
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -6579,8 +6579,8 @@ var HomeAdminComponent = /** @class */ (function () {
     HomeAdminComponent.prototype.openDialog = function () {
         var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["DialogComponent"]);
         dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed');
-            console.log(result);
+            // console.log( 'The dialog was closed' );
+            // console.log( result );
         });
     };
     HomeAdminComponent = __decorate([
@@ -6663,17 +6663,17 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this.user);
+        // console.log( this.user );
         this._userService.getMessage().subscribe(function (response) {
             if (response.ok) {
-                console.log(response.message);
+                // console.log( response.message );
                 _this.message._id = response.message._id;
                 _this.message.text = response.message.text;
                 _this.message.date = response.message.created_at;
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -6715,7 +6715,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-6\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-6\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Log In</button>\n            <a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n<app-footer></app-footer>\n\n"
+module.exports = "<div class=\"col-log-5\">\n  <h1>{{ title }}</h1>\n  <hr>\n\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n\t\tPlease check email/password\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'remenber' \">\n\t\tI remember you, if you want connect to admin\n\t</div>\n\n  <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label for=\"inputEmail3\"\n         class=\"col-sm-2 col-form-label\">Email</label>\n        <div class=\"col-sm-6\">\n          <input type=\"email\"\n                name=\"email\"\n                #email=\"ngModel\"\n                [(ngModel)]=\"user.email\"\n                class=\"form-control\"\n                required\n                pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n                placeholder=\"Email\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <label for=\"inputPassword3\"\n               class=\"col-sm-2 col-form-label\">Password</label>\n        <div class=\"col-sm-6\">\n          <input type=\"password\"\n                 class=\"form-control\"\n                  name=\"password\"\n                  #password=\"ngModel\"\n                  [(ngModel)]=\"user.password\"\n                  required\n                  placeholder=\"Password\">\n        </div>\n      </div>\n\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!loginForm.form.valid\">Log In</button>\n            <!--<a class=\"nav-item nav-link disabled\" (click)=\"newUser()\">New User? Click me</a>-->\n            <br>\n            <br>\n            <p>\n              If you want to register,\n              connect with the administrator to receive the registration link.\n            </p>\n            <p>\n              How does it work? go to the page 'About Me'.\n            </p>\n        </div>\n      </div>\n    </form>\n\n</div>\n\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 
@@ -6757,11 +6757,11 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.onSubmit = function () {
+        // console.log( this.user );
         var _this = this;
-        console.log(this.user);
         this._userService.signup(this.user).subscribe(function (response) {
             _this.identity = response.user;
-            console.log(_this.identity);
+            // console.log(this.identity);
             if (!_this.identity || !_this.identity._id) {
                 _this.status = 'error';
             }
@@ -6780,7 +6780,7 @@ var LoginComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -6790,7 +6790,7 @@ var LoginComponent = /** @class */ (function () {
         var _this = this;
         this._userService.signup(this.user, 'true').subscribe(function (response) {
             _this.token = response.token;
-            console.log(_this.token);
+            // console.log( this.token );
             if (_this.token.length <= 0) {
                 _this.status = 'error';
             }
@@ -6800,7 +6800,7 @@ var LoginComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log( errorMessage );
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -6959,7 +6959,7 @@ var RegisterComponent = /** @class */ (function () {
     };
     RegisterComponent.prototype.onSubmit = function (form) {
         var _this = this;
-        console.log(this.user);
+        // console.log( this.user );
         this._userService.register(this.user).subscribe(function (response) {
             if (response.user && response.user._id) {
                 _this.status = 'success';
@@ -6969,7 +6969,7 @@ var RegisterComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
         }, function (error) {
-            console.log(error);
+            // console.log(<any>error);
         });
     };
     RegisterComponent = __decorate([
@@ -7101,7 +7101,7 @@ var NavbarComponent = /** @class */ (function () {
     }
     NavbarComponent.prototype.ngOnInit = function () {
         this.identity = this._userService.getIdentity();
-        console.log(this.identity);
+        // console.log(this.identity);
         if (!this.identity) {
             this._router.navigate(['/login']);
         }
@@ -7198,22 +7198,22 @@ var UpdateWeekComponent = /** @class */ (function () {
         this.week = this._userService.getWeekId();
     }
     UpdateWeekComponent.prototype.ngOnInit = function () {
-        console.log(this.week);
+        // console.log( this.week );
     };
     UpdateWeekComponent.prototype.onSubmit = function () {
+        // console.log( this.requestWeek );
+        // console.log( this.week );
         var _this = this;
-        console.log(this.requestWeek);
-        console.log(this.week);
         if (!this.week) {
             this._userService.setValuesRequest(this.requestWeek).subscribe(function (response) {
                 if (response.ok) {
-                    console.log(response.week);
+                    // console.log( response.week );
                     localStorage.setItem('week', JSON.stringify(response.week._id));
                     _this.status = 'success';
                 }
             }, function (error) {
                 var errorMessage = error;
-                console.log(errorMessage);
+                // console.log(errorMessage);
                 if (errorMessage !== null) {
                     _this.status = 'error';
                 }
@@ -7226,7 +7226,7 @@ var UpdateWeekComponent = /** @class */ (function () {
                 }
             }, function (error) {
                 var errorMessage = error;
-                console.log(errorMessage);
+                // console.log(errorMessage);
                 if (errorMessage !== null) {
                     _this.status = 'error';
                 }
@@ -7269,7 +7269,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <br>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n      Values Save!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n      Please check values!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n      Sorry, but you'll have to wait next week or contact the administrator\n    </div>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">Do you need to {{ requestWeek.method }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}</td>\n          <td>{{ requestWeek.afternoon }}</td>\n          <td>{{ requestWeek.night }}</td>\n          <td>{{ requestWeek.weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <br>\n    <hr>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>morning</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">\n          </td>\n        </tr>\n        <tr>\n          <td>afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">\n          </td>\n        </tr>\n        <tr>\n          <td>night</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <div class=\"form-group row\">\n      <div class=\"col-sm-10\">\n        <button\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Values</button>\n      </div>\n    </div>\n</div>\n<br>\n<br>\n<br>\n<app-footer></app-footer>\n\n"
+module.exports = "<div class=\"container\">\n    <br>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n      Values Save!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n      Please check values!\n    </div>\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n      Sorry, but you'll have to wait next week or contact the administrator\n    </div>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">Do you need to {{ requestWeek.method }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}</td>\n          <td>{{ requestWeek.afternoon }}</td>\n          <td>{{ requestWeek.night }}</td>\n          <td>{{ requestWeek.weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <br>\n    <hr>\n    \n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <!--<span class=\"long\">{{ d }} {{  res[0] + i + \"/\" + res[1] }}</span>-->\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>morning</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">\n          </td>\n        </tr>\n        <tr>\n          <td>afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">\n          </td>\n        </tr>\n        <tr>\n          <td>night</td>\n          <td *ngFor=\"let day of days\">\n            <input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    \n    <div class=\"form-group row\">\n      <div class=\"col-sm-10\">\n        <button\n          id=\"btn-send\"\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Values</button>\n      </div>\n    </div>\n</div>\n<br>\n<br>\n<br>\n<app-footer></app-footer>\n\n"
 
 /***/ }),
 
@@ -7332,11 +7332,11 @@ var UserWeekComponent = /** @class */ (function () {
             this.week[tmp] = new _models_shift__WEBPACK_IMPORTED_MODULE_1__["Shift"]('', '', '');
         }
         this.number_week = this.getWeekNumber(new Date());
-        console.log(this.number_week);
+        // console.log( this.number_week );
         var d = new Date();
-        console.log(this.number_week);
+        // console.log( this.number_week );
         this.dates = this.getFirstAndLastDates(this.number_week);
-        console.log(this.dates);
+        // console.log( this.dates );
         this.setValuesRequest();
     }
     UserWeekComponent.prototype.ngOnInit = function () {
@@ -7350,7 +7350,7 @@ var UserWeekComponent = /** @class */ (function () {
                 alert(response.message);
             }
             if (response.ok) {
-                console.log(response.request);
+                // console.log( response.request );
                 if (response.request) {
                     for (var i = 0; i < _this.days.length; i++) {
                         var d = _this.days[i];
@@ -7362,7 +7362,7 @@ var UserWeekComponent = /** @class */ (function () {
                     }
                 }
                 if (response.request.length > 0) {
-                    console.log(response.request);
+                    // console.log( response.request );
                     for (var i = 0; i < _this.days.length; i++) {
                         var d = _this.days[i];
                         for (var j = 0; j < _this.shift.length; j++) {
@@ -7375,7 +7375,7 @@ var UserWeekComponent = /** @class */ (function () {
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
@@ -7404,13 +7404,13 @@ var UserWeekComponent = /** @class */ (function () {
         if (day === 0) {
             week++;
         }
-        console.log(week);
+        // console.log( week );
         for (var i = 0; i < this.days.length; i++) {
             var d = this.days[i];
             var test = moment__WEBPACK_IMPORTED_MODULE_6__().day(d).year(year).week(week).toDate();
             dates[d] = test;
         }
-        console.log(dates);
+        // console.log( dates );
         return dates;
     };
     UserWeekComponent.prototype.setValue = function (day, per) {
@@ -7458,8 +7458,8 @@ var UserWeekComponent = /** @class */ (function () {
                     break;
                 }
         }
-        console.log(this.week);
-        console.log(this.count_morning, this.count_afternoon, this.count_night, this.count_weekend);
+        // console.log( this.week );
+        // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
     };
     UserWeekComponent.prototype.resetValue = function (day, per) {
         switch (per) {
@@ -7491,8 +7491,8 @@ var UserWeekComponent = /** @class */ (function () {
                 }
                 break;
         }
-        console.log(this.week);
-        console.log(this.count_morning, this.count_afternoon, this.count_night, this.count_weekend);
+        // console.log( this.week );
+        // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
     };
     UserWeekComponent.prototype.sendValues = function () {
         var _this = this;
@@ -7537,7 +7537,7 @@ var UserWeekComponent = /** @class */ (function () {
                 }
             }, function (error) {
                 var errorMessage = error;
-                console.log(errorMessage);
+                // console.log(errorMessage);
                 if (errorMessage !== null) {
                     _this.status = 'error';
                 }
@@ -7591,10 +7591,12 @@ var UserWeekComponent = /** @class */ (function () {
         var d = new Date();
         var day = d.getDay();
         var hour = d.getHours();
-        if (day > 3) {
+        if (day >= 3) {
             if (hour > 9) {
                 console.log("you can't send");
                 this.status = 'denied';
+                var btn = document.getElementById('btn-send');
+                btn.style.display = 'none';
             }
         }
         else {
@@ -7613,18 +7615,18 @@ var UserWeekComponent = /** @class */ (function () {
         var _this = this;
         this._userService.getValuesRequest().subscribe(function (response) {
             if (response.ok) {
-                console.log(response.values);
+                // console.log( response.values );
                 _this.requestWeek._id = response.values._id;
                 _this.requestWeek.method = response.values.method;
                 _this.requestWeek.morning = response.values.morning;
                 _this.requestWeek.afternoon = response.values.afternoon;
                 _this.requestWeek.night = response.values.night;
                 _this.requestWeek.weekend = response.values.weekend;
-                console.log(_this.requestWeek);
+                // console.log( this.requestWeek );
             }
         }, function (error) {
             var errorMessage = error;
-            console.log(errorMessage);
+            // console.log(errorMessage);
             if (errorMessage !== null) {
                 _this.status = 'error';
             }

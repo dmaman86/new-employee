@@ -37,20 +37,20 @@ export class HomeAdminComponent implements OnInit {
   }
 
   onSubmit( form ) {
-    console.log( form.value );
+    // console.log( form.value );
     this.text.text = form.value.text;
-    console.log( this.text );
+    // console.log( this.text );
 
     this._userService.sendMessage( this.text ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( response.ok ) {
           this.status = 'success';
           form.reset();
           this.refreshTextArea();
         }
       }, error => {
-        console.log( <any>error );
+        // console.log( <any>error );
       }
     );
   }
@@ -58,7 +58,7 @@ export class HomeAdminComponent implements OnInit {
   refreshTextArea() {
     this._userService.getMessage().subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( response.ok ) {
           this.message._id = response.message._id;
           this.message.text = response.message.text;
@@ -66,7 +66,7 @@ export class HomeAdminComponent implements OnInit {
         }
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }
@@ -75,14 +75,14 @@ export class HomeAdminComponent implements OnInit {
   }
 
   deleteMessage() {
-    console.log( this.message._id );
+    // console.log( this.message._id );
     this._userService.deleteMessage( this.message._id ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         this.refreshTextArea();
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }
@@ -94,8 +94,8 @@ export class HomeAdminComponent implements OnInit {
     const dialogRef = this.dialog.open( DialogComponent );
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log( 'The dialog was closed' );
-      console.log( result );
+      // console.log( 'The dialog was closed' );
+      // console.log( result );
     });
   }
 

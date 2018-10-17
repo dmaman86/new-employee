@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log( this.user );
+    // console.log( this.user );
 
     this._userService.signup( this.user ).subscribe(
       response => {
         this.identity = response.user;
-        console.log(this.identity);
+        // console.log(this.identity);
         if ( !this.identity || !this.identity._id ) {
           this.status = 'error';
         } else if ( !this.identity.status ) {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     this._userService.signup( this.user, 'true' ).subscribe(
       response => {
         this.token = response.token;
-        console.log( this.token );
+        // console.log( this.token );
         if ( this.token.length <= 0 ) {
           this.status = 'error';
         } else {
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
         }
       }, error => {
         const errorMessage = <any>error;
-        console.log( errorMessage );
+        // console.log( errorMessage );
         if ( errorMessage !== null ) {
           this.status = 'error';
         }

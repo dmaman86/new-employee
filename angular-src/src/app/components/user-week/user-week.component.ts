@@ -52,11 +52,11 @@ export class UserWeekComponent implements OnInit {
       this.week[tmp] = new Shift('', '', '');
     }
     this.number_week = this.getWeekNumber( new Date() );
-    console.log( this.number_week );
+    // console.log( this.number_week );
     const d = new Date();
-    console.log( this.number_week );
+    // console.log( this.number_week );
     this.dates = this.getFirstAndLastDates( this.number_week );
-    console.log( this.dates );
+    // console.log( this.dates );
     this.setValuesRequest();
   }
 
@@ -72,7 +72,7 @@ export class UserWeekComponent implements OnInit {
           alert( response.message );
         }
         if ( response.ok ) {
-          console.log( response.request );
+          // console.log( response.request );
           if ( response.request ) {
             for ( let i = 0; i < this.days.length; i++ ) {
               const d = this.days[i];
@@ -84,7 +84,7 @@ export class UserWeekComponent implements OnInit {
             }
           }
           if ( response.request.length > 0 ) {
-            console.log( response.request );
+            // console.log( response.request );
             for ( let i = 0; i < this.days.length; i++ ) {
               const d = this.days[i];
               for ( let j = 0; j < this.shift.length; j++) {
@@ -98,7 +98,7 @@ export class UserWeekComponent implements OnInit {
 
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }
@@ -132,14 +132,14 @@ export class UserWeekComponent implements OnInit {
     if ( day === 0 ) {
       week++;
     }
-    console.log( week );
+    // console.log( week );
 
     for ( let i = 0; i < this.days.length; i++) {
       const d = this.days[i];
       const test = moment().day(d).year(year).week(week).toDate();
       dates[d] = test;
     }
-    console.log( dates );
+    // console.log( dates );
     return dates;
   }
 
@@ -183,8 +183,8 @@ export class UserWeekComponent implements OnInit {
           break;
         }
     }
-    console.log( this.week );
-    console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
+    // console.log( this.week );
+    // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
   }
 
   resetValue( day, per ) {
@@ -214,8 +214,8 @@ export class UserWeekComponent implements OnInit {
         }
         break;
     }
-    console.log( this.week );
-    console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
+    // console.log( this.week );
+    // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
   }
 
   sendValues() {
@@ -265,7 +265,7 @@ export class UserWeekComponent implements OnInit {
             }
           }, error => {
           const errorMessage = <any>error;
-          console.log(errorMessage);
+          // console.log(errorMessage);
           if ( errorMessage !== null ) {
             this.status = 'error';
           }
@@ -319,10 +319,12 @@ export class UserWeekComponent implements OnInit {
     const day = d.getDay();
     const hour = d.getHours();
 
-    if ( day > 3 ) {
+    if ( day >= 3 ) {
       if ( hour > 9 ) {
         console.log( `you can't send`);
         this.status = 'denied';
+        const btn = document.getElementById('btn-send');
+        btn.style.display = 'none';
       }
     } else {
       console.log( 'you can send' );
@@ -343,7 +345,7 @@ export class UserWeekComponent implements OnInit {
     this._userService.getValuesRequest().subscribe(
       response => {
         if ( response.ok ) {
-          console.log( response.values );
+          // console.log( response.values );
           this.requestWeek._id = response.values._id;
           this.requestWeek.method = response.values.method;
           this.requestWeek.morning = response.values.morning;
@@ -352,11 +354,11 @@ export class UserWeekComponent implements OnInit {
           this.requestWeek.weekend = response.values.weekend;
 
 
-          console.log( this.requestWeek );
+          // console.log( this.requestWeek );
         }
       }, error => {
         const errorMessage = <any>error;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if ( errorMessage !== null ) {
           this.status = 'error';
         }

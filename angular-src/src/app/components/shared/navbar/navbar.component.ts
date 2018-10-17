@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
-    console.log(this.identity);
+    // console.log(this.identity);
 
     if ( !this.identity ) {
       this._router.navigate(['/login']);

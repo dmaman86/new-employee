@@ -42,7 +42,7 @@ function saveUser(req, res) {
                     message: 'Sorry but we cant save user in DB'
                 });
             }
-
+            delete userStored.password;
             res.status(200).send({
                 ok: true,
                 user: userStored
@@ -179,7 +179,7 @@ function updateUser(req, res) {
     // let body = _.pick( req.body, ['name', 'last_name','email','img', 'role', 'status'] );
     var update = req.body;
 
-    console.log( update );
+    // console.log( update );
 
     if(id != req.user.sub){
         return res.status(500).send({
@@ -189,7 +189,7 @@ function updateUser(req, res) {
 
     if ( update.password.length > 0 ) {
         update.password = bcrypt.hashSync( update.password, 10 );
-        console.log( update );
+        // console.log( update );
         User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
             if(err){
                 return res.status(500).send({
@@ -213,7 +213,7 @@ function updateUser(req, res) {
     } else {
         getDataUser( id ).then( (value) => {
             update.password = value.password;
-            console.log( update );
+            // console.log( update );
             User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
                 if(err){
                     return res.status(500).send({
@@ -278,7 +278,7 @@ function adminUpdateUser(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
-    console.log( 'line 281 ' + req.user.role );
+    // console.log( 'line 281 ' + req.user.role );
 
     if( req.user.role !== 'ADMIN_ROLE' ) {
         return res.status(500).send({

@@ -180,7 +180,7 @@ function getRequestWeek(req, res) {
         // console.log( list );
         if ( list.length > 1 ) {
             removeLastRequest( requestUser ).then( (value) => {
-                console.log( 'line 96 ' , value );
+                // console.log( 'line 96 ' , value );
                 return res.status(200).send({
                     ok: true,
                     request: value
@@ -188,7 +188,7 @@ function getRequestWeek(req, res) {
             })
         } else {
             if ( requestUser.length > 0 ) {
-                console.log( 'line 104' , requestUser[0] );
+                // console.log( 'line 104' , requestUser[0] );
                 return res.status(200).send({
                     ok: true,
                     request: requestUser[0]
@@ -200,7 +200,7 @@ function getRequestWeek(req, res) {
                     message: 'No request user for this week'
                 })
             }
-            console.log( 'line 110' , requestUser );
+            // console.log( 'line 110' , requestUser );
             res.status(200).send({
                 ok: true,
                 request: requestUser

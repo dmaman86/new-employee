@@ -33,8 +33,8 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit( form ) {
-    console.log( form.value );
-    console.log( this.user );
+    // console.log( form.value );
+    // console.log( this.user );
     // this.temp = this.user;
     this.user.name = form.value.name;
     this.user.last_name = form.value.last_name;
@@ -44,10 +44,10 @@ export class EditUserComponent implements OnInit {
     } else {
       this.user.password = form.value.password;
     }
-    console.log( this.user );
+    // console.log( this.user );
     this._userService.updateUser( this.user ).subscribe(
       response => {
-        console.log( response.ok );
+        // console.log( response.ok );
         if ( response.ok ) {
           this.identity = response.user;
           localStorage.setItem( 'identity', JSON.stringify( this.identity ));
@@ -73,7 +73,7 @@ export class EditUserComponent implements OnInit {
         }
       }, error => {
         const errorMensage = <any>error;
-        console.log(errorMensage);
+        // console.log(errorMensage);
         if ( errorMensage != null ) {
           this.status = 'error';
         }

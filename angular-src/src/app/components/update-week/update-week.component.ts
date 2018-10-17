@@ -27,24 +27,24 @@ export class UpdateWeekComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log( this.week );
+    // console.log( this.week );
   }
 
   onSubmit() {
-    console.log( this.requestWeek );
-    console.log( this.week );
+    // console.log( this.requestWeek );
+    // console.log( this.week );
 
     if ( !this.week ) {
       this._userService.setValuesRequest( this.requestWeek ).subscribe(
         response => {
           if ( response.ok ) {
-            console.log( response.week );
+            // console.log( response.week );
             localStorage.setItem( 'week', JSON.stringify( response.week._id ));
             this.status = 'success';
           }
         }, error => {
           const errorMessage = <any>error;
-          console.log(errorMessage);
+          // console.log(errorMessage);
           if ( errorMessage !== null ) {
             this.status = 'error';
           }
@@ -58,7 +58,7 @@ export class UpdateWeekComponent implements OnInit {
           }
         }, error => {
           const errorMessage = <any>error;
-          console.log(errorMessage);
+          // console.log(errorMessage);
           if ( errorMessage !== null ) {
             this.status = 'error';
           }
