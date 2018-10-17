@@ -179,13 +179,79 @@ function updateUser(req, res) {
     // let body = _.pick( req.body, ['name', 'last_name','email','img', 'role', 'status'] );
     var update = req.body;
 
-    // console.log( update );
+    console.log( update );
 
     if(id != req.user.sub){
         return res.status(500).send({
             message: 'You cant update this user'
         });
     }
+
+    /*User.find({ status: true, email: update.email }, (err, userDB) => {
+        if(err){
+            return res.status(500).send({
+                ok: false,
+                message: `Error in request update ${ err }`
+            });
+        }
+        if ( userDB ) {
+            return res.status(401).send({
+                ok: false,
+                message: 'Sorry but the email is being used'
+            })
+        }
+
+        if ( update.password.length > 0 ) {
+            update.password = bcrypt.hashSync( update.password, 10 );
+            // console.log( update );
+            User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
+                if(err){
+                    return res.status(500).send({
+                        ok: false,
+                        message: `Error in request update ${ err }`
+                    });
+                }
+        
+                if(!userUpdated){
+                    return res.status(404).send({
+                        ok: false,
+                        message: 'Something wrong, this update faild'
+                    });
+                }
+                userUpdated.password = undefined;
+                return res.status(200).send({ 
+                    ok: true,
+                    user: userUpdated 
+                });
+            });
+        } else {
+            getDataUser( id ).then( (value) => {
+                update.password = value.password;
+                // console.log( update );
+                User.findByIdAndUpdate( id, update, { new: true }, (err, userUpdated) => {
+                    if(err){
+                        return res.status(500).send({
+                            ok: false,
+                            message: `Error in request update ${ err }`
+                        });
+                    }
+            
+                    if(!userUpdated){
+                        return res.status(404).send({
+                            ok: false,
+                            message: 'Something wrong, this update faild'
+                        });
+                    }
+                    userUpdated.password = undefined;
+                    return res.status(200).send({ 
+                        ok: true,
+                        user: userUpdated
+                    });
+                });
+            });
+        }
+
+    });*/
 
     if ( update.password.length > 0 ) {
         update.password = bcrypt.hashSync( update.password, 10 );

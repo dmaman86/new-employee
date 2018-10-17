@@ -11,7 +11,11 @@ import { UserService } from '../../services/user.service';
 })
 export class AboutMeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService
+  ) { }
 
   ngOnInit() {
   }

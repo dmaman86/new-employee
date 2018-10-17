@@ -47,7 +47,7 @@ export class EditUserComponent implements OnInit {
     // console.log( this.user );
     this._userService.updateUser( this.user ).subscribe(
       response => {
-        // console.log( response.ok );
+        console.log( response );
         if ( response.ok ) {
           this.identity = response.user;
           localStorage.setItem( 'identity', JSON.stringify( this.identity ));
@@ -59,7 +59,7 @@ export class EditUserComponent implements OnInit {
           swal({
             position: 'top-end',
             type: 'success',
-            title: 'You are update your data',
+            title: 'You have updated your data',
             showConfirmButton: false,
             timer: 5000
           });
