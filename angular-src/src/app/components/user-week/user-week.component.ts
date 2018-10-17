@@ -61,6 +61,7 @@ export class UserWeekComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkDay();
     this.requestUser.setId( this.identity._id );
     this.requestUser.setLevel( this.identity.level );
     this.requestUser.setNumberWeek( String(this.checkSunday( this.number_week[1] )));
@@ -104,7 +105,6 @@ export class UserWeekComponent implements OnInit {
         }
       }
     );
-    this.checkDay();
   }
 
   getWeekNumber( full_date ) {
@@ -320,12 +320,11 @@ export class UserWeekComponent implements OnInit {
     const hour = d.getHours();
 
     if ( day >= 3 ) {
-      if ( hour > 9 ) {
         console.log( `you can't send`);
+        // let btn = document.getElementById('btn-send');
+        // btn.style.display = 'none';
+        document.getElementById('btn-send').style.display = 'none';
         this.status = 'denied';
-        const btn = document.getElementById('btn-send');
-        btn.style.display = 'none';
-      }
     } else {
       console.log( 'you can send' );
       this.status = 'send';
