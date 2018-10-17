@@ -82,7 +82,11 @@ export class LoginComponent implements OnInit {
   }
 
   newUser() {
-    this._router.navigate(['/register']);
+    this._router.navigate(['/about-me']);
+  }
+
+  sendToAbout() {
+    this._router.navigate(['/about-me']);
   }
 
 }
