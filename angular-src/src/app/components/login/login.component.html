@@ -44,15 +44,16 @@
             type="submit"
             class="btn btn-primary"
             [disabled]="!loginForm.form.valid">Log In</button>
+            <p>
+              Temporarily, everyone signs up.<br>
+              In the future only the admin will be responsible for registering a new employee.<br>
+              <button type="button" class="btn btn-link" (click)="newUser()">New User? Click me</button>
+            </p>
             <!--<a class="nav-item nav-link disabled" (click)="newUser()">New User? Click me</a>-->
             <br>
             <br>
             <p>
-              If you want to register,
-              connect with the administrator to receive the registration link.
-            </p>
-            <p>
-              How does it work? go to the page <button type="button" class="btn btn-link" (click)="newUser()">About me.</button>
+              How does it work? go to the page <button type="button" class="btn btn-link" (click)="sendToAbout()">About me.</button>
             </p>
         </div>
       </div>

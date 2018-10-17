@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.identity = this._userService.getIdentity();
     // console.log(this.identity);
-
+    // this._router.navigate(['/login']);
     if ( !this.identity ) {
       this._router.navigate(['/login']);
     }
