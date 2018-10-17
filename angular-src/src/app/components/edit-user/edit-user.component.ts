@@ -57,7 +57,7 @@ export class EditUserComponent implements OnInit {
             this._router.navigate(['/home-admin']);
           }*/
           swal({
-            position: 'top-end',
+            position: 'top',
             type: 'success',
             title: 'You have updated your data',
             showConfirmButton: false,

@@ -6173,7 +6173,7 @@ var ContactsComponent = /** @class */ (function () {
             // console.log( response );
             if (response.ok) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
-                    position: 'top-end',
+                    position: 'top',
                     type: 'success',
                     title: 'User was delete',
                     showConfirmButton: false,
@@ -6201,7 +6201,7 @@ var ContactsComponent = /** @class */ (function () {
             }
             else {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
-                    position: 'top-end',
+                    position: 'top',
                     type: 'success',
                     title: 'User was update',
                     showConfirmButton: false,
@@ -6429,7 +6429,7 @@ var EditUserComponent = /** @class */ (function () {
                   this._router.navigate(['/home-admin']);
                 }*/
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()({
-                    position: 'top-end',
+                    position: 'top',
                     type: 'success',
                     title: 'You have updated your data',
                     showConfirmButton: false,
@@ -6488,7 +6488,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n                <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n                <!--<li><a (click)=\"openDialog()\">Update Request Week</a></li>-->\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.role }} {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n                <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n                <!--<li><a (click)=\"openDialog()\">Update Request Week</a></li>-->\n                <!--<li><a [routerLink]=\"['/builder-week']\">Builder Week</a></li>-->\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <div class=\"form-group\">\n            <h4><label for=\"comment\">Message:</label></h4>\n            <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n              <textarea\n                  name=\"text\"\n                  #text=\"ngModel\"\n                  [(ngModel)]=\"text.text\" \n                  class=\"form-control\"\n                  rows=\"5\"\n                  id=\"comment\"\n                  placeholder=\"{{ message.text }}\">\n                  \n                </textarea>\n                \n              <br>\n              <input \n                type=\"submit\"\n                value=\"Send\"\n                class=\"btn btn-success\"\n                [disabled]=\"!messageForm.form.valid\" />\n              <input\n               type=\"submit\"\n               value=\"Delete\"\n               class=\"btn btn-danger\"\n                (click)=\"deleteMessage()\"/>\n            </form>\n            \n          </div>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
 
 /***/ }),
 
@@ -6628,7 +6628,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name }} {{ user.last_name }}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
+module.exports = "<br>\n<div class=\"container\">\n  <header>\n    <div class=\"content\">\n      <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase}}</h3>\n      <hr>\n    </div>\n  </header>\n  <div class=\"container\">\n      <main>\n          <div>\n              <h4>Menu</h4>\n              <ul>\n                <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n                <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n                <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n                <li><a [routerLink]=\"['/user-week']\">Week</a></li>\n              </ul>\n            </div>\n      </main>\n      <aside>\n        <div>\n          <h4>Message:</h4>\n            <ul>\n              <li>{{ message.text }}</li>\n            </ul>\n        </div>\n      </aside>\n  </div>\n</div>\n\n<app-footer></app-footer>\n\n\n\n\n"
 
 /***/ }),
 
@@ -7536,7 +7536,7 @@ var UserWeekComponent = /** @class */ (function () {
                         }
                     }
                     sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                        position: 'top-end',
+                        position: 'top',
                         type: 'success',
                         title: 'Submitted successfully',
                         showConfirmButton: false,

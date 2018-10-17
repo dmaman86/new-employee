@@ -155,7 +155,7 @@ export class ContactsComponent implements OnInit {
         // console.log( response );
         if ( response.ok ) {
           swal({
-            position: 'top-end',
+            position: 'top',
             type: 'success',
             title: 'User was delete',
             showConfirmButton: false,
@@ -185,7 +185,7 @@ export class ContactsComponent implements OnInit {
           this.status = 'error';
         } else {
           swal({
-            position: 'top-end',
+            position: 'top',
             type: 'success',
             title: 'User was update',
             showConfirmButton: false,

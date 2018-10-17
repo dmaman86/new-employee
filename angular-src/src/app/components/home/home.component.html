@@ -2,7 +2,7 @@
 <div class="container">
   <header>
     <div class="content">
-      <h3 class="title">Welcome {{ user.name }} {{ user.last_name }}</h3>
+      <h3 class="title">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase}}</h3>
       <hr>
     </div>
   </header>

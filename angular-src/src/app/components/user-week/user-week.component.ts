@@ -253,7 +253,7 @@ export class UserWeekComponent implements OnInit {
                 }
               }
               swal({
-                position: 'top-end',
+                position: 'top',
                 type: 'success',
                 title: 'Submitted successfully',
                 showConfirmButton: false,
