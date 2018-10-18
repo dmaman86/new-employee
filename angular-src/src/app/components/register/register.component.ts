@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'SIGN UP (please fill in all the fields)';
+    this.title = 'Sign Up (please fill in all the fields)';
     this.user = new User('', '', '', '', '', '', '');
   }
 
@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
     // console.log( this.user );
     this._userService.register( this.user ).subscribe(
       response => {
+        console.log( response );
         if (response.user && response.user._id) {
           this.status = 'success';
           form.reset();
@@ -38,7 +39,8 @@ export class RegisterComponent implements OnInit {
           this.status = 'error';
         }
       }, error => {
-        // console.log(<any>error);
+        console.log(<any>error);
+        this.status = 'error';
       }
     );
   }
