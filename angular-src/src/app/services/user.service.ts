@@ -20,6 +20,8 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
+    /* Registration and Login */
+
     register( user: User ): Observable<any> {
         const params = JSON.stringify( user );
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -46,16 +48,6 @@ export class UserService {
         return this.identity;
     }
 
-    getWeekId() {
-        const week = JSON.parse( localStorage.getItem( 'week' ) );
-        if ( week !== 'undefined' ) {
-            this.week = week;
-        } else {
-            this.week = null;
-        }
-        return this.week;
-    }
-
     getToken() {
         const token = localStorage.getItem('token');
         if ( token !== 'undefined' ) {
@@ -65,6 +57,8 @@ export class UserService {
         }
         return this.token;
     }
+
+    /* Home and Home Admin */
 
     getMessage(): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -84,6 +78,9 @@ export class UserService {
         return this._http.delete( this.url + 'delete-message/' +  messageId, { headers: headers });
     }
 
+    /* Users */
+
+    // this function not active
     getUsers( page = null ): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
         return this._http.get( this.url + 'users/' + page, { headers: headers });
@@ -111,6 +108,8 @@ export class UserService {
         return this._http.put( this.url + 'admin-update-user/' + user._id, params, { headers: headers });
     }
 
+    /* Shifts */
+
     getRequestUser( requestUser: RequestWeekUser ): Observable<any> {
         const params = JSON.stringify( requestUser );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
@@ -120,8 +119,16 @@ export class UserService {
     saveRequestUser( requestUser: RequestWeekUser ): Observable<any> {
         const params = JSON.stringify( requestUser );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.post( this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
+        return this._http.post( this.url + 'save-request-user/' + requestUser.getEmitter(), params, { headers: headers });
     }
+
+    updateRequestUser( requestUser: RequestWeekUser ): Observable<any> {
+        const params = JSON.stringify( requestUser );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put( this.url + 'update-request-user/' + requestUser.getId(), params, { headers: headers });
+    }
+
+    /* For Admin set how much shifts */
 
     setValuesRequest( requestWeek: RequestWeek ): Observable<any> {
         const params = JSON.stringify( requestWeek );

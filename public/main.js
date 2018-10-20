@@ -7208,20 +7208,36 @@ var UpdateWeekComponent = /** @class */ (function () {
         this._userService = _userService;
         this.title = 'Update Week Request';
         this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '', '');
-        this.week = this._userService.getWeekId();
+        // this.week = this._userService.getWeekId();
     }
     UpdateWeekComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // console.log( this.week );
+        this._userService.getValuesRequest().subscribe(function (response) {
+            console.log(response.values);
+            if (!response.ok) {
+                _this.status = response.message;
+            }
+            if (response.values) {
+                _this.requestWeek._id = response.values._id;
+            }
+        }, function (error) {
+            var errorMessage = error;
+            // console.log(errorMessage);
+            if (errorMessage !== null) {
+                _this.status = 'error';
+            }
+        });
     };
     UpdateWeekComponent.prototype.onSubmit = function () {
         // console.log( this.requestWeek );
         // console.log( this.week );
         var _this = this;
-        if (!this.week) {
+        if (this.requestWeek._id.length <= 0) {
             this._userService.setValuesRequest(this.requestWeek).subscribe(function (response) {
                 if (response.ok) {
                     // console.log( response.week );
-                    localStorage.setItem('week', JSON.stringify(response.week._id));
+                    // localStorage.setItem( 'week', JSON.stringify( response.week._id ));
                     _this.status = 'success';
                 }
             }, function (error) {
@@ -7233,7 +7249,7 @@ var UpdateWeekComponent = /** @class */ (function () {
             });
         }
         else {
-            this._userService.updateValuesRequest(this.week, this.requestWeek).subscribe(function (response) {
+            this._userService.updateValuesRequest(this.requestWeek._id, this.requestWeek).subscribe(function (response) {
                 if (response.ok) {
                     _this.status = 'success';
                 }
@@ -7323,7 +7339,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-/*import * as swal from 'sweetalert';*/
 var UserWeekComponent = /** @class */ (function () {
     function UserWeekComponent(_route, _router, _userService) {
         this._route = _route;
@@ -7332,7 +7347,7 @@ var UserWeekComponent = /** @class */ (function () {
         this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
         this.shift = ['morning', 'afternoon', 'night'];
         this.dates = [];
-        this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('');
+        this.requestUser = new _models_requestWeek_user__WEBPACK_IMPORTED_MODULE_2__["RequestWeekUser"]('', '');
         this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_4__["RequestWeek"]('', '', '', '', '', '');
         this.identity = this._userService.getIdentity();
         this.count_morning = 0;
@@ -7355,17 +7370,13 @@ var UserWeekComponent = /** @class */ (function () {
     UserWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.checkDay();
-        this.requestUser.setId(this.identity._id);
-        this.requestUser.setLevel(this.identity.level);
-        this.requestUser.setNumberWeek(String(this.checkSunday(this.number_week[1])));
-        // this.requestUser.setNumberWeek( String(this.number_week[1]) );
+        this.requestUser.setEmitter(this.identity._id);
+        this.requestUser.setNumberWeek(String(this.number_week[1]));
         this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
-            if (!response.ok) {
-                alert(response.message);
-            }
             if (response.ok) {
                 // console.log( response.request );
                 if (response.request) {
+                    _this.requestUser.setId(response.request._id);
                     for (var i = 0; i < _this.days.length; i++) {
                         var d = _this.days[i];
                         for (var j = 0; j < _this.shift.length; j++) {
@@ -7376,7 +7387,7 @@ var UserWeekComponent = /** @class */ (function () {
                     }
                 }
                 if (response.request.length > 0) {
-                    // console.log( response.request );
+                    _this.requestUser.setId(response.request._id);
                     for (var i = 0; i < _this.days.length; i++) {
                         var d = _this.days[i];
                         for (var j = 0; j < _this.shift.length; j++) {
@@ -7509,10 +7520,11 @@ var UserWeekComponent = /** @class */ (function () {
     };
     UserWeekComponent.prototype.sendValues = function () {
         var _this = this;
-        if (this.count_morning >= Number(this.requestWeek.morning) &&
-            this.count_afternoon >= Number(this.requestWeek.afternoon) &&
-            this.count_night >= Number(this.requestWeek.night) &&
-            this.count_weekend >= Number(this.requestWeek.weekend)) {
+        console.log(this.requestUser);
+        if (this.count_morning >= Number(this.requestWeek.morning)
+            && this.count_afternoon >= Number(this.requestWeek.afternoon)
+            && this.count_night >= Number(this.requestWeek.night)
+            && this.count_weekend >= Number(this.requestWeek.weekend)) {
             for (var i = 0; i < this.days.length; i++) {
                 var d = this.days[i];
                 for (var j = 0; j < this.shift.length; j++) {
@@ -7527,37 +7539,56 @@ var UserWeekComponent = /** @class */ (function () {
                 this.count_night = 0;
                 this.count_weekend = 0;
             }
-            this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
-                if (response.ok) {
-                    for (var i = 0; i < _this.days.length; i++) {
-                        var d = _this.days[i];
-                        for (var j = 0; j < _this.shift.length; j++) {
-                            var s = _this.shift[j];
-                            _this.week[d][s] = response.requestUser[d][s];
-                            _this.updateValues(d, s);
-                        }
+            var requestId = this.requestUser.getId();
+            console.log(requestId);
+            if (requestId.length <= 0) {
+                console.log(this.requestUser);
+                this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
+                    if (response.ok) {
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+                            position: 'top',
+                            type: 'success',
+                            title: 'Submitted successfully',
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
                     }
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                        position: 'top',
-                        type: 'success',
-                        title: 'Submitted successfully',
-                        showConfirmButton: false,
-                        timer: 5000
-                    });
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 2000);
-                }
-            }, function (error) {
-                var errorMessage = error;
-                // console.log(errorMessage);
-                if (errorMessage !== null) {
-                    _this.status = 'error';
-                }
-            });
-        }
-        else {
-            this.status = 'error';
+                }, function (error) {
+                    var errorMessage = error;
+                    // console.log(errorMessage);
+                    if (errorMessage !== null) {
+                        _this.status = 'error';
+                    }
+                });
+            }
+            else {
+                this._userService.updateRequestUser(this.requestUser).subscribe(function (response) {
+                    if (!response.ok) {
+                        _this.status = response.message;
+                    }
+                    else {
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+                            position: 'top',
+                            type: 'success',
+                            title: 'You have updated your shifts',
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                }, function (error) {
+                    var errorMessage = error;
+                    // console.log(errorMessage);
+                    if (errorMessage !== null) {
+                        _this.status = 'error';
+                    }
+                });
+            }
         }
     };
     UserWeekComponent.prototype.updateValues = function (d, s) {
@@ -7606,8 +7637,6 @@ var UserWeekComponent = /** @class */ (function () {
         var hour = d.getHours();
         if (day >= 3) {
             console.log("you can't send");
-            // let btn = document.getElementById('btn-send');
-            // btn.style.display = 'none';
             document.getElementById('btn-send').style.display = 'none';
             this.status = 'denied';
         }
@@ -7724,11 +7753,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shift__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./shift */ "./src/app/models/shift.ts");
 
 var RequestWeekUser = /** @class */ (function () {
-    function RequestWeekUser(id) {
+    function RequestWeekUser(id, emitter) {
         this._id = id;
         // this.name = name;
         // this.last_name = this.last_name;
         // this.email = this.email;
+        this.emitter = emitter;
         this.sunday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
         this.monday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
         this.tuesday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
@@ -7742,6 +7772,12 @@ var RequestWeekUser = /** @class */ (function () {
     };
     RequestWeekUser.prototype.getId = function () {
         return this._id;
+    };
+    RequestWeekUser.prototype.setEmitter = function (emitter) {
+        this.emitter = emitter;
+    };
+    RequestWeekUser.prototype.getEmitter = function () {
+        return this.emitter;
     };
     /*public setName( name ) {
         this.name = name;
@@ -7888,6 +7924,7 @@ var UserService = /** @class */ (function () {
         this._http = _http;
         this.url = _global__WEBPACK_IMPORTED_MODULE_2__["GLOBAL"].url;
     }
+    /* Registration and Login */
     UserService.prototype.register = function (user) {
         var params = JSON.stringify(user);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
@@ -7912,16 +7949,6 @@ var UserService = /** @class */ (function () {
         }
         return this.identity;
     };
-    UserService.prototype.getWeekId = function () {
-        var week = JSON.parse(localStorage.getItem('week'));
-        if (week !== 'undefined') {
-            this.week = week;
-        }
-        else {
-            this.week = null;
-        }
-        return this.week;
-    };
     UserService.prototype.getToken = function () {
         var token = localStorage.getItem('token');
         if (token !== 'undefined') {
@@ -7932,6 +7959,7 @@ var UserService = /** @class */ (function () {
         }
         return this.token;
     };
+    /* Home and Home Admin */
     UserService.prototype.getMessage = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded')
             .set('Authorization', this.getToken());
@@ -7947,6 +7975,8 @@ var UserService = /** @class */ (function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
         return this._http.delete(this.url + 'delete-message/' + messageId, { headers: headers });
     };
+    /* Users */
+    // this function not active
     UserService.prototype.getUsers = function (page) {
         if (page === void 0) { page = null; }
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
@@ -7970,6 +8000,7 @@ var UserService = /** @class */ (function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put(this.url + 'admin-update-user/' + user._id, params, { headers: headers });
     };
+    /* Shifts */
     UserService.prototype.getRequestUser = function (requestUser) {
         var params = JSON.stringify(requestUser);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
@@ -7978,8 +8009,14 @@ var UserService = /** @class */ (function () {
     UserService.prototype.saveRequestUser = function (requestUser) {
         var params = JSON.stringify(requestUser);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.post(this.url + 'save-request-user/' + requestUser.getId(), params, { headers: headers });
+        return this._http.post(this.url + 'save-request-user/' + requestUser.getEmitter(), params, { headers: headers });
     };
+    UserService.prototype.updateRequestUser = function (requestUser) {
+        var params = JSON.stringify(requestUser);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put(this.url + 'update-request-user/' + requestUser.getId(), params, { headers: headers });
+    };
+    /* For Admin set how much shifts */
     UserService.prototype.setValuesRequest = function (requestWeek) {
         var params = JSON.stringify(requestWeek);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());

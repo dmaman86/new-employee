@@ -6,6 +6,7 @@ export class RequestWeekUser {
     // private name: string;
     // private last_name: string;
     // private email: string;
+    private emitter: string;
     private numberWeek: string;
     private level: string;
     private sunday: Shift;
@@ -16,11 +17,12 @@ export class RequestWeekUser {
     private friday: Shift;
     private saturday: Shift;
 
-    constructor( id: string ) {
+    constructor( id: string, emitter: string ) {
         this._id = id;
         // this.name = name;
         // this.last_name = this.last_name;
         // this.email = this.email;
+        this.emitter = emitter;
         this.sunday = new Shift('', '', '');
         this.monday = new Shift('', '', '');
         this.tuesday = new Shift('', '', '');
@@ -36,6 +38,14 @@ export class RequestWeekUser {
 
     public getId() {
         return this._id;
+    }
+
+    public setEmitter( emitter ) {
+        this.emitter = emitter;
+    }
+
+    public getEmitter() {
+        return this.emitter;
     }
 
     /*public setName( name ) {

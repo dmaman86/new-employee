@@ -7,7 +7,6 @@ import { RequestWeek } from '../../models/requestWeek';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
 import swal from 'sweetalert2';
-/*import * as swal from 'sweetalert';*/
 
 @Component({
   selector: 'app-user-week',
@@ -38,7 +37,7 @@ export class UserWeekComponent implements OnInit {
     private _userService: UserService
   ) {
     this.dates = [];
-    this.requestUser = new RequestWeekUser('');
+    this.requestUser = new RequestWeekUser('', '');
     this.requestWeek = new RequestWeek('', '', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.count_morning = 0;
@@ -62,19 +61,15 @@ export class UserWeekComponent implements OnInit {
 
   ngOnInit() {
     this.checkDay();
-    this.requestUser.setId( this.identity._id );
-    this.requestUser.setLevel( this.identity.level );
-    this.requestUser.setNumberWeek( String(this.checkSunday( this.number_week[1] )));
-    // this.requestUser.setNumberWeek( String(this.number_week[1]) );
+    this.requestUser.setEmitter( this.identity._id );
+    this.requestUser.setNumberWeek( String(this.number_week[1]) );
 
     this._userService.getRequestUser( this.requestUser ).subscribe(
       response => {
-        if ( !response.ok ) {
-          alert( response.message );
-        }
         if ( response.ok ) {
           // console.log( response.request );
           if ( response.request ) {
+            this.requestUser.setId( response.request._id );
             for ( let i = 0; i < this.days.length; i++ ) {
               const d = this.days[i];
               for ( let j = 0; j < this.shift.length; j++) {
@@ -85,7 +80,7 @@ export class UserWeekComponent implements OnInit {
             }
           }
           if ( response.request.length > 0 ) {
-            // console.log( response.request );
+            this.requestUser.setId( response.request._id );
             for ( let i = 0; i < this.days.length; i++ ) {
               const d = this.days[i];
               for ( let j = 0; j < this.shift.length; j++) {
@@ -96,7 +91,6 @@ export class UserWeekComponent implements OnInit {
             }
           }
         }
-
       }, error => {
         const errorMessage = <any>error;
         // console.log(errorMessage);
@@ -219,10 +213,11 @@ export class UserWeekComponent implements OnInit {
   }
 
   sendValues() {
-    if (  this.count_morning >= Number( this.requestWeek.morning ) &&
-      this.count_afternoon >= Number( this.requestWeek.afternoon ) &&
-      this.count_night >= Number( this.requestWeek.night ) &&
-      this.count_weekend >= Number( this.requestWeek.weekend ) ) {
+    console.log( this.requestUser );
+    if ( this.count_morning >= Number( this.requestWeek.morning )
+          && this.count_afternoon >= Number( this.requestWeek.afternoon )
+          && this.count_night >= Number( this.requestWeek.night )
+          && this.count_weekend >= Number( this.requestWeek.weekend ) ) {
 
         for ( let i = 0; i < this.days.length; i++ ) {
           const d = this.days[i];
@@ -241,38 +236,59 @@ export class UserWeekComponent implements OnInit {
           this.count_weekend = 0;
         }
 
-        this._userService.saveRequestUser( this.requestUser ).subscribe(
-          response => {
-            if ( response.ok ) {
-              for ( let i = 0; i < this.days.length; i++ ) {
-                const d = this.days[i];
-                for ( let j = 0; j < this.shift.length; j++) {
-                  const s = this.shift[j];
-                  this.week[d][s] = response.requestUser[d][s];
-                  this.updateValues(d, s);
-                }
+        const requestId = this.requestUser.getId();
+        console.log( requestId );
+
+        if ( requestId.length <= 0 ) {
+          console.log( this.requestUser );
+          this._userService.saveRequestUser( this.requestUser ).subscribe(
+            response => {
+              if ( response.ok ) {
+                swal({
+                  position: 'top',
+                  type: 'success',
+                  title: 'Submitted successfully',
+                  showConfirmButton: false,
+                  timer: 5000
+                });
+                setTimeout( () => {
+                  window.location.reload();
+                }, 2000);
               }
-              swal({
-                position: 'top',
-                type: 'success',
-                title: 'Submitted successfully',
-                showConfirmButton: false,
-                timer: 5000
-              });
-              setTimeout( () => {
-                window.location.reload();
-              }, 2000);
+            }, error => {
+              const errorMessage = <any>error;
+              // console.log(errorMessage);
+              if ( errorMessage !== null ) {
+                this.status = 'error';
+              }
             }
-          }, error => {
-          const errorMessage = <any>error;
-          // console.log(errorMessage);
-          if ( errorMessage !== null ) {
-            this.status = 'error';
-          }
+          );
+        } else {
+          this._userService.updateRequestUser( this.requestUser ).subscribe(
+            response => {
+              if ( !response.ok ) {
+                this.status = response.message;
+              } else {
+                swal({
+                  position: 'top',
+                  type: 'success',
+                  title: 'You have updated your shifts',
+                  showConfirmButton: false,
+                  timer: 5000
+                });
+                setTimeout( () => {
+                  window.location.reload();
+                }, 2000);
+              }
+            }, error => {
+              const errorMessage = <any>error;
+              // console.log(errorMessage);
+              if ( errorMessage !== null ) {
+                this.status = 'error';
+              }
+            }
+          );
         }
-        );
-      } else {
-        this.status = 'error';
       }
   }
 
@@ -321,8 +337,6 @@ export class UserWeekComponent implements OnInit {
 
     if ( day >= 3 ) {
         console.log( `you can't send`);
-        // let btn = document.getElementById('btn-send');
-        // btn.style.display = 'none';
         document.getElementById('btn-send').style.display = 'none';
         this.status = 'denied';
     } else {
