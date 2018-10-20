@@ -68,25 +68,29 @@ export class UserWeekComponent implements OnInit {
       response => {
         if ( response.ok ) {
           // console.log( response.request );
-          if ( response.request ) {
-            this.requestUser.setId( response.request._id );
-            for ( let i = 0; i < this.days.length; i++ ) {
-              const d = this.days[i];
-              for ( let j = 0; j < this.shift.length; j++) {
-                const s = this.shift[j];
-                this.week[d][s] = response.request[d][s];
-                this.updateValues(d, s);
+          if ( !response.request ) {
+            alert('no exist shift for this user');
+          } else {
+            if ( response.request ) {
+              this.requestUser.setId( response.request._id );
+              for ( let i = 0; i < this.days.length; i++ ) {
+                const d = this.days[i];
+                for ( let j = 0; j < this.shift.length; j++) {
+                  const s = this.shift[j];
+                  this.week[d][s] = response.request[d][s];
+                  this.updateValues(d, s);
+                }
               }
             }
-          }
-          if ( response.request.length > 0 ) {
-            this.requestUser.setId( response.request._id );
-            for ( let i = 0; i < this.days.length; i++ ) {
-              const d = this.days[i];
-              for ( let j = 0; j < this.shift.length; j++) {
-                const s = this.shift[j];
-                this.week[d][s] = response.request[d][s];
-                this.updateValues(d, s);
+            if ( response.request.length > 0 ) {
+              this.requestUser.setId( response.request._id );
+              for ( let i = 0; i < this.days.length; i++ ) {
+                const d = this.days[i];
+                for ( let j = 0; j < this.shift.length; j++) {
+                  const s = this.shift[j];
+                  this.week[d][s] = response.request[d][s];
+                  this.updateValues(d, s);
+                }
               }
             }
           }

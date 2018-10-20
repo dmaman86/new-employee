@@ -7375,25 +7375,30 @@ var UserWeekComponent = /** @class */ (function () {
         this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
             if (response.ok) {
                 // console.log( response.request );
-                if (response.request) {
-                    _this.requestUser.setId(response.request._id);
-                    for (var i = 0; i < _this.days.length; i++) {
-                        var d = _this.days[i];
-                        for (var j = 0; j < _this.shift.length; j++) {
-                            var s = _this.shift[j];
-                            _this.week[d][s] = response.request[d][s];
-                            _this.updateValues(d, s);
+                if (!response.request) {
+                    alert('no exist shift for this user');
+                }
+                else {
+                    if (response.request) {
+                        _this.requestUser.setId(response.request._id);
+                        for (var i = 0; i < _this.days.length; i++) {
+                            var d = _this.days[i];
+                            for (var j = 0; j < _this.shift.length; j++) {
+                                var s = _this.shift[j];
+                                _this.week[d][s] = response.request[d][s];
+                                _this.updateValues(d, s);
+                            }
                         }
                     }
-                }
-                if (response.request.length > 0) {
-                    _this.requestUser.setId(response.request._id);
-                    for (var i = 0; i < _this.days.length; i++) {
-                        var d = _this.days[i];
-                        for (var j = 0; j < _this.shift.length; j++) {
-                            var s = _this.shift[j];
-                            _this.week[d][s] = response.request[d][s];
-                            _this.updateValues(d, s);
+                    if (response.request.length > 0) {
+                        _this.requestUser.setId(response.request._id);
+                        for (var i = 0; i < _this.days.length; i++) {
+                            var d = _this.days[i];
+                            for (var j = 0; j < _this.shift.length; j++) {
+                                var s = _this.shift[j];
+                                _this.week[d][s] = response.request[d][s];
+                                _this.updateValues(d, s);
+                            }
                         }
                     }
                 }
