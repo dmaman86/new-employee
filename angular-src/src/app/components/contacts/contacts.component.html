@@ -1,87 +1,42 @@
-<h1>{{ title }}</h1>
-<hr>
-<input 
-    type="text"
-    id="myInput" 
-    (keyup)="onKey($event)"
-    placeholder="Search for names">
-<div *ngIf="this.identity.role == 'USER_ROLE'">
-    <table class="table table-striped table-bordered" id="myTable">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" id="check"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of usersToSearch; let i = index">
-            <!--<th scope="row">{{ i+1 }}</th>-->
-            <td id="check"><input type="checkbox" id="{{user.email}}"></td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
-          </tr>
-          
-        </tbody>
-      </table>
-      <!-- paginacion -->
-      <!--<ul class="pagination pull-right">
-        <li *ngIf="page > 1"><a [routerLink]="['/contacts', prev_page]">Prev</a></li>
-        <li *ngIf="pages !== page"><a [routerLink]="['/contacts', next_page]">Next</a></li>
-      </ul>-->
-      <br/>
-
-      <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
-</div>
-
-<!--<div *ngIf="this.identity.role === 'ADMIN_ROLE'">
-  <table class="table tex-sm" id="users">
-    <thead class="thead-dark">
-      <tr>
-          <th>#
-            </th>
-            <th>First Name
-            </th>
-            <th>Last Name
-            </th>
-            <th>Email
-            </th>
-            <th>Role
-            </th>
-            <th>Level
-            </th>
-            <th>
-            </th>
-      </tr>
-    </thead>
-  </table>
-  <div class="list-container-h30 scrolled-y">
-      <table class="table table-striped table-hover text-sm">
-          <tbody>
-              <tr *ngFor="let user of usersToSearch; let i = index">
-                  <td>{{ i+1 }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.last_name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.role }}</td>
-                  <td>{{ user.level }}</td>
-                  <td *ngIf="identity._id != user._id">
-                    <input type="button" (click)="editUser( user._id )"
-                      class="btn btn-primary" value="Edit"/>
-                    <input type="button" (click)="deleteUser( user._id )"
-                      class="btn btn-danger" value="Delete"/>
-                  </td>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>{{ title }}</h3>
+      </div>
+      <div>
+        <input 
+          type="text"
+          id="myInput" 
+          (keyup)="onKey($event)"
+          placeholder="Search for names">
+      </div>
+      <div *ngIf="this.identity.role == 'USER_ROLE'">
+        <table class="table table-striped table-bordered" id="myTable">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" id="check"></th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
               </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of usersToSearch; let i = index">
+                <td id="check"><input type="checkbox" id="{{user.email}}"></td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+              </tr>
+              
             </tbody>
-      </table>
-  </div>
-</div>-->
-
-<div *ngIf="this.identity.role == 'ADMIN_ROLE'">
-    <table class="table table-striped table-bordered" id="myTable">
-        <thead class="thead-dark">
+          </table>
+          <br/>
+    
+          <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+      </div>
+      <table class="table table-fixed table-bordered" id="myTable" *ngIf="this.identity.role == 'ADMIN_ROLE'">
+        <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">First Name</th>
@@ -107,9 +62,10 @@
                 class="btn btn-danger" value="Delete"/>
             </td>
           </tr>
-          
         </tbody>
       </table>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="status == 'edit'">

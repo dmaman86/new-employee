@@ -34,7 +34,7 @@ export class ContactsComponent implements OnInit {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'List Contacts';
+    this.title = 'Contact List';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
