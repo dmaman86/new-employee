@@ -7595,6 +7595,9 @@ var UserWeekComponent = /** @class */ (function () {
                 });
             }
         }
+        else {
+            this.status = 'error';
+        }
     };
     UserWeekComponent.prototype.updateValues = function (d, s) {
         switch (s) {

@@ -293,6 +293,8 @@ export class UserWeekComponent implements OnInit {
             }
           );
         }
+      } else {
+        this.status = 'error';
       }
   }
 
