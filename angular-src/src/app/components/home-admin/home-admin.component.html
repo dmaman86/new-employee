@@ -1,61 +1,48 @@
 <div class="container">
-  <header>
-    <div class="content">
-      <h3 class="title">Welcome {{ user.role }} {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>
-      <hr>
-    </div>
-  </header>
-  <div class="container">
-      <main>
-          <div>
-              <h4>Menu</h4>
-              <ul>
-                <li><a [routerLink]="['/profile']">My Profile</a></li>
-                <li><a [routerLink]="['/edit-user']">Edit Profile</a></li>
-                <li><a [routerLink]="['/contacts']">Contacts</a></li>
-                <li><a [routerLink]="['/update-week']">Update Request Week</a></li>
-                <li><a [routerLink]="['/register']">Create new user</a></li>
-                <!--<li><a (click)="openDialog()">Update Request Week</a></li>-->
-                <!--<li><a [routerLink]="['/builder-week']">Builder Week</a></li>-->
-              </ul>
-            </div>
-      </main>
-      <aside>
-        <div>
-          <div class="form-group">
-            <h4><label for="comment">Message:</label></h4>
-            <form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
-              <textarea
-                  name="text"
-                  #text="ngModel"
-                  [(ngModel)]="text.text" 
-                  class="form-control"
-                  rows="5"
-                  id="comment"
-                  placeholder="{{ message.text }}">
-                  
-                </textarea>
+  <h3 class="title">Welcome Admin {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>
+  <div class="row">
+    <div class="col-md-8">
+      Menu:
+      <ul>
+        <li><a [routerLink]="['/profile']">My Profile</a></li>
+        <li><a [routerLink]="['/edit-user']">Edit Profile</a></li>
+        <li><a [routerLink]="['/contacts']">Contacts</a></li>
+        <li><a [routerLink]="['/update-week']">Update Request Week</a></li>
+        <li><a [routerLink]="['/register']">Create new user</a></li>
+      </ul>
+    </div><!-- Finish col md 8-->
+    <div class="col-md-4">
+      Messages:
+      <form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
+        <textarea
+          name="text"
+          #text="ngModel"
+          [(ngModel)]="text.text" 
+          class="form-control"
+          rows="5"
+          id="comment"
+          placeholder="{{ message.text }}">
                 
-              <br>
-              <input 
-                type="submit"
-                value="Send"
-                class="btn btn-success"
-                [disabled]="!messageForm.form.valid" />
-              <input
-               type="submit"
-               value="Delete"
-               class="btn btn-danger"
-                (click)="deleteMessage()"/>
-            </form>
-            
-          </div>
-        </div>
-      </aside>
-  </div>
-</div>
-
+        </textarea>
+              
+        <br>
+        <input 
+          type="submit"
+          value="Send"
+          class="btn btn-success"
+          [disabled]="!messageForm.form.valid" />
+        <input
+          type="submit"
+          value="Delete"
+          class="btn btn-danger"
+          (click)="deleteMessage()"/>
+      </form>
+    </div><!-- Finish col md 4-->
+  </div><!-- Finish row -->
+    
+</div><!-- Finish container -->
 <app-footer></app-footer>
+
 
 
 

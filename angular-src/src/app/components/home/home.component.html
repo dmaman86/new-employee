@@ -1,34 +1,24 @@
-<br>
 <div class="container">
-  <header>
-    <div class="content">
-      <h3 class="title">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase}}</h3>
-      <hr>
-    </div>
-  </header>
-  <div class="container">
-      <main>
-          <div>
-              <h4>Menu</h4>
-              <ul>
-                <li><a [routerLink]="['/profile']">My Profile</a></li>
-                <li><a [routerLink]="['/edit-user']">Edit Profile</a></li>
-                <li><a [routerLink]="['/contacts']">Contacts</a></li>
-                <li><a [routerLink]="['/user-week']">Week</a></li>
-              </ul>
-            </div>
-      </main>
-      <aside>
-        <div>
-          <h4>Message:</h4>
-            <ul>
-              <li>{{ message.text }}</li>
-            </ul>
-        </div>
-      </aside>
-  </div>
-</div>
-
+  <h3 class="title">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase}}</h3>
+  <div class="row">
+    <div class="col-md-8">
+      Menu:
+      <ul>
+        <li><a [routerLink]="['/profile']">My Profile</a></li>
+        <li><a [routerLink]="['/edit-user']">Edit Profile</a></li>
+        <li><a [routerLink]="['/contacts']">Contacts</a></li>
+        <li><a [routerLink]="['/user-week']">Week</a></li>
+      </ul>
+    </div><!-- Finish col md 8-->
+    <div class="col-md-4">
+      Messages:
+      <ul>
+        <li>{{ message.text }}</li>
+      </ul>
+    </div><!-- Finish col md 4-->
+  </div><!-- Finish row -->
+  
+</div><!-- Finish container -->
 <app-footer></app-footer>
 
 

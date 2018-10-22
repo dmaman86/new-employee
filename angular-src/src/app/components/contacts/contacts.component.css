@@ -7,7 +7,32 @@
     border: 1px solid #ddd;
     margin-bottom: 12px;
 }
-    
+table {
+  width: 900px; /* 140px * 5 column + 16px scrollbar width */
+  border-spacing: 0;
+}
+thead th{
+  text-align: center;
+}
+
+tbody, thead tr { 
+  display: block;
+  text-align: center;
+}
+
+tbody {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+tbody td, thead th {
+  width: 140px;
+}
+
+thead th:last-child {
+  width: 140px; /* 140px + 16px scrollbar width */
+} 
     
 
 /*table {

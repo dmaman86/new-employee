@@ -1,115 +1,113 @@
 <div class="container">
-  <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>{{ title }}</h3>
-      </div>
-      <div>
+  <h2>{{ title }}</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">Temporaly "send email" not active.</div>
+    <div class="panel-body">
         <input 
-          type="text"
-          id="myInput" 
-          (keyup)="onKey($event)"
-          placeholder="Search for names">
-      </div>
-      <div *ngIf="this.identity.role == 'USER_ROLE'">
-        <table class="table table-striped table-bordered" id="myTable">
-            <thead class="thead-dark">
+        type="text"
+        id="myInput" 
+        (keyup)="onKey($event)"
+        placeholder="Search for names">
+        <div class="table-responsive" *ngIf="this.identity.role == 'USER_ROLE'">
+          <table class="table table-bordered table-hover" id="myTable">
+            <thead>
               <tr>
-                <th scope="col" id="check"></th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let user of usersToSearch; let i = index">
-                <td id="check"><input type="checkbox" id="{{user.email}}"></td>
+                <td><input type="checkbox" id="{{user.email}}"></td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
               </tr>
-              
             </tbody>
           </table>
           <br/>
-    
+          
           <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
-      </div>
-      <table class="table table-fixed table-bordered" id="myTable" *ngIf="this.identity.role == 'ADMIN_ROLE'">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Level</th>
-            <th scope="col">Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of usersToSearch; let i = index">
-            <td scope="row">{{ i+1 }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.level }}</td>
-            <td *ngIf="identity._id != user._id">
-              <input type="button" (click)="editUser( user._id )"
-                class="btn btn-primary" value="Edit"/>
-              <input type="button" (click)="deleteUser( user._id )"
-                class="btn btn-danger" value="Delete"/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="status == 'edit'">
-  <form #userEdit="ngForm" (ngSubmit)="onSubmit()">
-    <p>
-      <label>Name:</label>
-      <label>{{ temp_user.name }}</label>
-    </p>
-    <p>
-      <label>Last Name:</label>
-      <label>{{ temp_user.last_name }}</label>
-    </p>
-    <p>
-      <label>Email:</label>
-      <label>{{ temp_user.email }}</label>
-    </p>
-    <p>
-      <label>Role:</label>
-      <input 
-        type="text"
-        name="role"
-        #role="ngModel"
-        [(ngModel)]="temp_user.role"
-        class="form-control"
-        placeholder="temp_user.role"/>
-    </p>
-    <p>
-        <label>Level:</label>
+        </div><!-- finish table responsive for user role -->
+        <div class="table-responsive" *ngIf="this.identity.role == 'ADMIN_ROLE'">
+          <table class="table table-bordered table-hover" id="myTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Level</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of usersToSearch; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.level }}</td>
+                <td *ngIf="identity._id != user._id">
+                  <input type="button" (click)="editUser( user._id )"
+                    class="btn btn-primary" value="Edit"/>
+                  <input type="button" (click)="deleteUser( user._id )"
+                    class="btn btn-danger" value="Delete"/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- Finish table responsive for admin role -->
+    </div><!-- Finish panel-body -->
+  </div><!-- Finish panel-default -->
+  <div *ngIf="status == 'edit'">
+      <form #userEdit="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+          <label>Name:</label>
+          <label>{{ temp_user.name }}</label>
+        </p>
+        <p>
+          <label>Last Name:</label>
+          <label>{{ temp_user.last_name }}</label>
+        </p>
+        <p>
+          <label>Email:</label>
+          <label>{{ temp_user.email }}</label>
+        </p>
+        <p>
+          <label>Role:</label>
+          <input 
+            type="text"
+            name="role"
+            #role="ngModel"
+            [(ngModel)]="temp_user.role"
+            class="form-control"
+            placeholder="temp_user.role"/>
+        </p>
+        <p>
+          <label>Level:</label>
+          <input 
+            type="text"
+            name="level"
+            #level="ngModel"
+            [(ngModel)]="temp_user.level"
+            class="form-control"
+            placeholder="temp_user.level"/>
+        </p>
         <input 
-          type="text"
-          name="level"
-          #level="ngModel"
-          [(ngModel)]="temp_user.level"
-          class="form-control"
-          placeholder="temp_user.level"/>
-      </p>
-      <input 
-        type="submit"
-        value="Send"
-        class="btn btn-warning"
-        [disabled]="!userEdit.form.valid"/>
-  </form>
-</div>
+          type="submit"
+          value="Send"
+          class="btn btn-warning"
+          [disabled]="!userEdit.form.valid"/>
+      </form>
+    </div>
+        
+    <app-footer></app-footer>
+</div><!-- Finish container -->
 
-<app-footer></app-footer>
 
 
