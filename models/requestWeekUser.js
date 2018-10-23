@@ -9,6 +9,7 @@ var RequestWeekUser = Schema({
         ref: 'User'
     },
     numberWeek: String,
+    year: String,
     created_at: {
         type: String
     },

@@ -114,6 +114,7 @@ function saveRequestWeek(req, res) {
     }
     requestUser.emitter = req.user.sub;
     requestUser.numberWeek = params.numberWeek;
+    requestUser.year = params.year;
     requestUser.created_at = moment().unix();
 
     for ( let i = 0; i < days.length; i++ ) {
@@ -184,6 +185,7 @@ function getRequestWeek(req, res) {
     
     var userId = params.emitter;
     var numberWeek = params.numberWeek;
+    var year = params.year;
 
     console.log( userId, numberWeek );
 
@@ -194,7 +196,7 @@ function getRequestWeek(req, res) {
         });
     }
 
-    RequestWeekUser.find( { emitter: userId, numberWeek: numberWeek }, ( err, userRequest ) => {
+    RequestWeekUser.find( { emitter: userId, numberWeek: numberWeek, year: year }, ( err, userRequest ) => {
         if ( err ) {
             return res.status(500).send({
                 ok: false,

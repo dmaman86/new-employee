@@ -63,6 +63,7 @@ export class UserWeekComponent implements OnInit {
     this.checkDay();
     this.requestUser.setEmitter( this.identity._id );
     this.requestUser.setNumberWeek( String(this.number_week[1]) );
+    this.requestUser.setYear( String( this.getYear() ) );
 
     this._userService.getRequestUser( this.requestUser ).subscribe(
       response => {
@@ -114,9 +115,13 @@ export class UserWeekComponent implements OnInit {
     // Get first day of year
     const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
     // Calculate full weeks to nearest Thursday
-    const weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7);
+    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7);
     // Return array of year and week number
-    return [full_date.getUTCFullYear(), weekNo + 1];
+    weekNo++;
+    if ( weekNo === 53 ) { // If we go over the weeks of the year
+      weekNo = 0;
+    }
+    return [full_date.getUTCFullYear(), weekNo];
   }
 
   getFirstAndLastDates( numberWeek ) {
@@ -217,8 +222,9 @@ export class UserWeekComponent implements OnInit {
   }
 
   sendValues() {
-    console.log( this.requestUser );
-    if ( this.count_morning >= Number( this.requestWeek.morning )
+    // console.log( this.requestUser );
+    if ( this.requestWeek.method === 'open') {
+      if ( this.count_morning >= Number( this.requestWeek.morning )
           && this.count_afternoon >= Number( this.requestWeek.afternoon )
           && this.count_night >= Number( this.requestWeek.night )
           && this.count_weekend >= Number( this.requestWeek.weekend ) ) {
@@ -241,10 +247,10 @@ export class UserWeekComponent implements OnInit {
         }
 
         const requestId = this.requestUser.getId();
-        console.log( requestId );
+        // console.log( requestId );
 
         if ( requestId.length <= 0 ) {
-          console.log( this.requestUser );
+          // console.log( this.requestUser );
           this._userService.saveRequestUser( this.requestUser ).subscribe(
             response => {
               if ( response.ok ) {
@@ -296,6 +302,7 @@ export class UserWeekComponent implements OnInit {
       } else {
         this.status = 'error';
       }
+    }
   }
 
   updateValues( d, s ) {
@@ -359,6 +366,10 @@ export class UserWeekComponent implements OnInit {
     return numberWeek;
   }
 
+  getYear() {
+    const year = new Date().getFullYear();
+    return year;
+  }
 
   setValuesRequest() {
     this._userService.getValuesRequest().subscribe(

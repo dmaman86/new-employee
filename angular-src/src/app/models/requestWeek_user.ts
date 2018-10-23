@@ -9,6 +9,7 @@ export class RequestWeekUser {
     private emitter: string;
     private numberWeek: string;
     private level: string;
+    private year: string;
     private sunday: Shift;
     private monday: Shift;
     private tuesday: Shift;
@@ -86,6 +87,14 @@ export class RequestWeekUser {
 
     public getLevel() {
         return this.level;
+    }
+
+    public setYear( year ) {
+        this.year = year;
+    }
+
+    public getYear() {
+        return this.year;
     }
 
     public setShift( day, shift, value ) {

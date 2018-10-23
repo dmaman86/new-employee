@@ -7021,7 +7021,7 @@ module.exports = "#footer {\n    bottom: 0;\n    left: 0;\n    right: 0;\n    he
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Footer -->\n<footer id=\"footer\">\n  <!-- Copyright -->\n  <div class=\"footer-copyright text-center py-3\">© 2018 Copyright:\n    <a href=\"mailto:dmaman86@gmail.com\" target=\"_top\"> David Maman</a>\n  </div>\n  <!-- Copyright -->\n\n</footer>\n<!-- Footer -->\n"
+module.exports = "<!-- Footer -->\n<footer id=\"footer\">\n  <!-- Copyright -->\n  <div class=\"footer-copyright text-center py-3\">Created and designed by:\n    <a href=\"mailto:dmaman86@gmail.com\" target=\"_top\"> David Maman</a>\n  </div>\n  <!-- Copyright -->\n\n</footer>\n<!-- Footer -->\n"
 
 /***/ }),
 
@@ -7372,6 +7372,7 @@ var UserWeekComponent = /** @class */ (function () {
         this.checkDay();
         this.requestUser.setEmitter(this.identity._id);
         this.requestUser.setNumberWeek(String(this.number_week[1]));
+        this.requestUser.setYear(String(this.getYear()));
         this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
             if (response.ok) {
                 // console.log( response.request );
@@ -7422,7 +7423,11 @@ var UserWeekComponent = /** @class */ (function () {
         // Calculate full weeks to nearest Thursday
         var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7);
         // Return array of year and week number
-        return [full_date.getUTCFullYear(), weekNo + 1];
+        weekNo++;
+        if (weekNo === 53) { // If we go over the weeks of the year
+            weekNo = 0;
+        }
+        return [full_date.getUTCFullYear(), weekNo];
     };
     UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
         // const moment = require('moment');
@@ -7525,78 +7530,80 @@ var UserWeekComponent = /** @class */ (function () {
     };
     UserWeekComponent.prototype.sendValues = function () {
         var _this = this;
-        console.log(this.requestUser);
-        if (this.count_morning >= Number(this.requestWeek.morning)
-            && this.count_afternoon >= Number(this.requestWeek.afternoon)
-            && this.count_night >= Number(this.requestWeek.night)
-            && this.count_weekend >= Number(this.requestWeek.weekend)) {
-            for (var i = 0; i < this.days.length; i++) {
-                var d = this.days[i];
-                for (var j = 0; j < this.shift.length; j++) {
-                    var s = this.shift[j];
-                    this.requestUser.setShift(d, s, this.week[d][s]);
+        // console.log( this.requestUser );
+        if (this.requestWeek.method === 'open') {
+            if (this.count_morning >= Number(this.requestWeek.morning)
+                && this.count_afternoon >= Number(this.requestWeek.afternoon)
+                && this.count_night >= Number(this.requestWeek.night)
+                && this.count_weekend >= Number(this.requestWeek.weekend)) {
+                for (var i = 0; i < this.days.length; i++) {
+                    var d = this.days[i];
+                    for (var j = 0; j < this.shift.length; j++) {
+                        var s = this.shift[j];
+                        this.requestUser.setShift(d, s, this.week[d][s]);
+                    }
+                }
+                this.status = 'success';
+                if (this.status === 'success') {
+                    this.count_morning = 0;
+                    this.count_afternoon = 0;
+                    this.count_night = 0;
+                    this.count_weekend = 0;
+                }
+                var requestId = this.requestUser.getId();
+                // console.log( requestId );
+                if (requestId.length <= 0) {
+                    // console.log( this.requestUser );
+                    this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
+                        if (response.ok) {
+                            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+                                position: 'top',
+                                type: 'success',
+                                title: 'Submitted successfully',
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                        }
+                    }, function (error) {
+                        var errorMessage = error;
+                        // console.log(errorMessage);
+                        if (errorMessage !== null) {
+                            _this.status = 'error';
+                        }
+                    });
+                }
+                else {
+                    this._userService.updateRequestUser(this.requestUser).subscribe(function (response) {
+                        if (!response.ok) {
+                            _this.status = response.message;
+                        }
+                        else {
+                            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+                                position: 'top',
+                                type: 'success',
+                                title: 'You have updated your shifts',
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                        }
+                    }, function (error) {
+                        var errorMessage = error;
+                        // console.log(errorMessage);
+                        if (errorMessage !== null) {
+                            _this.status = 'error';
+                        }
+                    });
                 }
             }
-            this.status = 'success';
-            if (this.status === 'success') {
-                this.count_morning = 0;
-                this.count_afternoon = 0;
-                this.count_night = 0;
-                this.count_weekend = 0;
-            }
-            var requestId = this.requestUser.getId();
-            console.log(requestId);
-            if (requestId.length <= 0) {
-                console.log(this.requestUser);
-                this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
-                    if (response.ok) {
-                        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                            position: 'top',
-                            type: 'success',
-                            title: 'Submitted successfully',
-                            showConfirmButton: false,
-                            timer: 5000
-                        });
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 2000);
-                    }
-                }, function (error) {
-                    var errorMessage = error;
-                    // console.log(errorMessage);
-                    if (errorMessage !== null) {
-                        _this.status = 'error';
-                    }
-                });
-            }
             else {
-                this._userService.updateRequestUser(this.requestUser).subscribe(function (response) {
-                    if (!response.ok) {
-                        _this.status = response.message;
-                    }
-                    else {
-                        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                            position: 'top',
-                            type: 'success',
-                            title: 'You have updated your shifts',
-                            showConfirmButton: false,
-                            timer: 5000
-                        });
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 2000);
-                    }
-                }, function (error) {
-                    var errorMessage = error;
-                    // console.log(errorMessage);
-                    if (errorMessage !== null) {
-                        _this.status = 'error';
-                    }
-                });
+                this.status = 'error';
             }
-        }
-        else {
-            this.status = 'error';
         }
     };
     UserWeekComponent.prototype.updateValues = function (d, s) {
@@ -7659,6 +7666,10 @@ var UserWeekComponent = /** @class */ (function () {
             numberWeek++;
         }
         return numberWeek;
+    };
+    UserWeekComponent.prototype.getYear = function () {
+        var year = new Date().getFullYear();
+        return year;
     };
     UserWeekComponent.prototype.setValuesRequest = function () {
         var _this = this;
@@ -7821,6 +7832,12 @@ var RequestWeekUser = /** @class */ (function () {
     };
     RequestWeekUser.prototype.getLevel = function () {
         return this.level;
+    };
+    RequestWeekUser.prototype.setYear = function (year) {
+        this.year = year;
+    };
+    RequestWeekUser.prototype.getYear = function () {
+        return this.year;
     };
     RequestWeekUser.prototype.setShift = function (day, shift, value) {
         this[day][shift] = value;
