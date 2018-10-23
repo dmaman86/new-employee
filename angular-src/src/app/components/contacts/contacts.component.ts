@@ -227,4 +227,35 @@ export class ContactsComponent implements OnInit {
     }
   }
 
+  resetPassUser( userId ) {
+    this.temp_user._id = userId;
+    this.temp_user.password = '123456';
+
+    this._userService.adminResetUser( this.temp_user ).subscribe(
+      response => {
+        if ( !response.ok ) {
+          this.status = 'error';
+        } else {
+          swal({
+            position: 'top',
+            type: 'success',
+            title: 'User password was reset',
+            showConfirmButton: false,
+            timer: 5000
+          });
+          setTimeout( () => {
+            window.location.reload();
+          }, 2000);
+        }
+      }, error => {
+        const errorMensage = <any>error;
+        // console.log( errorMensage );
+
+        if ( errorMensage != null) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+
 }

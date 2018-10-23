@@ -16,6 +16,7 @@ api.get('/get-users', md_auth.ensureAuth, UserCtrl.getUsers );
 api.get('/user/:id', md_auth.ensureAuth, UserCtrl.getUser );
 api.put('/update-user/:id', md_auth.ensureAuth, UserCtrl.updateUser );
 api.put('/admin-update-user/:id', md_auth.ensureAuth, UserCtrl.adminUpdateUser );
+api.put('/admin-reset-user/:id', md_auth.ensureAuth, UserCtrl.resetUserforAdmin );
 api.delete('/delete-user/:id', md_auth.ensureAuth, UserCtrl.deleteUser );
 api.post('/upload-image-user/:id', [md_auth.ensureAuth, md_upload],UserCtrl.uploadImagen);
 api.get('/get-image-user/:imageFile', UserCtrl.getImageFile);

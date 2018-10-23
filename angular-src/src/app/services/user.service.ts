@@ -108,6 +108,12 @@ export class UserService {
         return this._http.put( this.url + 'admin-update-user/' + user._id, params, { headers: headers });
     }
 
+    adminResetUser( user: User ): Observable<any> {
+        const params = JSON.stringify( user );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put( this.url + 'admin-reset-user/' + user._id, params, { headers: headers });
+    }
+
     /* Shifts */
 
     getRequestUser( requestUser: RequestWeekUser ): Observable<any> {

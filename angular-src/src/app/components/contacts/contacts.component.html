@@ -3,65 +3,69 @@
   <div class="panel panel-default">
     <div class="panel-heading">Temporaly "send email" not active.</div>
     <div class="panel-body">
-        <input 
+      <input 
         type="text"
         id="myInput" 
         (keyup)="onKey($event)"
         placeholder="Search for names">
-        <div class="table-responsive" *ngIf="this.identity.role == 'USER_ROLE'">
-          <table class="table table-bordered table-hover" id="myTable">
-            <thead>
-              <tr>
-                <th></th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of usersToSearch; let i = index">
-                <td><input type="checkbox" id="{{user.email}}"></td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.email }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <br/>
+      <div class="table-responsive" *ngIf="this.identity.role == 'USER_ROLE'">
+        <table class="table table-bordered table-hover" id="myTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usersToSearch; let i = index">
+              <td><input type="checkbox" id="{{user.email}}"></td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
           
-          <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
-        </div><!-- finish table responsive for user role -->
-        <div class="table-responsive" *ngIf="this.identity.role == 'ADMIN_ROLE'">
-          <table class="table table-bordered table-hover" id="myTable">
-            <thead>
-              <tr>
-                <th></th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Level</th>
-                <th>Update</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of usersToSearch; let i = index">
-                <td>{{ i+1 }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.last_name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.level }}</td>
-                <td *ngIf="identity._id != user._id">
-                  <input type="button" (click)="editUser( user._id )"
-                    class="btn btn-primary" value="Edit"/>
-                  <input type="button" (click)="deleteUser( user._id )"
-                    class="btn btn-danger" value="Delete"/>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!-- Finish table responsive for admin role -->
+        <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+      </div><!-- finish table responsive for user role -->
+      <div class="table-responsive" *ngIf="this.identity.role == 'ADMIN_ROLE'">
+        <table class="table table-bordered table-hover" id="myTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Level</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usersToSearch; let i = index">
+              <td>{{ i+1 }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>{{ user.level }}</td>
+              <td *ngIf="identity._id != user._id">
+                <button type="button" (click)="editUser( user._id )"
+                  class="btn btn-primary">Edit User</button>
+                <button type="button" (click)="deleteUser( user._id )"
+                  class="btn btn-danger">Delete User</button>
+                <button type="button" (click)="resetPassUser( user._id )"
+                  class="btn btn-warning">Reset Password</button>
+                <!--<input type="button" (click)="resetPassUser( user._id )"
+                  class="btn btn-warning" value="Reset Password"/>-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div><!-- Finish table responsive for admin role -->
     </div><!-- Finish panel-body -->
   </div><!-- Finish panel-default -->
   <div *ngIf="status == 'edit'">
