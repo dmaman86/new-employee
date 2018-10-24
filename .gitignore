@@ -2,6 +2,5 @@
 
 node_modules/
 
-angular-src/src/assets/
+assets/
 
-angular-src/README.md
