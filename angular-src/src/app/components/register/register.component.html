@@ -1,15 +1,15 @@
 <div class="container">
   <h2>{{ title }}</h2>
+  <hr>
+  <div class="alert alert-success" *ngIf="status == 'success' ">
+    Register success!! 
+    <a [routerLink]="['/login']">Sign In Here</a>
+  </div>
+    
+  <div class="alert alert-danger" *ngIf="status == 'error' ">
+    Please try with other data
+  </div>
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-
-    <div class="alert alert-success" *ngIf="status == 'success' ">
-      Register success!! 
-      <a [routerLink]="['/login']">Sign In Here</a>
-    </div>
-      
-    <div class="alert alert-danger" *ngIf="status == 'error' ">
-      Please try with other data
-    </div>
     <div class="form-row">
   
       <div class="form-group col-md-6">
@@ -75,76 +75,3 @@
   
 </div>
 <app-footer></app-footer>
-
-<!--<h1>{{ title }}</h1>
-<hr>
-<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-
-    <div class="alert alert-success" *ngIf="status == 'success' ">
-        Register success!! 
-        <a [routerLink]="['/login']">Sign In Here</a>
-    </div>
-    
-      <div class="alert alert-danger" *ngIf="status == 'error' ">
-        Please try with other data
-      </div>
-    <div class="form-row">
-
-        <div class="form-group col-md-6">
-          <label for="inputName4">First Name</label>
-          <input type="text"
-                name="name"
-                #name="ngModel"
-                [(ngModel)]="user.name"
-                class="form-control"
-                required
-                placeholder="First Name">
-          <div *ngIf="name.errors?.required"
-                class="form-control-feedback">
-                Name is required!
-          </div>
-        </div>
-  
-        <div class="form-group col-md-6">
-          <label for="inputLastName4">Last Name</label>
-          <input type="text"
-                  name="last_name"
-                  #last_name="ngModel"
-                  [(ngModel)]="user.last_name"
-                 class="form-control"
-                 required
-                 placeholder="Last Name">
-        </div>
-  
-      </div>
-
-      <div class="form-group">
-          <label for="inputEmail">Email</label>
-          <input type="email"
-              name="email"
-              #email="ngModel"
-              [(ngModel)]="user.email"
-              class="form-control"
-              required
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              placeholder="Email">
-      </div>
-
-      <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password"
-              name="password"
-              #password="ngModel"
-              [(ngModel)]="user.password"
-              class="form-control"
-              required
-              placeholder="Password">
-      </div>
-    
-    <button
-       type="submit"
-       class="btn btn-primary"
-      [disabled]="!registerForm.form.valid">Sign Up</button>
-  </form>
-
-  <app-footer></app-footer>-->

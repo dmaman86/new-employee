@@ -1,64 +1,64 @@
-<div class="col-log-5">
-  <h1>{{ title }}</h1>
+<div class="container">
+  <h2>{{ title }}</h2>
   <hr>
-
   <div class="alert alert-danger" *ngIf="status == 'error' ">
 		Please check email/password
   </div>
   <div class="alert alert-danger" *ngIf="status == 'remenber' ">
 		I remember you, if you want connect to admin
-	</div>
-
+  </div>
+  
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="form-group row">
-        <label for="inputEmail3"
-         class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-6">
-          <input type="email"
-                name="email"
-                #email="ngModel"
-                [(ngModel)]="user.email"
-                class="form-control"
+    <div class="form-group row">
+      <label for="inputEmail3"
+       class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-6">
+        <input type="email"
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="user.email"
+              class="form-control"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3"
+             class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-6">
+        <input type="password"
+               class="form-control"
+                name="password"
+                #password="ngModel"
+                [(ngModel)]="user.password"
                 required
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                placeholder="Email">
-        </div>
+                placeholder="Password">
       </div>
-      <div class="form-group row">
-        <label for="inputPassword3"
-               class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-6">
-          <input type="password"
-                 class="form-control"
-                  name="password"
-                  #password="ngModel"
-                  [(ngModel)]="user.password"
-                  required
-                  placeholder="Password">
-        </div>
-      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-sm-10">
-          <button 
-            type="submit"
-            class="btn btn-primary"
-            [disabled]="!loginForm.form.valid">Log In</button>
-            <br><br>
-            <p>
-              Temporarily, everyone signs up.<br>
-              In the future only the admin will be responsible for registering a new employee.<br>
-              <button type="button" class="btn btn-link" (click)="newUser()">New User? Click me</button>
-            </p>
-            <p>If you have any problem to enter or forgot your password, please contact me by email</p>
-            <p>
-              How does it work? go to the page <button type="button" class="btn btn-link" (click)="sendToAbout()">About me.</button>
-            </p>
-        </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button 
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!loginForm.form.valid">Log In</button>
       </div>
-    </form>
-
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <ul>
+          <li>Temporarily, everyone signs up.<br>
+            In the future only the admin will be responsible for registering a new employee.<br>
+            <button type="button" class="btn btn-link" (click)="newUser()">New User? Click me</button></li>
+          <li>If you have any problem to enter or forgot your password, please contact me by email.</li>
+          <li>How does it work? go to the page <button type="button" class="btn btn-link" (click)="sendToAbout()">About me.</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-
 <app-footer></app-footer>
 
