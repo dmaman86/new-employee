@@ -6026,7 +6026,7 @@ module.exports = "#myInput {\n    background-position: 10px 12px;\n    backgroun
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2>{{ title }}</h2>\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\">Temporaly \"send email\" not active.</div>\n    <div class=\"panel-body\">\n      <input \n        type=\"text\"\n        id=\"myInput\" \n        (keyup)=\"onKey($event)\"\n        placeholder=\"Search for names\">\n      <div class=\"table-responsive\" *ngIf=\"this.identity.role == 'USER_ROLE'\">\n        <table class=\"table table-bordered table-hover\" id=\"myTable\">\n          <thead>\n            <tr>\n              <th></th>\n              <th>First Name</th>\n              <th>Last Name</th>\n              <th>Email</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let user of usersToSearch; let i = index\">\n              <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n              <td>{{ user.name }}</td>\n              <td>{{ user.last_name }}</td>\n              <td>{{ user.email }}</td>\n            </tr>\n          </tbody>\n        </table>\n        <br/>\n          \n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n      </div><!-- finish table responsive for user role -->\n      <div class=\"table-responsive\" *ngIf=\"this.identity.role == 'ADMIN_ROLE'\">\n        <table class=\"table table-bordered table-hover\" id=\"myTable\">\n          <thead>\n            <tr>\n              <th></th>\n              <th>First Name</th>\n              <th>Last Name</th>\n              <th>Email</th>\n              <th>Role</th>\n              <th>Level</th>\n              <th>Update</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let user of usersToSearch; let i = index\">\n              <td>{{ i+1 }}</td>\n              <td>{{ user.name }}</td>\n              <td>{{ user.last_name }}</td>\n              <td>{{ user.email }}</td>\n              <td>{{ user.role }}</td>\n              <td>{{ user.level }}</td>\n              <td *ngIf=\"identity._id != user._id\">\n                <button type=\"button\" (click)=\"editUser( user._id )\"\n                  class=\"btn btn-primary\">Edit User</button>\n                <button type=\"button\" (click)=\"deleteUser( user._id )\"\n                  class=\"btn btn-danger\">Delete User</button>\n                <button type=\"button\" (click)=\"resetPassUser( user._id )\"\n                  class=\"btn btn-warning\">Reset Password</button>\n                <!--<input type=\"button\" (click)=\"resetPassUser( user._id )\"\n                  class=\"btn btn-warning\" value=\"Reset Password\"/>-->\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div><!-- Finish table responsive for admin role -->\n    </div><!-- Finish panel-body -->\n  </div><!-- Finish panel-default -->\n  <div *ngIf=\"status == 'edit'\">\n      <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n        <p>\n          <label>Name:</label>\n          <label>{{ temp_user.name }}</label>\n        </p>\n        <p>\n          <label>Last Name:</label>\n          <label>{{ temp_user.last_name }}</label>\n        </p>\n        <p>\n          <label>Email:</label>\n          <label>{{ temp_user.email }}</label>\n        </p>\n        <p>\n          <label>Role:</label>\n          <input \n            type=\"text\"\n            name=\"role\"\n            #role=\"ngModel\"\n            [(ngModel)]=\"temp_user.role\"\n            class=\"form-control\"\n            placeholder=\"temp_user.role\"/>\n        </p>\n        <p>\n          <label>Level:</label>\n          <input \n            type=\"text\"\n            name=\"level\"\n            #level=\"ngModel\"\n            [(ngModel)]=\"temp_user.level\"\n            class=\"form-control\"\n            placeholder=\"temp_user.level\"/>\n        </p>\n        <input \n          type=\"submit\"\n          value=\"Send\"\n          class=\"btn btn-warning\"\n          [disabled]=\"!userEdit.form.valid\"/>\n      </form>\n    </div>\n        \n    <app-footer></app-footer>\n</div><!-- Finish container -->\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <h2>{{ title }}</h2>\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'USER_ROLE'\">Temporaly \"send email\" not active.</div>\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">After resetting a user's password, the new password is: 123456.</div>\n    <div class=\"panel-body\">\n      <div class=\"row\">\n        <div class=\"col-md-8\">\n          <input \n            type=\"text\"\n            id=\"myInput\" \n            (keyup)=\"onKey($event)\"\n            placeholder=\"Search for names\">\n        </div><!-- col md 8 -->\n      </div><!-- finish row -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'USER_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div><!-- col md 12 -->\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n      </div><!-- row user -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                  <th>Role</th>\n                  <th>Level</th>\n                  <th>Update</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td>{{ i+1 }}</td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                  <td>{{ user.role }}</td>\n                  <td>{{ user.level }}</td>\n                  <td *ngIf=\"identity._id != user._id\">\n                    <button type=\"button\" (click)=\"editUser( user._id )\"\n                      class=\"btn btn-primary\">Edit User</button>\n                    <button type=\"button\" (click)=\"deleteUser( user._id )\"\n                      class=\"btn btn-danger\">Delete User</button>\n                    <button type=\"button\" (click)=\"resetPassUser( user._id )\"\n                      class=\"btn btn-warning\">Reset Password</button>\n                      <!--<input type=\"button\" (click)=\"resetPassUser( user._id )\"\n                        class=\"btn btn-warning\" value=\"Reset Password\"/>-->\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div><!-- table responsive for admin -->\n        </div><!-- col md 12 -->\n      </div><!-- row admin -->\n    </div><!-- finish panel body -->\n  </div><!-- finish panel default -->\n  <div *ngIf=\"status == 'edit'\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">Edit user for admin</div>\n        <div class=\"panel-body\">\n          <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.name }}</label>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Last Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.last_name }}</label>\n              </div>\n            </div>\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Role:&nbsp;&nbsp;</label>\n                <select [(ngModel)]=\"selectedOptionRole\" name=\"first\">\n                  <option *ngFor=\"let or of optionsRole\">\n                    {{ or.role }}\n                  </option>\n                </select>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Level:&nbsp;&nbsp;</label>\n                <input \n                  type=\"text\"\n                  name=\"level\"\n                  #level=\"ngModel\"\n                  [(ngModel)]=\"temp_user.level\"\n                  class=\"form-control\"\n                  placeholder=\"temp_user.level\"/>\n              </div>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userEdit.form.valid\">Send</button>\n          </form>\n        </div><!-- panel body -->\n    </div><!-- panel default -->\n  </div>\n  <app-footer></app-footer> \n</div><!-- finish container -->\n\n\n\n"
 
 /***/ }),
 
@@ -6075,11 +6075,16 @@ var ContactsComponent = /** @class */ (function () {
         this.values = '';
         this.usersToSearch = [];
         this.users = [];
+        this.optionsRole = [
+            { role: 'USER_ROLE', value: 1 },
+            { role: 'ADMIN_ROLE', value: 2 }
+        ];
     }
     ContactsComponent.prototype.ngOnInit = function () {
         this.newGetUsers();
         // console.log( this.newGetUsers() );
     };
+    /***************** Inactive! ***************/
     ContactsComponent.prototype.currentPage = function () {
         var _this = this;
         this._route.params.subscribe(function (params) {
@@ -6101,21 +6106,6 @@ var ContactsComponent = /** @class */ (function () {
             _this.getUsers(page);
         });
     };
-    ContactsComponent.prototype.newGetUsers = function () {
-        var _this = this;
-        this._userService.getUsersToSearch().subscribe(function (response) {
-            if (response.ok) {
-                // console.log( response.users );
-                _this.usersToSearch = response.users;
-            }
-        }, function (error) {
-            var errorMensage = error;
-            // console.log( errorMensage );
-            if (errorMensage !== null) {
-                _this.status = 'error';
-            }
-        });
-    };
     ContactsComponent.prototype.getUsers = function (page) {
         var _this = this;
         this._userService.getUsers(page).subscribe(function (response) {
@@ -6130,6 +6120,22 @@ var ContactsComponent = /** @class */ (function () {
                 if (page > _this.pages) {
                     _this._router.navigate(['/contacts', 1]);
                 }
+            }
+        }, function (error) {
+            var errorMensage = error;
+            // console.log( errorMensage );
+            if (errorMensage !== null) {
+                _this.status = 'error';
+            }
+        });
+    };
+    /**************************************************/
+    ContactsComponent.prototype.newGetUsers = function () {
+        var _this = this;
+        this._userService.getUsersToSearch().subscribe(function (response) {
+            if (response.ok) {
+                // console.log( response.users );
+                _this.usersToSearch = response.users;
             }
         }, function (error) {
             var errorMensage = error;
@@ -6158,30 +6164,15 @@ var ContactsComponent = /** @class */ (function () {
     };
     ContactsComponent.prototype.deleteUser = function (userId) {
         var _this = this;
-        for (var i = 0; i < this.usersToSearch.length; i++) {
-            if (this.usersToSearch[i]._id === userId) {
-                this.temp_user._id = this.usersToSearch[i]._id;
-                this.temp_user.name = this.usersToSearch[i].name;
-                this.temp_user.last_name = this.usersToSearch[i].last_name;
-                this.temp_user.email = this.usersToSearch[i].email;
-                this.temp_user.role = this.usersToSearch[i].role;
-                this.temp_user.level = this.usersToSearch[i].level;
-            }
-        }
+        this.temp_user._id = userId;
         // console.log( this.temp_user );
         this._userService.deleteUser(this.temp_user).subscribe(function (response) {
             // console.log( response );
+            if (!response.ok) {
+                _this.status = 'error';
+            }
             if (response.ok) {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
-                    position: 'top',
-                    type: 'success',
-                    title: 'User was delete',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
-                setTimeout(function () {
-                    window.location.reload();
-                }, 2000);
+                _this.getSuccess('User was delete');
             }
         }, function (error) {
             var errorMensage = error;
@@ -6193,6 +6184,7 @@ var ContactsComponent = /** @class */ (function () {
     };
     ContactsComponent.prototype.onSubmit = function () {
         var _this = this;
+        this.temp_user.role = this.selectedOptionRole;
         // console.log( this.temp_user );
         this._userService.adminUpdateUser(this.temp_user).subscribe(function (response) {
             // console.log( response );
@@ -6200,16 +6192,7 @@ var ContactsComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
             else {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
-                    position: 'top',
-                    type: 'success',
-                    title: 'User was update',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
-                setTimeout(function () {
-                    window.location.reload();
-                }, 2000);
+                _this.getSuccess('User was update');
             }
         }, function (error) {
             var errorMensage = error;
@@ -6248,16 +6231,7 @@ var ContactsComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
             else {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
-                    position: 'top',
-                    type: 'success',
-                    title: 'User password was reset',
-                    showConfirmButton: false,
-                    timer: 5000
-                });
-                setTimeout(function () {
-                    window.location.reload();
-                }, 2000);
+                _this.getSuccess('User password was reset');
             }
         }, function (error) {
             var errorMensage = error;
@@ -6266,6 +6240,18 @@ var ContactsComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
         });
+    };
+    ContactsComponent.prototype.getSuccess = function (title) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+            position: 'top',
+            type: 'success',
+            title: title,
+            showConfirmButton: false,
+            timer: 5000
+        });
+        setTimeout(function () {
+            window.location.reload();
+        }, 2000);
     };
     ContactsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

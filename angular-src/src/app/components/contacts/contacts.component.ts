@@ -28,6 +28,8 @@ export class ContactsComponent implements OnInit {
   public pages;
   public url: string;
   public values: string;
+  public selectedOptionRole: string;
+  public optionsRole: any [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -42,6 +44,10 @@ export class ContactsComponent implements OnInit {
     this.values = '';
     this.usersToSearch = [];
     this.users = [];
+    this.optionsRole = [
+      { role: 'USER_ROLE', value: 1 },
+      { role: 'ADMIN_ROLE', value: 2 }
+    ];
   }
 
   ngOnInit() {
@@ -49,6 +55,7 @@ export class ContactsComponent implements OnInit {
     // console.log( this.newGetUsers() );
   }
 
+  /***************** Inactive! ***************/
   currentPage() {
     this._route.params.subscribe( params => {
       let page = params['page'];
@@ -72,24 +79,6 @@ export class ContactsComponent implements OnInit {
     });
   }
 
-  newGetUsers() {
-    this._userService.getUsersToSearch().subscribe(
-      response => {
-        if ( response.ok ) {
-          // console.log( response.users );
-          this.usersToSearch = response.users;
-        }
-      }, error => {
-        const errorMensage = <any>error;
-        // console.log( errorMensage );
-
-        if ( errorMensage !== null ) {
-          this.status = 'error';
-        }
-      }
-    );
-  }
-
   getUsers( page ) {
     this._userService.getUsers( page ).subscribe(
       response => {
@@ -104,6 +93,25 @@ export class ContactsComponent implements OnInit {
           if ( page > this.pages ) {
             this._router.navigate(['/contacts', 1]);
           }
+        }
+      }, error => {
+        const errorMensage = <any>error;
+        // console.log( errorMensage );
+
+        if ( errorMensage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+  /**************************************************/
+
+  newGetUsers() {
+    this._userService.getUsersToSearch().subscribe(
+      response => {
+        if ( response.ok ) {
+          // console.log( response.users );
+          this.usersToSearch = response.users;
         }
       }, error => {
         const errorMensage = <any>error;
@@ -138,32 +146,16 @@ export class ContactsComponent implements OnInit {
   }
 
   deleteUser( userId ) {
-    for (let i = 0; i < this.usersToSearch.length; i++) {
-      if ( this.usersToSearch[i]._id === userId ) {
-        this.temp_user._id = this.usersToSearch[i]._id;
-        this.temp_user.name = this.usersToSearch[i].name;
-        this.temp_user.last_name = this.usersToSearch[i].last_name;
-        this.temp_user.email = this.usersToSearch[i].email;
-        this.temp_user.role = this.usersToSearch[i].role;
-        this.temp_user.level = this.usersToSearch[i].level;
-      }
-    }
-
+    this.temp_user._id = userId;
     // console.log( this.temp_user );
     this._userService.deleteUser( this.temp_user ).subscribe(
       response => {
         // console.log( response );
+        if ( !response.ok ) {
+          this.status = 'error';
+        }
         if ( response.ok ) {
-          swal({
-            position: 'top',
-            type: 'success',
-            title: 'User was delete',
-            showConfirmButton: false,
-            timer: 5000
-          });
-          setTimeout( () => {
-            window.location.reload();
-          }, 2000);
+          this.getSuccess('User was delete');
         }
       }, error => {
         const errorMensage = <any>error;
@@ -177,6 +169,7 @@ export class ContactsComponent implements OnInit {
   }
 
   onSubmit() {
+    this.temp_user.role = this.selectedOptionRole;
     // console.log( this.temp_user );
     this._userService.adminUpdateUser( this.temp_user ).subscribe(
       response => {
@@ -184,16 +177,7 @@ export class ContactsComponent implements OnInit {
         if ( !response.ok ) {
           this.status = 'error';
         } else {
-          swal({
-            position: 'top',
-            type: 'success',
-            title: 'User was update',
-            showConfirmButton: false,
-            timer: 5000
-          });
-          setTimeout( () => {
-            window.location.reload();
-          }, 2000);
+          this.getSuccess('User was update');
         }
       }, error => {
         const errorMensage = <any>error;
@@ -236,16 +220,7 @@ export class ContactsComponent implements OnInit {
         if ( !response.ok ) {
           this.status = 'error';
         } else {
-          swal({
-            position: 'top',
-            type: 'success',
-            title: 'User password was reset',
-            showConfirmButton: false,
-            timer: 5000
-          });
-          setTimeout( () => {
-            window.location.reload();
-          }, 2000);
+          this.getSuccess('User password was reset');
         }
       }, error => {
         const errorMensage = <any>error;
@@ -256,6 +231,19 @@ export class ContactsComponent implements OnInit {
         }
       }
     );
+  }
+
+  getSuccess( title: string ) {
+    swal({
+      position: 'top',
+      type: 'success',
+      title: title,
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout( () => {
+      window.location.reload();
+    }, 2000);
   }
 
 }
