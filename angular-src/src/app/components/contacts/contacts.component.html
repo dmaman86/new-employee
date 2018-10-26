@@ -36,7 +36,9 @@
             </table>
           </div>
         </div><!-- col md 12 -->
-        <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+        <div class="col text-center">
+          <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+        </div>
       </div><!-- row user -->
       <div class="row" *ngIf="this.identity.role === 'ADMIN_ROLE'">
         <div class="col-md-12">
