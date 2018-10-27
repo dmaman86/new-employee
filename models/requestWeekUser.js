@@ -47,6 +47,9 @@ var RequestWeekUser = Schema({
         morning: String,
         afternoon: String,
         night: String
+    },
+    message: {
+        type: String
     }
 })
 

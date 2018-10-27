@@ -3,9 +3,6 @@ import { Shift } from './shift';
 export class RequestWeekUser {
 
     private _id: string;
-    // private name: string;
-    // private last_name: string;
-    // private email: string;
     private emitter: string;
     private numberWeek: string;
     private level: string;
@@ -17,12 +14,10 @@ export class RequestWeekUser {
     private thursday: Shift;
     private friday: Shift;
     private saturday: Shift;
+    private message: string;
 
     constructor( id: string, emitter: string ) {
         this._id = id;
-        // this.name = name;
-        // this.last_name = this.last_name;
-        // this.email = this.email;
         this.emitter = emitter;
         this.sunday = new Shift('', '', '');
         this.monday = new Shift('', '', '');
@@ -48,30 +43,6 @@ export class RequestWeekUser {
     public getEmitter() {
         return this.emitter;
     }
-
-    /*public setName( name ) {
-        this.name = name;
-    }
-
-    public getName() {
-        return this.name;
-    }
-
-    public setLastName( last_name ) {
-        this.last_name = last_name;
-    }
-
-    public getLastName() {
-        return this.last_name;
-    }
-
-    public setEmail( email ) {
-        this.email = email;
-    }
-
-    public getEmail() {
-        return this.email;
-    }*/
 
     public setNumberWeek( num ) {
         this.numberWeek = num;
@@ -103,5 +74,13 @@ export class RequestWeekUser {
 
     public getShift( day, shift ) {
         return this[day][shift];
+    }
+
+    public setMessage( message: string ) {
+        this.message = message;
+    }
+
+    public getMessage() {
+        return this.message;
     }
 }

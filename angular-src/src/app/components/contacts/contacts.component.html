@@ -64,14 +64,9 @@
                   <td>{{ user.role }}</td>
                   <td>{{ user.level }}</td>
                   <td *ngIf="identity._id != user._id">
-                    <button type="button" (click)="editUser( user._id )"
-                      class="btn btn-primary">Edit User</button>
-                    <button type="button" (click)="deleteUser( user._id )"
-                      class="btn btn-danger">Delete User</button>
-                    <button type="button" (click)="resetPassUser( user._id )"
-                      class="btn btn-warning">Reset Password</button>
-                      <!--<input type="button" (click)="resetPassUser( user._id )"
-                        class="btn btn-warning" value="Reset Password"/>-->
+                    <i class="fas fa-marker" (click)="editUser( user._id )"></i>&nbsp;&nbsp;
+                    <i class="fas fa-trash-alt" (click)="deleteUser( user._id )"></i>&nbsp;&nbsp;
+                    <i class="fas fa-unlock-alt" (click)="resetPassUser( user._id )"></i>&nbsp;
                   </td>
                 </tr>
               </tbody>
@@ -116,7 +111,11 @@
                   placeholder="temp_user.level"/>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!userEdit.form.valid">Send</button>
+            <div class="row">
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary" [disabled]="!userEdit.form.valid">Send</button>
+              </div>
+            </div>
           </form>
         </div><!-- panel body -->
     </div><!-- panel default -->

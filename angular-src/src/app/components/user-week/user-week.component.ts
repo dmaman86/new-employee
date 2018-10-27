@@ -30,7 +30,7 @@ export class UserWeekComponent implements OnInit {
   public number_week: any;
   public dates: any[];
   public requestWeek: RequestWeek;
-
+  public message: string;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -45,6 +45,7 @@ export class UserWeekComponent implements OnInit {
     this.count_night = 0;
     this.count_weekend = 0;
     this.week = [];
+    this.message = '';
 
     for ( let i = 0; i < this.days.length; i++ ) {
       const tmp = this.days[i];
@@ -74,6 +75,8 @@ export class UserWeekComponent implements OnInit {
           } else {
             if ( response.request ) {
               this.requestUser.setId( response.request._id );
+              this.requestUser.setMessage( response.request.message );
+              this.message = response.request.message;
               for ( let i = 0; i < this.days.length; i++ ) {
                 const d = this.days[i];
                 for ( let j = 0; j < this.shift.length; j++) {
@@ -222,7 +225,7 @@ export class UserWeekComponent implements OnInit {
   }
 
   sendValues() {
-    // console.log( this.requestUser );
+    // console.log( this.message );
     if ( this.requestWeek.method === 'open') {
       if ( this.count_morning >= Number( this.requestWeek.morning )
           && this.count_afternoon >= Number( this.requestWeek.afternoon )
@@ -236,6 +239,8 @@ export class UserWeekComponent implements OnInit {
             this.requestUser.setShift( d, s, this.week[d][s] );
           }
         }
+
+        this.requestUser.setMessage( this.message );
 
         this.status = 'success';
 
@@ -254,7 +259,8 @@ export class UserWeekComponent implements OnInit {
           this._userService.saveRequestUser( this.requestUser ).subscribe(
             response => {
               if ( response.ok ) {
-                swal({
+                this.getSuccess('Submitted successfully');
+                /*swal({
                   position: 'top',
                   type: 'success',
                   title: 'Submitted successfully',
@@ -263,7 +269,7 @@ export class UserWeekComponent implements OnInit {
                 });
                 setTimeout( () => {
                   window.location.reload();
-                }, 2000);
+                }, 2000);*/
               }
             }, error => {
               const errorMessage = <any>error;
@@ -279,7 +285,8 @@ export class UserWeekComponent implements OnInit {
               if ( !response.ok ) {
                 this.status = response.message;
               } else {
-                swal({
+                this.getSuccess('You have updated your shifts');
+                /*swal({
                   position: 'top',
                   type: 'success',
                   title: 'You have updated your shifts',
@@ -288,7 +295,7 @@ export class UserWeekComponent implements OnInit {
                 });
                 setTimeout( () => {
                   window.location.reload();
-                }, 2000);
+                }, 2000);*/
               }
             }, error => {
               const errorMessage = <any>error;
@@ -394,6 +401,20 @@ export class UserWeekComponent implements OnInit {
         }
       }
     );
+  }
+
+
+  getSuccess( title: string ) {
+    swal({
+      position: 'top',
+      type: 'success',
+      title: title,
+      showConfirmButton: false,
+      timer: 5000
+    });
+    setTimeout( () => {
+      window.location.reload();
+    }, 2000);
   }
 
 }

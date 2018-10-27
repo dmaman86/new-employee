@@ -6026,7 +6026,7 @@ module.exports = "#myInput {\n    background-position: 10px 12px;\n    backgroun
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2>{{ title }}</h2>\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'USER_ROLE'\">Temporaly \"send email\" not active.</div>\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">After resetting a user's password, the new password is: 123456.</div>\n    <div class=\"panel-body\">\n      <div class=\"row\">\n        <div class=\"col-md-8\">\n          <input \n            type=\"text\"\n            id=\"myInput\" \n            (keyup)=\"onKey($event)\"\n            placeholder=\"Search for names\">\n        </div><!-- col md 8 -->\n      </div><!-- finish row -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'USER_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div><!-- col md 12 -->\n        <div class=\"col text-center\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n        </div>\n      </div><!-- row user -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                  <th>Role</th>\n                  <th>Level</th>\n                  <th>Update</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td>{{ i+1 }}</td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                  <td>{{ user.role }}</td>\n                  <td>{{ user.level }}</td>\n                  <td *ngIf=\"identity._id != user._id\">\n                    <button type=\"button\" (click)=\"editUser( user._id )\"\n                      class=\"btn btn-primary\">Edit User</button>\n                    <button type=\"button\" (click)=\"deleteUser( user._id )\"\n                      class=\"btn btn-danger\">Delete User</button>\n                    <button type=\"button\" (click)=\"resetPassUser( user._id )\"\n                      class=\"btn btn-warning\">Reset Password</button>\n                      <!--<input type=\"button\" (click)=\"resetPassUser( user._id )\"\n                        class=\"btn btn-warning\" value=\"Reset Password\"/>-->\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div><!-- table responsive for admin -->\n        </div><!-- col md 12 -->\n      </div><!-- row admin -->\n    </div><!-- finish panel body -->\n  </div><!-- finish panel default -->\n  <div *ngIf=\"status == 'edit'\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">Edit user for admin</div>\n        <div class=\"panel-body\">\n          <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.name }}</label>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Last Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.last_name }}</label>\n              </div>\n            </div>\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Role:&nbsp;&nbsp;</label>\n                <select [(ngModel)]=\"selectedOptionRole\" name=\"first\">\n                  <option *ngFor=\"let or of optionsRole\">\n                    {{ or.role }}\n                  </option>\n                </select>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Level:&nbsp;&nbsp;</label>\n                <input \n                  type=\"text\"\n                  name=\"level\"\n                  #level=\"ngModel\"\n                  [(ngModel)]=\"temp_user.level\"\n                  class=\"form-control\"\n                  placeholder=\"temp_user.level\"/>\n              </div>\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userEdit.form.valid\">Send</button>\n          </form>\n        </div><!-- panel body -->\n    </div><!-- panel default -->\n  </div>\n  <app-footer></app-footer> \n</div><!-- finish container -->\n\n\n\n"
+module.exports = "<div class=\"container\">\n  <h2>{{ title }}</h2>\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'USER_ROLE'\">Temporaly \"send email\" not active.</div>\n    <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">After resetting a user's password, the new password is: 123456.</div>\n    <div class=\"panel-body\">\n      <div class=\"row\">\n        <div class=\"col-md-8\">\n          <input \n            type=\"text\"\n            id=\"myInput\" \n            (keyup)=\"onKey($event)\"\n            placeholder=\"Search for names\">\n        </div><!-- col md 8 -->\n      </div><!-- finish row -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'USER_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div><!-- col md 12 -->\n        <div class=\"col text-center\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n        </div>\n      </div><!-- row user -->\n      <div class=\"row\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">\n        <div class=\"col-md-12\">\n          <div class=\"table-responsive\">\n            <table class=\"table table-bordered table-hover\" id=\"myTable\">\n              <thead>\n                <tr>\n                  <th></th>\n                  <th>First Name</th>\n                  <th>Last Name</th>\n                  <th>Email</th>\n                  <th>Role</th>\n                  <th>Level</th>\n                  <th>Update</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                  <td>{{ i+1 }}</td>\n                  <td>{{ user.name }}</td>\n                  <td>{{ user.last_name }}</td>\n                  <td>{{ user.email }}</td>\n                  <td>{{ user.role }}</td>\n                  <td>{{ user.level }}</td>\n                  <td *ngIf=\"identity._id != user._id\">\n                    <i class=\"fas fa-marker\" (click)=\"editUser( user._id )\"></i>&nbsp;&nbsp;\n                    <i class=\"fas fa-trash-alt\" (click)=\"deleteUser( user._id )\"></i>&nbsp;&nbsp;\n                    <i class=\"fas fa-unlock-alt\" (click)=\"resetPassUser( user._id )\"></i>&nbsp;\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div><!-- table responsive for admin -->\n        </div><!-- col md 12 -->\n      </div><!-- row admin -->\n    </div><!-- finish panel body -->\n  </div><!-- finish panel default -->\n  <div *ngIf=\"status == 'edit'\">\n    <div class=\"panel panel-default\">\n        <div class=\"panel-heading\">Edit user for admin</div>\n        <div class=\"panel-body\">\n          <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.name }}</label>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Last Name:&nbsp;&nbsp;</label>\n                <label>{{ temp_user.last_name }}</label>\n              </div>\n            </div>\n            <div class=\"form-row\">\n              <div class=\"form-group col-md-6\">\n                <label>Role:&nbsp;&nbsp;</label>\n                <select [(ngModel)]=\"selectedOptionRole\" name=\"first\">\n                  <option *ngFor=\"let or of optionsRole\">\n                    {{ or.role }}\n                  </option>\n                </select>\n              </div>\n              <div class=\"form-group col-md-6\">\n                <label>Level:&nbsp;&nbsp;</label>\n                <input \n                  type=\"text\"\n                  name=\"level\"\n                  #level=\"ngModel\"\n                  [(ngModel)]=\"temp_user.level\"\n                  class=\"form-control\"\n                  placeholder=\"temp_user.level\"/>\n              </div>\n            </div>\n            <div class=\"row\">\n              <div class=\"col text-center\">\n                <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userEdit.form.valid\">Send</button>\n              </div>\n            </div>\n          </form>\n        </div><!-- panel body -->\n    </div><!-- panel default -->\n  </div>\n  <app-footer></app-footer> \n</div><!-- finish container -->\n\n\n\n"
 
 /***/ }),
 
@@ -6166,19 +6166,30 @@ var ContactsComponent = /** @class */ (function () {
         var _this = this;
         this.temp_user._id = userId;
         // console.log( this.temp_user );
-        this._userService.deleteUser(this.temp_user).subscribe(function (response) {
-            // console.log( response );
-            if (!response.ok) {
-                _this.status = 'error';
-            }
-            if (response.ok) {
-                _this.getSuccess('User was delete');
-            }
-        }, function (error) {
-            var errorMensage = error;
-            // console.log( errorMensage );
-            if (errorMensage != null) {
-                _this.status = 'error';
+        sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it'
+        }).then(function (result) {
+            if (result.value) {
+                _this._userService.deleteUser(_this.temp_user).subscribe(function (response) {
+                    if (!response.ok) {
+                        _this.status = 'error';
+                    }
+                    if (response.ok) {
+                        _this.getSuccess('User was delete');
+                    }
+                }, function (error) {
+                    var errorMensage = error;
+                    // console.log( errorMensage );
+                    if (errorMensage != null) {
+                        _this.status = 'error';
+                    }
+                });
             }
         });
     };
@@ -6226,18 +6237,30 @@ var ContactsComponent = /** @class */ (function () {
         var _this = this;
         this.temp_user._id = userId;
         this.temp_user.password = '123456';
-        this._userService.adminResetUser(this.temp_user).subscribe(function (response) {
-            if (!response.ok) {
-                _this.status = 'error';
-            }
-            else {
-                _this.getSuccess('User password was reset');
-            }
-        }, function (error) {
-            var errorMensage = error;
-            // console.log( errorMensage );
-            if (errorMensage != null) {
-                _this.status = 'error';
+        sweetalert2__WEBPACK_IMPORTED_MODULE_5___default()({
+            title: 'Are you sure?',
+            text: "You won't to able to revert this",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, reset password'
+        }).then(function (result) {
+            if (result.value) {
+                _this._userService.adminResetUser(_this.temp_user).subscribe(function (response) {
+                    if (!response.ok) {
+                        _this.status = 'error';
+                    }
+                    else {
+                        _this.getSuccess('User password was reset');
+                    }
+                }, function (error) {
+                    var errorMensage = error;
+                    // console.log( errorMensage );
+                    if (errorMensage != null) {
+                        _this.status = 'error';
+                    }
+                });
             }
         });
     };
@@ -7312,7 +7335,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"alert alert-success\">\n    You can send shifts until Tuesday 23:59\n  </div>\n  <br>\n  <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n    Shifts Save!\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n    Please check shifts!\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n    We are sorry,\n    but you will have to wait next week to send shifts or contact the administrator\n    if you have any problems.\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th colspan=\"4\">Shifts you need to {{ requestWeek.method }} this week:</th>\n          </tr>\n          <tr>\n            <th><span class=\"long\">Morning</span></th>\n            <th><span class=\"long\">Afternoon</span></th>\n            <th><span class=\"long\">Night</span></th>\n            <th><span class=\"long\">Weekend</span></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ requestWeek.morning }}</td>\n            <td>{{ requestWeek.afternoon }}</td>\n            <td>{{ requestWeek.night }}</td>\n            <td>{{ requestWeek.weekend }}</td>\n          </tr>\n        </tbody>\n      </table>\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th><span class=\"long\">Morning</span></th>\n            <th><span class=\"long\">Afternoon</span></th>\n            <th><span class=\"long\">Night</span></th>\n            <th><span class=\"long\">Weekend</span></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ count_morning }}</td>\n            <td>{{ count_afternoon }}</td>\n            <td>{{ count_night }}</td>\n            <td>{{ count_weekend }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div><!-- Finish col md 4 -->\n    <div class=\"col-md-8\">\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th></th>\n            <th *ngFor=\"let d of days; let i = index\">\n              <span class=\"long\">{{ dates[d] | date }}</span>\n            </th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Morning</td>\n              <td *ngFor=\"let day of days\">\n                <input\n                  type=\"button\"\n                  value=\"{{ this.week[day].morning }}\"\n                  (click)=\"setValue( day, 'morning' )\"\n                  (dblclick)=\"resetValue(day, 'morning')\">\n              </td>\n          </tr>\n          <tr>\n            <td>Afternoon</td>\n            <td *ngFor=\"let day of days\">\n              <input\n                type=\"button\"\n                value=\"{{ this.week[day].afternoon }}\"\n                (click)=\"setValue( day, 'afternoon' )\"\n                (dblclick)=\"resetValue(day, 'afternoon')\">\n            </td>\n          </tr>\n          <tr>\n            <td>Night</td>\n            <td *ngFor=\"let day of days\">\n              <input\n                type=\"button\"\n                value=\"{{ this.week[day].night }}\"\n                (click)=\"setValue( day, 'night' )\"\n                (dblclick)=\"resetValue(day, 'night')\">\n            </td>\n          </tr>\n        </tbody>\n      </table>\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button\n            id=\"btn-send\"\n            type=\"submit\"\n            class=\"btn btn-primary\"\n            (click)=\"sendValues()\">Send Shifts</button>\n        </div>\n      </div>\n    </div><!-- Finish col md 8 -->\n  </div><!-- Finish row -->\n</div>\n<app-footer></app-footer>\n"
+module.exports = "<div class=\"container\">\n  <div class=\"alert alert-success\">\n    You can send shifts until Tuesday 23:59\n  </div>\n  <br>\n  <div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n    Shifts Save!\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n    Please check shifts!\n  </div>\n  <div class=\"alert alert-danger\" *ngIf=\"status == 'denied'\">\n    We are sorry,\n    but you will have to wait next week to send shifts or contact the administrator\n    if you have any problems.\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th colspan=\"4\">Shifts you need to {{ requestWeek.method }} this week:</th>\n          </tr>\n          <tr>\n            <th><span class=\"long\">Morning</span></th>\n            <th><span class=\"long\">Afternoon</span></th>\n            <th><span class=\"long\">Night</span></th>\n            <th><span class=\"long\">Weekend</span></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ requestWeek.morning }}</td>\n            <td>{{ requestWeek.afternoon }}</td>\n            <td>{{ requestWeek.night }}</td>\n            <td>{{ requestWeek.weekend }}</td>\n          </tr>\n        </tbody>\n      </table>\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th><span class=\"long\">Morning</span></th>\n            <th><span class=\"long\">Afternoon</span></th>\n            <th><span class=\"long\">Night</span></th>\n            <th><span class=\"long\">Weekend</span></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ count_morning }}</td>\n            <td>{{ count_afternoon }}</td>\n            <td>{{ count_night }}</td>\n            <td>{{ count_weekend }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div><!-- Finish col md 4 -->\n    <div class=\"col-md-8\">\n      <table class=\"table table-bordered\">\n        <thead>\n          <tr>\n            <th></th>\n            <th *ngFor=\"let d of days; let i = index\">\n              <span class=\"long\">{{ dates[d] | date }}</span>\n            </th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Morning</td>\n              <td *ngFor=\"let day of days\">\n                <input\n                  type=\"button\"\n                  value=\"{{ this.week[day].morning }}\"\n                  (click)=\"setValue( day, 'morning' )\"\n                  (dblclick)=\"resetValue(day, 'morning')\">\n              </td>\n          </tr>\n          <tr>\n            <td>Afternoon</td>\n            <td *ngFor=\"let day of days\">\n              <input\n                type=\"button\"\n                value=\"{{ this.week[day].afternoon }}\"\n                (click)=\"setValue( day, 'afternoon' )\"\n                (dblclick)=\"resetValue(day, 'afternoon')\">\n            </td>\n          </tr>\n          <tr>\n            <td>Night</td>\n            <td *ngFor=\"let day of days\">\n              <input\n                type=\"button\"\n                value=\"{{ this.week[day].night }}\"\n                (click)=\"setValue( day, 'night' )\"\n                (dblclick)=\"resetValue(day, 'night')\">\n            </td>\n          </tr>\n        </tbody>\n      </table>\n      <div class=\"from-group\">\n        <textarea cols=\"30\" rows=\"4\" [(ngModel)] = \"message\" placeholder=\"{{ message }}\"></textarea>\n      </div>\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button\n            id=\"btn-send\"\n            type=\"submit\"\n            class=\"btn btn-primary\"\n            (click)=\"sendValues()\">Send Shifts</button>\n        </div>\n      </div>\n    </div><!-- Finish col md 8 -->\n  </div><!-- Finish row -->\n</div>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -7369,6 +7392,7 @@ var UserWeekComponent = /** @class */ (function () {
         this.count_night = 0;
         this.count_weekend = 0;
         this.week = [];
+        this.message = '';
         for (var i = 0; i < this.days.length; i++) {
             var tmp = this.days[i];
             this.week[tmp] = new _models_shift__WEBPACK_IMPORTED_MODULE_1__["Shift"]('', '', '');
@@ -7396,6 +7420,8 @@ var UserWeekComponent = /** @class */ (function () {
                 else {
                     if (response.request) {
                         _this.requestUser.setId(response.request._id);
+                        _this.requestUser.setMessage(response.request.message);
+                        _this.message = response.request.message;
                         for (var i = 0; i < _this.days.length; i++) {
                             var d = _this.days[i];
                             for (var j = 0; j < _this.shift.length; j++) {
@@ -7544,7 +7570,7 @@ var UserWeekComponent = /** @class */ (function () {
     };
     UserWeekComponent.prototype.sendValues = function () {
         var _this = this;
-        // console.log( this.requestUser );
+        // console.log( this.message );
         if (this.requestWeek.method === 'open') {
             if (this.count_morning >= Number(this.requestWeek.morning)
                 && this.count_afternoon >= Number(this.requestWeek.afternoon)
@@ -7557,6 +7583,7 @@ var UserWeekComponent = /** @class */ (function () {
                         this.requestUser.setShift(d, s, this.week[d][s]);
                     }
                 }
+                this.requestUser.setMessage(this.message);
                 this.status = 'success';
                 if (this.status === 'success') {
                     this.count_morning = 0;
@@ -7570,16 +7597,17 @@ var UserWeekComponent = /** @class */ (function () {
                     // console.log( this.requestUser );
                     this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
                         if (response.ok) {
-                            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                                position: 'top',
-                                type: 'success',
-                                title: 'Submitted successfully',
-                                showConfirmButton: false,
-                                timer: 5000
+                            _this.getSuccess('Submitted successfully');
+                            /*swal({
+                              position: 'top',
+                              type: 'success',
+                              title: 'Submitted successfully',
+                              showConfirmButton: false,
+                              timer: 5000
                             });
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 2000);
+                            setTimeout( () => {
+                              window.location.reload();
+                            }, 2000);*/
                         }
                     }, function (error) {
                         var errorMessage = error;
@@ -7595,16 +7623,17 @@ var UserWeekComponent = /** @class */ (function () {
                             _this.status = response.message;
                         }
                         else {
-                            sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
-                                position: 'top',
-                                type: 'success',
-                                title: 'You have updated your shifts',
-                                showConfirmButton: false,
-                                timer: 5000
+                            _this.getSuccess('You have updated your shifts');
+                            /*swal({
+                              position: 'top',
+                              type: 'success',
+                              title: 'You have updated your shifts',
+                              showConfirmButton: false,
+                              timer: 5000
                             });
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 2000);
+                            setTimeout( () => {
+                              window.location.reload();
+                            }, 2000);*/
                         }
                     }, function (error) {
                         var errorMessage = error;
@@ -7706,6 +7735,18 @@ var UserWeekComponent = /** @class */ (function () {
             }
         });
     };
+    UserWeekComponent.prototype.getSuccess = function (title) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7___default()({
+            position: 'top',
+            type: 'success',
+            title: title,
+            showConfirmButton: false,
+            timer: 5000
+        });
+        setTimeout(function () {
+            window.location.reload();
+        }, 2000);
+    };
     UserWeekComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-week',
@@ -7788,9 +7829,6 @@ __webpack_require__.r(__webpack_exports__);
 var RequestWeekUser = /** @class */ (function () {
     function RequestWeekUser(id, emitter) {
         this._id = id;
-        // this.name = name;
-        // this.last_name = this.last_name;
-        // this.email = this.email;
         this.emitter = emitter;
         this.sunday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
         this.monday = new _shift__WEBPACK_IMPORTED_MODULE_0__["Shift"]('', '', '');
@@ -7812,29 +7850,6 @@ var RequestWeekUser = /** @class */ (function () {
     RequestWeekUser.prototype.getEmitter = function () {
         return this.emitter;
     };
-    /*public setName( name ) {
-        this.name = name;
-    }
-
-    public getName() {
-        return this.name;
-    }
-
-    public setLastName( last_name ) {
-        this.last_name = last_name;
-    }
-
-    public getLastName() {
-        return this.last_name;
-    }
-
-    public setEmail( email ) {
-        this.email = email;
-    }
-
-    public getEmail() {
-        return this.email;
-    }*/
     RequestWeekUser.prototype.setNumberWeek = function (num) {
         this.numberWeek = num;
     };
@@ -7858,6 +7873,12 @@ var RequestWeekUser = /** @class */ (function () {
     };
     RequestWeekUser.prototype.getShift = function (day, shift) {
         return this[day][shift];
+    };
+    RequestWeekUser.prototype.setMessage = function (message) {
+        this.message = message;
+    };
+    RequestWeekUser.prototype.getMessage = function () {
+        return this.message;
     };
     return RequestWeekUser;
 }());

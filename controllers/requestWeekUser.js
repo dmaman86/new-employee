@@ -116,6 +116,7 @@ function saveRequestWeek(req, res) {
     requestUser.numberWeek = params.numberWeek;
     requestUser.year = params.year;
     requestUser.created_at = moment().unix();
+    requestUser.message = params.message;
 
     for ( let i = 0; i < days.length; i++ ) {
         var d = days[i];

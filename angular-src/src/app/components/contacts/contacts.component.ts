@@ -148,24 +148,35 @@ export class ContactsComponent implements OnInit {
   deleteUser( userId ) {
     this.temp_user._id = userId;
     // console.log( this.temp_user );
-    this._userService.deleteUser( this.temp_user ).subscribe(
-      response => {
-        // console.log( response );
-        if ( !response.ok ) {
-          this.status = 'error';
-        }
-        if ( response.ok ) {
-          this.getSuccess('User was delete');
-        }
-      }, error => {
-        const errorMensage = <any>error;
-        // console.log( errorMensage );
+    swal({
+      title: 'Are you sure?',
+      text: `You won't be able to revert this!`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it'
+    }).then( (result) => {
+      if ( result.value ) {
+        this._userService.deleteUser( this.temp_user ).subscribe(
+          response => {
+            if ( !response.ok ) {
+              this.status = 'error';
+            }
+            if ( response.ok ) {
+              this.getSuccess('User was delete');
+            }
+          }, error => {
+            const errorMensage = <any>error;
+            // console.log( errorMensage );
 
-        if ( errorMensage != null) {
-          this.status = 'error';
-        }
+            if ( errorMensage != null) {
+              this.status = 'error';
+            }
+          }
+        );
       }
-    );
+    });
   }
 
   onSubmit() {
@@ -214,23 +225,34 @@ export class ContactsComponent implements OnInit {
   resetPassUser( userId ) {
     this.temp_user._id = userId;
     this.temp_user.password = '123456';
+    swal({
+      title: 'Are you sure?',
+      text: `You won't to able to revert this`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, reset password'
+    }).then( ( result ) => {
+      if ( result.value ) {
+        this._userService.adminResetUser( this.temp_user ).subscribe(
+          response => {
+            if ( !response.ok ) {
+              this.status = 'error';
+            } else {
+              this.getSuccess('User password was reset');
+            }
+          }, error => {
+            const errorMensage = <any>error;
+            // console.log( errorMensage );
 
-    this._userService.adminResetUser( this.temp_user ).subscribe(
-      response => {
-        if ( !response.ok ) {
-          this.status = 'error';
-        } else {
-          this.getSuccess('User password was reset');
-        }
-      }, error => {
-        const errorMensage = <any>error;
-        // console.log( errorMensage );
-
-        if ( errorMensage != null) {
-          this.status = 'error';
-        }
+            if ( errorMensage != null) {
+              this.status = 'error';
+            }
+          }
+        );
       }
-    );
+    });
   }
 
   getSuccess( title: string ) {
