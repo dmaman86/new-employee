@@ -19,8 +19,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Full Name</th>
                 <th>Email</th>
                 <th>Nick Name</th>
               </tr>
@@ -28,8 +27,7 @@
             <tbody>
               <tr *ngFor="let user of usersToSearch; let i = index">
                 <td><input type="checkbox" id="{{user.email}}"></td>
-                <td>{{ user.name | titlecase }}</td>
-                <td>{{ user.last_name | titlecase }}</td>
+                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.nick_name }}</td>
               </tr>
@@ -48,8 +46,7 @@
             <thead>
               <tr>
                 <th></th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Full Name</th>
                 <th>Email</th>
                 <th>Nick Name</th>
                 <th>Role</th>
@@ -60,8 +57,7 @@
             <tbody>
               <tr *ngFor="let user of usersToSearch; let i = index">
                 <td>{{ i+1 }}</td>
-                <td>{{ user.name | titlecase }}</td>
-                <td>{{ user.last_name | titlecase }}</td>
+                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.nick_name }}</td>
                 <td>{{ user.role }}</td>
@@ -86,17 +82,14 @@
       <form #userEdit="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label>Name:&nbsp;&nbsp;</label>
-            <label>{{ temp_user.name | titlecase }}</label>
-          </div>
-          <div class="form-group col-md-6">
-            <label>Last Name:&nbsp;&nbsp;</label>
-            <label>{{ temp_user.last_name | titlecase }}</label>
+            <label>Full Name:&nbsp;&nbsp;</label>
+            <label>{{ temp_user.name | titlecase }} {{ temp_user.last_name | titlecase }}</label>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label>Role:&nbsp;&nbsp;</label>
+            <br>
             <select [(ngModel)]="selectedOptionRole" name="first">
               <option *ngFor="let or of optionsRole">
                 {{ or.role }}

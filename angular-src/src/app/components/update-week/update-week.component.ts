@@ -50,7 +50,7 @@ export class UpdateWeekComponent implements OnInit {
     // console.log( this.week );
     this._userService.getValuesRequest().subscribe(
       response => {
-        console.log( response.values );
+        // console.log( response.values );
         if ( !response.ok ) {
           this.status = response.message;
         }
