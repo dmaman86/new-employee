@@ -26,7 +26,7 @@ export class EditUserComponent implements OnInit {
     this.title = 'Update Data';
     this.user = this._userService.getIdentity();
     this.identity = this.user;
-    this.temp = new User('', '', '', '', '', '', '');
+    this.temp = new User('', '', '', '', '', '', '', '');
    }
 
   ngOnInit() {

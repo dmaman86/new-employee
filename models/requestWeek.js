@@ -9,6 +9,9 @@ var RequestWeek = Schema({
         type: String,
         required: [true, 'Method is required']
     },
+    last_day: {
+        type: String
+    },
     morning: {
         type: String,
         required: [true, 'Values of morning is required']

@@ -1,127 +1,138 @@
-<div class="container">
-  <h2>{{ title }}</h2>
-  <div class="panel panel-default">
-    <div class="panel-heading" *ngIf="this.identity.role === 'USER_ROLE'">Temporaly "send email" not active.</div>
-    <div class="panel-heading" *ngIf="this.identity.role === 'ADMIN_ROLE'">After resetting a user's password, the new password is: 123456.</div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-8">
-          <input 
-            type="text"
-            id="myInput" 
-            (keyup)="onKey($event)"
-            placeholder="Search for names">
-        </div><!-- col md 8 -->
-      </div><!-- finish row -->
-      <div class="row" *ngIf="this.identity.role === 'USER_ROLE'">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="myTable">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of usersToSearch; let i = index">
-                  <td><input type="checkbox" id="{{user.email}}"></td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.last_name }}</td>
-                  <td>{{ user.email }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div><!-- col md 12 -->
-        <div class="col text-center">
-          <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+<h2>{{ title }}</h2>
+<div class="panel panel-default">
+  <div class="panel-heading" *ngIf="this.identity.role === 'USER_ROLE'">Temporaly "send email" not active.</div>
+  <div class="panel-heading" *ngIf="this.identity.role === 'ADMIN_ROLE'">After resetting a user's password, the new password is: 123456.</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <input 
+          type="text"
+          id="myInput" 
+          (keyup)="onKey($event)"
+          placeholder="Search for names">
+      </div><!-- col md 8 -->
+    </div><!-- finish row -->
+    <div class="row" *ngIf="this.identity.role === 'USER_ROLE'">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover" id="myTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Nick Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of usersToSearch; let i = index">
+                <td><input type="checkbox" id="{{user.email}}"></td>
+                <td>{{ user.name | titlecase }}</td>
+                <td>{{ user.last_name | titlecase }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nick_name }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div><!-- row user -->
-      <div class="row" *ngIf="this.identity.role === 'ADMIN_ROLE'">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="myTable">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Level</th>
-                  <th>Update</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of usersToSearch; let i = index">
-                  <td>{{ i+1 }}</td>
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.last_name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.role }}</td>
-                  <td>{{ user.level }}</td>
-                  <td *ngIf="identity._id != user._id">
-                    <i class="fas fa-marker" (click)="editUser( user._id )"></i>&nbsp;&nbsp;
-                    <i class="fas fa-trash-alt" (click)="deleteUser( user._id )"></i>&nbsp;&nbsp;
-                    <i class="fas fa-unlock-alt" (click)="resetPassUser( user._id )"></i>&nbsp;
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div><!-- table responsive for admin -->
-        </div><!-- col md 12 -->
-      </div><!-- row admin -->
-    </div><!-- finish panel body -->
-  </div><!-- finish panel default -->
-  <div *ngIf="status == 'edit'">
-    <div class="panel panel-default">
-        <div class="panel-heading">Edit user for admin</div>
-        <div class="panel-body">
-          <form #userEdit="ngForm" (ngSubmit)="onSubmit()">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Name:&nbsp;&nbsp;</label>
-                <label>{{ temp_user.name }}</label>
-              </div>
-              <div class="form-group col-md-6">
-                <label>Last Name:&nbsp;&nbsp;</label>
-                <label>{{ temp_user.last_name }}</label>
-              </div>
+      </div><!-- col md 12 -->
+      <div class="col text-center">
+        <button type="submit" class="btn btn-primary" (click)="addArr()">Send Email</button>
+      </div>
+    </div><!-- row user -->
+    <div class="row" *ngIf="this.identity.role === 'ADMIN_ROLE'">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover" id="myTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Nick Name</th>
+                <th>Role</th>
+                <th>Level</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of usersToSearch; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ user.name | titlecase }}</td>
+                <td>{{ user.last_name | titlecase }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nick_name }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.level }}</td>
+                <td *ngIf="identity._id != user._id">
+                  <i class="fas fa-marker" (click)="editUser( user._id )"></i>&nbsp;&nbsp;
+                  <i class="fas fa-trash-alt" (click)="deleteUser( user._id )"></i>&nbsp;&nbsp;
+                  <i class="fas fa-unlock-alt" (click)="resetPassUser( user._id )"></i>&nbsp;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- table responsive for admin -->
+      </div><!-- col md 12 -->
+    </div><!-- row admin -->
+  </div><!-- finish panel body -->
+</div><!-- finish panel default -->
+<div *ngIf="status == 'edit'">
+  <div class="panel panel-default">
+    <div class="panel-heading">Edit user for admin</div>
+    <div class="panel-body">
+      <form #userEdit="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Name:&nbsp;&nbsp;</label>
+            <label>{{ temp_user.name | titlecase }}</label>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Last Name:&nbsp;&nbsp;</label>
+            <label>{{ temp_user.last_name | titlecase }}</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Role:&nbsp;&nbsp;</label>
+            <select [(ngModel)]="selectedOptionRole" name="first">
+              <option *ngFor="let or of optionsRole">
+                {{ or.role }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Level:&nbsp;&nbsp;</label>
+            <input 
+              type="text"
+              name="level"
+              #level="ngModel"
+              [(ngModel)]="temp_user.level"
+              class="form-control"
+              placeholder="temp_user.level"/>
+          </div>
+          <div class="form-group col-md-4">
+            <label>Nick-Name:&nbsp;&nbsp;</label>
+              <input 
+                type="text"
+                name="nick_name"
+                #nick_name="ngModel"
+                [(ngModel)]="temp_user.nick_name"
+                class="form-control"
+                placeholder="temp_user.nick_name"/>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Role:&nbsp;&nbsp;</label>
-                <select [(ngModel)]="selectedOptionRole" name="first">
-                  <option *ngFor="let or of optionsRole">
-                    {{ or.role }}
-                  </option>
-                </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label>Level:&nbsp;&nbsp;</label>
-                <input 
-                  type="text"
-                  name="level"
-                  #level="ngModel"
-                  [(ngModel)]="temp_user.level"
-                  class="form-control"
-                  placeholder="temp_user.level"/>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col text-center">
-                <button type="submit" class="btn btn-primary" [disabled]="!userEdit.form.valid">Send</button>
-              </div>
-            </div>
-          </form>
-        </div><!-- panel body -->
-    </div><!-- panel default -->
-  </div>
-  <app-footer></app-footer> 
-</div><!-- finish container -->
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!userEdit.form.valid">Send</button>
+          </div>
+        </div>
+      </form>
+    </div><!-- panel body -->
+  </div><!-- panel default -->
+</div>
 
 
 

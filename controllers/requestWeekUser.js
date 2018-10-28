@@ -24,6 +24,7 @@ function controlRequest(req, res) {
     
     var reqWeek = new RequestWeek();
     reqWeek.method = params.method;
+    reqWeek.last_day = params.last_day;
     reqWeek.morning = params.morning;
     reqWeek.afternoon = params.afternoon;
     reqWeek.night = params.night;

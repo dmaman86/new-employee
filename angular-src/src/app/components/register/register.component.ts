@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     private _userService: UserService
   ) {
     this.title = 'Sign Up (please fill in all the fields)';
-    this.user = new User('', '', '', '', '', '', '');
+    this.user = new User('', '', '', '', '', '', '', '');
   }
 
   ngOnInit() {

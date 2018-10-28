@@ -28,6 +28,9 @@ var UserSchema = Schema({
         unique: true,
         required:[true, 'Email is required']
     },
+    nick_name:{
+        type: String
+    },
     password:{
         type: String,
         /*required: true*/

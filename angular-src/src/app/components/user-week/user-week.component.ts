@@ -31,6 +31,7 @@ export class UserWeekComponent implements OnInit {
   public dates: any[];
   public requestWeek: RequestWeek;
   public message: string;
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -38,7 +39,7 @@ export class UserWeekComponent implements OnInit {
   ) {
     this.dates = [];
     this.requestUser = new RequestWeekUser('', '');
-    this.requestWeek = new RequestWeek('', '', '', '', '', '');
+    this.requestWeek = new RequestWeek('', '', '', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.count_morning = 0;
     this.count_afternoon = 0;
@@ -57,13 +58,15 @@ export class UserWeekComponent implements OnInit {
     // console.log( this.number_week );
     this.dates = this.getFirstAndLastDates( this.number_week );
     // console.log( this.dates );
-    this.setValuesRequest();
   }
 
   ngOnInit() {
-    this.checkDay();
+    this.setValuesRequest();
+    console.log( this.number_week[1] );
+    const nWeek = this.checkSunday( this.number_week[1] );
+    console.log( nWeek );
     this.requestUser.setEmitter( this.identity._id );
-    this.requestUser.setNumberWeek( String(this.number_week[1]) );
+    this.requestUser.setNumberWeek( String( nWeek ) );
     this.requestUser.setYear( String( this.getYear() ) );
 
     this._userService.getRequestUser( this.requestUser ).subscribe(
@@ -71,7 +74,8 @@ export class UserWeekComponent implements OnInit {
         if ( response.ok ) {
           // console.log( response.request );
           if ( !response.request ) {
-            alert('no exist shift for this user');
+            // alert('no exist shift for this user');
+            this.status = 'no-request';
           } else {
             if ( response.request ) {
               this.requestUser.setId( response.request._id );
@@ -107,6 +111,9 @@ export class UserWeekComponent implements OnInit {
         }
       }
     );
+    setTimeout( () => {
+      this.checkDay();
+    }, 1000);
   }
 
   getWeekNumber( full_date ) {
@@ -260,16 +267,6 @@ export class UserWeekComponent implements OnInit {
             response => {
               if ( response.ok ) {
                 this.getSuccess('Submitted successfully');
-                /*swal({
-                  position: 'top',
-                  type: 'success',
-                  title: 'Submitted successfully',
-                  showConfirmButton: false,
-                  timer: 5000
-                });
-                setTimeout( () => {
-                  window.location.reload();
-                }, 2000);*/
               }
             }, error => {
               const errorMessage = <any>error;
@@ -286,16 +283,6 @@ export class UserWeekComponent implements OnInit {
                 this.status = response.message;
               } else {
                 this.getSuccess('You have updated your shifts');
-                /*swal({
-                  position: 'top',
-                  type: 'success',
-                  title: 'You have updated your shifts',
-                  showConfirmButton: false,
-                  timer: 5000
-                });
-                setTimeout( () => {
-                  window.location.reload();
-                }, 2000);*/
               }
             }, error => {
               const errorMessage = <any>error;
@@ -355,7 +342,9 @@ export class UserWeekComponent implements OnInit {
     const day = d.getDay();
     const hour = d.getHours();
 
-    if ( day >= 3 ) {
+    console.log( day );
+
+    if ( day >= Number( this.requestWeek.last_day ) ) {
         console.log( `you can't send`);
         document.getElementById('btn-send').style.display = 'none';
         this.status = 'denied';
@@ -385,6 +374,7 @@ export class UserWeekComponent implements OnInit {
           // console.log( response.values );
           this.requestWeek._id = response.values._id;
           this.requestWeek.method = response.values.method;
+          this.requestWeek.last_day = response.values.last_day;
           this.requestWeek.morning = response.values.morning;
           this.requestWeek.afternoon = response.values.afternoon;
           this.requestWeek.night = response.values.night;

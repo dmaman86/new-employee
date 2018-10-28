@@ -40,7 +40,7 @@ export class ContactsComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
-    this.temp_user = new User('', '', '', '', '', '', '');
+    this.temp_user = new User('', '', '', '', '', '', '', '');
     this.values = '';
     this.usersToSearch = [];
     this.users = [];
@@ -139,6 +139,7 @@ export class ContactsComponent implements OnInit {
         this.temp_user.role = this.usersToSearch[i].role;
         this.temp_user.level = this.usersToSearch[i].level;
         this.temp_user.password = '';
+        this.temp_user.nick_name = this.usersToSearch[i].nick_name;
       }
     }
 

@@ -28,7 +28,7 @@ function saveUser(req, res) {
         user.password = bcrypt.hashSync( params.password, 10 );
         user.createdAt = moment().unix();
         user.img = 'user.png';
-
+        user.nick_name = '';
 
         user.save( (err, userStored ) => {
             if(err){
