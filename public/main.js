@@ -7208,7 +7208,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-log-5\">\n  <h2>{{ title }}</h2>\n</div>\n\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"form-group row\">\n    <label class=\"col-sm-2 col-form-label\">Method</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"method\"\n        #method=\"ngModel\"\n        [(ngModel)]=\"requestWeek.method\"\n        class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Last Day</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"last_day\"\n        #last_day=\"ngModel\"\n        [(ngModel)]=\"requestWeek.last_day\"\n        class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Morning</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"morning\"\n        #morning=\"ngModel\"\n        [(ngModel)]=\"requestWeek.morning\"\n        class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"afternoon\"\n        #afternoon=\"ngModel\"\n        [(ngModel)]=\"requestWeek.afternoon\"\n        class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Night</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"night\"\n        #night=\"ngModel\"\n        [(ngModel)]=\"requestWeek.night\"\n        class=\"form-cotrol\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Weekend</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"weekend\"\n        #weekend=\"ngModel\"\n        [(ngModel)]=\"requestWeek.weekend\"\n        class=\"form-cotrol\">\n    </div>\n  </div>\n  <div class=\"form-group row\">\n    <div class=\"col-sm-10\">\n      <button \n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"!weekRequest.form.valid\">Send</button>\n    </div>\n  </div>\n</form>"
+module.exports = "<div class=\"col-log-5\">\n  <h2>{{ title }}</h2>\n</div>\n\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"form-group row\">\n    <label class=\"col-sm-2 col-form-label\">Method</label>\n    <div class=\"col-sm-10\">\n      <select [(ngModel)]=\"selectedMethod\" name=\"first\">\n        <option *ngFor=\"let mtd of method\">\n          {{ mtd.name }}\n        </option>\n      </select>\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Last Day</label>\n    <div class=\"col-sm-10\">\n      <select [(ngModel)]=\"selectedDay\" name=\"first\">\n        <option [value]=\"day.id\" *ngFor=\"let day of days\">\n          {{ day.name }}\n        </option>\n      </select>\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Morning</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"morning\"\n        #morning=\"ngModel\"\n        [(ngModel)]=\"requestWeek.morning\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.morning\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"afternoon\"\n        #afternoon=\"ngModel\"\n        [(ngModel)]=\"requestWeek.afternoon\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.afternoon\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Night</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"night\"\n        #night=\"ngModel\"\n        [(ngModel)]=\"requestWeek.night\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.night\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Weekend</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"weekend\"\n        #weekend=\"ngModel\"\n        [(ngModel)]=\"requestWeek.weekend\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.weekend\">\n    </div>\n  </div>\n  <div class=\"form-group row\">\n    <div class=\"col-sm-10\">\n      <button \n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"!weekRequest.form.valid\">Send</button>\n    </div>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -7247,6 +7247,21 @@ var UpdateWeekComponent = /** @class */ (function () {
         this.title = 'Update Week Request';
         this.requestWeek = new _models_requestWeek__WEBPACK_IMPORTED_MODULE_2__["RequestWeek"]('', '', '', '', '', '', '');
         // this.week = this._userService.getWeekId();
+        this.selectedMethod = '';
+        this.selectedDay = '';
+        this.days = [
+            { id: 1, name: 'sunday' },
+            { id: 2, name: 'monday' },
+            { id: 3, name: 'tuesday' },
+            { id: 4, name: 'wednesday' },
+            { id: 5, name: 'thursday' },
+            { id: 6, name: 'friday' },
+            { id: 7, name: 'saturday' }
+        ];
+        this.method = [
+            { id: 0, name: 'open' },
+            { id: 1, name: 'block' }
+        ];
     }
     UpdateWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -7258,6 +7273,10 @@ var UpdateWeekComponent = /** @class */ (function () {
             }
             if (response.values) {
                 _this.requestWeek._id = response.values._id;
+                _this.requestWeek.morning = response.values.morning;
+                _this.requestWeek.afternoon = response.values.afternoon;
+                _this.requestWeek.night = response.values.night;
+                _this.requestWeek.weekend = response.values.weekend;
             }
         }, function (error) {
             var errorMessage = error;
@@ -7268,9 +7287,12 @@ var UpdateWeekComponent = /** @class */ (function () {
         });
     };
     UpdateWeekComponent.prototype.onSubmit = function () {
-        // console.log( this.requestWeek );
-        // console.log( this.week );
         var _this = this;
+        // console.log( this.selectedMethod );
+        // console.log( this.selectedDay );
+        this.requestWeek.method = this.selectedMethod;
+        this.requestWeek.last_day = this.selectedDay;
+        // console.log( this.requestWeek );
         if (this.requestWeek._id.length <= 0) {
             this._userService.setValuesRequest(this.requestWeek).subscribe(function (response) {
                 if (response.ok) {
@@ -7398,22 +7420,20 @@ var UserWeekComponent = /** @class */ (function () {
             var tmp = this.days[i];
             this.week[tmp] = new _models_shift__WEBPACK_IMPORTED_MODULE_1__["Shift"]('', '', '');
         }
-        this.number_week = this.getWeekNumber(new Date());
-        // console.log( this.number_week );
-        var d = new Date();
-        // console.log( this.number_week );
-        this.dates = this.getFirstAndLastDates(this.number_week);
-        // console.log( this.dates );
     }
     UserWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.number_week = this.getWeekNumber(new Date()); // [0] = year, [1]= number next week
+        // console.log( this.number_week );
+        this.dates = this.getFirstAndLastDates(this.number_week);
+        // console.log( this.dates );
         this.setValuesRequest();
-        console.log(this.number_week[1]);
+        // console.log( this.number_week[1] );
         var nWeek = this.checkSunday(this.number_week[1]);
-        console.log(nWeek);
+        // console.log( nWeek );
         this.requestUser.setEmitter(this.identity._id);
         this.requestUser.setNumberWeek(String(nWeek));
-        this.requestUser.setYear(String(this.getYear()));
+        this.requestUser.setYear(String(this.number_week[0]));
         this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
             if (response.ok) {
                 // console.log( response.request );
@@ -7431,6 +7451,7 @@ var UserWeekComponent = /** @class */ (function () {
                             for (var j = 0; j < _this.shift.length; j++) {
                                 var s = _this.shift[j];
                                 _this.week[d][s] = response.request[d][s];
+                                _this.requestUser.setShift(d, s, response.request[d][s]);
                                 _this.updateValues(d, s);
                             }
                         }
@@ -7442,6 +7463,7 @@ var UserWeekComponent = /** @class */ (function () {
                             for (var j = 0; j < _this.shift.length; j++) {
                                 var s = _this.shift[j];
                                 _this.week[d][s] = response.request[d][s];
+                                _this.requestUser.setShift(d, s, response.request[d][s]);
                                 _this.updateValues(d, s);
                             }
                         }
@@ -7457,7 +7479,7 @@ var UserWeekComponent = /** @class */ (function () {
         });
         setTimeout(function () {
             _this.checkDay();
-        }, 1000);
+        }, 2000);
     };
     UserWeekComponent.prototype.getWeekNumber = function (full_date) {
         // Copy date so don't modify original
@@ -7468,16 +7490,16 @@ var UserWeekComponent = /** @class */ (function () {
         // Get first day of year
         var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
         // Calculate full weeks to nearest Thursday
-        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7);
+        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
         // Return array of year and week number
-        weekNo++;
-        if (weekNo === 53) { // If we go over the weeks of the year
+        if (weekNo === 53) {
             weekNo = 0;
         }
         return [full_date.getUTCFullYear(), weekNo];
     };
     UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
         // const moment = require('moment');
+        // console.log( numberWeek );
         var year = numberWeek[0];
         var week = numberWeek[1];
         var dates = [];
@@ -7495,6 +7517,7 @@ var UserWeekComponent = /** @class */ (function () {
         return dates;
     };
     UserWeekComponent.prototype.setValue = function (day, per) {
+        this.requestUser.setShift(day, per, 'V');
         switch (per) {
             case 'morning':
                 if (this.week[day][per] === 'V') {
@@ -7543,6 +7566,7 @@ var UserWeekComponent = /** @class */ (function () {
         // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
     };
     UserWeekComponent.prototype.resetValue = function (day, per) {
+        this.requestUser.setShift(day, per, '');
         switch (per) {
             case 'morning':
                 this.week[day][per] = '';
@@ -7583,13 +7607,13 @@ var UserWeekComponent = /** @class */ (function () {
                 && this.count_afternoon >= Number(this.requestWeek.afternoon)
                 && this.count_night >= Number(this.requestWeek.night)
                 && this.count_weekend >= Number(this.requestWeek.weekend)) {
-                for (var i = 0; i < this.days.length; i++) {
-                    var d = this.days[i];
-                    for (var j = 0; j < this.shift.length; j++) {
-                        var s = this.shift[j];
-                        this.requestUser.setShift(d, s, this.week[d][s]);
-                    }
-                }
+                /*for ( let i = 0; i < this.days.length; i++ ) {
+                  const d = this.days[i];
+                  for ( let j = 0; j < this.shift.length; j++ ) {
+                    const s = this.shift[j];
+                    this.requestUser.setShift( d, s, this.week[d][s] );
+                  }
+                }*/
                 this.requestUser.setMessage(this.message);
                 this.status = 'success';
                 if (this.status === 'success') {
@@ -7615,6 +7639,7 @@ var UserWeekComponent = /** @class */ (function () {
                     });
                 }
                 else {
+                    // console.log( this.requestUser );
                     this._userService.updateRequestUser(this.requestUser).subscribe(function (response) {
                         if (!response.ok) {
                             _this.status = response.message;
@@ -7680,7 +7705,7 @@ var UserWeekComponent = /** @class */ (function () {
         var d = new Date();
         var day = d.getDay();
         var hour = d.getHours();
-        console.log(day);
+        // console.log( day );
         if (day >= Number(this.requestWeek.last_day)) {
             console.log("you can't send");
             document.getElementById('btn-send').style.display = 'none';
@@ -7697,10 +7722,6 @@ var UserWeekComponent = /** @class */ (function () {
             numberWeek++;
         }
         return numberWeek;
-    };
-    UserWeekComponent.prototype.getYear = function () {
-        var year = new Date().getFullYear();
-        return year;
     };
     UserWeekComponent.prototype.setValuesRequest = function () {
         var _this = this;

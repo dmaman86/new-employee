@@ -153,6 +153,8 @@ function updateRequestUser(req, res){
     var requestUser = req.params.id;
     var update = req.body;
 
+    update.created_at = moment().unix();
+
     if ( update.emitter !== req.user.sub ) {
         return res.status(500).send({
             ok: false,

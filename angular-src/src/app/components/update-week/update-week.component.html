@@ -13,19 +13,19 @@
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Method</label>
     <div class="col-sm-10">
-      <input type="text"
-        name="method"
-        #method="ngModel"
-        [(ngModel)]="requestWeek.method"
-        class="form-cotrol">
+      <select [(ngModel)]="selectedMethod" name="first">
+        <option *ngFor="let mtd of method">
+          {{ mtd.name }}
+        </option>
+      </select>
     </div>
     <label class="col-sm-2 col-form-label">Last Day</label>
     <div class="col-sm-10">
-      <input type="text"
-        name="last_day"
-        #last_day="ngModel"
-        [(ngModel)]="requestWeek.last_day"
-        class="form-cotrol">
+      <select [(ngModel)]="selectedDay" name="first">
+        <option [value]="day.id" *ngFor="let day of days">
+          {{ day.name }}
+        </option>
+      </select>
     </div>
     <label class="col-sm-2 col-form-label">Morning</label>
     <div class="col-sm-10">
@@ -33,7 +33,8 @@
         name="morning"
         #morning="ngModel"
         [(ngModel)]="requestWeek.morning"
-        class="form-cotrol">
+        class="form-cotrol"
+        placeholder="requestWeek.morning">
     </div>
     <label class="col-sm-2 col-form-label">Afternoon</label>
     <div class="col-sm-10">
@@ -41,7 +42,8 @@
         name="afternoon"
         #afternoon="ngModel"
         [(ngModel)]="requestWeek.afternoon"
-        class="form-cotrol">
+        class="form-cotrol"
+        placeholder="requestWeek.afternoon">
     </div>
     <label class="col-sm-2 col-form-label">Night</label>
     <div class="col-sm-10">
@@ -49,7 +51,8 @@
         name="night"
         #night="ngModel"
         [(ngModel)]="requestWeek.night"
-        class="form-cotrol">
+        class="form-cotrol"
+        placeholder="requestWeek.night">
     </div>
     <label class="col-sm-2 col-form-label">Weekend</label>
     <div class="col-sm-10">
@@ -57,7 +60,8 @@
         name="weekend"
         #weekend="ngModel"
         [(ngModel)]="requestWeek.weekend"
-        class="form-cotrol">
+        class="form-cotrol"
+        placeholder="requestWeek.weekend">
     </div>
   </div>
   <div class="form-group row">

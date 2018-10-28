@@ -52,22 +52,20 @@ export class UserWeekComponent implements OnInit {
       const tmp = this.days[i];
       this.week[tmp] = new Shift('', '', '');
     }
-    this.number_week = this.getWeekNumber( new Date() );
-    // console.log( this.number_week );
-    const d = new Date();
-    // console.log( this.number_week );
-    this.dates = this.getFirstAndLastDates( this.number_week );
-    // console.log( this.dates );
   }
 
   ngOnInit() {
+    this.number_week = this.getWeekNumber( new Date() ); // [0] = year, [1]= number next week
+    // console.log( this.number_week );
+    this.dates = this.getFirstAndLastDates( this.number_week );
+    // console.log( this.dates );
     this.setValuesRequest();
-    console.log( this.number_week[1] );
+    // console.log( this.number_week[1] );
     const nWeek = this.checkSunday( this.number_week[1] );
-    console.log( nWeek );
+    // console.log( nWeek );
     this.requestUser.setEmitter( this.identity._id );
     this.requestUser.setNumberWeek( String( nWeek ) );
-    this.requestUser.setYear( String( this.getYear() ) );
+    this.requestUser.setYear( String( this.number_week[0] ) );
 
     this._userService.getRequestUser( this.requestUser ).subscribe(
       response => {
@@ -86,6 +84,7 @@ export class UserWeekComponent implements OnInit {
                 for ( let j = 0; j < this.shift.length; j++) {
                   const s = this.shift[j];
                   this.week[d][s] = response.request[d][s];
+                  this.requestUser.setShift( d, s, response.request[d][s]);
                   this.updateValues(d, s);
                 }
               }
@@ -97,6 +96,7 @@ export class UserWeekComponent implements OnInit {
                 for ( let j = 0; j < this.shift.length; j++) {
                   const s = this.shift[j];
                   this.week[d][s] = response.request[d][s];
+                  this.requestUser.setShift( d, s, response.request[d][s]);
                   this.updateValues(d, s);
                 }
               }
@@ -113,7 +113,7 @@ export class UserWeekComponent implements OnInit {
     );
     setTimeout( () => {
       this.checkDay();
-    }, 1000);
+    }, 2000);
   }
 
   getWeekNumber( full_date ) {
@@ -125,10 +125,9 @@ export class UserWeekComponent implements OnInit {
     // Get first day of year
     const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
     // Calculate full weeks to nearest Thursday
-    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7);
+    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
     // Return array of year and week number
-    weekNo++;
-    if ( weekNo === 53 ) { // If we go over the weeks of the year
+    if ( weekNo === 53 ) {
       weekNo = 0;
     }
     return [full_date.getUTCFullYear(), weekNo];
@@ -136,6 +135,7 @@ export class UserWeekComponent implements OnInit {
 
   getFirstAndLastDates( numberWeek ) {
     // const moment = require('moment');
+    // console.log( numberWeek );
     const year = numberWeek[0];
     let week = numberWeek[1];
     const dates = [];
@@ -157,7 +157,7 @@ export class UserWeekComponent implements OnInit {
   }
 
   setValue( day, per ) {
-
+    this.requestUser.setShift( day, per, 'V' );
     switch (per) {
       case 'morning':
         if ( this.week[day][per] === 'V' ) {
@@ -201,6 +201,7 @@ export class UserWeekComponent implements OnInit {
   }
 
   resetValue( day, per ) {
+    this.requestUser.setShift( day, per, '' );
     switch (per) {
       case 'morning':
         this.week[day][per] = '';
@@ -239,13 +240,13 @@ export class UserWeekComponent implements OnInit {
           && this.count_night >= Number( this.requestWeek.night )
           && this.count_weekend >= Number( this.requestWeek.weekend ) ) {
 
-        for ( let i = 0; i < this.days.length; i++ ) {
+        /*for ( let i = 0; i < this.days.length; i++ ) {
           const d = this.days[i];
           for ( let j = 0; j < this.shift.length; j++ ) {
             const s = this.shift[j];
             this.requestUser.setShift( d, s, this.week[d][s] );
           }
-        }
+        }*/
 
         this.requestUser.setMessage( this.message );
 
@@ -277,6 +278,7 @@ export class UserWeekComponent implements OnInit {
             }
           );
         } else {
+          // console.log( this.requestUser );
           this._userService.updateRequestUser( this.requestUser ).subscribe(
             response => {
               if ( !response.ok ) {
@@ -342,7 +344,7 @@ export class UserWeekComponent implements OnInit {
     const day = d.getDay();
     const hour = d.getHours();
 
-    console.log( day );
+    // console.log( day );
 
     if ( day >= Number( this.requestWeek.last_day ) ) {
         console.log( `you can't send`);
@@ -360,11 +362,6 @@ export class UserWeekComponent implements OnInit {
       numberWeek++;
     }
     return numberWeek;
-  }
-
-  getYear() {
-    const year = new Date().getFullYear();
-    return year;
   }
 
   setValuesRequest() {

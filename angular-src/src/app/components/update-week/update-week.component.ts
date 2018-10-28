@@ -16,6 +16,10 @@ export class UpdateWeekComponent implements OnInit {
   public status;
   public requestWeek: RequestWeek;
   public week;
+  public days: any[];
+  public method: any[];
+  public selectedMethod;
+  public selectedDay;
 
   constructor(
     private _route: ActivatedRoute,
@@ -25,6 +29,21 @@ export class UpdateWeekComponent implements OnInit {
     this.title = 'Update Week Request';
     this.requestWeek = new RequestWeek('', '', '', '', '', '', '');
     // this.week = this._userService.getWeekId();
+    this.selectedMethod = '';
+    this.selectedDay = '';
+    this.days = [
+      { id: 1, name: 'sunday'},
+      { id: 2, name: 'monday'},
+      { id: 3, name: 'tuesday'},
+      { id: 4, name: 'wednesday'},
+      { id: 5, name: 'thursday'},
+      { id: 6, name: 'friday'},
+      { id: 7, name: 'saturday'}
+    ];
+    this.method = [
+      { id: 0, name: 'open' },
+      { id: 1, name: 'block' }
+    ];
   }
 
   ngOnInit() {
@@ -37,6 +56,10 @@ export class UpdateWeekComponent implements OnInit {
         }
         if ( response.values ) {
           this.requestWeek._id = response.values._id;
+          this.requestWeek.morning = response.values.morning;
+          this.requestWeek.afternoon = response.values.afternoon;
+          this.requestWeek.night = response.values.night;
+          this.requestWeek.weekend = response.values.weekend;
         }
       }, error => {
         const errorMessage = <any>error;
@@ -49,9 +72,11 @@ export class UpdateWeekComponent implements OnInit {
   }
 
   onSubmit() {
+    // console.log( this.selectedMethod );
+    // console.log( this.selectedDay );
+    this.requestWeek.method = this.selectedMethod;
+    this.requestWeek.last_day = this.selectedDay;
     // console.log( this.requestWeek );
-    // console.log( this.week );
-
     if ( this.requestWeek._id.length <= 0 ) {
       this._userService.setValuesRequest( this.requestWeek ).subscribe(
         response => {
