@@ -6883,7 +6883,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#profile-image1 {\n    width: 100px;\n    height: 100px;\n    border:2px solid #03b1ce ;\n}\n.tital{ \n    font-size:16px;\n    font-weight:500;\n}\n.bot-border{ \n    border-bottom:1px #f8f8f8 solid;\n    margin:5px 0  5px 0\n}\t"
 
 /***/ }),
 
@@ -6894,7 +6894,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\t<div class=\"col-md-12\">\n\t\t<h3>Profile of {{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</h3>\n\t\t<hr>\n\t</div>\n</div>\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<img src=\"{{ url + 'get-image-user/' + identity.img }}\" class=\"img-fluid\" [alt]=\"identity.name\">\n\t\t<br><br>\n\t\t<a *ngIf=\"identity.role === 'USER_ROLE'\" [routerLink]=\"['/home']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n\t\t<a *ngIf=\"identity.role === 'ADMIN_ROLE'\" [routerLink]=\"['/home-admin']\" class=\"btn btn-outline-danger btn-block\">Back</a>\n\t</div>\n\t<div class=\"col-md-8\">\n\t\t<h3>Full Name</h3>\n\t\t<p>{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</p>\n\t\t<hr>\n\t\t<h3>Email</h3>\n\t\t<p>{{ identity.email }}</p>\n\t\t<hr>\n\t\t<h3>Role</h3>\n\t\t<p>{{ identity.role }}</p>\n\t\t<hr>\n\t\t<h3>Level</h3>\n\t\t<p>{{ identity.level }}</p>\n\t\t<hr>\n\t</div>\n</div>\n"
+module.exports = "<div class=\"panel panel-default\">\n\t<div class=\"panel-heading\">\n\t\t<h3>Profile of {{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</h3>\n\t</div>\n\t<div class=\"panel-body\">\n\t\t<div class=\"box box-info\">\n\t\t\t<div class=\"box-body\">\n\t\t\t\t<div class=\"col-sm-6 text-center\">\n\t\t\t\t\t<img [alt]=\"identity.name\" src=\"{{ url + 'get-image-user/' + identity.img }}\" id=\"profile-image1\" class=\"img-circle img-responsive img-fluid\">\n\t\t\t\t\t<br>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-sm-6\">\n\t\t\t\t\t<h4 style=\"color:#00b1b1;\">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</h4>\n                \t<span><p>{{ dateString }}</p></span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"clearfix\"></div>\n\t\t\t\t<hr>\n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Full Name:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</div>\n              \t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\t\t\t\t\n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Email:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ identity.email }}</div>\n              \t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\t\t\t\t  \n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Date of Login:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ dateString }}</div>\n              \t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Nick Name:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ identity.nick_name }}</div>\n              \t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Role:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ identity.role }}</div>\n              \t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\n\t\t\t\t<div class=\"col-sm-5 col-xs-6 tital\">Level:</div>\n              \t<div class=\"col-sm-7 col-xs-6\">{{ identity.level }}</div>\n\t\t\t\t<div class=\"clearfix\"></div>\n\t\t\t\t<div class=\"bot-border\"></div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"col text-center\">\n\t\t\t\t<button class=\"btn btn-primary\" (click)=\"returnHome()\">\n\t\t\t\t\tBack Home\n\t\t\t\t</button>&nbsp;&nbsp;&nbsp;\n\t\t\t\t<button class=\"btn btn-secondary\" (click)=\"editProfile()\">\n\t\t\t\t\tEdit Profile\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
 
 /***/ }),
 
@@ -6909,8 +6909,11 @@ module.exports = "<div class=\"row\">\n\t<div class=\"col-md-12\">\n\t\t<h3>Prof
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var _services_global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/global */ "./src/app/services/global.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_global__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/global */ "./src/app/services/global.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6923,22 +6926,42 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(_userService) {
+    function ProfileComponent(_route, _router, _userService) {
+        this._route = _route;
+        this._router = _router;
         this._userService = _userService;
         this.identity = this._userService.getIdentity();
-        this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["GLOBAL"].url;
+        // console.log( this.identity );
+        this.url = _services_global__WEBPACK_IMPORTED_MODULE_3__["GLOBAL"].url;
     }
     ProfileComponent.prototype.ngOnInit = function () {
+        this.dateString = moment__WEBPACK_IMPORTED_MODULE_4__["unix"](this.identity.createdAt).format('MM/DD/YYYY');
+        // console.log( this.dateString);
+    };
+    ProfileComponent.prototype.returnHome = function () {
+        if (this.identity.role === 'ADMIN_ROLE') {
+            this._router.navigate(['/home-admin']);
+        }
+        if (this.identity.role === 'USER_ROLE') {
+            this._router.navigate(['/home']);
+        }
+    };
+    ProfileComponent.prototype.editProfile = function () {
+        this._router.navigate(['/edit-user']);
     };
     ProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-profile',
             template: __webpack_require__(/*! ./profile.component.html */ "./src/app/components/profile/profile.component.html"),
             styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/components/profile/profile.component.css")],
-            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]]
+            providers: [_services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]]
         }),
-        __metadata("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_1__["UserService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _services_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], ProfileComponent);
     return ProfileComponent;
 }());
@@ -7208,7 +7231,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-log-5\">\n  <h2>{{ title }}</h2>\n  <hr>\n</div>\n\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">Here you can define whether it is openings / blocks, the last day for sending shifts and the number of shifts</div>\n  <div class=\"panel-body\">\n    <form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label class=\"col-sm-2 col-form-label\">Method</label>\n        <div class=\"col-sm-10\">\n          <select [(ngModel)]=\"selectedMethod\" name=\"first\">\n            <option *ngFor=\"let mtd of method\">\n              {{ mtd.name }}\n            </option>\n          </select>\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Last Day</label>\n        <div class=\"col-sm-10\">\n          <select [(ngModel)]=\"selectedDay\" name=\"first\">\n            <option [value]=\"day.id\" *ngFor=\"let day of days\">\n              {{ day.name }}\n            </option>\n          </select>\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Morning</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"morning\"\n            #morning=\"ngModel\"\n            [(ngModel)]=\"requestWeek.morning\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.morning\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"afternoon\"\n            #afternoon=\"ngModel\"\n            [(ngModel)]=\"requestWeek.afternoon\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.afternoon\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Night</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"night\"\n            #night=\"ngModel\"\n            [(ngModel)]=\"requestWeek.night\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.night\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Weekend</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"weekend\"\n            #weekend=\"ngModel\"\n            [(ngModel)]=\"requestWeek.weekend\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.weekend\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!weekRequest.form.valid\">Send</button>\n        </div>\n      </div>\n    </form>\n  </div>\n</div>\n\n<!--<form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"form-group row\">\n    <label class=\"col-sm-2 col-form-label\">Method</label>\n    <div class=\"col-sm-10\">\n      <select [(ngModel)]=\"selectedMethod\" name=\"first\">\n        <option *ngFor=\"let mtd of method\">\n          {{ mtd.name }}\n        </option>\n      </select>\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Last Day</label>\n    <div class=\"col-sm-10\">\n      <select [(ngModel)]=\"selectedDay\" name=\"first\">\n        <option [value]=\"day.id\" *ngFor=\"let day of days\">\n          {{ day.name }}\n        </option>\n      </select>\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Morning</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"morning\"\n        #morning=\"ngModel\"\n        [(ngModel)]=\"requestWeek.morning\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.morning\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"afternoon\"\n        #afternoon=\"ngModel\"\n        [(ngModel)]=\"requestWeek.afternoon\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.afternoon\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Night</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"night\"\n        #night=\"ngModel\"\n        [(ngModel)]=\"requestWeek.night\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.night\">\n    </div>\n    <label class=\"col-sm-2 col-form-label\">Weekend</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\"\n        name=\"weekend\"\n        #weekend=\"ngModel\"\n        [(ngModel)]=\"requestWeek.weekend\"\n        class=\"form-cotrol\"\n        placeholder=\"requestWeek.weekend\">\n    </div>\n  </div>\n  <div class=\"form-group row\">\n    <div class=\"col-sm-10\">\n      <button \n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"!weekRequest.form.valid\">Send</button>\n    </div>\n  </div>\n</form>-->"
+module.exports = "<div class=\"col-log-5\">\n  <h2>{{ title }}</h2>\n  <hr>\n</div>\n\n<div class=\"alert alert-success\" *ngIf=\"status == 'success'\">\n  Values Save!\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"status == 'error'\">\n  Please check values!\n</div>\n\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">Here you can define whether it is openings / blocks, the last day for sending shifts and the number of shifts</div>\n  <div class=\"panel-body\">\n    <form #weekRequest=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group row\">\n        <label class=\"col-sm-2 col-form-label\">Method</label>\n        <div class=\"col-sm-10\">\n          <select [(ngModel)]=\"selectedMethod\" name=\"first\">\n            <option *ngFor=\"let mtd of method\">\n              {{ mtd.name }}\n            </option>\n          </select>\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Last Day</label>\n        <div class=\"col-sm-10\">\n          <select [(ngModel)]=\"selectedDay\" name=\"first\">\n            <option [value]=\"day.id\" *ngFor=\"let day of days\">\n              {{ day.name }}\n            </option>\n          </select>\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Morning</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"morning\"\n            #morning=\"ngModel\"\n            [(ngModel)]=\"requestWeek.morning\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.morning\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Afternoon</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"afternoon\"\n            #afternoon=\"ngModel\"\n            [(ngModel)]=\"requestWeek.afternoon\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.afternoon\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Night</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"night\"\n            #night=\"ngModel\"\n            [(ngModel)]=\"requestWeek.night\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.night\">\n        </div>\n        <label class=\"col-sm-2 col-form-label\">Weekend</label>\n        <div class=\"col-sm-10\">\n          <input type=\"text\"\n            name=\"weekend\"\n            #weekend=\"ngModel\"\n            [(ngModel)]=\"requestWeek.weekend\"\n            class=\"form-cotrol\"\n            placeholder=\"requestWeek.weekend\">\n        </div>\n      </div>\n      <div class=\"form-group row\">\n        <div class=\"col-sm-10\">\n          <button \n            type=\"submit\"\n            class=\"btn btn-primary\"\n            [disabled]=\"!weekRequest.form.valid\">Send</button>\n        </div>\n      </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -7434,7 +7457,49 @@ var UserWeekComponent = /** @class */ (function () {
         this.requestUser.setEmitter(this.identity._id);
         this.requestUser.setNumberWeek(String(nWeek));
         this.requestUser.setYear(String(this.number_week[0]));
-        this._userService.getRequestUser(this.requestUser).subscribe(function (response) {
+        setTimeout(function () {
+            _this.shiftsUser(_this.requestUser);
+            _this.checkDay();
+        }, 2000);
+    };
+    UserWeekComponent.prototype.getWeekNumber = function (full_date) {
+        // Copy date so don't modify original
+        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
+        // Return array of year and week number
+        if (weekNo === 53) {
+            weekNo = 0;
+        }
+        return [full_date.getUTCFullYear(), weekNo];
+    };
+    UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
+        // const moment = require('moment');
+        // console.log( numberWeek );
+        var year = numberWeek[0];
+        var week = numberWeek[1];
+        var dates = [];
+        var day = new Date().getDay();
+        if (day === 0) {
+            week++;
+        }
+        // console.log( week );
+        for (var i = 0; i < this.days.length; i++) {
+            var d = this.days[i];
+            var test = moment__WEBPACK_IMPORTED_MODULE_6__().day(d).year(year).week(week).toDate();
+            dates[d] = test;
+        }
+        // console.log( dates );
+        return dates;
+    };
+    UserWeekComponent.prototype.shiftsUser = function (requestUser) {
+        var _this = this;
+        this._userService.getRequestUser(requestUser).subscribe(function (response) {
             if (response.ok) {
                 // console.log( response.request );
                 if (!response.request) {
@@ -7477,44 +7542,6 @@ var UserWeekComponent = /** @class */ (function () {
                 _this.status = 'error';
             }
         });
-        setTimeout(function () {
-            _this.checkDay();
-        }, 2000);
-    };
-    UserWeekComponent.prototype.getWeekNumber = function (full_date) {
-        // Copy date so don't modify original
-        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
-        // Set to nearest Thursday: current date + 4 - current day number
-        // Make Sunday's day number 7
-        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
-        // Get first day of year
-        var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
-        // Calculate full weeks to nearest Thursday
-        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
-        // Return array of year and week number
-        if (weekNo === 53) {
-            weekNo = 0;
-        }
-        return [full_date.getUTCFullYear(), weekNo];
-    };
-    UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
-        // const moment = require('moment');
-        // console.log( numberWeek );
-        var year = numberWeek[0];
-        var week = numberWeek[1];
-        var dates = [];
-        var day = new Date().getDay();
-        if (day === 0) {
-            week++;
-        }
-        // console.log( week );
-        for (var i = 0; i < this.days.length; i++) {
-            var d = this.days[i];
-            var test = moment__WEBPACK_IMPORTED_MODULE_6__().day(d).year(year).week(week).toDate();
-            dates[d] = test;
-        }
-        // console.log( dates );
-        return dates;
     };
     UserWeekComponent.prototype.setValue = function (day, per) {
         this.requestUser.setShift(day, per, 'V');

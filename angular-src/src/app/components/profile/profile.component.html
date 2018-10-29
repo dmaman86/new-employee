@@ -1,28 +1,60 @@
-<div class="row">
-	<div class="col-md-12">
+<div class="panel panel-default">
+	<div class="panel-heading">
 		<h3>Profile of {{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</h3>
-		<hr>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-4">
-		<img src="{{ url + 'get-image-user/' + identity.img }}" class="img-fluid" [alt]="identity.name">
-		<br><br>
-		<a *ngIf="identity.role === 'USER_ROLE'" [routerLink]="['/home']" class="btn btn-outline-danger btn-block">Back</a>
-		<a *ngIf="identity.role === 'ADMIN_ROLE'" [routerLink]="['/home-admin']" class="btn btn-outline-danger btn-block">Back</a>
-	</div>
-	<div class="col-md-8">
-		<h3>Full Name</h3>
-		<p>{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</p>
-		<hr>
-		<h3>Email</h3>
-		<p>{{ identity.email }}</p>
-		<hr>
-		<h3>Role</h3>
-		<p>{{ identity.role }}</p>
-		<hr>
-		<h3>Level</h3>
-		<p>{{ identity.level }}</p>
-		<hr>
+	<div class="panel-body">
+		<div class="box box-info">
+			<div class="box-body">
+				<div class="col-sm-6 text-center">
+					<img [alt]="identity.name" src="{{ url + 'get-image-user/' + identity.img }}" id="profile-image1" class="img-circle img-responsive img-fluid">
+					<br>
+				</div>
+				<div class="col-sm-6">
+					<h4 style="color:#00b1b1;">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</h4>
+                	<span><p>{{ dateString }}</p></span>
+				</div>
+				<div class="clearfix"></div>
+				<hr>
+				<div class="col-sm-5 col-xs-6 tital">Full Name:</div>
+              	<div class="col-sm-7 col-xs-6">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</div>
+              	<div class="clearfix"></div>
+				<div class="bot-border"></div>
+				
+				<div class="col-sm-5 col-xs-6 tital">Email:</div>
+              	<div class="col-sm-7 col-xs-6">{{ identity.email }}</div>
+              	<div class="clearfix"></div>
+				<div class="bot-border"></div>
+				  
+				<div class="col-sm-5 col-xs-6 tital">Date of Login:</div>
+              	<div class="col-sm-7 col-xs-6">{{ dateString }}</div>
+              	<div class="clearfix"></div>
+				<div class="bot-border"></div>
+
+				<div class="col-sm-5 col-xs-6 tital">Nick Name:</div>
+              	<div class="col-sm-7 col-xs-6">{{ identity.nick_name }}</div>
+              	<div class="clearfix"></div>
+				<div class="bot-border"></div>
+
+				<div class="col-sm-5 col-xs-6 tital">Role:</div>
+              	<div class="col-sm-7 col-xs-6">{{ identity.role }}</div>
+              	<div class="clearfix"></div>
+				<div class="bot-border"></div>
+
+				<div class="col-sm-5 col-xs-6 tital">Level:</div>
+              	<div class="col-sm-7 col-xs-6">{{ identity.level }}</div>
+				<div class="clearfix"></div>
+				<div class="bot-border"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<button class="btn btn-primary" (click)="returnHome()">
+					Back Home
+				</button>&nbsp;&nbsp;&nbsp;
+				<button class="btn btn-secondary" (click)="editProfile()">
+					Edit Profile
+				</button>
+			</div>
+		</div>
 	</div>
 </div>

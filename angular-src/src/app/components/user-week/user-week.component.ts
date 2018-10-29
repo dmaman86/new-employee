@@ -67,7 +67,54 @@ export class UserWeekComponent implements OnInit {
     this.requestUser.setNumberWeek( String( nWeek ) );
     this.requestUser.setYear( String( this.number_week[0] ) );
 
-    this._userService.getRequestUser( this.requestUser ).subscribe(
+    setTimeout( () => {
+      this.shiftsUser( this.requestUser );
+      this.checkDay();
+    }, 2000);
+  }
+
+  getWeekNumber( full_date ) {
+    // Copy date so don't modify original
+    full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+    // Get first day of year
+    const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to nearest Thursday
+    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
+    // Return array of year and week number
+    if ( weekNo === 53 ) {
+      weekNo = 0;
+    }
+    return [full_date.getUTCFullYear(), weekNo];
+  }
+
+  getFirstAndLastDates( numberWeek ) {
+    // const moment = require('moment');
+    // console.log( numberWeek );
+    const year = numberWeek[0];
+    let week = numberWeek[1];
+    const dates = [];
+
+    const day = new Date().getDay();
+
+    if ( day === 0 ) {
+      week++;
+    }
+    // console.log( week );
+
+    for ( let i = 0; i < this.days.length; i++) {
+      const d = this.days[i];
+      const test = moment().day(d).year(year).week(week).toDate();
+      dates[d] = test;
+    }
+    // console.log( dates );
+    return dates;
+  }
+
+  shiftsUser( requestUser: RequestWeekUser ) {
+    this._userService.getRequestUser( requestUser ).subscribe(
       response => {
         if ( response.ok ) {
           // console.log( response.request );
@@ -111,49 +158,6 @@ export class UserWeekComponent implements OnInit {
         }
       }
     );
-    setTimeout( () => {
-      this.checkDay();
-    }, 2000);
-  }
-
-  getWeekNumber( full_date ) {
-    // Copy date so don't modify original
-    full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
-    // Set to nearest Thursday: current date + 4 - current day number
-    // Make Sunday's day number 7
-    full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
-    // Get first day of year
-    const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
-    // Calculate full weeks to nearest Thursday
-    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
-    // Return array of year and week number
-    if ( weekNo === 53 ) {
-      weekNo = 0;
-    }
-    return [full_date.getUTCFullYear(), weekNo];
-  }
-
-  getFirstAndLastDates( numberWeek ) {
-    // const moment = require('moment');
-    // console.log( numberWeek );
-    const year = numberWeek[0];
-    let week = numberWeek[1];
-    const dates = [];
-
-    const day = new Date().getDay();
-
-    if ( day === 0 ) {
-      week++;
-    }
-    // console.log( week );
-
-    for ( let i = 0; i < this.days.length; i++) {
-      const d = this.days[i];
-      const test = moment().day(d).year(year).week(week).toDate();
-      dates[d] = test;
-    }
-    // console.log( dates );
-    return dates;
   }
 
   setValue( day, per ) {
@@ -389,7 +393,6 @@ export class UserWeekComponent implements OnInit {
       }
     );
   }
-
 
   getSuccess( title: string ) {
     swal({
