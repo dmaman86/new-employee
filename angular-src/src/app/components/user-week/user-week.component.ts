@@ -84,10 +84,12 @@ export class UserWeekComponent implements OnInit {
     // Calculate full weeks to nearest Thursday
     let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
     // Return array of year and week number
+    let year = full_date.getUTCFullYear();
     if ( weekNo === 53 ) {
       weekNo = 0;
+      year++;
     }
-    return [full_date.getUTCFullYear(), weekNo];
+    return [year, weekNo];
   }
 
   getFirstAndLastDates( numberWeek ) {

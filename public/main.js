@@ -7473,10 +7473,12 @@ var UserWeekComponent = /** @class */ (function () {
         // Calculate full weeks to nearest Thursday
         var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
         // Return array of year and week number
+        var year = full_date.getUTCFullYear();
         if (weekNo === 53) {
             weekNo = 0;
+            year++;
         }
-        return [full_date.getUTCFullYear(), weekNo];
+        return [year, weekNo];
     };
     UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
         // const moment = require('moment');
