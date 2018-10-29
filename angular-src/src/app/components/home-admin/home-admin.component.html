@@ -9,13 +9,18 @@
     Menu:
     <ul>
       <li><a [routerLink]="['/profile']">My Profile</a></li>
-      <li><a [routerLink]="['/edit-user']">Edit Profile</a></li>
       <li><a [routerLink]="['/contacts']">Contacts</a></li>
       <li><a [routerLink]="['/update-week']">Update Request Week</a></li>
       <li><a [routerLink]="['/register']">Create new user</a></li>
     </ul>
   </div><!-- Finish col md 8-->
   <div class="col-md-4">
+    <div class="alert alert-danger" *ngIf="status == 'error' ">
+      Please try again later
+    </div>
+    <div class="alert alert-success" *ngIf="status == 'success' ">
+     Message was send
+    </div>
     Messages:
     <form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
       <textarea

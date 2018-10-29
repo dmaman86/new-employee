@@ -23,7 +23,7 @@ export class EditUserComponent implements OnInit {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'Update Data';
+    this.title = 'Update profile';
     this.user = this._userService.getIdentity();
     this.identity = this.user;
     this.temp = new User('', '', '', '', '', '', '', '');
@@ -79,5 +79,13 @@ export class EditUserComponent implements OnInit {
         }
       }
     );
+  }
+
+  backHome() {
+    if ( this.identity.role === 'USER_ROLE') {
+      this._router.navigate(['/home']);
+    } else {
+      this._router.navigate(['/home-admin']);
+    }
   }
 }

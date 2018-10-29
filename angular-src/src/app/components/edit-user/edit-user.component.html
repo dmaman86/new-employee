@@ -1,5 +1,13 @@
 <h1>{{ title }}</h1>
 <hr>
+<div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <p>You can only update personal information such as name, surname, email and password.<br>
+            Data such as nick name, role, level can only be changed by the administrator.</p>
+      </div>
+    </div>
+  </div>
 <form #updateForm="ngForm" (ngSubmit)="onSubmit( updateForm )">
         
     <div class="alert alert-danger" *ngIf="status == 'error' ">
@@ -49,10 +57,19 @@
             class="form-control"
             placeholder="{{ user.password }}">
     </div>
-            
-    <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="!updateForm.form.valid">Update Data</button>
+    <div class="row">
+        <div class="col">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!updateForm.form.valid">Update</button>
+        </div>
+        <div class="col text-right">
+            <button class="btn btn-secondary" (click)="backHome()">
+               Home
+            </button>
+        </div>
+    </div>
+    
 </form>
 <!--<app-footer></app-footer>-->

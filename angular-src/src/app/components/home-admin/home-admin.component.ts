@@ -44,13 +44,21 @@ export class HomeAdminComponent implements OnInit {
     this._userService.sendMessage( this.text ).subscribe(
       response => {
         // console.log( response );
+        if ( !response.ok ) {
+          this.status = 'error';
+        }
         if ( response.ok ) {
           this.status = 'success';
-          form.reset();
-          this.refreshTextArea();
+          // form.reset();
+          // this.refreshTextArea();
         }
       }, error => {
         // console.log( <any>error );
+        const errorMessage = <any>error;
+        // console.log(errorMessage);
+        if ( errorMessage !== null ) {
+          this.status = 'error';
+        }
       }
     );
   }

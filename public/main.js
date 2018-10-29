@@ -6395,7 +6395,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<hr>\n<form #updateForm=\"ngForm\" (ngSubmit)=\"onSubmit( updateForm )\">\n        \n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n        Please try in another name, last name or email\n    </div>\n    <div class=\"form-row\">\n        \n        <div class=\"form-group col-md-6\">\n            <label for=\"inputName4\">First Name</label>\n            <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.name }}\">\n        </div>\n          \n        <div class=\"form-group col-md-6\">\n            <label for=\"inputLastName4\">Last Name</label>\n            <input type=\"text\"\n                name=\"last_name\"\n                #last_name=\"ngModel\"\n                [(ngModel)]=\"user.last_name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.last_name }}\">\n        </div>\n          \n    </div>\n        \n    <div class=\"form-group\">\n        <label for=\"inputEmail\">Email</label>\n        <input type=\"email\"\n            name=\"email\"\n            #email=\"ngModel\"\n            [(ngModel)]=\"user.email\"\n            class=\"form-control\"\n            pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n            placeholder=\"{{ user.email }}\">\n    </div>\n        \n    <div class=\"form-group\">\n        <label for=\"inputPassword\">Password</label>\n        <input type=\"password\"\n            name=\"password\"\n            #password=\"ngModel\"\n            [(ngModel)]=\"user.password\"\n            class=\"form-control\"\n            placeholder=\"{{ user.password }}\">\n    </div>\n            \n    <button\n        type=\"submit\"\n        class=\"btn btn-primary\"\n        [disabled]=\"!updateForm.form.valid\">Update Data</button>\n</form>\n<!--<app-footer></app-footer>-->"
+module.exports = "<h1>{{ title }}</h1>\n<hr>\n<div class=\"row\">\n    <div class=\"col-md-12\">\n      <div class=\"jumbotron\">\n        <p>You can only update personal information such as name, surname, email and password.<br>\n            Data such as nick name, role, level can only be changed by the administrator.</p>\n      </div>\n    </div>\n  </div>\n<form #updateForm=\"ngForm\" (ngSubmit)=\"onSubmit( updateForm )\">\n        \n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n        Please try in another name, last name or email\n    </div>\n    <div class=\"form-row\">\n        \n        <div class=\"form-group col-md-6\">\n            <label for=\"inputName4\">First Name</label>\n            <input type=\"text\"\n                name=\"name\"\n                #name=\"ngModel\"\n                [(ngModel)]=\"user.name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.name }}\">\n        </div>\n          \n        <div class=\"form-group col-md-6\">\n            <label for=\"inputLastName4\">Last Name</label>\n            <input type=\"text\"\n                name=\"last_name\"\n                #last_name=\"ngModel\"\n                [(ngModel)]=\"user.last_name\"\n                class=\"form-control\"\n                placeholder=\"{{ user.last_name }}\">\n        </div>\n          \n    </div>\n        \n    <div class=\"form-group\">\n        <label for=\"inputEmail\">Email</label>\n        <input type=\"email\"\n            name=\"email\"\n            #email=\"ngModel\"\n            [(ngModel)]=\"user.email\"\n            class=\"form-control\"\n            pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n            placeholder=\"{{ user.email }}\">\n    </div>\n        \n    <div class=\"form-group\">\n        <label for=\"inputPassword\">Password</label>\n        <input type=\"password\"\n            name=\"password\"\n            #password=\"ngModel\"\n            [(ngModel)]=\"user.password\"\n            class=\"form-control\"\n            placeholder=\"{{ user.password }}\">\n    </div>\n    <div class=\"row\">\n        <div class=\"col\">\n            <button\n                type=\"submit\"\n                class=\"btn btn-primary\"\n                [disabled]=\"!updateForm.form.valid\">Update</button>\n        </div>\n        <div class=\"col text-right\">\n            <button class=\"btn btn-secondary\" (click)=\"backHome()\">\n               Home\n            </button>\n        </div>\n    </div>\n    \n</form>\n<!--<app-footer></app-footer>-->"
 
 /***/ }),
 
@@ -6434,7 +6434,7 @@ var EditUserComponent = /** @class */ (function () {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
-        this.title = 'Update Data';
+        this.title = 'Update profile';
         this.user = this._userService.getIdentity();
         this.identity = this.user;
         this.temp = new _models_user__WEBPACK_IMPORTED_MODULE_2__["User"]('', '', '', '', '', '', '', '');
@@ -6490,6 +6490,14 @@ var EditUserComponent = /** @class */ (function () {
             }
         });
     };
+    EditUserComponent.prototype.backHome = function () {
+        if (this.identity.role === 'USER_ROLE') {
+            this._router.navigate(['/home']);
+        }
+        else {
+            this._router.navigate(['/home-admin']);
+        }
+    };
     EditUserComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-edit-user',
@@ -6526,7 +6534,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome Admin {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n      <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    Messages:\n    <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n      <textarea\n        name=\"text\"\n        #text=\"ngModel\"\n        [(ngModel)]=\"text.text\" \n        class=\"form-control\"\n        rows=\"5\"\n        id=\"comment\"\n        placeholder=\"{{ message.text }}\">\n                \n      </textarea>\n      <br><br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <input \n            type=\"submit\"\n            value=\"Send\"\n            class=\"btn btn-success\"\n            [disabled]=\"!messageForm.form.valid\"/>\n        </div>\n        <div class=\"col text-right\">\n          <input\n            type=\"submit\"\n            value=\"Delete\"\n            class=\"btn btn-danger\"\n            (click)=\"deleteMessage()\"/>\n        </div>\n      </div>\n    </form>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome Admin {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n      <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n      Please try again later\n    </div>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n     Message was send\n    </div>\n    Messages:\n    <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n      <textarea\n        name=\"text\"\n        #text=\"ngModel\"\n        [(ngModel)]=\"text.text\" \n        class=\"form-control\"\n        rows=\"5\"\n        id=\"comment\"\n        placeholder=\"{{ message.text }}\">\n                \n      </textarea>\n      <br><br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <input \n            type=\"submit\"\n            value=\"Send\"\n            class=\"btn btn-success\"\n            [disabled]=\"!messageForm.form.valid\"/>\n        </div>\n        <div class=\"col text-right\">\n          <input\n            type=\"submit\"\n            value=\"Delete\"\n            class=\"btn btn-danger\"\n            (click)=\"deleteMessage()\"/>\n        </div>\n      </div>\n    </form>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -6582,13 +6590,21 @@ var HomeAdminComponent = /** @class */ (function () {
         // console.log( this.text );
         this._userService.sendMessage(this.text).subscribe(function (response) {
             // console.log( response );
+            if (!response.ok) {
+                _this.status = 'error';
+            }
             if (response.ok) {
                 _this.status = 'success';
-                form.reset();
-                _this.refreshTextArea();
+                // form.reset();
+                // this.refreshTextArea();
             }
         }, function (error) {
             // console.log( <any>error );
+            var errorMessage = error;
+            // console.log(errorMessage);
+            if (errorMessage !== null) {
+                _this.status = 'error';
+            }
         });
     };
     HomeAdminComponent.prototype.refreshTextArea = function () {
@@ -6666,7 +6682,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/edit-user']\">Edit Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    Messages:\n    <ul>\n      <li>{{ message.text }}</li>\n    </ul>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    Messages:\n    <ul>\n      <li>{{ message.text }}</li>\n    </ul>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n"
 
 /***/ }),
 
