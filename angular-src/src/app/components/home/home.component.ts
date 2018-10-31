@@ -43,12 +43,17 @@ export class HomeComponent implements OnInit {
   showMessage() {
     this._userService.getMessage().subscribe(
       response => {
+        if ( !response.ok ) {
+          document.getElementById('demo').innerHTML = 'No messages to show';
+        }
         if ( response.ok ) {
           // console.log( response.message );
           this.message._id = response.message._id;
           this.message.text = response.message.text;
           this.message.date = response.message.created_at;
-          this.textDate = moment.unix( response.message.created_at).format('LLLL');
+          this.textDate = moment.unix( response.message.created_at ).format('LLLL');
+
+          document.getElementById('demo').innerHTML = this.message.text;
         }
       }, error => {
         const errorMessage = <any>error;

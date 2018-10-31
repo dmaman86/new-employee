@@ -6723,7 +6723,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <h4>Menu:</h4>\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 4 -->\n  <div class=\"col-md-6\">\n    <h4> Messages:</h4>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"jumbotron\">\n          <div class=\"text-center\">{{ textDate }}</div>\n          <hr>\n          <div [innerHTML]=\"message.text\"></div>\n        </div>\n      </div>\n    </div>\n  </div><!-- Finish col md 8 -->\n</div><!-- Finish row -->\n\n\n\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <h4>Menu:</h4>\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 4 -->\n  <div class=\"col-md-6\">\n    <h4> Messages:</h4>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"jumbotron\">\n          <div class=\"text-center\">{{ textDate }}</div>\n          <hr>\n          <div id=\"demo\"></div>\n        </div>\n      </div>\n    </div>\n  </div><!-- Finish col md 8 -->\n</div><!-- Finish row -->\n\n\n\n\n"
 
 /***/ }),
 
@@ -6777,12 +6777,16 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.showMessage = function () {
         var _this = this;
         this._userService.getMessage().subscribe(function (response) {
+            if (!response.ok) {
+                document.getElementById('demo').innerHTML = 'No messages to show';
+            }
             if (response.ok) {
                 // console.log( response.message );
                 _this.message._id = response.message._id;
                 _this.message.text = response.message.text;
                 _this.message.date = response.message.created_at;
                 _this.textDate = moment__WEBPACK_IMPORTED_MODULE_4__["unix"](response.message.created_at).format('LLLL');
+                document.getElementById('demo').innerHTML = _this.message.text;
             }
         }, function (error) {
             var errorMessage = error;
