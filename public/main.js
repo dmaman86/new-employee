@@ -6590,7 +6590,7 @@ var HomeAdminComponent = /** @class */ (function () {
     };
     HomeAdminComponent.prototype.sendMessage = function () {
         var _this = this;
-        console.log(this.newText);
+        // console.log( this.newText );
         this.text.text = this.newText;
         this._userService.sendMessage(this.text).subscribe(function (response) {
             // console.log( response );
@@ -6668,7 +6668,7 @@ var HomeAdminComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             _this._userService.getMessage().subscribe(function (response) {
-                console.log(response);
+                // console.log( response );
                 if (response.ok) {
                     if (response.message) {
                         _this.message._id = response.message._id;
@@ -6770,6 +6770,12 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
         // console.log( this.user );
+        setTimeout(function () {
+            _this.showMessage();
+        }, 1000);
+    };
+    HomeComponent.prototype.showMessage = function () {
+        var _this = this;
         this._userService.getMessage().subscribe(function (response) {
             if (response.ok) {
                 // console.log( response.message );
@@ -8128,10 +8134,10 @@ var UserService = /** @class */ (function () {
         return this._http.get(this.url + 'get-message', { headers: headers });
     };
     UserService.prototype.sendMessage = function (message) {
-        console.log(message);
+        // console.log(message);
         var params = JSON.stringify(message);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.post(this.url + 'message', message, { headers: headers });
+        return this._http.post(this.url + 'message', params, { headers: headers });
     };
     UserService.prototype.deleteMessage = function (messageId) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());

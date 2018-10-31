@@ -67,10 +67,10 @@ export class UserService {
     }
 
     sendMessage( message: Message ): Observable<any> {
-        console.log(message);
+        // console.log(message);
         const params = JSON.stringify( message );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
-        return this._http.post( this.url + 'message', message, { headers: headers });
+        return this._http.post( this.url + 'message', params, { headers: headers });
     }
 
     deleteMessage( messageId ): Observable<any> {

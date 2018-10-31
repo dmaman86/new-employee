@@ -35,11 +35,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // console.log( this.user );
+    setTimeout( () => {
+      this.showMessage();
+    }, 1000);
+  }
+
+  showMessage() {
     this._userService.getMessage().subscribe(
       response => {
-
         if ( response.ok ) {
-
           // console.log( response.message );
           this.message._id = response.message._id;
           this.message.text = response.message.text;

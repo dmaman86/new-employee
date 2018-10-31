@@ -39,7 +39,7 @@ export class HomeAdminComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log( this.newText );
+    // console.log( this.newText );
     this.text.text = this.newText;
     this._userService.sendMessage( this.text ).subscribe(
       response => {
@@ -124,7 +124,7 @@ export class HomeAdminComponent implements OnInit {
     setTimeout( () => {
       this._userService.getMessage().subscribe(
         response => {
-          console.log( response );
+          // console.log( response );
           if ( response.ok ) {
             if ( response.message ) {
               this.message._id = response.message._id;
