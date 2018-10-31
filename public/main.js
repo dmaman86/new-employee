@@ -7352,10 +7352,14 @@ var UpdateWeekComponent = /** @class */ (function () {
             { id: 0, name: 'open' },
             { id: 1, name: 'block' }
         ];
+        this.identity = this._userService.getIdentity();
     }
     UpdateWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
         // console.log( this.week );
+        if (this.identity.role !== 'ADMIN_ROLE') {
+            this._router.navigate(['/home']);
+        }
         this._userService.getValuesRequest().subscribe(function (response) {
             // console.log( response.values );
             if (!response.ok) {

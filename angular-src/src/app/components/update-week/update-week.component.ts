@@ -20,6 +20,7 @@ export class UpdateWeekComponent implements OnInit {
   public method: any[];
   public selectedMethod;
   public selectedDay;
+  public identity;
 
   constructor(
     private _route: ActivatedRoute,
@@ -44,10 +45,14 @@ export class UpdateWeekComponent implements OnInit {
       { id: 0, name: 'open' },
       { id: 1, name: 'block' }
     ];
+    this.identity = this._userService.getIdentity();
   }
 
   ngOnInit() {
     // console.log( this.week );
+    if ( this.identity.role !== 'ADMIN_ROLE' ) {
+      this._router.navigate(['/home']);
+    }
     this._userService.getValuesRequest().subscribe(
       response => {
         // console.log( response.values );
