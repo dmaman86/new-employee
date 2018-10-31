@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCheckboxModule, MatTableModule, MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CKEditorModule } from 'ngx-ckeditor';
+
 // routing
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -53,7 +55,8 @@ import { UpdateWeekComponent } from './components/update-week/update-week.compon
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    CKEditorModule
   ],
   providers: [
     appRoutingProviders

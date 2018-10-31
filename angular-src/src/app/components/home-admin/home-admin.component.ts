@@ -19,6 +19,7 @@ export class HomeAdminComponent implements OnInit {
   public text: Message;
   public message: Message;
   public status: string;
+  public newText: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -30,13 +31,39 @@ export class HomeAdminComponent implements OnInit {
     this.identity = this.user;
     this.text = new Message('', '' , '');
     this.message = new Message('', '', '');
+    this.newText = '';
   }
 
   ngOnInit() {
     this.refreshTextArea();
   }
 
-  onSubmit( form ) {
+  sendMessage() {
+    console.log( this.newText );
+    this.text.text = this.newText;
+    this._userService.sendMessage( this.text ).subscribe(
+      response => {
+        // console.log( response );
+        if ( !response.ok ) {
+          this.status = 'error';
+        }
+        if ( response.ok ) {
+          this.status = 'success';
+          // form.reset();
+          // this.refreshTextArea();
+        }
+      }, error => {
+        // console.log( <any>error );
+        const errorMessage = <any>error;
+        // console.log(errorMessage);
+        if ( errorMessage !== null ) {
+          this.status = 'error';
+        }
+      }
+    );
+  }
+
+  /*onSubmit( form ) {
     // console.log( form.value );
     this.text.text = form.value.text;
     // console.log( this.text );
@@ -61,33 +88,19 @@ export class HomeAdminComponent implements OnInit {
         }
       }
     );
-  }
-
-  refreshTextArea() {
-    this._userService.getMessage().subscribe(
-      response => {
-        // console.log( response );
-        if ( response.ok ) {
-          this.message._id = response.message._id;
-          this.message.text = response.message.text;
-          this.message.date = response.message.created_at;
-        }
-      }, error => {
-        const errorMessage = <any>error;
-        // console.log(errorMessage);
-        if ( errorMessage !== null ) {
-          this.status = 'error';
-        }
-      }
-    );
-  }
+  }*/
 
   deleteMessage() {
     // console.log( this.message._id );
     this._userService.deleteMessage( this.message._id ).subscribe(
       response => {
+        if ( !response.ok ) {
+          this.status = 'error';
+        } else {
+          this.refreshTextArea();
+        }
         // console.log( response );
-        this.refreshTextArea();
+        // this.refreshTextArea();
       }, error => {
         const errorMessage = <any>error;
         // console.log(errorMessage);
@@ -105,6 +118,30 @@ export class HomeAdminComponent implements OnInit {
       // console.log( 'The dialog was closed' );
       // console.log( result );
     });
+  }
+
+  refreshTextArea() {
+    setTimeout( () => {
+      this._userService.getMessage().subscribe(
+        response => {
+          console.log( response );
+          if ( response.ok ) {
+            if ( response.message ) {
+              this.message._id = response.message._id;
+              this.message.text = response.message.text;
+              this.newText = this.message.text;
+              this.message.date = response.message.created_at;
+            }
+          }
+        }, error => {
+          const errorMessage = <any>error;
+          // console.log(errorMessage);
+          if ( errorMessage !== null ) {
+            this.status = 'error';
+          }
+        }
+      );
+    }, 1000);
   }
 
 }

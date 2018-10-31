@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-4">
     Menu:
     <ul>
       <li><a [routerLink]="['/profile']">My Profile</a></li>
@@ -13,8 +13,8 @@
       <li><a [routerLink]="['/update-week']">Update Request Week</a></li>
       <li><a [routerLink]="['/register']">Create new user</a></li>
     </ul>
-  </div><!-- Finish col md 8-->
-  <div class="col-md-4">
+  </div><!-- Finish col md 4 -->
+  <div class="col-md-8">
     <div class="alert alert-danger" *ngIf="status == 'error' ">
       Please try again later
     </div>
@@ -22,7 +22,9 @@
      Message was send
     </div>
     Messages:
-    <form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
+    <ck-editor name="editor1" [(ngModel)]="newText" skin="moono-lisa" language="en"></ck-editor>
+    <!--<p>Value: {{ newText || 'empty' }}</p>-->
+    <!--<form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
       <textarea
         name="text"
         #text="ngModel"
@@ -32,15 +34,20 @@
         id="comment"
         placeholder="{{ message.text }}">
                 
-      </textarea>
+      </textarea>-->
       <br><br>
       <div class="row">
         <div class="col">
-          <input 
+          <!--<input 
             type="submit"
             value="Send"
             class="btn btn-success"
-            [disabled]="!messageForm.form.valid"/>
+            [disabled]="!messageForm.form.valid"/>-->
+            <input 
+            type="submit"
+            value="Send"
+            class="btn btn-success"
+            (click)="sendMessage()"/>
         </div>
         <div class="col text-right">
           <input
@@ -50,8 +57,8 @@
             (click)="deleteMessage()"/>
         </div>
       </div>
-    </form>
-  </div><!-- Finish col md 4-->
+    <!--</form>-->
+  </div><!-- Finish col md 8 -->
 </div><!-- Finish row -->
 
 

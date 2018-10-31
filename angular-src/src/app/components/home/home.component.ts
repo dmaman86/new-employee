@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { Message } from '../../models/message';
 import { UserService } from '../../services/user.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
   public idenity;
   public token;
   public status: string;
+  public textDate: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
           this.message._id = response.message._id;
           this.message.text = response.message.text;
           this.message.date = response.message.created_at;
+          this.textDate = moment.unix( response.message.created_at).format('LLLL');
         }
       }, error => {
         const errorMessage = <any>error;

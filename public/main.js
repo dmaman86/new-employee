@@ -5789,27 +5789,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
-/* harmony import */ var _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/contacts/contacts.component */ "./src/app/components/contacts/contacts.component.ts");
-/* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
-/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
-/* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
-/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
-/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
-/* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
-/* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/shared/footer/footer.component */ "./src/app/components/shared/footer/footer.component.ts");
-/* harmony import */ var _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/dialog/dialog.component */ "./src/app/components/dialog/dialog.component.ts");
-/* harmony import */ var _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/update-week/update-week.component */ "./src/app/components/update-week/update-week.component.ts");
+/* harmony import */ var ngx_ckeditor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-ckeditor */ "./node_modules/ngx-ckeditor/lib/src/index.js");
+/* harmony import */ var ngx_ckeditor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(ngx_ckeditor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.routing */ "./src/app/app.routing.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/user-week/user-week.component */ "./src/app/components/user-week/user-week.component.ts");
+/* harmony import */ var _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/contacts/contacts.component */ "./src/app/components/contacts/contacts.component.ts");
+/* harmony import */ var _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/edit-user/edit-user.component */ "./src/app/components/edit-user/edit-user.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/home-admin/home-admin.component */ "./src/app/components/home-admin/home-admin.component.ts");
+/* harmony import */ var _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/about-me/about-me.component */ "./src/app/components/about-me/about-me.component.ts");
+/* harmony import */ var _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/profile/profile.component */ "./src/app/components/profile/profile.component.ts");
+/* harmony import */ var _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/shared/navbar/navbar.component */ "./src/app/components/shared/navbar/navbar.component.ts");
+/* harmony import */ var _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/shared/footer/footer.component */ "./src/app/components/shared/footer/footer.component.ts");
+/* harmony import */ var _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/dialog/dialog.component */ "./src/app/components/dialog/dialog.component.ts");
+/* harmony import */ var _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/update-week/update-week.component */ "./src/app/components/update-week/update-week.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -5839,39 +5842,40 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"],
-                _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_10__["UserWeekComponent"],
-                _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_11__["ContactsComponent"],
-                _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_12__["EditUserComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"],
-                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_14__["HomeAdminComponent"],
-                _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_15__["AboutMeComponent"],
-                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_16__["ProfileComponent"],
-                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_17__["NavbarComponent"],
-                _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_18__["FooterComponent"],
-                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__["DialogComponent"],
-                _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_20__["UpdateWeekComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_10__["RegisterComponent"],
+                _components_user_week_user_week_component__WEBPACK_IMPORTED_MODULE_11__["UserWeekComponent"],
+                _components_contacts_contacts_component__WEBPACK_IMPORTED_MODULE_12__["ContactsComponent"],
+                _components_edit_user_edit_user_component__WEBPACK_IMPORTED_MODULE_13__["EditUserComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_14__["HomeComponent"],
+                _components_home_admin_home_admin_component__WEBPACK_IMPORTED_MODULE_15__["HomeAdminComponent"],
+                _components_about_me_about_me_component__WEBPACK_IMPORTED_MODULE_16__["AboutMeComponent"],
+                _components_profile_profile_component__WEBPACK_IMPORTED_MODULE_17__["ProfileComponent"],
+                _components_shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_18__["NavbarComponent"],
+                _components_shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_19__["FooterComponent"],
+                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_20__["DialogComponent"],
+                _components_update_week_update_week_component__WEBPACK_IMPORTED_MODULE_21__["UpdateWeekComponent"]
             ],
             entryComponents: [
-                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_19__["DialogComponent"]
+                _components_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_20__["DialogComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _app_routing__WEBPACK_IMPORTED_MODULE_6__["routing"],
+                _app_routing__WEBPACK_IMPORTED_MODULE_7__["routing"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCheckboxModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"],
+                ngx_ckeditor__WEBPACK_IMPORTED_MODULE_6__["CKEditorModule"]
             ],
             providers: [
-                _app_routing__WEBPACK_IMPORTED_MODULE_6__["appRoutingProviders"]
+                _app_routing__WEBPACK_IMPORTED_MODULE_7__["appRoutingProviders"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -6534,7 +6538,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome Admin {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n      <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n      Please try again later\n    </div>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n     Message was send\n    </div>\n    Messages:\n    <form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n      <textarea\n        name=\"text\"\n        #text=\"ngModel\"\n        [(ngModel)]=\"text.text\" \n        class=\"form-control\"\n        rows=\"5\"\n        id=\"comment\"\n        placeholder=\"{{ message.text }}\">\n                \n      </textarea>\n      <br><br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <input \n            type=\"submit\"\n            value=\"Send\"\n            class=\"btn btn-success\"\n            [disabled]=\"!messageForm.form.valid\"/>\n        </div>\n        <div class=\"col text-right\">\n          <input\n            type=\"submit\"\n            value=\"Delete\"\n            class=\"btn btn-danger\"\n            (click)=\"deleteMessage()\"/>\n        </div>\n      </div>\n    </form>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome Admin {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-4\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/update-week']\">Update Request Week</a></li>\n      <li><a [routerLink]=\"['/register']\">Create new user</a></li>\n    </ul>\n  </div><!-- Finish col md 4 -->\n  <div class=\"col-md-8\">\n    <div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n      Please try again later\n    </div>\n    <div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n     Message was send\n    </div>\n    Messages:\n    <ck-editor name=\"editor1\" [(ngModel)]=\"newText\" skin=\"moono-lisa\" language=\"en\"></ck-editor>\n    <!--<p>Value: {{ newText || 'empty' }}</p>-->\n    <!--<form #messageForm=\"ngForm\" (ngSubmit)=\"onSubmit( messageForm )\">\n      <textarea\n        name=\"text\"\n        #text=\"ngModel\"\n        [(ngModel)]=\"text.text\" \n        class=\"form-control\"\n        rows=\"5\"\n        id=\"comment\"\n        placeholder=\"{{ message.text }}\">\n                \n      </textarea>-->\n      <br><br>\n      <div class=\"row\">\n        <div class=\"col\">\n          <!--<input \n            type=\"submit\"\n            value=\"Send\"\n            class=\"btn btn-success\"\n            [disabled]=\"!messageForm.form.valid\"/>-->\n            <input \n            type=\"submit\"\n            value=\"Send\"\n            class=\"btn btn-success\"\n            (click)=\"sendMessage()\"/>\n        </div>\n        <div class=\"col text-right\">\n          <input\n            type=\"submit\"\n            value=\"Delete\"\n            class=\"btn btn-danger\"\n            (click)=\"deleteMessage()\"/>\n        </div>\n      </div>\n    <!--</form>-->\n  </div><!-- Finish col md 8 -->\n</div><!-- Finish row -->\n\n\n\n\n\n"
 
 /***/ }),
 
@@ -6579,15 +6583,15 @@ var HomeAdminComponent = /** @class */ (function () {
         this.identity = this.user;
         this.text = new _models_message__WEBPACK_IMPORTED_MODULE_3__["Message"]('', '', '');
         this.message = new _models_message__WEBPACK_IMPORTED_MODULE_3__["Message"]('', '', '');
+        this.newText = '';
     }
     HomeAdminComponent.prototype.ngOnInit = function () {
         this.refreshTextArea();
     };
-    HomeAdminComponent.prototype.onSubmit = function (form) {
+    HomeAdminComponent.prototype.sendMessage = function () {
         var _this = this;
-        // console.log( form.value );
-        this.text.text = form.value.text;
-        // console.log( this.text );
+        console.log(this.newText);
+        this.text.text = this.newText;
         this._userService.sendMessage(this.text).subscribe(function (response) {
             // console.log( response );
             if (!response.ok) {
@@ -6607,29 +6611,44 @@ var HomeAdminComponent = /** @class */ (function () {
             }
         });
     };
-    HomeAdminComponent.prototype.refreshTextArea = function () {
-        var _this = this;
-        this._userService.getMessage().subscribe(function (response) {
-            // console.log( response );
-            if (response.ok) {
-                _this.message._id = response.message._id;
-                _this.message.text = response.message.text;
-                _this.message.date = response.message.created_at;
-            }
-        }, function (error) {
-            var errorMessage = error;
-            // console.log(errorMessage);
-            if (errorMessage !== null) {
-                _this.status = 'error';
-            }
-        });
-    };
+    /*onSubmit( form ) {
+      // console.log( form.value );
+      this.text.text = form.value.text;
+      // console.log( this.text );
+  
+      this._userService.sendMessage( this.text ).subscribe(
+        response => {
+          // console.log( response );
+          if ( !response.ok ) {
+            this.status = 'error';
+          }
+          if ( response.ok ) {
+            this.status = 'success';
+            // form.reset();
+            // this.refreshTextArea();
+          }
+        }, error => {
+          // console.log( <any>error );
+          const errorMessage = <any>error;
+          // console.log(errorMessage);
+          if ( errorMessage !== null ) {
+            this.status = 'error';
+          }
+        }
+      );
+    }*/
     HomeAdminComponent.prototype.deleteMessage = function () {
         var _this = this;
         // console.log( this.message._id );
         this._userService.deleteMessage(this.message._id).subscribe(function (response) {
+            if (!response.ok) {
+                _this.status = 'error';
+            }
+            else {
+                _this.refreshTextArea();
+            }
             // console.log( response );
-            _this.refreshTextArea();
+            // this.refreshTextArea();
         }, function (error) {
             var errorMessage = error;
             // console.log(errorMessage);
@@ -6644,6 +6663,28 @@ var HomeAdminComponent = /** @class */ (function () {
             // console.log( 'The dialog was closed' );
             // console.log( result );
         });
+    };
+    HomeAdminComponent.prototype.refreshTextArea = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this._userService.getMessage().subscribe(function (response) {
+                console.log(response);
+                if (response.ok) {
+                    if (response.message) {
+                        _this.message._id = response.message._id;
+                        _this.message.text = response.message.text;
+                        _this.newText = _this.message.text;
+                        _this.message.date = response.message.created_at;
+                    }
+                }
+            }, function (error) {
+                var errorMessage = error;
+                // console.log(errorMessage);
+                if (errorMessage !== null) {
+                    _this.status = 'error';
+                }
+            });
+        }, 1000);
     };
     HomeAdminComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -6682,7 +6723,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    Menu:\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 8-->\n  <div class=\"col-md-4\">\n    Messages:\n    <ul>\n      <li>{{ message.text }}</li>\n    </ul>\n  </div><!-- Finish col md 4-->\n</div><!-- Finish row -->\n\n\n\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <h3 class=\"title\">Welcome {{ user.name | titlecase }} {{ user.last_name | titlecase }}</h3>\n    <hr>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <h4>Menu:</h4>\n    <ul>\n      <li><a [routerLink]=\"['/profile']\">My Profile</a></li>\n      <li><a [routerLink]=\"['/contacts']\">Contacts</a></li>\n      <li><a [routerLink]=\"['/user-week']\">Shifts</a></li>\n    </ul>\n  </div><!-- Finish col md 4 -->\n  <div class=\"col-md-6\">\n    <h4> Messages:</h4>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"jumbotron\">\n          <div class=\"text-center\">{{ textDate }}</div>\n          <hr>\n          <div [innerHTML]=\"message.text\"></div>\n        </div>\n      </div>\n    </div>\n  </div><!-- Finish col md 8 -->\n</div><!-- Finish row -->\n\n\n\n\n"
 
 /***/ }),
 
@@ -6700,6 +6741,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _models_message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/message */ "./src/app/models/message.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6709,6 +6752,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -6732,6 +6776,7 @@ var HomeComponent = /** @class */ (function () {
                 _this.message._id = response.message._id;
                 _this.message.text = response.message.text;
                 _this.message.date = response.message.created_at;
+                _this.textDate = moment__WEBPACK_IMPORTED_MODULE_4__["unix"](response.message.created_at).format('LLLL');
             }
         }, function (error) {
             var errorMessage = error;
@@ -7150,7 +7195,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">\n    <!--<img src=\"assets/img/A-64.png\" width=\"30\" height=\"30\" alt=\"\">-->\n    {{ title }}\n  </a>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <!-- active -->\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'USER_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home-admin']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" (click)=\"logout()\" >Log Out</a>\n      </li>\n      \n    </ul>\n  </div>\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"!identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <!-- active -->\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['login']\">Login </a>\n      </li>\n      <!--<li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['register']\">Register</a>\n      </li>-->\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n      \n    </ul>\n  </div>\n</nav>\n\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  \n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <a class=\"navbar-brand\" (click)=\"comeBack()\">\n    {{ title }}\n  </a>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0 navbar-right\">\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'USER_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\" *ngIf=\"this.identity.level == 'ADMIN_ROLE'\">\n        <a class=\"nav-link\" [routerLink] = \"['home-admin']\">Home </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" (click)=\"logout()\" >Log Out</a>\n      </li>\n      \n    </ul>\n  </div>\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\" *ngIf=\"!identity\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0 navbar-right\">\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['login']\">Login </a>\n      </li>\n      <li class=\"nav-item\" routerLinkActive=\"active\">\n        <a class=\"nav-link\" [routerLink] = \"['about-me']\">About Me</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
