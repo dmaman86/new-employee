@@ -6,7 +6,7 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    Menu:
+    <h4>Menu:</h4>
     <ul>
       <li><a [routerLink]="['/profile']">My Profile</a></li>
       <li><a [routerLink]="['/contacts']">Contacts</a></li>
@@ -21,7 +21,7 @@
     <div class="alert alert-success" *ngIf="status == 'success' ">
      Message was send
     </div>
-    Messages:
+    <h4>Messages:</h4>
     <ck-editor name="editor1" [(ngModel)]="newText" skin="moono-lisa" language="en"></ck-editor>
     <!--<p>Value: {{ newText || 'empty' }}</p>-->
     <!--<form #messageForm="ngForm" (ngSubmit)="onSubmit( messageForm )">
