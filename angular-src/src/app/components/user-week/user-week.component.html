@@ -32,7 +32,7 @@
     <table class="table table-bordered text-center">
       <thead>
         <tr>
-          <th colspan="4">Shifts you need to {{ requestWeek.method }} this week:</th>
+          <th *ngIf="requestWeek.method === 'open'" colspan="4">Minimun shifts you need to {{ requestWeek.method }} this week:</th>
         </tr>
         <tr>
           <th><span class="long">Morning</span></th>
