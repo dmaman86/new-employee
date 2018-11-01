@@ -122,7 +122,7 @@ export class UserWeekComponent implements OnInit {
           // console.log( response.request );
           if ( !response.request ) {
             // alert('no exist shift for this user');
-            this.status = 'no-request';
+            // this.status = 'no-request';
           } else {
             if ( response.request ) {
               this.requestUser.setId( response.request._id );
@@ -163,17 +163,23 @@ export class UserWeekComponent implements OnInit {
   }
 
   setValue( day, per ) {
-    this.requestUser.setShift( day, per, 'V' );
-    switch (per) {
+    console.log( this.week[day][per] );
+    if ( this.week[day][per] === 'V' ) {
+      this.resetValue(day, per);
+    } else {
+      this.week[day][per] = 'V';
+      this.requestUser.setShift( day, per, 'V' );
+      this.updateValues( day, per );
+    /*switch (per) {
       case 'morning':
         if ( this.week[day][per] === 'V' ) {
           break;
         } else if ( day === 'saturday') {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_weekend++;
           break;
         } else {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_morning++;
           break;
         }
@@ -181,11 +187,11 @@ export class UserWeekComponent implements OnInit {
         if ( this.week[day][per] === 'V' ) {
           break;
         } else if ( day === 'friday' || day === 'saturday' ) {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_weekend++;
           break;
         } else {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_afternoon++;
           break;
         }
@@ -193,24 +199,26 @@ export class UserWeekComponent implements OnInit {
         if ( this.week[day][per] === 'V' ) {
           break;
         } else if ( day === 'friday' || day === 'saturday' ) {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_weekend++;
           break;
         } else {
-          this.week[day][per] = 'V';
+          // this.week[day][per] = 'V';
           this.count_night++;
           break;
         }
+    }*/
     }
     // console.log( this.week );
     // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
   }
 
   resetValue( day, per ) {
+    this.week[day][per] = '';
     this.requestUser.setShift( day, per, '' );
     switch (per) {
       case 'morning':
-        this.week[day][per] = '';
+        // this.week[day][per] = '';
         if ( day === 'saturday' ) {
           this.count_weekend--;
         } else {
@@ -218,7 +226,7 @@ export class UserWeekComponent implements OnInit {
         }
         break;
       case 'afternoon':
-        this.week[day][per] = '';
+        // this.week[day][per] = '';
         if (day === 'friday' || day === 'saturday') {
           this.count_weekend--;
         } else {
@@ -226,7 +234,7 @@ export class UserWeekComponent implements OnInit {
         }
         break;
       case 'night':
-        this.week[day][per] = '';
+        // this.week[day][per] = '';
         if (day === 'friday' || day === 'saturday') {
           this.count_weekend--;
         } else {
@@ -269,7 +277,7 @@ export class UserWeekComponent implements OnInit {
         // console.log( requestId );
 
         if ( requestId.length <= 0 ) {
-          // console.log( this.requestUser );
+          console.log( this.requestUser );
           this._userService.saveRequestUser( this.requestUser ).subscribe(
             response => {
               if ( response.ok ) {
@@ -284,7 +292,7 @@ export class UserWeekComponent implements OnInit {
             }
           );
         } else {
-          // console.log( this.requestUser );
+          console.log( this.requestUser );
           this._userService.updateRequestUser( this.requestUser ).subscribe(
             response => {
               if ( !response.ok ) {
@@ -354,8 +362,8 @@ export class UserWeekComponent implements OnInit {
 
     if ( day >= Number( this.requestWeek.last_day ) ) {
         console.log( `you can't send`);
-        document.getElementById('btn-send').style.display = 'none';
-        this.status = 'denied';
+        // document.getElementById('btn-send').style.display = 'none';
+        // this.status = 'denied';
     } else {
       console.log( 'you can send' );
       this.status = 'send';

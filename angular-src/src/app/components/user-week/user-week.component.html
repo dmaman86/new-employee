@@ -90,31 +90,40 @@
         <tr>
           <td>Morning</td>
           <td *ngFor="let day of days">
-            <input
+            <!--<input
               type="button"
               value="{{ this.week[day].morning }}"
               (click)="setValue( day, 'morning' )"
-              (dblclick)="resetValue(day, 'morning')">
+              (dblclick)="resetValue(day, 'morning')">-->
+              <input type="button"
+                value="{{ week[day].morning }}"
+                (click)="setValue( day, 'morning' )">
           </td>
         </tr>
         <tr>
           <td>Afternoon</td>
           <td *ngFor="let day of days">
-            <input
+            <!--<input
               type="button"
               value="{{ this.week[day].afternoon }}"
               (click)="setValue( day, 'afternoon' )"
-              (dblclick)="resetValue(day, 'afternoon')">
+              (dblclick)="resetValue(day, 'afternoon')">-->
+              <input type="button"
+                value="{{ week[day].afternoon }}"
+                (click)="setValue( day, 'afternoon' )">
           </td>
         </tr>
         <tr>
           <td>Night</td>
           <td *ngFor="let day of days">
-            <input
+            <!--<input
               type="button"
               value="{{ this.week[day].night }}"
               (click)="setValue( day, 'night' )"
-              (dblclick)="resetValue(day, 'night')">
+              (dblclick)="resetValue(day, 'night')">-->
+              <input type="button"
+                value="{{ week[day].night }}"
+                (click)="setValue( day, 'night' )">
           </td>
         </tr>
       </tbody>
