@@ -55,7 +55,7 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th colspan="4">Your shifts {{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</th>
+          <th colspan="4">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}'s shifts</th>
         </tr>
         <tr>
           <th><span class="long">Morning</span></th>
@@ -96,6 +96,7 @@
               (click)="setValue( day, 'morning' )"
               (dblclick)="resetValue(day, 'morning')">-->
               <input type="button"
+                id="{{day}}.morning"
                 value="{{ week[day].morning }}"
                 (click)="setValue( day, 'morning' )">
           </td>
@@ -109,6 +110,7 @@
               (click)="setValue( day, 'afternoon' )"
               (dblclick)="resetValue(day, 'afternoon')">-->
               <input type="button"
+                id="{{day}}.afternoon"
                 value="{{ week[day].afternoon }}"
                 (click)="setValue( day, 'afternoon' )">
           </td>
@@ -122,6 +124,7 @@
               (click)="setValue( day, 'night' )"
               (dblclick)="resetValue(day, 'night')">-->
               <input type="button"
+                id="{{day}}.night"
                 value="{{ week[day].night }}"
                 (click)="setValue( day, 'night' )">
           </td>

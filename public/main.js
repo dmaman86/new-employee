@@ -7456,7 +7456,7 @@ module.exports = "thead th{\n    text-align: center;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <div class=\"alert alert-success\">\n      You can send shifts until Tuesday 23:59\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'success'\">\n    <div class=\"alert alert-success\">\n      Shifts Save!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'no-request'\">\n    <div class=\"alert alert-success\">\n      You have not sent shifts yet for next week\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'error'\">\n    <div class=\"alert alert-danger\">\n      Please check shifts!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'denied'\">\n    <div class=\"alert alert-danger\">\n      We are sorry,\n      but you will have to wait next week to send shifts or contact the administrator\n      if you have any problems.\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered text-center\">\n      <thead>\n        <tr>\n          <th *ngIf=\"requestWeek.method === 'open'\" colspan=\"4\">Minimun shifts you need to {{ requestWeek.method }} this week:</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}&nbsp;&nbsp;<i *ngIf=\"count_morning >= requestWeek.morning\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.afternoon }}&nbsp;&nbsp;<i *ngIf=\"count_afternoon >= requestWeek.afternoon\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.night }}&nbsp;&nbsp;<i *ngIf=\"count_night >= requestWeek.night\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.weekend }}&nbsp;&nbsp;<i *ngIf=\"count_weekend >= requestWeek.weekend\" class=\"fas fa-check\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">Your shifts {{ identity.name | titlecase }} {{ identity.last_name | titlecase }}</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Morning</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">-->\n              <input type=\"button\"\n                value=\"{{ week[day].morning }}\"\n                (click)=\"setValue( day, 'morning' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">-->\n              <input type=\"button\"\n                value=\"{{ week[day].afternoon }}\"\n                (click)=\"setValue( day, 'afternoon' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Night</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">-->\n              <input type=\"button\"\n                value=\"{{ week[day].night }}\"\n                (click)=\"setValue( day, 'night' )\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        Message:\n        <div class=\"from-group\">\n          <textarea cols=\"30\" rows=\"4\" [(ngModel)]=\"message\" placeholder=\"{{ message }}\"></textarea>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-12 text-center\">\n        <button\n          id=\"btn-send\"\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Shifts</button>\n      </div>\n    </div>\n  </div>\n</div>\n<br><br>\n<!--<app-footer></app-footer>-->\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <div class=\"alert alert-success\">\n      You can send shifts until Tuesday 23:59\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'success'\">\n    <div class=\"alert alert-success\">\n      Shifts Save!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'no-request'\">\n    <div class=\"alert alert-success\">\n      You have not sent shifts yet for next week\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'error'\">\n    <div class=\"alert alert-danger\">\n      Please check shifts!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'denied'\">\n    <div class=\"alert alert-danger\">\n      We are sorry,\n      but you will have to wait next week to send shifts or contact the administrator\n      if you have any problems.\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered text-center\">\n      <thead>\n        <tr>\n          <th *ngIf=\"requestWeek.method === 'open'\" colspan=\"4\">Minimun shifts you need to {{ requestWeek.method }} this week:</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}&nbsp;&nbsp;<i *ngIf=\"count_morning >= requestWeek.morning\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.afternoon }}&nbsp;&nbsp;<i *ngIf=\"count_afternoon >= requestWeek.afternoon\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.night }}&nbsp;&nbsp;<i *ngIf=\"count_night >= requestWeek.night\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.weekend }}&nbsp;&nbsp;<i *ngIf=\"count_weekend >= requestWeek.weekend\" class=\"fas fa-check\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}'s shifts</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Morning</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.morning\"\n                value=\"{{ week[day].morning }}\"\n                (click)=\"setValue( day, 'morning' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.afternoon\"\n                value=\"{{ week[day].afternoon }}\"\n                (click)=\"setValue( day, 'afternoon' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Night</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.night\"\n                value=\"{{ week[day].night }}\"\n                (click)=\"setValue( day, 'night' )\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        Message:\n        <div class=\"from-group\">\n          <textarea cols=\"30\" rows=\"4\" [(ngModel)]=\"message\" placeholder=\"{{ message }}\"></textarea>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-12 text-center\">\n        <button\n          id=\"btn-send\"\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Shifts</button>\n      </div>\n    </div>\n  </div>\n</div>\n<br><br>\n<!--<app-footer></app-footer>-->\n"
 
 /***/ }),
 
@@ -7592,7 +7592,7 @@ var UserWeekComponent = /** @class */ (function () {
                             var d = _this.days[i];
                             for (var j = 0; j < _this.shift.length; j++) {
                                 var s = _this.shift[j];
-                                _this.week[d][s] = response.request[d][s];
+                                _this.showShifts(response.request[d][s], d, s);
                                 _this.requestUser.setShift(d, s, response.request[d][s]);
                                 _this.updateValues(d, s);
                             }
@@ -7604,7 +7604,7 @@ var UserWeekComponent = /** @class */ (function () {
                             var d = _this.days[i];
                             for (var j = 0; j < _this.shift.length; j++) {
                                 var s = _this.shift[j];
-                                _this.week[d][s] = response.request[d][s];
+                                _this.showShifts(response.request[d][s], d, s);
                                 _this.requestUser.setShift(d, s, response.request[d][s]);
                                 _this.updateValues(d, s);
                             }
@@ -7620,60 +7620,38 @@ var UserWeekComponent = /** @class */ (function () {
             }
         });
     };
-    UserWeekComponent.prototype.setValue = function (day, per) {
-        console.log(this.week[day][per]);
-        if (this.week[day][per] === 'V') {
-            this.resetValue(day, per);
+    UserWeekComponent.prototype.showShifts = function (weekShift, day, shift) {
+        if (this.requestWeek.method === 'open') {
+            if (weekShift === 'V') {
+                this.week[day][shift] = weekShift;
+                document.getElementById(day + '.' + shift).style.backgroundColor = '#9ad17c';
+            }
         }
-        else {
-            this.week[day][per] = 'V';
-            this.requestUser.setShift(day, per, 'V');
-            this.updateValues(day, per);
-            /*switch (per) {
-              case 'morning':
-                if ( this.week[day][per] === 'V' ) {
-                  break;
-                } else if ( day === 'saturday') {
-                  // this.week[day][per] = 'V';
-                  this.count_weekend++;
-                  break;
-                } else {
-                  // this.week[day][per] = 'V';
-                  this.count_morning++;
-                  break;
-                }
-              case 'afternoon':
-                if ( this.week[day][per] === 'V' ) {
-                  break;
-                } else if ( day === 'friday' || day === 'saturday' ) {
-                  // this.week[day][per] = 'V';
-                  this.count_weekend++;
-                  break;
-                } else {
-                  // this.week[day][per] = 'V';
-                  this.count_afternoon++;
-                  break;
-                }
-              case 'night':
-                if ( this.week[day][per] === 'V' ) {
-                  break;
-                } else if ( day === 'friday' || day === 'saturday' ) {
-                  // this.week[day][per] = 'V';
-                  this.count_weekend++;
-                  break;
-                } else {
-                  // this.week[day][per] = 'V';
-                  this.count_night++;
-                  break;
-                }
-            }*/
+    };
+    UserWeekComponent.prototype.setValue = function (day, per) {
+        // console.log( this.week[day][per] );
+        // console.log( document.getElementById(day + '.' + per) );
+        if (this.requestWeek.method === 'open') {
+            if (this.week[day][per] === 'V') {
+                this.resetValue(day, per);
+            }
+            else {
+                this.week[day][per] = 'V';
+                document.getElementById(day + '.' + per).style.backgroundColor = '#9ad17c';
+                this.requestUser.setShift(day, per, 'V');
+                this.updateValues(day, per);
+            }
         }
         // console.log( this.week );
         // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
     };
     UserWeekComponent.prototype.resetValue = function (day, per) {
-        this.week[day][per] = '';
-        this.requestUser.setShift(day, per, '');
+        // console.log( document.getElementById(day + '.' + per) );
+        if (this.requestWeek.method === 'open') {
+            document.getElementById(day + '.' + per).style.backgroundColor = '#d1d1d1';
+            this.week[day][per] = '';
+            this.requestUser.setShift(day, per, '');
+        }
         switch (per) {
             case 'morning':
                 // this.week[day][per] = '';
@@ -7714,13 +7692,6 @@ var UserWeekComponent = /** @class */ (function () {
                 && this.count_afternoon >= Number(this.requestWeek.afternoon)
                 && this.count_night >= Number(this.requestWeek.night)
                 && this.count_weekend >= Number(this.requestWeek.weekend)) {
-                /*for ( let i = 0; i < this.days.length; i++ ) {
-                  const d = this.days[i];
-                  for ( let j = 0; j < this.shift.length; j++ ) {
-                    const s = this.shift[j];
-                    this.requestUser.setShift( d, s, this.week[d][s] );
-                  }
-                }*/
                 this.requestUser.setMessage(this.message);
                 this.status = 'success';
                 if (this.status === 'success') {
@@ -7732,7 +7703,7 @@ var UserWeekComponent = /** @class */ (function () {
                 var requestId = this.requestUser.getId();
                 // console.log( requestId );
                 if (requestId.length <= 0) {
-                    console.log(this.requestUser);
+                    // console.log( this.requestUser );
                     this._userService.saveRequestUser(this.requestUser).subscribe(function (response) {
                         if (response.ok) {
                             _this.getSuccess('Submitted successfully');
@@ -7746,7 +7717,7 @@ var UserWeekComponent = /** @class */ (function () {
                     });
                 }
                 else {
-                    console.log(this.requestUser);
+                    // console.log( this.requestUser );
                     this._userService.updateRequestUser(this.requestUser).subscribe(function (response) {
                         if (!response.ok) {
                             _this.status = response.message;
@@ -7815,8 +7786,8 @@ var UserWeekComponent = /** @class */ (function () {
         // console.log( day );
         if (day >= Number(this.requestWeek.last_day)) {
             console.log("you can't send");
-            // document.getElementById('btn-send').style.display = 'none';
-            // this.status = 'denied';
+            document.getElementById('btn-send').style.display = 'none';
+            this.status = 'denied';
         }
         else {
             console.log('you can send');

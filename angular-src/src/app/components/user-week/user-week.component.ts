@@ -132,7 +132,7 @@ export class UserWeekComponent implements OnInit {
                 const d = this.days[i];
                 for ( let j = 0; j < this.shift.length; j++) {
                   const s = this.shift[j];
-                  this.week[d][s] = response.request[d][s];
+                  this.showShifts( response.request[d][s], d, s );
                   this.requestUser.setShift( d, s, response.request[d][s]);
                   this.updateValues(d, s);
                 }
@@ -144,7 +144,7 @@ export class UserWeekComponent implements OnInit {
                 const d = this.days[i];
                 for ( let j = 0; j < this.shift.length; j++) {
                   const s = this.shift[j];
-                  this.week[d][s] = response.request[d][s];
+                  this.showShifts( response.request[d][s], d, s );
                   this.requestUser.setShift( d, s, response.request[d][s]);
                   this.updateValues(d, s);
                 }
@@ -162,60 +162,39 @@ export class UserWeekComponent implements OnInit {
     );
   }
 
+  showShifts( weekShift, day, shift ) {
+    if ( this.requestWeek.method === 'open' ) {
+      if ( weekShift === 'V' ) {
+        this.week[day][shift] = weekShift;
+        document.getElementById(day + '.' + shift).style.backgroundColor = '#9ad17c';
+      }
+    }
+  }
+
   setValue( day, per ) {
-    console.log( this.week[day][per] );
-    if ( this.week[day][per] === 'V' ) {
-      this.resetValue(day, per);
-    } else {
-      this.week[day][per] = 'V';
-      this.requestUser.setShift( day, per, 'V' );
-      this.updateValues( day, per );
-    /*switch (per) {
-      case 'morning':
-        if ( this.week[day][per] === 'V' ) {
-          break;
-        } else if ( day === 'saturday') {
-          // this.week[day][per] = 'V';
-          this.count_weekend++;
-          break;
-        } else {
-          // this.week[day][per] = 'V';
-          this.count_morning++;
-          break;
-        }
-      case 'afternoon':
-        if ( this.week[day][per] === 'V' ) {
-          break;
-        } else if ( day === 'friday' || day === 'saturday' ) {
-          // this.week[day][per] = 'V';
-          this.count_weekend++;
-          break;
-        } else {
-          // this.week[day][per] = 'V';
-          this.count_afternoon++;
-          break;
-        }
-      case 'night':
-        if ( this.week[day][per] === 'V' ) {
-          break;
-        } else if ( day === 'friday' || day === 'saturday' ) {
-          // this.week[day][per] = 'V';
-          this.count_weekend++;
-          break;
-        } else {
-          // this.week[day][per] = 'V';
-          this.count_night++;
-          break;
-        }
-    }*/
+    // console.log( this.week[day][per] );
+    // console.log( document.getElementById(day + '.' + per) );
+    if (this.requestWeek.method === 'open' ) {
+      if ( this.week[day][per] === 'V' ) {
+        this.resetValue(day, per);
+      } else {
+        this.week[day][per] = 'V';
+        document.getElementById(day + '.' + per).style.backgroundColor = '#9ad17c';
+        this.requestUser.setShift( day, per, 'V' );
+        this.updateValues( day, per );
+      }
     }
     // console.log( this.week );
     // console.log( this.count_morning, this.count_afternoon, this.count_night, this.count_weekend );
   }
 
   resetValue( day, per ) {
-    this.week[day][per] = '';
-    this.requestUser.setShift( day, per, '' );
+    // console.log( document.getElementById(day + '.' + per) );
+    if ( this.requestWeek.method === 'open' ) {
+      document.getElementById(day + '.' + per).style.backgroundColor = '#d1d1d1';
+      this.week[day][per] = '';
+      this.requestUser.setShift( day, per, '' );
+    }
     switch (per) {
       case 'morning':
         // this.week[day][per] = '';
@@ -254,14 +233,6 @@ export class UserWeekComponent implements OnInit {
           && this.count_night >= Number( this.requestWeek.night )
           && this.count_weekend >= Number( this.requestWeek.weekend ) ) {
 
-        /*for ( let i = 0; i < this.days.length; i++ ) {
-          const d = this.days[i];
-          for ( let j = 0; j < this.shift.length; j++ ) {
-            const s = this.shift[j];
-            this.requestUser.setShift( d, s, this.week[d][s] );
-          }
-        }*/
-
         this.requestUser.setMessage( this.message );
 
         this.status = 'success';
@@ -277,7 +248,7 @@ export class UserWeekComponent implements OnInit {
         // console.log( requestId );
 
         if ( requestId.length <= 0 ) {
-          console.log( this.requestUser );
+          // console.log( this.requestUser );
           this._userService.saveRequestUser( this.requestUser ).subscribe(
             response => {
               if ( response.ok ) {
@@ -292,7 +263,7 @@ export class UserWeekComponent implements OnInit {
             }
           );
         } else {
-          console.log( this.requestUser );
+          // console.log( this.requestUser );
           this._userService.updateRequestUser( this.requestUser ).subscribe(
             response => {
               if ( !response.ok ) {
@@ -362,8 +333,8 @@ export class UserWeekComponent implements OnInit {
 
     if ( day >= Number( this.requestWeek.last_day ) ) {
         console.log( `you can't send`);
-        // document.getElementById('btn-send').style.display = 'none';
-        // this.status = 'denied';
+        document.getElementById('btn-send').style.display = 'none';
+        this.status = 'denied';
     } else {
       console.log( 'you can send' );
       this.status = 'send';
