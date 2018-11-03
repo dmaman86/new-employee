@@ -8,7 +8,120 @@
 <div class="alert alert-danger" *ngIf="status == 'error' ">
   Please try with other data
 </div>
-<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+<div class="alert alert-danger" *ngIf="status == 'denied' ">
+    Please enter same password
+</div>
+
+<form (ngSubmit)="onSubmit( form )" #form="ngForm" novalidate="">
+  <div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">First Name</label>
+      <div class="col-8">
+        <input class="form-control"
+          type="text"
+          placeholder="First Name"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+          #name="ngModel">
+        <div *ngIf="name.errors?.required">
+          First name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Last Name</label>
+      <div class="col-8">
+  
+        <input class="form-control"
+            type="text"
+            placeholder="Last Name"
+            name="last_name"
+            [(ngModel)]="user.last_name"
+            required
+            #last_name="ngModel">
+  
+        <div *ngIf="last_name.errors?.required">
+          Last Name is required
+        </div>
+  
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Email</label>
+      <div class="col-8">
+    
+        <input class="form-control"
+          type="email"
+          placeholder="Email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          #email="ngModel">
+    
+        <div *ngIf="email.errors?.required">
+          Email is required
+        </div>
+    
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Password</label>
+      <div class="col-8">
+      
+        <input class="form-control"
+            type="password"
+            placeholder="Password"
+            name="password"
+            [(ngModel)]="user.password"
+            required
+            #password="ngModel">
+      
+        <div *ngIf="password.errors?.required">
+          Password is required
+        </div>
+      
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Confirm Password</label>
+        <div class="col-8">
+        
+          <input class="form-control"
+              type="password"
+              placeholder="Confirm Password"
+              name="password2"
+              [(ngModel)]="tempPassword"
+              required
+              #password2="ngModel">
+        
+          <div *ngIf="password2.errors?.required">
+            Password is required
+          </div>
+        
+        </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+      <label class="col-2 col-form-label">&nbsp;</label>
+      <div class="input-group col-md-8">
+        <button 
+            [disabled]="!form.valid"
+            type="submit"
+            class="btn btn-outline-primary">
+          Sign In User
+        </button>
+      </div>
+    </div>
+</form>
+<!--<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
   <div class="form-row">
   
     <div class="form-group col-md-6">
@@ -68,4 +181,4 @@
     type="submit"
     class="btn btn-primary"
     [disabled]="!registerForm.form.valid">Sign Up</button>
-</form>
+</form>-->
