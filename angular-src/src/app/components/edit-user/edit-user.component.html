@@ -7,69 +7,104 @@
             Data such as nick name, role, level can only be changed by the administrator.</p>
       </div>
     </div>
-  </div>
+</div>
 <form #updateForm="ngForm" (ngSubmit)="onSubmit( updateForm )">
-        
     <div class="alert alert-danger" *ngIf="status == 'error' ">
         Please try in another name, last name or email
     </div>
-    <div class="form-row">
-        
-        <div class="form-group col-md-6">
-            <label for="inputName4">First Name</label>
-            <input type="text"
-                name="name"
-                #name="ngModel"
-                [(ngModel)]="user.name"
-                class="form-control"
-                placeholder="{{ user.name }}">
+    <div class="alert alert-danger" *ngIf="status == 'denied' ">
+        Please enter same password
+    </div>
+    <fieldset class="fieldset">
+        <h3 class="fieldset-title">Personal Info</h3>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">First Name</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <input type="text"
+                            name="name"
+                            #name="ngModel"
+                            [(ngModel)]="user.name"
+                            class="form-control"
+                            placeholder="{{ user.name }}">
+                </div>
+            </div>
+            
         </div>
-          
-        <div class="form-group col-md-6">
-            <label for="inputLastName4">Last Name</label>
-            <input type="text"
-                name="last_name"
-                #last_name="ngModel"
-                [(ngModel)]="user.last_name"
-                class="form-control"
-                placeholder="{{ user.last_name }}">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Last Name</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <input type="text"
+                            name="last_name"
+                            #last_name="ngModel"
+                            [(ngModel)]="user.last_name"
+                            class="form-control"
+                            placeholder="{{ user.last_name }}">
+                </div>
+            </div>
         </div>
-          
-    </div>
-        
-    <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input type="email"
-            name="email"
-            #email="ngModel"
-            [(ngModel)]="user.email"
-            class="form-control"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            placeholder="{{ user.email }}">
-    </div>
-        
-    <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password"
-            name="password"
-            #password="ngModel"
-            [(ngModel)]="user.password"
-            class="form-control"
-            placeholder="{{ user.password }}">
-    </div>
+    </fieldset>
+    <fieldset class="fieldset">
+        <h3 class="fieldset-title">Contact Info</h3>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Email</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <input type="email"
+                            name="email"
+                            #email="ngModel"
+                            [(ngModel)]="user.email"
+                            class="form-control"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                            placeholder="{{ user.email }}">
+                </div>
+            </div>
+                
+        </div>
+    </fieldset>
+    <fieldset class="fieldset">
+        <h3 class="fieldset-title">Password (updating the password is not necessary)</h3>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Password</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <input type="password"
+                            name="password"
+                            #password="ngModel"
+                            [(ngModel)]="user.password"
+                            class="form-control">
+                </div>
+            </div>
+                
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Password</label>
+                <div class="col-md-10 col-sm-9 col-xs-12">
+                    <input type="password"
+                        name="password2"
+                        #password2="ngModel"
+                        [(ngModel)]="tempPassword"
+                        class="form-control">
+                </div>
+            </div>
+                    
+        </div>
+    </fieldset>
     <div class="row">
         <div class="col">
             <button
                 type="submit"
-                class="btn btn-primary"
-                [disabled]="!updateForm.form.valid">Update</button>
+                class="btn btn-primary">Update</button>
         </div>
         <div class="col text-right">
             <button class="btn btn-secondary" (click)="backHome()">
-               Home
+                Home
             </button>
         </div>
     </div>
-    
 </form>
-<!--<app-footer></app-footer>-->

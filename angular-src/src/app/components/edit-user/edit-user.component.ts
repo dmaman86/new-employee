@@ -17,6 +17,7 @@ export class EditUserComponent implements OnInit {
   public temp: User;
   public identity;
   public status: string;
+  public tempPassword: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,27 +36,29 @@ export class EditUserComponent implements OnInit {
   onSubmit( form ) {
     // console.log( form.value );
     // console.log( this.user );
-    // this.temp = this.user;
-    this.user.name = form.value.name;
-    this.user.last_name = form.value.last_name;
-    this.user.email = form.value.email;
-    if ( form.value.password === undefined ) {
-      this.user.password = '';
+
+    if (  form.value.password !== form.value.password2 ) {
+      this.status = 'denied';
+      form.value.password = '';
+      form.value.password2 = '';
     } else {
-      this.user.password = form.value.password;
+      if ( form.value.password === undefined ) {
+        this.user.password = '';
+      } else {
+        this.user.password = form.value.password;
+      }
+      this.sendUpdate( this.user );
     }
-    // console.log( this.user );
-    this._userService.updateUser( this.user ).subscribe(
+  }
+
+  sendUpdate( user: User ) {
+    // console.log( user );
+    this._userService.updateUser( user ).subscribe(
       response => {
-        console.log( response );
+        // console.log( response );
         if ( response.ok ) {
           this.identity = response.user;
           localStorage.setItem( 'identity', JSON.stringify( this.identity ));
-          /*if ( this.identity.role === 'USER_ROLE') {
-            this._router.navigate(['/home']);
-          } else {
-            this._router.navigate(['/home-admin']);
-          }*/
           swal({
             position: 'top',
             type: 'success',
