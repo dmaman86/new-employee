@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     private _router: Router,
     private _userService: UserService
   ) {
-    this.title = 'Employee Management Application';
+    this.title = 'Employee Management';
     this.url = GLOBAL.url;
   }
 

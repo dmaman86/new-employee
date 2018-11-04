@@ -7242,7 +7242,7 @@ var NavbarComponent = /** @class */ (function () {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
-        this.title = 'Employee Management Application';
+        this.title = 'Employee Management';
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_3__["GLOBAL"].url;
     }
     NavbarComponent.prototype.ngOnInit = function () {
