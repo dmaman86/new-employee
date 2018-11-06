@@ -12,6 +12,8 @@ import { UserWeekComponent } from './components/user-week/user-week.component';
 import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UpdateWeekComponent } from './components/update-week/update-week.component';
+import { BuildShiftsComponent } from './components/build-shifts/build-shifts.component';
+import { ShowShiftsComponent } from './components/show-shifts/show-shifts.component';
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -25,6 +27,8 @@ const appRoutes: Routes = [
     { path: 'about-me', component: AboutMeComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'update-week', component: UpdateWeekComponent },
+    { path: 'build-shifts', component: BuildShiftsComponent },
+    { path: 'show-shifts', component: ShowShiftsComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 

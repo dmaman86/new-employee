@@ -52,7 +52,7 @@ export class ContactsComponent implements OnInit {
 
   ngOnInit() {
     this.newGetUsers();
-    // console.log( this.newGetUsers() );
+    // this.newGetUsers();
   }
 
   /***************** Inactive! ***************/

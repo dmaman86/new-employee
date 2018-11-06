@@ -6,7 +6,7 @@ import { MatButtonModule, MatCheckboxModule, MatTableModule, MatDialogModule } f
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CKEditorModule } from 'ngx-ckeditor';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 // routing
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -25,6 +25,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { UpdateWeekComponent } from './components/update-week/update-week.component';
+import { BuildShiftsComponent } from './components/build-shifts/build-shifts.component';
+import { ShowShiftsComponent } from './components/show-shifts/show-shifts.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { UpdateWeekComponent } from './components/update-week/update-week.compon
     NavbarComponent,
     FooterComponent,
     DialogComponent,
-    UpdateWeekComponent
+    UpdateWeekComponent,
+    BuildShiftsComponent,
+    ShowShiftsComponent
   ],
   entryComponents: [
     DialogComponent
@@ -57,7 +61,8 @@ import { UpdateWeekComponent } from './components/update-week/update-week.compon
     MatCheckboxModule,
     MatTableModule,
     MatDialogModule,
-    CKEditorModule
+    CKEditorModule,
+    ScrollingModule
   ],
   providers: [
     appRoutingProviders
