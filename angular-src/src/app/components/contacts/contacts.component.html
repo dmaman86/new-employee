@@ -97,15 +97,21 @@
               </option>
             </select>
           </div>
-          <div *ngIf="identity._id !== temp_user._id" class="form-group col-md-4">
+          <div class="form-group col-md-4">
             <label>Level:&nbsp;&nbsp;</label>
-            <input 
+            <br>
+            <select [(ngModel)]="selectedOptionLevel" name="first">
+              <option *ngFor="let lv of optionsLevel">
+                {{ lv.level }}
+              </option>
+            </select>
+            <!--<input 
               type="text"
               name="level"
               #level="ngModel"
               [(ngModel)]="temp_user.level"
               class="form-control"
-              placeholder="temp_user.level"/>
+              placeholder="temp_user.level"/>-->
           </div>
           <div class="form-group col-md-4">
             <label>Nick-Name:&nbsp;&nbsp;</label>

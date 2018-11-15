@@ -58,6 +58,25 @@ export class UserService {
         return this.token;
     }
 
+    getWeekNumber( full_date ) {
+        // Copy date so don't modify original
+        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+        // Get first day of year
+        const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
+        // Return array of year and week number
+        let year = full_date.getUTCFullYear();
+        if ( weekNo === 53 ) {
+          weekNo = 0;
+          year++;
+        }
+        return [year, weekNo];
+    }
+
     /* Home and Home Admin */
 
     getMessage(): Observable<any> {
@@ -89,6 +108,11 @@ export class UserService {
     getUsersToSearch(): Observable<any> {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
         return this._http.get( this.url + 'get-users', { headers: headers });
+    }
+
+    getUser( id ): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get( this.url + 'user/' + id, { headers: headers } );
     }
 
     deleteUser( user: User ): Observable<any> {
@@ -132,6 +156,12 @@ export class UserService {
         const params = JSON.stringify( requestUser );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put( this.url + 'update-request-user/' + requestUser.getId(), params, { headers: headers });
+    }
+
+    getAllRequest( weekAndyear: any ): Observable<any> {
+        const params = JSON.stringify( weekAndyear );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'get-all-request', params, { headers: headers });
     }
 
     /* For Admin set how much shifts */

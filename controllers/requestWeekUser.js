@@ -191,7 +191,7 @@ function getRequestWeek(req, res) {
     var numberWeek = params.numberWeek;
     var year = params.year;
 
-    console.log( userId, numberWeek );
+    // console.log( userId, numberWeek );
 
     if ( userId !== req.user.sub ) {
         return res.status(500).send({
@@ -224,6 +224,37 @@ function getRequestWeek(req, res) {
 
 function getAllRequestWeek(req, res) {
 
+    var params = req.body;
+
+    var week = params.week;
+    var year = params.year;
+
+    if ( req.user.role !== 'ADMIN_ROLE' ) {
+        return res.status(500).send({
+            ok: false,
+            message: 'You do not have authorization to this'
+        });
+    }
+
+    RequestWeekUser.find({ numberWeek: week, year: year }, (err, requests) => {
+        if ( err ) {
+            return res.status(500).send({
+                ok: false,
+                message: `Error to find ${ err }`
+            });
+        }
+        if ( !requests ) {
+            return res.status(404).send({
+                ok: false,
+                message: 'No found request for this week'
+            });
+        }
+
+        return res.status(200).send({
+            ok: true,
+            resp: requests
+        });
+    });
 }
 
 

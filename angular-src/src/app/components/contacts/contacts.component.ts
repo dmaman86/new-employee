@@ -29,7 +29,9 @@ export class ContactsComponent implements OnInit {
   public url: string;
   public values: string;
   public selectedOptionRole: string;
+  public selectedOptionLevel: string;
   public optionsRole: any [];
+  public optionsLevel: any [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -47,6 +49,10 @@ export class ContactsComponent implements OnInit {
     this.optionsRole = [
       { role: 'USER_ROLE', value: 1 },
       { role: 'ADMIN_ROLE', value: 2 }
+    ];
+    this.optionsLevel = [
+      { level: 'TEAM_LEADER', value: 1 },
+      { level: 'EMPLOYEE', value: 2 }
     ];
   }
 
@@ -182,6 +188,7 @@ export class ContactsComponent implements OnInit {
 
   onSubmit() {
     this.temp_user.role = this.selectedOptionRole;
+    this.temp_user.level = this.selectedOptionLevel;
     // console.log( this.temp_user );
     this._userService.adminUpdateUser( this.temp_user ).subscribe(
       response => {

@@ -55,7 +55,7 @@ export class UserWeekComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.number_week = this.getWeekNumber( new Date() ); // [0] = year, [1]= number next week
+    this.number_week = this._userService.getWeekNumber( new Date() ); // [0] = year, [1]= number next week
     // console.log( this.number_week );
     this.dates = this.getFirstAndLastDates( this.number_week );
     // console.log( this.dates );
@@ -73,7 +73,7 @@ export class UserWeekComponent implements OnInit {
     }, 2000);
   }
 
-  getWeekNumber( full_date ) {
+  /*getWeekNumber( full_date ) {
     // Copy date so don't modify original
     full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
     // Set to nearest Thursday: current date + 4 - current day number
@@ -90,7 +90,7 @@ export class UserWeekComponent implements OnInit {
       year++;
     }
     return [year, weekNo];
-  }
+  }*/
 
   getFirstAndLastDates( numberWeek ) {
     // const moment = require('moment');

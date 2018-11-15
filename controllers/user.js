@@ -163,11 +163,18 @@ function getUser(req, res) {
     }
 
     User.findById( userId, (err, user) => {
-        if(err) return res.status(500).send({message: `Error in request: ${ err }`});
+        if(err) return res.status(500).send({
+            ok: false,
+            message: `Error in request: ${ err }`
+        });
 
-        if(!user) return res.status(404).send({message: 'user not exist'});
-        delete user.password;
+        if(!user) return res.status(404).send({
+            ok: false,
+            message: 'user not exist'
+        });
+        user.password = undefined;
         return res.status(200).send({
+            ok: true,
             user
         });
 

@@ -3732,7 +3732,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  build-shifts works!\n</p>\n"
+module.exports = "<h3>Build Table Employess</h3>\n<hr>\n\n<div class=\"row\">\n    <div class=\"col-md-8\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"7\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let shift of shifts; let j = index\">\n                    <td *ngFor=\"let day of days; let i = index\">\n                        <ul id=\"mat[{{ shift }}][{{ day }}]\" (click)=\"remove( shift, day )\">\n                            <li (drop)=\"drop($event, s, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li (drop)=\"drop($event, s, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li (drop)=\"drop($event, s, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                        </ul>\n                        <ul>\n                            <li (click)=\"added( shift, day )\"><i class=\"fa fa-plus-circle\"></i></li>\n                        </ul>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)=\"autoBuild()\">Auto Build</button>&nbsp;&nbsp;\n                <button type=\"submit\" class=\"btn btn-success\" (click)=\"saveBuild()\">Save Build</button>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"col-md-4\">\n        <div class=\"row\">\n            <div class=\"col\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <h4>Search Employess</h4>\n                        <hr>\n                        <div>\n                            <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                                <option *ngFor=\"let day of days\">{{ day }}</option>\n                            </select>\n                            <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                                <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <div id=\"listOpt\">\n\n                        </div>\n                    </div>\n                </div>\n                \n                <div class=\"row\">\n                    <div class=\"col text-center\">\n                        <button class=\"btn btn-primary\" (click)=\"searchEmployess()\">Search Employess</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <h4>Show All Employess</h4>\n                        <hr>\n                        <div>\n                            <select [(ngModel)]=\"selectedEmployess\" name=\"first\">\n                                <option *ngFor=\"let lv of employess\">{{ lv.level }}</option>\n                            </select>\n                            <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                                <option *ngFor=\"let day of days\">{{ day }}</option>\n                            </select>\n                            <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                                <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <div id=\"listAll\">\n    \n                        </div>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col text-center\">\n                        <button class=\"btn btn-primary\" (click)=\"showAll()\">Show All</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -3749,6 +3749,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3761,16 +3764,366 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var BuildShiftsComponent = /** @class */ (function () {
     function BuildShiftsComponent(_route, _router, _userService) {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
+        this.weekAndyear = {};
         this.indentity = this._userService.getIdentity();
+        this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+        this.shifts = ['morning', 'afternoon', 'night'];
+        this.week = {};
+        this.optionTeamLeader = {};
+        this.optionEmployee = {};
+        this.finalManagement = {};
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            this.week[day] = {};
+            this.optionTeamLeader[day] = {};
+            this.optionEmployee[day] = {};
+            this.finalManagement[day] = {};
+            for (var _b = 0, _c = this.shifts; _b < _c.length; _b++) {
+                var shift = _c[_b];
+                this.week[day][shift] = [];
+                this.optionTeamLeader[day][shift] = [];
+                this.optionEmployee[day][shift] = [];
+                this.finalManagement[day][shift] = [];
+            }
+        }
+        this.employess = [
+            { level: 'TEAM_LEADER', value: 1 },
+            { level: 'EMPLOYEE', value: 2 }
+        ];
     }
     BuildShiftsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (this.indentity.role !== 'ADMIN_ROLE') {
             this._router.navigate(['/home']);
+        }
+        this.fulldate = new Date();
+        this.fulldate = this._userService.getWeekNumber(this.fulldate);
+        this.weekAndyear.year = this.fulldate[0];
+        this.weekAndyear.week = this.fulldate[1];
+        this.getMethodShifts();
+        this.getAllShifts(this.weekAndyear);
+        console.log(this.week);
+        setTimeout(function () {
+            _this.setNames(_this.week);
+            console.log(_this.optionEmployee);
+            console.log(_this.optionTeamLeader);
+        }, 1000);
+        this.dates = this.getDates(this.weekAndyear);
+    };
+    BuildShiftsComponent.prototype.allowDrop = function (ev) {
+        // console.log( ev );
+        ev.preventDefault();
+    };
+    BuildShiftsComponent.prototype.drag = function (ev) {
+        ev.dataTransfer.setData('text', ev.target.id);
+    };
+    BuildShiftsComponent.prototype.drop = function (ev, shift, day) {
+        // console.log(ev, shift, day);
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('text');
+        var x = document.getElementById(data);
+        // console.log(x.innerText);
+        ev.target.innerText = x.innerText;
+    };
+    BuildShiftsComponent.prototype.remove = function (shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        list.addEventListener('click', function (e) {
+            if (e.target && e.target.nodeName === 'BUTTON') {
+                e.target.parentNode.remove();
+            }
+        });
+    };
+    BuildShiftsComponent.prototype.added = function (shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        var max = list.childElementCount;
+        var newElement = document.createElement('LI');
+        // newElement.setAttribute('ondrop', 'drop(event)');
+        // newElement.setAttribute('ondragover', 'allowDrop(event)');
+        newElement.setAttribute('drop', 'this.drop');
+        newElement.addEventListener('dragover', this.allowDrop, false);
+        // newElement.setAttribute('style', 'color:blue');
+        newElement.innerHTML = '<button id=`btn`>X</button>';
+        list.appendChild(newElement);
+    };
+    BuildShiftsComponent.prototype.getDates = function (yearAndweek) {
+        var year = yearAndweek.year;
+        var week = yearAndweek.week;
+        var dates = [];
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            var temp = moment__WEBPACK_IMPORTED_MODULE_4__().day(day).year(year).week(week).toDate();
+            dates[day] = temp;
+        }
+        return dates;
+    };
+    BuildShiftsComponent.prototype.getAllShifts = function (weekAndyear) {
+        var _this = this;
+        this._userService.getAllRequest(weekAndyear).subscribe(function (response) {
+            if (response.ok) {
+                // console.log( response.resp );
+                _this.searchPotentials(_this.method, response.resp);
+            }
+        }, function (error) {
+            var errorMessage = error;
+            // console.log(errorMessage);
+            if (errorMessage !== null) {
+                _this.status = 'error';
+            }
+        });
+    };
+    BuildShiftsComponent.prototype.getMethodShifts = function () {
+        var _this = this;
+        this._userService.getValuesRequest().subscribe(function (response) {
+            if (response.ok) {
+                _this.method = response.values.method;
+            }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    BuildShiftsComponent.prototype.searchPotentials = function (method, searchJson) {
+        console.log(searchJson);
+        var sh = [];
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            for (var _b = 0, _c = this.shifts; _b < _c.length; _b++) {
+                var shift = _c[_b];
+                for (var i = 0; i < searchJson.length; i++) {
+                    var temp = searchJson[i];
+                    if (method === 'open') {
+                        if (temp[day][shift] === 'V') {
+                            // this.week[day][shift].push( this.getName( temp.emitter ) );
+                            sh.push(this.getName(temp.emitter));
+                            // this.week[day][shift][j] = this.getName( temp.emitter );
+                        }
+                    }
+                }
+                // this.week[day][shift] = new Array( sh.length );
+                this.week[day][shift] = sh;
+                sh = [];
+            }
+        }
+    };
+    BuildShiftsComponent.prototype.setNames = function (JsonWeek) {
+        // console.log( JsonWeek );
+        var j = 0, k = 0;
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            for (var _b = 0, _c = this.shifts; _b < _c.length; _b++) {
+                var shift = _c[_b];
+                var temp = JsonWeek[day][shift];
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].level === 'TEAM_LEADER') {
+                        this.optionTeamLeader[day][shift][j] = temp[i];
+                        j++;
+                    }
+                    else {
+                        this.optionEmployee[day][shift][k] = temp[i];
+                        k++;
+                    }
+                }
+                j = 0;
+                k = 0;
+            }
+        }
+    };
+    BuildShiftsComponent.prototype.getName = function (userId) {
+        var user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_3__["User"]('', '', '', '', '', undefined, undefined, '');
+        this._userService.getUser(userId).subscribe(function (response) {
+            if (response.ok) {
+                user._id = response.user._id;
+                user.name = response.user.name;
+                user.last_name = response.user.last_name;
+                user.nick_name = response.user.nick_name;
+                user.email = response.user.email;
+                user.level = response.user.level;
+            }
+        }, function (error) {
+            console.log(error);
+        });
+        return user;
+    };
+    BuildShiftsComponent.prototype.autoBuild = function () {
+        var i = 1;
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            for (var _b = 0, _c = this.shifts; _b < _c.length; _b++) {
+                var shift = _c[_b];
+                var temp = this.optionTeamLeader[day][shift];
+                var cur = this.funcRandHead(temp);
+                if (typeof cur !== 'undefined') {
+                    this.finalManagement[day][shift][0] = cur;
+                }
+            }
+        }
+        for (var _d = 0, _e = this.days; _d < _e.length; _d++) {
+            var day = _e[_d];
+            for (var _f = 0, _g = this.shifts; _f < _g.length; _f++) {
+                var shift = _g[_f];
+                var temp = this.optionEmployee[day][shift];
+                // console.log( temp, day, shift );
+                var max = this.countList(shift, day);
+                var cur = this.funcRandEmployee(temp, max);
+                // console.log( cur );
+                if (typeof cur !== 'undefined') {
+                    for (var k = 0; k < cur.length; k++) {
+                        var current = cur[k];
+                        // console.log( current );
+                        this.finalManagement[day][shift][i] = current;
+                        // console.log( current );
+                        i++;
+                    }
+                    i = 1;
+                }
+            }
+        }
+        for (var _h = 0, _j = this.days; _h < _j.length; _h++) {
+            var day = _j[_h];
+            for (var _k = 0, _l = this.shifts; _k < _l.length; _k++) {
+                var shift = _l[_k];
+                this.showInTable(this.finalManagement[day][shift], shift, day);
+            }
+        }
+    };
+    BuildShiftsComponent.prototype.countList = function (shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        return list.childElementCount - 1;
+    };
+    BuildShiftsComponent.prototype.funcRandHead = function (teamLeader) {
+        if (teamLeader.length === 0) {
+            return;
+        }
+        else if (teamLeader.length === 1) {
+            return teamLeader[0];
+        }
+        else {
+            var num = Math.floor(Math.random() * teamLeader.length);
+            return teamLeader[num];
+        }
+    };
+    BuildShiftsComponent.prototype.funcRandEmployee = function (employees, max) {
+        var num;
+        var dump = [];
+        if (employees.length === 0) {
+            return;
+        }
+        else if (employees.length <= max) {
+            return employees;
+        }
+        else {
+            var count = max;
+            while (count > 0) {
+                if (dump.length === 0) {
+                    num = Math.floor(Math.random() * employees.length);
+                    dump.push(employees[num]);
+                }
+                else {
+                    do {
+                        num = Math.floor(Math.random() * employees.length);
+                    } while (dump.indexOf(employees[num]) !== -1);
+                    dump.push(employees[num]);
+                }
+                count--;
+            }
+            return dump;
+        }
+    };
+    BuildShiftsComponent.prototype.showInTable = function (finalManagement, shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        // console.log( finalManagement );
+        // console.log( finalManagement.length );
+        for (var i = 0; i < finalManagement.length; i++) {
+            var user = finalManagement[i];
+            // console.log( user );
+            if (user) {
+                list.children[i].innerHTML = user.nick_name;
+            }
+        }
+    };
+    BuildShiftsComponent.prototype.searchEmployess = function () {
+        var i = 0;
+        var list = document.getElementById('listOpt');
+        if (list.style.display === 'block') {
+            var lis = document.getElementById('myUL');
+            while (lis.hasChildNodes()) {
+                lis.removeChild(lis.childNodes[i]);
+            }
+            list.removeChild(lis);
+        }
+        else {
+            list.style.display = 'block';
+        }
+        var first = document.createElement('UL');
+        first.setAttribute('id', 'myUL');
+        list.appendChild(first);
+        var dd = this.selectedDay;
+        var sh = this.selectedShift;
+        console.log(dd, sh);
+        // for ( let j = 0, t = 0; j < this.week[dd][sh].length; j++ ) {
+        var temp = this.week[dd][sh];
+        for (var k = 0, t = 0; k < temp.length; k++) {
+            var node = document.createElement('LI');
+            var textNode = document.createTextNode(temp[k].nick_name);
+            node.setAttribute('id', 'dragg_' + t);
+            node.draggable = true;
+            node.addEventListener('dragstart', this.drag, false);
+            node.appendChild(textNode);
+            document.getElementById('myUL').appendChild(node);
+            t++;
+        }
+        // }
+    };
+    BuildShiftsComponent.prototype.showAll = function () {
+        var level = this.selectedEmployess;
+        var dd = this.selectedDay;
+        var sh = this.selectedShift;
+        var i = 0;
+        var list = document.getElementById('listAll');
+        if (list.style.display === 'block') {
+            var lis = document.getElementById('otherUL');
+            while (lis.hasChildNodes()) {
+                lis.removeChild(lis.childNodes[i]);
+            }
+            list.removeChild(lis);
+        }
+        else {
+            list.style.display = 'block';
+        }
+        var first = document.createElement('UL');
+        first.setAttribute('id', 'otherUL');
+        list.appendChild(first);
+        if (level === 'TEAM_LEADER') {
+            var temp = this.optionTeamLeader[dd][sh];
+            for (var k = 0, t = 0; k < temp.length; k++) {
+                var node = document.createElement('LI');
+                var textNode = document.createTextNode(temp[k].nick_name);
+                node.setAttribute('id', 'drag_' + t);
+                node.draggable = true;
+                node.addEventListener('dragstart', this.drag, false);
+                node.appendChild(textNode);
+                document.getElementById('otherUL').appendChild(node);
+                t++;
+            }
+        }
+        else {
+            var temp = this.optionEmployee[dd][sh];
+            for (var k = 0, t = 0; k < temp.length; k++) {
+                var node = document.createElement('LI');
+                var textNode = document.createTextNode(temp[k].nick_name);
+                node.setAttribute('id', 'drag_' + t);
+                node.draggable = true;
+                node.addEventListener('dragstart', this.drag, false);
+                node.appendChild(textNode);
+                document.getElementById('otherUL').appendChild(node);
+                t++;
+            }
         }
     };
     BuildShiftsComponent = __decorate([
@@ -3809,7 +4162,7 @@ module.exports = "#myInput {\n    background-position: 10px 12px;\n    backgroun
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>{{ title }}</h2>\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'USER_ROLE'\">Temporaly \"send email\" not active.</div>\n  <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">After resetting a user's password, the new password is: 123456.</div>\n  <div class=\"panel-body\">\n    <div class=\"row\">\n      <div class=\"col-md-8\">\n        <input \n          type=\"text\"\n          id=\"myInput\" \n          (keyup)=\"onKey($event)\"\n          placeholder=\"Search for names\">\n      </div><!-- col md 8 -->\n    </div><!-- finish row -->\n    <br>\n    <div class=\"row\" *ngIf=\"this.identity.role === 'USER_ROLE'\">\n      <div class=\"col-md-12\">\n        <div class=\"table-responsive\">\n          <table class=\"table table-bordered table-hover\" id=\"myTable\">\n            <thead>\n              <tr>\n                <th></th>\n                <th>Full Name</th>\n                <th>Email</th>\n                <th>Nick Name</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>\n                <td>{{ user.email }}</td>\n                <td>{{ user.nick_name }}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div><!-- col md 12 -->\n      <div class=\"col text-center\">\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n      </div>\n    </div><!-- row user -->\n    <div class=\"row\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">\n      <div class=\"col-md-12\">\n        <div class=\"table-responsive\">\n          <table class=\"table table-bordered table-hover\" id=\"myTable\">\n            <thead>\n              <tr>\n                <th></th>\n                <th>Full Name</th>\n                <th>Email</th>\n                <th>Nick Name</th>\n                <th>Role</th>\n                <th>Level</th>\n                <th>Update</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                <td>{{ i+1 }}</td>\n                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>\n                <td>{{ user.email }}</td>\n                <td>{{ user.nick_name }}</td>\n                <td>{{ user.role }}</td>\n                <td>{{ user.level }}</td>\n                <td>\n                  <i class=\"fas fa-marker\" (click)=\"editUser( user._id )\"></i>&nbsp;&nbsp;\n                  <i *ngIf=\"identity._id != user._id\" class=\"fas fa-trash-alt\" (click)=\"deleteUser( user._id )\"></i>&nbsp;&nbsp;\n                  <i class=\"fas fa-unlock-alt\" (click)=\"resetPassUser( user._id )\"></i>&nbsp;\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div><!-- table responsive for admin -->\n      </div><!-- col md 12 -->\n    </div><!-- row admin -->\n  </div><!-- finish panel body -->\n</div><!-- finish panel default -->\n<div *ngIf=\"status == 'edit'\">\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\">Edit {{ temp_user.name | titlecase }} {{ temp_user.last_name | titlecase }}</div>\n    <div class=\"panel-body\">\n      <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Full Name:&nbsp;&nbsp;</label>\n            <label>{{ temp_user.name | titlecase }} {{ temp_user.last_name | titlecase }}</label>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div *ngIf=\"identity._id !== temp_user._id\" class=\"form-group col-md-4\">\n            <label>Role:&nbsp;&nbsp;</label>\n            <br>\n            <select [(ngModel)]=\"selectedOptionRole\" name=\"first\">\n              <option *ngFor=\"let or of optionsRole\">\n                {{ or.role }}\n              </option>\n            </select>\n          </div>\n          <div *ngIf=\"identity._id !== temp_user._id\" class=\"form-group col-md-4\">\n            <label>Level:&nbsp;&nbsp;</label>\n            <input \n              type=\"text\"\n              name=\"level\"\n              #level=\"ngModel\"\n              [(ngModel)]=\"temp_user.level\"\n              class=\"form-control\"\n              placeholder=\"temp_user.level\"/>\n          </div>\n          <div class=\"form-group col-md-4\">\n            <label>Nick-Name:&nbsp;&nbsp;</label>\n              <input \n                type=\"text\"\n                name=\"nick_name\"\n                #nick_name=\"ngModel\"\n                [(ngModel)]=\"temp_user.nick_name\"\n                class=\"form-control\"\n                placeholder=\"temp_user.nick_name\"/>\n            </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col text-center\">\n            <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userEdit.form.valid\">Send</button>\n          </div>\n        </div>\n      </form>\n    </div><!-- panel body -->\n  </div><!-- panel default -->\n</div>\n\n\n\n"
+module.exports = "<h2>{{ title }}</h2>\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'USER_ROLE'\">Temporaly \"send email\" not active.</div>\n  <div class=\"panel-heading\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">After resetting a user's password, the new password is: 123456.</div>\n  <div class=\"panel-body\">\n    <div class=\"row\">\n      <div class=\"col-md-8\">\n        <input \n          type=\"text\"\n          id=\"myInput\" \n          (keyup)=\"onKey($event)\"\n          placeholder=\"Search for names\">\n      </div><!-- col md 8 -->\n    </div><!-- finish row -->\n    <br>\n    <div class=\"row\" *ngIf=\"this.identity.role === 'USER_ROLE'\">\n      <div class=\"col-md-12\">\n        <div class=\"table-responsive\">\n          <table class=\"table table-bordered table-hover\" id=\"myTable\">\n            <thead>\n              <tr>\n                <th></th>\n                <th>Full Name</th>\n                <th>Email</th>\n                <th>Nick Name</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                <td><input type=\"checkbox\" id=\"{{user.email}}\"></td>\n                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>\n                <td>{{ user.email }}</td>\n                <td>{{ user.nick_name }}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div><!-- col md 12 -->\n      <div class=\"col text-center\">\n        <button type=\"submit\" class=\"btn btn-primary\" (click)=\"addArr()\">Send Email</button>\n      </div>\n    </div><!-- row user -->\n    <div class=\"row\" *ngIf=\"this.identity.role === 'ADMIN_ROLE'\">\n      <div class=\"col-md-12\">\n        <div class=\"table-responsive\">\n          <table class=\"table table-bordered table-hover\" id=\"myTable\">\n            <thead>\n              <tr>\n                <th></th>\n                <th>Full Name</th>\n                <th>Email</th>\n                <th>Nick Name</th>\n                <th>Role</th>\n                <th>Level</th>\n                <th>Update</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let user of usersToSearch; let i = index\">\n                <td>{{ i+1 }}</td>\n                <td>{{ user.name | titlecase }} {{ user.last_name | titlecase }}</td>\n                <td>{{ user.email }}</td>\n                <td>{{ user.nick_name }}</td>\n                <td>{{ user.role }}</td>\n                <td>{{ user.level }}</td>\n                <td>\n                  <i class=\"fas fa-marker\" (click)=\"editUser( user._id )\"></i>&nbsp;&nbsp;\n                  <i *ngIf=\"identity._id != user._id\" class=\"fas fa-trash-alt\" (click)=\"deleteUser( user._id )\"></i>&nbsp;&nbsp;\n                  <i class=\"fas fa-unlock-alt\" (click)=\"resetPassUser( user._id )\"></i>&nbsp;\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div><!-- table responsive for admin -->\n      </div><!-- col md 12 -->\n    </div><!-- row admin -->\n  </div><!-- finish panel body -->\n</div><!-- finish panel default -->\n<div *ngIf=\"status == 'edit'\">\n  <div class=\"panel panel-default\">\n    <div class=\"panel-heading\">Edit {{ temp_user.name | titlecase }} {{ temp_user.last_name | titlecase }}</div>\n    <div class=\"panel-body\">\n      <form #userEdit=\"ngForm\" (ngSubmit)=\"onSubmit()\">\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Full Name:&nbsp;&nbsp;</label>\n            <label>{{ temp_user.name | titlecase }} {{ temp_user.last_name | titlecase }}</label>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div *ngIf=\"identity._id !== temp_user._id\" class=\"form-group col-md-4\">\n            <label>Role:&nbsp;&nbsp;</label>\n            <br>\n            <select [(ngModel)]=\"selectedOptionRole\" name=\"first\">\n              <option *ngFor=\"let or of optionsRole\">\n                {{ or.role }}\n              </option>\n            </select>\n          </div>\n          <div class=\"form-group col-md-4\">\n            <label>Level:&nbsp;&nbsp;</label>\n            <br>\n            <select [(ngModel)]=\"selectedOptionLevel\" name=\"first\">\n              <option *ngFor=\"let lv of optionsLevel\">\n                {{ lv.level }}\n              </option>\n            </select>\n            <!--<input \n              type=\"text\"\n              name=\"level\"\n              #level=\"ngModel\"\n              [(ngModel)]=\"temp_user.level\"\n              class=\"form-control\"\n              placeholder=\"temp_user.level\"/>-->\n          </div>\n          <div class=\"form-group col-md-4\">\n            <label>Nick-Name:&nbsp;&nbsp;</label>\n              <input \n                type=\"text\"\n                name=\"nick_name\"\n                #nick_name=\"ngModel\"\n                [(ngModel)]=\"temp_user.nick_name\"\n                class=\"form-control\"\n                placeholder=\"temp_user.nick_name\"/>\n            </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col text-center\">\n            <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userEdit.form.valid\">Send</button>\n          </div>\n        </div>\n      </form>\n    </div><!-- panel body -->\n  </div><!-- panel default -->\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -3861,6 +4214,10 @@ var ContactsComponent = /** @class */ (function () {
         this.optionsRole = [
             { role: 'USER_ROLE', value: 1 },
             { role: 'ADMIN_ROLE', value: 2 }
+        ];
+        this.optionsLevel = [
+            { level: 'TEAM_LEADER', value: 1 },
+            { level: 'EMPLOYEE', value: 2 }
         ];
     }
     ContactsComponent.prototype.ngOnInit = function () {
@@ -3980,6 +4337,7 @@ var ContactsComponent = /** @class */ (function () {
     ContactsComponent.prototype.onSubmit = function () {
         var _this = this;
         this.temp_user.role = this.selectedOptionRole;
+        this.temp_user.level = this.selectedOptionLevel;
         // console.log( this.temp_user );
         this._userService.adminUpdateUser(this.temp_user).subscribe(function (response) {
             // console.log( response );
@@ -4828,7 +5186,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>{{ title }}</h2>\n<hr>\n<div class=\"alert alert-success\" *ngIf=\"status == 'success' \">\n   Register success!! \n  <a [routerLink]=\"['/login']\">Sign In Here</a>\n</div>\n    \n<div class=\"alert alert-danger\" *ngIf=\"status == 'error' \">\n  Please try with other data\n</div>\n\n<div class=\"alert alert-danger\" *ngIf=\"status == 'denied' \">\n    Please enter same password\n</div>\n\n<form (ngSubmit)=\"onSubmit( form )\" #form=\"ngForm\" novalidate=\"\">\n  <div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">First Name</label>\n      <div class=\"col-8\">\n        <input class=\"form-control\"\n          type=\"text\"\n          placeholder=\"First Name\"\n          name=\"name\"\n          [(ngModel)]=\"user.name\"\n          required\n          #name=\"ngModel\">\n        <div *ngIf=\"name.errors?.required\">\n          First name is required\n        </div>\n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Last Name</label>\n      <div class=\"col-8\">\n  \n        <input class=\"form-control\"\n            type=\"text\"\n            placeholder=\"Last Name\"\n            name=\"last_name\"\n            [(ngModel)]=\"user.last_name\"\n            required\n            #last_name=\"ngModel\">\n  \n        <div *ngIf=\"last_name.errors?.required\">\n          Last Name is required\n        </div>\n  \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Email</label>\n      <div class=\"col-8\">\n    \n        <input class=\"form-control\"\n          type=\"email\"\n          placeholder=\"Email\"\n          name=\"email\"\n          [(ngModel)]=\"user.email\"\n          required\n          #email=\"ngModel\">\n    \n        <div *ngIf=\"email.errors?.required\">\n          Email is required\n        </div>\n    \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Password</label>\n      <div class=\"col-8\">\n      \n        <input class=\"form-control\"\n            type=\"password\"\n            placeholder=\"Password\"\n            name=\"password\"\n            [(ngModel)]=\"user.password\"\n            required\n            #password=\"ngModel\">\n      \n        <div *ngIf=\"password.errors?.required\">\n          Password is required\n        </div>\n      \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n        <label class=\"col-2 col-form-label\">Confirm Password</label>\n        <div class=\"col-8\">\n        \n          <input class=\"form-control\"\n              type=\"password\"\n              placeholder=\"Confirm Password\"\n              name=\"password2\"\n              [(ngModel)]=\"tempPassword\"\n              required\n              #password2=\"ngModel\">\n        \n          <div *ngIf=\"password2.errors?.required\">\n            Password is required\n          </div>\n        \n        </div>\n    </div>\n  </div>\n\n  <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">&nbsp;</label>\n      <div class=\"input-group col-md-8 text-center\">\n        <button \n            [disabled]=\"!form.valid\"\n            type=\"submit\"\n            class=\"btn btn-outline-primary\">\n          Sign Up\n        </button>\n      </div>\n    </div>\n</form>\n<!--<form #registerForm=\"ngForm\" (ngSubmit)=\"onSubmit(registerForm)\">\n  <div class=\"form-row\">\n  \n    <div class=\"form-group col-md-6\">\n      <label for=\"inputName4\">First Name</label>\n      <input type=\"text\"\n        name=\"name\"\n        #name=\"ngModel\"\n        [(ngModel)]=\"user.name\"\n        class=\"form-control\"\n        required\n        placeholder=\"First Name\"/>\n      <div *ngIf=\"name.errors?.required\"\n        class=\"form-control-feedback\">\n        Name is required!\n      </div>\n    </div>\n    \n    <div class=\"form-group col-md-6\">\n      <label for=\"inputLastName4\">Last Name</label>\n      <input type=\"text\"\n        name=\"last_name\"\n        #last_name=\"ngModel\"\n        [(ngModel)]=\"user.last_name\"\n        class=\"form-control\"\n        required\n        placeholder=\"Last Name\">\n    </div>\n    \n  </div>\n  <div class=\"form-row\">\n  \n    <div class=\"form-group col-md-6\">\n      <label for=\"inputEmail\">Email</label>\n      <input type=\"email\"\n        name=\"email\"\n        #email=\"ngModel\"\n        [(ngModel)]=\"user.email\"\n        class=\"form-control\"\n        required\n        pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\"\n        placeholder=\"Email\">\n    </div>\n  </div>\n  <div class=\"form-row\">\n    <div class=\"form-group col-md-6\">\n      <label for=\"inputPassword\">Password</label>\n      <input type=\"password\"\n        name=\"password\"\n        #password=\"ngModel\"\n        [(ngModel)]=\"user.password\"\n        class=\"form-control\"\n        required\n        placeholder=\"Password\">\n    </div>\n  </div> \n  <button\n    type=\"submit\"\n    class=\"btn btn-primary\"\n    [disabled]=\"!registerForm.form.valid\">Sign Up</button>\n</form>-->"
+module.exports = "<h2>{{ title }}</h2>\n<hr>\n<div class=\"alert alert-success\" *ngIf=\"status === 'success' \">\n   Register success!! \n  <a [routerLink]=\"['/login']\">Sign In Here</a>\n</div>\n    \n<div class=\"alert alert-danger\" *ngIf=\"status === 'error' \">\n  Please try with other data\n</div>\n\n<div class=\"alert alert-danger\" *ngIf=\"status === 'denied' \">\n    Please enter same password\n</div>\n\n<form (ngSubmit)=\"onSubmit( form )\" #form=\"ngForm\" novalidate=\"\">\n  <div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">First Name *</label>\n      <div class=\"col-8\">\n        <input class=\"form-control\"\n          type=\"text\"\n          placeholder=\"First Name\"\n          name=\"name\"\n          [(ngModel)]=\"user.name\"\n          required\n          #name=\"ngModel\">\n        <!--<div *ngIf=\"name.errors?.required\">\n          First name is required\n        </div>-->\n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Last Name *</label>\n      <div class=\"col-8\">\n  \n        <input class=\"form-control\"\n            type=\"text\"\n            placeholder=\"Last Name\"\n            name=\"last_name\"\n            [(ngModel)]=\"user.last_name\"\n            required\n            #last_name=\"ngModel\">\n  \n        <!--<div *ngIf=\"last_name.errors?.required\">\n          Last Name is required\n        </div>-->\n  \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Email *</label>\n      <div class=\"col-8\">\n    \n        <input class=\"form-control\"\n          type=\"email\"\n          placeholder=\"Email\"\n          name=\"email\"\n          [(ngModel)]=\"user.email\"\n          required\n          #email=\"ngModel\">\n    \n        <!--<div *ngIf=\"email.errors?.required\">\n          Email is required\n        </div>-->\n    \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">Password *</label>\n      <div class=\"col-8\">\n      \n        <input class=\"form-control\"\n            type=\"password\"\n            placeholder=\"Password\"\n            name=\"password\"\n            [(ngModel)]=\"user.password\"\n            required\n            #password=\"ngModel\">\n      \n        <!--<div *ngIf=\"password.errors?.required\">\n          Password is required\n        </div>-->\n      \n      </div>\n    </div>\n\n    <div class=\"form-group row\">\n        <label class=\"col-2 col-form-label\">Confirm Password *</label>\n        <div class=\"col-8\">\n        \n          <input class=\"form-control\"\n              type=\"password\"\n              placeholder=\"Confirm Password\"\n              name=\"password2\"\n              [(ngModel)]=\"tempPassword\"\n              required\n              #password2=\"ngModel\">\n        \n          <!--<div *ngIf=\"password2.errors?.required\">\n            Password is required\n          </div>-->\n        \n        </div>\n    </div>\n  </div>\n\n  <div class=\"form-group row\">\n      <label class=\"col-2 col-form-label\">&nbsp;</label>\n      <div class=\"input-group col-md-8 text-center\">\n        <button \n            [disabled]=\"!form.valid\"\n            type=\"submit\"\n            class=\"btn btn-outline-primary\">\n          Sign Up\n        </button>\n      </div>\n    </div>\n</form>"
 
 /***/ }),
 
@@ -4921,7 +5279,7 @@ var RegisterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#footer {\n    bottom: 0;\n    left: 0;\n    right: 0;\n    height:100px;\n }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zaGFyZWQvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksVUFBVTtJQUNWLFFBQVE7SUFDUixTQUFTO0lBQ1QsYUFBYTtFQUNmIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9zaGFyZWQvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2Zvb3RlciB7XG4gICAgYm90dG9tOiAwO1xuICAgIGxlZnQ6IDA7XG4gICAgcmlnaHQ6IDA7XG4gICAgaGVpZ2h0OjEwMHB4O1xuIH0iXX0= */"
+module.exports = "#footer {\n    /*bottom: 10px;*/\n    margin-top: 70px;\n    left: 0;\n    right: 0;\n    height:100px;\n }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zaGFyZWQvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixRQUFRO0lBQ1IsU0FBUztJQUNULGFBQWE7RUFDZiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2hhcmVkL2Zvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIiNmb290ZXIge1xuICAgIC8qYm90dG9tOiAxMHB4OyovXG4gICAgbWFyZ2luLXRvcDogNzBweDtcbiAgICBsZWZ0OiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIGhlaWdodDoxMDBweDtcbiB9Il19 */"
 
 /***/ }),
 
@@ -5363,7 +5721,7 @@ var UserWeekComponent = /** @class */ (function () {
     }
     UserWeekComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.number_week = this.getWeekNumber(new Date()); // [0] = year, [1]= number next week
+        this.number_week = this._userService.getWeekNumber(new Date()); // [0] = year, [1]= number next week
         // console.log( this.number_week );
         this.dates = this.getFirstAndLastDates(this.number_week);
         // console.log( this.dates );
@@ -5379,24 +5737,24 @@ var UserWeekComponent = /** @class */ (function () {
             _this.checkDay();
         }, 2000);
     };
-    UserWeekComponent.prototype.getWeekNumber = function (full_date) {
-        // Copy date so don't modify original
-        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
-        // Set to nearest Thursday: current date + 4 - current day number
-        // Make Sunday's day number 7
-        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
-        // Get first day of year
-        var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
-        // Calculate full weeks to nearest Thursday
-        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
-        // Return array of year and week number
-        var year = full_date.getUTCFullYear();
-        if (weekNo === 53) {
-            weekNo = 0;
-            year++;
-        }
-        return [year, weekNo];
-    };
+    /*getWeekNumber( full_date ) {
+      // Copy date so don't modify original
+      full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+      // Set to nearest Thursday: current date + 4 - current day number
+      // Make Sunday's day number 7
+      full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+      // Get first day of year
+      const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+      // Calculate full weeks to nearest Thursday
+      let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
+      // Return array of year and week number
+      let year = full_date.getUTCFullYear();
+      if ( weekNo === 53 ) {
+        weekNo = 0;
+        year++;
+      }
+      return [year, weekNo];
+    }*/
     UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
         // const moment = require('moment');
         // console.log( numberWeek );
@@ -5951,6 +6309,24 @@ var UserService = /** @class */ (function () {
         }
         return this.token;
     };
+    UserService.prototype.getWeekNumber = function (full_date) {
+        // Copy date so don't modify original
+        full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
+        // Set to nearest Thursday: current date + 4 - current day number
+        // Make Sunday's day number 7
+        full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
+        // Get first day of year
+        var yearStart = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
+        // Calculate full weeks to nearest Thursday
+        var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
+        // Return array of year and week number
+        var year = full_date.getUTCFullYear();
+        if (weekNo === 53) {
+            weekNo = 0;
+            year++;
+        }
+        return [year, weekNo];
+    };
     /* Home and Home Admin */
     UserService.prototype.getMessage = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded')
@@ -5977,6 +6353,10 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getUsersToSearch = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
         return this._http.get(this.url + 'get-users', { headers: headers });
+    };
+    UserService.prototype.getUser = function (id) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/x-www-form-urlencoded').set('Authorization', this.getToken());
+        return this._http.get(this.url + 'user/' + id, { headers: headers });
     };
     UserService.prototype.deleteUser = function (user) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
@@ -6012,6 +6392,11 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(requestUser);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.put(this.url + 'update-request-user/' + requestUser.getId(), params, { headers: headers });
+    };
+    UserService.prototype.getAllRequest = function (weekAndyear) {
+        var params = JSON.stringify(weekAndyear);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post(this.url + 'get-all-request', params, { headers: headers });
     };
     /* For Admin set how much shifts */
     UserService.prototype.setValuesRequest = function (requestWeek) {
