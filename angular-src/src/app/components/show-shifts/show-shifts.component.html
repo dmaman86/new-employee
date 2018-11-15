@@ -1,3 +1,30 @@
-<p>
-    Here you'll see a weekly placement --- comming soon!!
-</p>
+<h3>Shifts</h3>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="7" class="text-center">Number Week {{ weekAndyear.week }}</th>
+                </tr>
+                <tr>
+                    <th class="text-center" *ngFor="let d of days">{{ dates[d] | date }}</th>
+                </tr>
+                <tr>
+                    <th class="text-center" *ngFor="let day of days">{{ day | titlecase }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let shift of shifts">
+                    <td *ngFor="let day of days">
+                        <ul *ngFor="let user of finalManagement[day][shift]">
+                            <li *ngIf="user === 'undefined'"></li>
+                            <li *ngIf="user === null"></li>
+                            <li *ngIf="user">{{ user.nick_name }}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

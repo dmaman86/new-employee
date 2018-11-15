@@ -263,10 +263,6 @@ function saveFinalManagement(req, res) {
     var year = req.params.year;
     var body = req.body;
 
-    console.log( 'line 266', week );
-    console.log('line 267', year );
-    console.log( 'line 268', body );
-
     if ( req.user.role !== 'ADMIN_ROLE' ) {
         return res.status(500).send({
             ok: false,
@@ -311,6 +307,32 @@ function saveFinalManagement(req, res) {
     });
 }
 
+function getFinalManagement(req, res) {
+    var params = req.body;
+
+    var week = params.week;
+    var year = params.year;
+
+    FinalManagement.find({ numberWeek: week, year: year }, (err, requests) => {
+        if(err){
+            return res.status(500).send({
+                message: `Error when get management ${ err }`
+            });
+        }
+        if( !requests ) {
+            return res.status(404).send({
+                ok: false,
+                message: 'Sorry but we cant get management from DB'
+            });
+        }
+        
+        res.status(200).send({
+            ok: true,
+            management: requests
+        });
+    });
+}
+
 
 module.exports = {
     controlRequest,
@@ -320,5 +342,6 @@ module.exports = {
     updateRequestUser,
     getRequestWeek,
     getAllRequestWeek,
-    saveFinalManagement
+    saveFinalManagement,
+    getFinalManagement
 }

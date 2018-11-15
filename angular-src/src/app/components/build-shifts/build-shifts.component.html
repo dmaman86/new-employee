@@ -1,5 +1,8 @@
 <h3>Build Table Employess</h3>
 <hr>
+<div class="alert alert-success" *ngIf="status === 'success' ">
+    Employee assignment saved successfully
+ </div>
 <div class="row">
     <div class="col-md-8">
         <table class="table table-bordered">
@@ -94,6 +97,64 @@
                 <div class="row">
                     <div class="col">
                         <button class="btn btn-primary" (click)="showAll()">Show All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col">
+                        <h4>Show shift of employee</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select [(ngModel)]="selectedSearch" name="first">
+                            <option *ngFor="let us of users">{{ us.nick_name }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" *ngIf="status === 'show'">
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th></th>
+                                  <th class="text-center" *ngFor="let day of days">{{ day }}</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td>Mornirng</td>
+                                <td *ngFor="let day of days">
+                                    {{ shiftUser[day].morning }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Afternoon</td>
+                                <td *ngFor="let day of days">
+                                    {{ shiftUser[day].afternoon }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Night</td>
+                                <td *ngFor="let day of days">
+                                    {{ shiftUser[day].night }}
+                                </td>
+                            </tr>
+                          </tbody>
+                      </table> 
+                      <div class="row">
+                          <div class="col">
+                              {{ shiftUser.message }}
+                          </div>
+                      </div> 
+                </div>
+                <br><br>            
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary" (click)="searchShift()">Show Shift</button>
                     </div>
                 </div>
             </div>

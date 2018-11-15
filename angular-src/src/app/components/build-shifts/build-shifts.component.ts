@@ -30,7 +30,10 @@ export class BuildShiftsComponent implements OnInit {
   public selectedShift1;
   public employess;
   public selectedEmployess;
+  public selectedSearch;
   public users: User[];
+  public responseShift;
+  public shiftUser;
 
   constructor(
     private _route: ActivatedRoute,
@@ -78,6 +81,7 @@ export class BuildShiftsComponent implements OnInit {
     // console.log( this.week );
     setTimeout( () => {
       this.setNames( this.week );
+      console.log( this.responseShift );
       // console.log( this.optionEmployee );
       // console.log( this.optionTeamLeader );
       // console.log( this.users );
@@ -158,6 +162,7 @@ export class BuildShiftsComponent implements OnInit {
       response => {
         if ( response.ok ) {
           // console.log( response.resp );
+          this.responseShift = response.resp;
           this.searchPotentials( this.method, response.resp );
         }
       }, error => {
@@ -466,12 +471,39 @@ export class BuildShiftsComponent implements OnInit {
     this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
       response => {
         if ( response.ok ) {
-          alert( 'shifts save!!!' );
+          this.status = 'success';
         }
       }, error => {
         console.log( error );
       }
     );
+  }
+
+  searchShift() {
+    const nick_name = this.selectedSearch;
+    let tmp_user;
+
+    for ( let i = 0; i < this.users.length; i++ ) {
+      const temp = this.users[i];
+      if ( temp.nick_name === nick_name ) {
+        tmp_user = temp;
+        break;
+      }
+    }
+
+    for ( let i = 0; i < this.responseShift.length; i++ ) {
+      const temp = this.responseShift[i];
+
+      if ( tmp_user._id === temp.emitter ) {
+        this.shiftUser = temp;
+        break;
+      }
+    }
+
+    this.status = 'show';
+    setTimeout( () => {
+      console.log( this.shiftUser );
+    }, 1000);
   }
 
 }

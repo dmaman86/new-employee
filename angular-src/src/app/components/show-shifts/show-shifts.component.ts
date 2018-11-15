@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { User } from 'src/app/models/user';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-show-shifts',
@@ -7,9 +11,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowShiftsComponent implements OnInit {
 
-  constructor() { }
+  public full_date;
+  public weekAndyear: any;
+  public finalManagement;
+  public days;
+  public shifts;
+  public dates;
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService
+  ) {
+    this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    this.shifts = ['morning', 'afternoon', 'night'];
+    this.weekAndyear = {};
+  }
 
   ngOnInit() {
+    this.full_date = this._userService.getWeekNumber( new Date() );
+    this.weekAndyear.year = this.full_date[0];
+    this.weekAndyear.week = this.full_date[1];
+
+    this._userService.getFinalManagement( this.weekAndyear ).subscribe(
+      response => {
+
+        if ( response.ok ) {
+          this.finalManagement = response.management[0];
+        }
+      }, error => {
+        console.log( error );
+      }
+    );
+
+    setTimeout( () => {
+      console.log( this.finalManagement );
+    }, 1000 );
+
+    this.dates = this.getDates( this.weekAndyear );
+  }
+
+  getDates( yearAndweek ) {
+    const year = yearAndweek.year;
+    const week = yearAndweek.week;
+    const dates = [];
+
+    for ( const day of this.days ) {
+      const temp = moment().day( day ).year( year ).week( week ).toDate();
+      dates[day] = temp;
+    }
+    return dates;
   }
 
 }
