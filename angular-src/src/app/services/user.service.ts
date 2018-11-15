@@ -164,6 +164,12 @@ export class UserService {
         return this._http.post( this.url + 'get-all-request', params, { headers: headers });
     }
 
+    saveFinalManagement( week, year, finalManagement: any ): Observable<any> {
+        const params = JSON.stringify( finalManagement );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.post( this.url + 'save-management/' + week + '/' + year, params, { headers: headers });
+    }
+
     /* For Admin set how much shifts */
 
     setValuesRequest( requestWeek: RequestWeek ): Observable<any> {

@@ -25,15 +25,19 @@ export class BuildShiftsComponent implements OnInit {
   public finalManagement: any;
   public dates;
   public selectedDay;
+  public selectedDay1;
   public selectedShift;
+  public selectedShift1;
   public employess;
   public selectedEmployess;
+  public users: User[];
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService
   ) {
+    this.users = [];
     this.indentity = this._userService.getIdentity();
     this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     this.shifts = ['morning', 'afternoon', 'night'];
@@ -63,6 +67,7 @@ export class BuildShiftsComponent implements OnInit {
     if ( this.indentity.role !== 'ADMIN_ROLE' ) {
       this._router.navigate(['/home']);
     }
+    this.getUsers();
     this.fulldate = new Date();
     this.fulldate = this._userService.getWeekNumber( this.fulldate );
     this.weekAndyear.year = this.fulldate[0];
@@ -70,11 +75,12 @@ export class BuildShiftsComponent implements OnInit {
 
     this.getMethodShifts();
     this.getAllShifts( this.weekAndyear );
-    console.log( this.week );
+    // console.log( this.week );
     setTimeout( () => {
       this.setNames( this.week );
-      console.log( this.optionEmployee );
-      console.log( this.optionTeamLeader );
+      // console.log( this.optionEmployee );
+      // console.log( this.optionTeamLeader );
+      // console.log( this.users );
     }, 1000);
 
     this.dates = this.getDates( this.weekAndyear );
@@ -90,12 +96,24 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   drop( ev, shift, day ) {
-    // console.log(ev, shift, day);
+    // console.log(shift, day);
     ev.preventDefault();
     const data = ev.dataTransfer.getData('text');
     const x = document.getElementById(data);
-    // console.log(x.innerText);
+    // console.log(ev.target);
+    // console.log( ev.target.id );
+    const index = ev.target.id;
     ev.target.innerText = x.innerText;
+    // console.log( this.finalManagement[day][shift] );
+
+    for ( const user of this.users ) {
+      if ( user.nick_name === x.innerText ) {
+        this.finalManagement[day][shift][index] = user;
+        break;
+      }
+    }
+
+    // console.log( this.finalManagement[day][shift] );
   }
 
   remove( shift, day ) {
@@ -111,9 +129,11 @@ export class BuildShiftsComponent implements OnInit {
   added ( shift, day ) {
     const list = document.getElementById('mat[' + shift + '][' + day + ']' );
     const max = list.childElementCount;
+    // console.log( max );
     const newElement = document.createElement('LI');
     // newElement.setAttribute('ondrop', 'drop(event)');
     // newElement.setAttribute('ondragover', 'allowDrop(event)');
+    newElement.setAttribute('id', String(max) );
     newElement.setAttribute( 'drop' , 'this.drop' );
     newElement.addEventListener( 'dragover', this.allowDrop, false );
     // newElement.setAttribute('style', 'color:blue');
@@ -163,7 +183,7 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   searchPotentials( method, searchJson ) {
-    console.log( searchJson );
+    // console.log( searchJson );
     let sh = [];
     for ( const day of this.days ) {
       for ( const shift of this.shifts ) {
@@ -206,7 +226,15 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   getName( userId ) {
-    const user = new User('', '', '', '', '', undefined, undefined, '');
+    // const user = new User('', '', '', '', '', undefined, undefined, '');
+    const user = {
+      _id: '',
+      name: '',
+      last_name: '',
+      nick_name: '',
+      email: '',
+      level: ''
+    };
     this._userService.getUser( userId ).subscribe(
       response => {
         if ( response.ok ) {
@@ -223,6 +251,32 @@ export class BuildShiftsComponent implements OnInit {
     );
 
     return user;
+  }
+
+  getUsers() {
+    this._userService.getUsersToSearch().subscribe(
+      response => {
+        // console.log( response );
+        if ( response.ok ) {
+          // this.users = response.users;
+          for ( let i = 0; i < response.users.length; i++ ) {
+            const user = new User('', '', '', '', '', undefined, undefined, '');
+            const temp = response.users[i];
+
+            user._id = temp._id;
+            user.name = temp.name;
+            user.last_name = temp.last_name;
+            user.nick_name = temp.nick_name;
+            user.email = temp.email;
+            user.level = temp.level;
+
+            this.users.push( user );
+          }
+        }
+      }, error => {
+        console.log( error );
+      }
+    );
   }
 
   autoBuild() {
@@ -343,27 +397,25 @@ export class BuildShiftsComponent implements OnInit {
     const dd = this.selectedDay;
     const sh = this.selectedShift;
 
-    console.log( dd, sh );
+    // console.log( dd, sh );
 
-    // for ( let j = 0, t = 0; j < this.week[dd][sh].length; j++ ) {
-      const temp = this.week[dd][sh];
-      for ( let k = 0, t = 0; k < temp.length; k++ ) {
-        const node = document.createElement('LI');
-        const textNode = document.createTextNode( temp[k].nick_name );
-        node.setAttribute('id', 'dragg_' + t );
-        node.draggable = true;
-        node.addEventListener('dragstart', this.drag, false);
-        node.appendChild( textNode );
-        document.getElementById('myUL').appendChild( node );
-        t++;
-      }
-    // }
+    const temp = this.week[dd][sh];
+    for ( let k = 0, t = 0; k < temp.length; k++ ) {
+      const node = document.createElement('LI');
+      const textNode = document.createTextNode( temp[k].nick_name );
+      node.setAttribute('id', 'dragg_' + t );
+      node.draggable = true;
+      node.addEventListener('dragstart', this.drag, false);
+      node.appendChild( textNode );
+      document.getElementById('myUL').appendChild( node );
+      t++;
+    }
   }
 
   showAll() {
     const level = this.selectedEmployess;
-    const dd = this.selectedDay;
-    const sh = this.selectedShift;
+    const dd = this.selectedDay1;
+    const sh = this.selectedShift1;
 
     const i = 0;
     const list = document.getElementById('listAll');
@@ -407,6 +459,19 @@ export class BuildShiftsComponent implements OnInit {
         t++;
       }
     }
+  }
+
+  saveBuild() {
+    console.log( this.finalManagement );
+    this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
+      response => {
+        if ( response.ok ) {
+          alert( 'shifts save!!!' );
+        }
+      }, error => {
+        console.log( error );
+      }
+    );
   }
 
 }

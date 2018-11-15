@@ -3,6 +3,7 @@
 var moment = require('moment');
 var RequestWeekUser = require('../models/requestWeekUser');
 var RequestWeek = require('../models/requestWeek');
+var FinalManagement = require('../models/finalManagement');
 var jwt = require('../services/jwt');
 var mongoosePaginate = require('mongoose-pagination');
 var fs = require('fs');
@@ -257,6 +258,59 @@ function getAllRequestWeek(req, res) {
     });
 }
 
+function saveFinalManagement(req, res) {
+    var week = req.params.week;
+    var year = req.params.year;
+    var body = req.body;
+
+    console.log( 'line 266', week );
+    console.log('line 267', year );
+    console.log( 'line 268', body );
+
+    if ( req.user.role !== 'ADMIN_ROLE' ) {
+        return res.status(500).send({
+            ok: false,
+            message: `you do not have authorization for this method`
+        });
+    }
+
+    var finalManagement = new FinalManagement();
+    finalManagement.numberWeek = week;
+    finalManagement.year = year;
+
+    for( let i = 0; i < days.length; i++ ) {
+        var day = days[i];
+        for( let j = 0; j < shifts.length; j++ ) {
+            var shift = shifts[j];
+            var temp = body[day][shift];
+            for ( let u = 0; u < temp.length; u++ ) {
+                finalManagement[day][shift][u] = temp[u];
+            }
+        }
+    }
+
+    // console.log( 'line 291' , finalManagement );
+
+    finalManagement.save( (err, managementStored) => {
+        if(err){
+            return res.status(500).send({
+                message: `Error when saving management ${ err }`
+            });
+        }
+        if( !managementStored ) {
+            return res.status(404).send({
+                ok: false,
+                message: 'Sorry but we cant save management in DB'
+            });
+        }
+        
+        res.status(200).send({
+            ok: true,
+            management: managementStored
+        });
+    });
+}
+
 
 module.exports = {
     controlRequest,
@@ -265,5 +319,6 @@ module.exports = {
     saveRequestWeek,
     updateRequestUser,
     getRequestWeek,
-    getAllRequestWeek
+    getAllRequestWeek,
+    saveFinalManagement
 }

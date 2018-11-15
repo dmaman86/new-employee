@@ -1,6 +1,5 @@
 <h3>Build Table Employess</h3>
 <hr>
-
 <div class="row">
     <div class="col-md-8">
         <table class="table table-bordered">
@@ -19,9 +18,9 @@
                 <tr *ngFor="let shift of shifts; let j = index">
                     <td *ngFor="let day of days; let i = index">
                         <ul id="mat[{{ shift }}][{{ day }}]" (click)="remove( shift, day )">
-                            <li (drop)="drop($event, s, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
-                            <li (drop)="drop($event, s, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
-                            <li (drop)="drop($event, s, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="0" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="1" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="2" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
                         </ul>
                         <ul>
                             <li (click)="added( shift, day )"><i class="fa fa-plus-circle"></i></li>
@@ -37,67 +36,63 @@
             </div>
         </div>
     </div>
-
     <div class="col-md-4">
         <div class="row">
-            <div class="col">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col">
                         <h4>Search Employess</h4>
                         <hr>
-                        <div>
-                            <select [(ngModel)]="selectedDay" name="first">
-                                <option *ngFor="let day of days">{{ day }}</option>
-                            </select>
-                            <select [(ngModel)]="selectedShift" name="first">
-                                <option *ngFor="let shift of shifts">{{ shift }}</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div id="listOpt">
-
-                        </div>
+                        <select [(ngModel)]="selectedDay" name="first">
+                            <option *ngFor="let day of days">{{ day }}</option>
+                        </select>
+                        <select [(ngModel)]="selectedShift" name="first">
+                            <option *ngFor="let shift of shifts">{{ shift }}</option>
+                        </select>
                     </div>
                 </div>
+                <div class="row" id="listOpt">
                 
+                </div>
+                        
                 <div class="row">
-                    <div class="col text-center">
+                    <div class="col">
                         <button class="btn btn-primary" (click)="searchEmployess()">Search Employess</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col">
                         <h4>Show All Employess</h4>
                         <hr>
-                        <div>
-                            <select [(ngModel)]="selectedEmployess" name="first">
-                                <option *ngFor="let lv of employess">{{ lv.level }}</option>
-                            </select>
-                            <select [(ngModel)]="selectedDay" name="first">
-                                <option *ngFor="let day of days">{{ day }}</option>
-                            </select>
-                            <select [(ngModel)]="selectedShift" name="first">
-                                <option *ngFor="let shift of shifts">{{ shift }}</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div id="listAll">
-    
-                        </div>
+                        <select [(ngModel)]="selectedEmployess" name="first">
+                            <option *ngFor="let lv of employess">{{ lv.level }}</option>
+                        </select>
+                        <select [(ngModel)]="selectedDay1" name="first">
+                            <option *ngFor="let day of days">{{ day }}</option>
+                        </select>
+                        <select [(ngModel)]="selectedShift1" name="first">
+                            <option *ngFor="let shift of shifts">{{ shift }}</option>
+                        </select>
                     </div>
                 </div>
+                <div class="row" id="listAll">
+                        
+                </div>
+                                
                 <div class="row">
-                    <div class="col text-center">
+                    <div class="col">
                         <button class="btn btn-primary" (click)="showAll()">Show All</button>
                     </div>
                 </div>
