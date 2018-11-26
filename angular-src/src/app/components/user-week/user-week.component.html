@@ -4,22 +4,22 @@
       You can send shifts until Tuesday 23:59
     </div>
   </div>
-  <div class="col" *ngIf="status == 'success'">
+  <div class="col" *ngIf="status === 'success'">
     <div class="alert alert-success">
       Shifts Save!
     </div>
   </div>
-  <div class="col" *ngIf="status == 'no-request'">
+  <div class="col" *ngIf="status === 'no-request'">
     <div class="alert alert-success">
       You have not sent shifts yet for next week
     </div>
   </div>
-  <div class="col" *ngIf="status == 'error'">
+  <div class="col" *ngIf="status === 'error'">
     <div class="alert alert-danger">
       Please check shifts!
     </div>
   </div>
-  <div class="col" *ngIf="status == 'denied'">
+  <div class="col" *ngIf="status === 'denied'">
     <div class="alert alert-danger">
       We are sorry,
       but you will have to wait next week to send shifts or contact the administrator
