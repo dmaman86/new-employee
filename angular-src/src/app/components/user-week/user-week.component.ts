@@ -73,25 +73,6 @@ export class UserWeekComponent implements OnInit {
     }, 2000);
   }
 
-  /*getWeekNumber( full_date ) {
-    // Copy date so don't modify original
-    full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
-    // Set to nearest Thursday: current date + 4 - current day number
-    // Make Sunday's day number 7
-    full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
-    // Get first day of year
-    const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
-    // Calculate full weeks to nearest Thursday
-    let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
-    // Return array of year and week number
-    let year = full_date.getUTCFullYear();
-    if ( weekNo === 53 ) {
-      weekNo = 0;
-      year++;
-    }
-    return [year, weekNo];
-  }*/
-
   getFirstAndLastDates( numberWeek ) {
     // const moment = require('moment');
     // console.log( numberWeek );
@@ -134,7 +115,10 @@ export class UserWeekComponent implements OnInit {
                   const s = this.shift[j];
                   this.showShifts( response.request[d][s], d, s );
                   this.requestUser.setShift( d, s, response.request[d][s]);
-                  this.updateValues(d, s);
+                  setTimeout( () => {
+                    this.updateValues(d, s);
+                  }, 1000);
+                  // this.updateValues(d, s);
                 }
               }
             }
@@ -146,7 +130,10 @@ export class UserWeekComponent implements OnInit {
                   const s = this.shift[j];
                   this.showShifts( response.request[d][s], d, s );
                   this.requestUser.setShift( d, s, response.request[d][s]);
-                  this.updateValues(d, s);
+                  setTimeout( () => {
+                    this.updateValues(d, s);
+                  }, 1000);
+                  // this.updateValues(d, s);
                 }
               }
             }

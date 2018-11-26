@@ -5519,7 +5519,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shifts</h3>\n<hr>\n<div class=\"row\">\n    <div class=\"col-md-12\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"7\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let shift of shifts\">\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day][shift]\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n"
+module.exports = "<h3>Shifts</h3>\n<hr>\n<div class=\"row\">\n    <div *ngIf=\"status === 'success'\" class=\"col-md-12\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>Morning</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].morning\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <tr>\n                    <td>Afternoon</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].afternoon\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <tr>\n                    <td>Night</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].night\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <!--<tr *ngFor=\"let shift of shifts\">\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day][shift]\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul>\n                    </td>\n                </tr>-->\n            </tbody>\n        </table>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -5565,13 +5565,17 @@ var ShowShiftsComponent = /** @class */ (function () {
         this.full_date = this._userService.getWeekNumber(new Date());
         this.weekAndyear.year = this.full_date[0];
         this.weekAndyear.week = this.full_date[1];
-        this._userService.getFinalManagement(this.weekAndyear).subscribe(function (response) {
-            if (response.ok) {
-                _this.finalManagement = response.management[0];
+        /*this._userService.getFinalManagement( this.weekAndyear ).subscribe(
+          response => {
+    
+            if ( response.ok ) {
+              this.finalManagement = response.management[0];
             }
-        }, function (error) {
-            console.log(error);
-        });
+          }, error => {
+            console.log( error );
+          }
+        );*/
+        this.getShifts(this.weekAndyear);
         setTimeout(function () {
             console.log(_this.finalManagement);
         }, 1000);
@@ -5587,6 +5591,17 @@ var ShowShiftsComponent = /** @class */ (function () {
             dates[day] = temp;
         }
         return dates;
+    };
+    ShowShiftsComponent.prototype.getShifts = function (weekAndyear) {
+        var _this = this;
+        this._userService.getFinalManagement(weekAndyear).subscribe(function (response) {
+            if (response.ok) {
+                _this.finalManagement = response.management[0];
+                _this.status = 'success';
+            }
+        }, function (error) {
+            console.log(error);
+        });
     };
     ShowShiftsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5766,7 +5781,7 @@ var UpdateWeekComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "thead th{\n    text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy91c2VyLXdlZWsvdXNlci13ZWVrLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQkFBbUI7Q0FDdEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3VzZXItd2Vlay91c2VyLXdlZWsuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInRoZWFkIHRoe1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */"
+module.exports = "thead th{\n    text-align: center;\n}\ntbody td{\n    text-align: center;\n}\nbutton{\n    background-color: rgb(209, 209, 209);\n    display: block;\n    margin: 0 auto;\n    width: 30px;\n    padding: 9px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy91c2VyLXdlZWsvdXNlci13ZWVrLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQkFBbUI7Q0FDdEI7QUFDRDtJQUNJLG1CQUFtQjtDQUN0QjtBQUVEO0lBQ0kscUNBQXFDO0lBQ3JDLGVBQWU7SUFDZixlQUFlO0lBQ2YsWUFBWTtJQUNaLGFBQWE7Q0FDaEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3VzZXItd2Vlay91c2VyLXdlZWsuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbInRoZWFkIHRoe1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbnRib2R5IHRke1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuYnV0dG9ue1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYigyMDksIDIwOSwgMjA5KTtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICB3aWR0aDogMzBweDtcbiAgICBwYWRkaW5nOiA5cHg7XG59Il19 */"
 
 /***/ }),
 
@@ -5777,7 +5792,7 @@ module.exports = "thead th{\n    text-align: center;\n}\n/*# sourceMappingURL=da
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <div class=\"alert alert-success\">\n      You can send shifts until Tuesday 23:59\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'success'\">\n    <div class=\"alert alert-success\">\n      Shifts Save!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'no-request'\">\n    <div class=\"alert alert-success\">\n      You have not sent shifts yet for next week\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'error'\">\n    <div class=\"alert alert-danger\">\n      Please check shifts!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'denied'\">\n    <div class=\"alert alert-danger\">\n      We are sorry,\n      but you will have to wait next week to send shifts or contact the administrator\n      if you have any problems.\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered text-center\">\n      <thead>\n        <tr>\n          <th *ngIf=\"requestWeek.method === 'open'\" colspan=\"4\">Minimun shifts you need to {{ requestWeek.method }} this week:</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}&nbsp;&nbsp;<i *ngIf=\"count_morning >= requestWeek.morning\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.afternoon }}&nbsp;&nbsp;<i *ngIf=\"count_afternoon >= requestWeek.afternoon\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.night }}&nbsp;&nbsp;<i *ngIf=\"count_night >= requestWeek.night\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.weekend }}&nbsp;&nbsp;<i *ngIf=\"count_weekend >= requestWeek.weekend\" class=\"fas fa-check\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}'s shifts</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Morning</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\"\n              (dblclick)=\"resetValue(day, 'morning')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.morning\"\n                value=\"{{ week[day].morning }}\"\n                (click)=\"setValue( day, 'morning' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\"\n              (dblclick)=\"resetValue(day, 'afternoon')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.afternoon\"\n                value=\"{{ week[day].afternoon }}\"\n                (click)=\"setValue( day, 'afternoon' )\">\n          </td>\n        </tr>\n        <tr>\n          <td>Night</td>\n          <td *ngFor=\"let day of days\">\n            <!--<input\n              type=\"button\"\n              value=\"{{ this.week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\"\n              (dblclick)=\"resetValue(day, 'night')\">-->\n              <input type=\"button\"\n                id=\"{{day}}.night\"\n                value=\"{{ week[day].night }}\"\n                (click)=\"setValue( day, 'night' )\">\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        Message:\n        <div class=\"from-group\">\n          <textarea cols=\"30\" rows=\"4\" [(ngModel)]=\"message\" placeholder=\"{{ message }}\"></textarea>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-12 text-center\">\n        <button\n          id=\"btn-send\"\n          type=\"submit\"\n          class=\"btn btn-primary\"\n          (click)=\"sendValues()\">Send Shifts</button>\n      </div>\n    </div>\n  </div>\n</div>\n<br><br>\n<!--<app-footer></app-footer>-->\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <div class=\"alert alert-success\">\n      You can send shifts until Tuesday 23:59\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'success'\">\n    <div class=\"alert alert-success\">\n      Shifts Save!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'no-request'\">\n    <div class=\"alert alert-success\">\n      You have not sent shifts yet for next week\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'error'\">\n    <div class=\"alert alert-danger\">\n      Please check shifts!\n    </div>\n  </div>\n  <div class=\"col\" *ngIf=\"status == 'denied'\">\n    <div class=\"alert alert-danger\">\n      We are sorry,\n      but you will have to wait next week to send shifts or contact the administrator\n      if you have any problems.\n    </div>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered text-center\">\n      <thead>\n        <tr>\n          <th *ngIf=\"requestWeek.method === 'open'\" colspan=\"4\">Minimun shifts you need to {{ requestWeek.method }} this week:</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ requestWeek.morning }}&nbsp;&nbsp;<i *ngIf=\"count_morning >= requestWeek.morning\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.afternoon }}&nbsp;&nbsp;<i *ngIf=\"count_afternoon >= requestWeek.afternoon\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.night }}&nbsp;&nbsp;<i *ngIf=\"count_night >= requestWeek.night\" class=\"fas fa-check\"></i></td>\n          <td>{{ requestWeek.weekend }}&nbsp;&nbsp;<i *ngIf=\"count_weekend >= requestWeek.weekend\" class=\"fas fa-check\"></i></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-md-6\">\n    <table class=\"table table-bordered\">\n      <thead>\n        <tr>\n          <th colspan=\"4\">{{ identity.name | titlecase }} {{ identity.last_name | titlecase }}'s shifts</th>\n        </tr>\n        <tr>\n          <th><span class=\"long\">Morning</span></th>\n          <th><span class=\"long\">Afternoon</span></th>\n          <th><span class=\"long\">Night</span></th>\n          <th><span class=\"long\">Weekend</span></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>{{ count_morning }}</td>\n          <td>{{ count_afternoon }}</td>\n          <td>{{ count_night }}</td>\n          <td>{{ count_weekend }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-8\">\n    <table class=\"table table-bordered table-responsive fixed-table-body\">\n      <thead>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days; let i = index\">\n            <span class=\"long\">{{ dates[d] | date }}</span>\n          </th>\n        </tr>\n        <tr>\n          <th></th>\n          <th *ngFor=\"let d of days\">\n            {{ d | titlecase }}\n          </th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>Morning</td>\n          <td *ngFor=\"let day of days\">\n            <button\n              id=\"{{day}}.morning\"\n              class=\"btn\"\n              value=\"{{ week[day].morning }}\"\n              (click)=\"setValue( day, 'morning' )\">\n              {{ week[day].morning }}\n            </button>\n          </td>\n        </tr>\n        <tr>\n          <td>Afternoon</td>\n          <td *ngFor=\"let day of days\">\n            <button\n              id=\"{{day}}.afternoon\"\n              class=\"btn\"\n              value=\"{{ week[day].afternoon }}\"\n              (click)=\"setValue( day, 'afternoon' )\">\n              {{ week[day].afternoon }}\n            </button>\n          </td>\n        </tr>\n        <tr>\n          <td>Night</td>\n          <td *ngFor=\"let day of days\">\n            <button\n              id=\"{{day}}.night\"\n              class=\"btn\"\n              value=\"{{ week[day].night }}\"\n              (click)=\"setValue( day, 'night' )\">\n              {{ week[day].night }}\n            </button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div><!-- end col md 8 -->\n  <div class=\"col-md-4\">\n    Message:\n    <div class=\"from-group\">\n      <textarea cols=\"30\" rows=\"4\" [(ngModel)]=\"message\" placeholder=\"{{ message }}\"></textarea>\n    </div>\n  </div><!-- end col md 4 -->\n</div>\n<div class=\"row\">\n  <div class=\"col text-center\">\n    <input type=\"button\" class=\"btn btn-primary\" (click)=\"sendValues()\" value=\"Send Shifts\">\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -5858,24 +5873,6 @@ var UserWeekComponent = /** @class */ (function () {
             _this.checkDay();
         }, 2000);
     };
-    /*getWeekNumber( full_date ) {
-      // Copy date so don't modify original
-      full_date = new Date(Date.UTC(full_date.getFullYear(), full_date.getMonth(), full_date.getDate()));
-      // Set to nearest Thursday: current date + 4 - current day number
-      // Make Sunday's day number 7
-      full_date.setUTCDate(full_date.getUTCDate() + 4 - (full_date.getUTCDay() || 7));
-      // Get first day of year
-      const yearStart: any = new Date(Date.UTC(full_date.getUTCFullYear(), 0, 1));
-      // Calculate full weeks to nearest Thursday
-      let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
-      // Return array of year and week number
-      let year = full_date.getUTCFullYear();
-      if ( weekNo === 53 ) {
-        weekNo = 0;
-        year++;
-      }
-      return [year, weekNo];
-    }*/
     UserWeekComponent.prototype.getFirstAndLastDates = function (numberWeek) {
         // const moment = require('moment');
         // console.log( numberWeek );
@@ -5909,26 +5906,44 @@ var UserWeekComponent = /** @class */ (function () {
                         _this.requestUser.setId(response.request._id);
                         _this.requestUser.setMessage(response.request.message);
                         _this.message = response.request.message;
-                        for (var i = 0; i < _this.days.length; i++) {
+                        var _loop_1 = function (i) {
                             var d = _this.days[i];
-                            for (var j = 0; j < _this.shift.length; j++) {
+                            var _loop_3 = function (j) {
                                 var s = _this.shift[j];
                                 _this.showShifts(response.request[d][s], d, s);
                                 _this.requestUser.setShift(d, s, response.request[d][s]);
-                                _this.updateValues(d, s);
+                                setTimeout(function () {
+                                    _this.updateValues(d, s);
+                                }, 1000);
+                                // this.updateValues(d, s);
+                            };
+                            for (var j = 0; j < _this.shift.length; j++) {
+                                _loop_3(j);
                             }
+                        };
+                        for (var i = 0; i < _this.days.length; i++) {
+                            _loop_1(i);
                         }
                     }
                     if (response.request.length > 0) {
                         _this.requestUser.setId(response.request._id);
-                        for (var i = 0; i < _this.days.length; i++) {
+                        var _loop_2 = function (i) {
                             var d = _this.days[i];
-                            for (var j = 0; j < _this.shift.length; j++) {
+                            var _loop_4 = function (j) {
                                 var s = _this.shift[j];
                                 _this.showShifts(response.request[d][s], d, s);
                                 _this.requestUser.setShift(d, s, response.request[d][s]);
-                                _this.updateValues(d, s);
+                                setTimeout(function () {
+                                    _this.updateValues(d, s);
+                                }, 1000);
+                                // this.updateValues(d, s);
+                            };
+                            for (var j = 0; j < _this.shift.length; j++) {
+                                _loop_4(j);
                             }
+                        };
+                        for (var i = 0; i < _this.days.length; i++) {
+                            _loop_2(i);
                         }
                     }
                 }

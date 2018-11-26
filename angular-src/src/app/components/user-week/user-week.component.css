@@ -1,3 +1,14 @@
 thead th{
     text-align: center;
 }
+tbody td{
+    text-align: center;
+}
+
+button{
+    background-color: rgb(209, 209, 209);
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    padding: 9px;
+}

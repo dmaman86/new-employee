@@ -1,21 +1,53 @@
 <h3>Shifts</h3>
 <hr>
 <div class="row">
-    <div class="col-md-12">
+    <div *ngIf="status === 'success'" class="col-md-12">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th colspan="7" class="text-center">Number Week {{ weekAndyear.week }}</th>
+                    <th colspan="8" class="text-center">Number Week {{ weekAndyear.week }}</th>
                 </tr>
                 <tr>
+                    <th></th>
                     <th class="text-center" *ngFor="let d of days">{{ dates[d] | date }}</th>
                 </tr>
                 <tr>
+                    <th></th>
                     <th class="text-center" *ngFor="let day of days">{{ day | titlecase }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shift of shifts">
+                <tr>
+                    <td>Morning</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngFor="let user of finalManagement[day].morning">
+                            <li *ngIf="user === 'undefined'"></li>
+                            <li *ngIf="user === null"></li>
+                            <li *ngIf="user">{{ user.nick_name }}</li>
+                        </ul> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Afternoon</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngFor="let user of finalManagement[day].afternoon">
+                            <li *ngIf="user === 'undefined'"></li>
+                            <li *ngIf="user === null"></li>
+                            <li *ngIf="user">{{ user.nick_name }}</li>
+                        </ul> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Night</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngFor="let user of finalManagement[day].night">
+                            <li *ngIf="user === 'undefined'"></li>
+                            <li *ngIf="user === null"></li>
+                            <li *ngIf="user">{{ user.nick_name }}</li>
+                        </ul> 
+                    </td>
+                </tr>
+                <!--<tr *ngFor="let shift of shifts">
                     <td *ngFor="let day of days">
                         <ul *ngFor="let user of finalManagement[day][shift]">
                             <li *ngIf="user === 'undefined'"></li>
@@ -23,7 +55,7 @@
                             <li *ngIf="user">{{ user.nick_name }}</li>
                         </ul>
                     </td>
-                </tr>
+                </tr>-->
             </tbody>
         </table>
     </div>
