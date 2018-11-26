@@ -5519,7 +5519,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shifts</h3>\n<hr>\n<div class=\"row\">\n    <div *ngIf=\"status === 'success'\" class=\"col-md-12\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>Morning</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].morning\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <tr>\n                    <td>Afternoon</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].afternoon\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <tr>\n                    <td>Night</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day].night\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul> \n                    </td>\n                </tr>\n                <!--<tr *ngFor=\"let shift of shifts\">\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngFor=\"let user of finalManagement[day][shift]\">\n                            <li *ngIf=\"user === 'undefined'\"></li>\n                            <li *ngIf=\"user === null\"></li>\n                            <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                        </ul>\n                    </td>\n                </tr>-->\n            </tbody>\n        </table>\n    </div>\n</div>\n"
+module.exports = "<h3>Shifts</h3>\n<hr>\n<div *ngIf=\"status === 'rejected'\">\n    <div class=\"alert alert-danger\">\n        No exist shifts for this week\n    </div>\n</div>\n<div *ngIf=\"status === 'success'\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <table class=\"table table-bordered\">\n                <thead>\n                    <tr>\n                        <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>Morning</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].morning\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Afternoon</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].afternoon\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Night</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].night\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -5561,23 +5561,13 @@ var ShowShiftsComponent = /** @class */ (function () {
         this.weekAndyear = {};
     }
     ShowShiftsComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.full_date = this._userService.getWeekNumber(new Date());
         this.weekAndyear.year = this.full_date[0];
         this.weekAndyear.week = this.full_date[1];
-        /*this._userService.getFinalManagement( this.weekAndyear ).subscribe(
-          response => {
-    
-            if ( response.ok ) {
-              this.finalManagement = response.management[0];
-            }
-          }, error => {
-            console.log( error );
-          }
-        );*/
         this.getShifts(this.weekAndyear);
         setTimeout(function () {
-            console.log(_this.finalManagement);
+            // console.log( this.finalManagement );
+            // console.log( this.status );
         }, 1000);
         this.dates = this.getDates(this.weekAndyear);
     };
@@ -5595,11 +5585,13 @@ var ShowShiftsComponent = /** @class */ (function () {
     ShowShiftsComponent.prototype.getShifts = function (weekAndyear) {
         var _this = this;
         this._userService.getFinalManagement(weekAndyear).subscribe(function (response) {
+            // console.log( response );
             if (response.ok) {
-                _this.finalManagement = response.management[0];
+                _this.finalManagement = response.management;
                 _this.status = 'success';
             }
         }, function (error) {
+            _this.status = 'rejected';
             console.log(error);
         });
     };

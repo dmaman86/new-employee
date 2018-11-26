@@ -313,9 +313,10 @@ function getFinalManagement(req, res) {
     var week = params.week;
     var year = params.year;
 
-    FinalManagement.find({ numberWeek: week, year: year }, (err, requests) => {
+    FinalManagement.findOne({ numberWeek: week, year: year }, (err, requests) => {
         if(err){
             return res.status(500).send({
+                ok:false,
                 message: `Error when get management ${ err }`
             });
         }

@@ -17,7 +17,7 @@ export class ShowShiftsComponent implements OnInit {
   public days;
   public shifts;
   public dates;
-  public status;
+  public status: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,7 +36,8 @@ export class ShowShiftsComponent implements OnInit {
 
     this.getShifts( this.weekAndyear );
     setTimeout( () => {
-      console.log( this.finalManagement );
+      // console.log( this.finalManagement );
+      // console.log( this.status );
     }, 1000 );
     this.dates = this.getDates( this.weekAndyear );
   }
@@ -56,12 +57,13 @@ export class ShowShiftsComponent implements OnInit {
   getShifts( weekAndyear ) {
     this._userService.getFinalManagement( weekAndyear ).subscribe(
       response => {
-
+        // console.log( response );
         if ( response.ok ) {
-          this.finalManagement = response.management[0];
+          this.finalManagement = response.management;
           this.status = 'success';
         }
       }, error => {
+        this.status = 'rejected';
         console.log( error );
       }
     );
