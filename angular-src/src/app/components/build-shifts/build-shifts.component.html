@@ -2,31 +2,96 @@
 <hr>
 <div class="alert alert-success" *ngIf="status === 'success' ">
     Employee assignment saved successfully
- </div>
-<div class="row">
+</div>
+<div class="alert alert-success" *ngIf="status === 'update' ">
+    Employee assignment was update successfully
+</div>
+<div *ngIf="test" class="row">
     <div class="col-md-8">
+        <div class="row">
+            <div class="col text-center">
+                <button id="decrement" class="btn btn-primary" (click)="decrementWeek()">Last Week</button>
+                &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;
+                <a><span class="pseudolink" (click)="resetWeek()">return to actual week</span></a>&nbsp;&nbsp;
+                <button id="increment" class="btn btn-primary" (click)="incrementWeek()">Next Week</button>
+            </div>
+        </div>
+        <br><br>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th colspan="7" class="text-center">Number Week {{ weekAndyear.week }}</th>
+                    <th colspan="8" class="text-center">Number Week {{ weekAndyear.week }}</th>
                 </tr>
                 <tr>
+                    <th></th>
                     <th class="text-center" *ngFor="let d of days">{{ dates[d] | date }}</th>
                 </tr>
                 <tr>
+                    <th></th>
                     <th class="text-center" *ngFor="let day of days">{{ day | titlecase }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let shift of shifts; let j = index">
-                    <td *ngFor="let day of days; let i = index">
-                        <ul id="mat[{{ shift }}][{{ day }}]" (click)="remove( shift, day )">
-                            <li id="0" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
-                            <li id="1" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
-                            <li id="2" (drop)="drop($event, shift, day)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                <tr>
+                    <td>Morning</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngIf="checkId && table" id="mat[morning][{{ day }}]" (click)="remove( 'morning', day )">
+                            <li *ngFor="let user of finalManagement[day].morning; let i=index" id="{{ i }}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                                <!--<span id="{{ i }}" *ngIf="user === 'undefined'"></span>
+                                <span id="{{ i }}" *ngIf="user === null"></span>
+                                <span id="{{ i }}" *ngIf="user">{{ user.nick_name }}</span>-->
+                                <i  *ngIf="user === 'undefined'" class="fas fa-minus-circle"></i>
+                                <i  *ngIf="user === null" class="fas fa-minus-circle"></i>
+                                <i *ngIf="user">{{ user.nick_name }}</i>
+                            </li>
+                        </ul>
+                        <ul *ngIf="!checkId && !table" id="mat[morning][{{ day }}]" (click)="remove( 'morning', day )">
+                            <li id="0" (drop)="drop($event)" (dragover)="allowDrop($event)"><i class="fas fa-minus-circle"></i></li>
+                            <li id="1" (drop)="drop($event)" (dragover)="allowDrop($event)"><i class="fas fa-minus-circle"></i></li>
+                            <li id="2" (drop)="drop($event)" (dragover)="allowDrop($event)"><i class="fas fa-minus-circle"></i></li>
                         </ul>
                         <ul>
-                            <li (click)="added( shift, day )"><i class="fa fa-plus-circle"></i></li>
+                            <li (click)="added($event,'morning', day )"><i class="fa fa-plus-circle"></i></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Afternoon</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngIf="checkId && table" id="mat[afternoon][{{ day }}]" (click)="remove( 'afternoon', day )">
+                            <li *ngFor="let user of finalManagement[day].afternoon; let i=index" id="{{ i }}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                                <span *ngIf="user === 'undefined'"></span>
+                                <span *ngIf="user === null"></span>
+                                <span *ngIf="user">{{ user.nick_name }}</span>
+                            </li>
+                        </ul>
+                        <ul *ngIf="!checkId && !table" id="mat[afternoon][{{ day }}]" (click)="remove( 'afternoon', day )">
+                            <li id="0" (drop)="drop($event)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="1" (drop)="drop($event)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="2" (drop)="drop($event)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                        </ul>
+                        <ul>
+                            <li (click)="added($event, 'afternoon', day )"><i class="fa fa-plus-circle"></i></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Night</td>
+                    <td *ngFor="let day of days">
+                        <ul *ngIf="checkId && table" id="mat[night][{{ day }}]" (click)="remove( 'night', day )">
+                            <li *ngFor="let user of finalManagement[day].night; let i=index" id="{{ i }}" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                                <span *ngIf="user === 'undefined'"></span>
+                                <span *ngIf="user === null"></span>
+                                <span *ngIf="user">{{ user.nick_name }}</span>
+                            </li>
+                        </ul>
+                        <ul *ngIf="!checkId && !table" id="mat[night][{{ day }}]" (click)="remove( 'night', day )">
+                            <li id="0" (drop)="drop($event)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="1" (drop)="drop($even)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                            <li id="2" (drop)="drop($event)" (dragover)="allowDrop($event)"><button id="btn">X</button></li>
+                        </ul>
+                        <ul>
+                            <li (click)="added($event, 'night', day )"><i class="fa fa-plus-circle"></i></li>
                         </ul>
                     </td>
                 </tr>
@@ -39,125 +104,122 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col">
-                        <h4>Search Employess</h4>
-                        <hr>
-                    </div>
+    <div id="column-2" class="col-md-4">
+        <div class="row mx-5">
+            <div class="container">
+                <h4>Search Employees</h4>
+                <hr>
+                <div>
+                    <select [(ngModel)]="selectedDay" name="first">
+                        <option *ngFor="let day of days">{{ day }}</option>
+                    </select>
+                    <select [(ngModel)]="selectedShift" name="first">
+                        <option *ngFor="let shift of shifts">{{ shift }}</option>
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <select [(ngModel)]="selectedDay" name="first">
-                            <option *ngFor="let day of days">{{ day }}</option>
-                        </select>
-                        <select [(ngModel)]="selectedShift" name="first">
-                            <option *ngFor="let shift of shifts">{{ shift }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row" id="listOpt">
-                
-                </div>
-                        
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary" (click)="searchEmployess()">Search Employess</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col">
-                        <h4>Show All Employess</h4>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <select [(ngModel)]="selectedEmployess" name="first">
-                            <option *ngFor="let lv of employess">{{ lv.level }}</option>
-                        </select>
-                        <select [(ngModel)]="selectedDay1" name="first">
-                            <option *ngFor="let day of days">{{ day }}</option>
-                        </select>
-                        <select [(ngModel)]="selectedShift1" name="first">
-                            <option *ngFor="let shift of shifts">{{ shift }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row" id="listAll">
+                <div id="listOpt">
                         
                 </div>
-                                
+                <br><br>
+                <button class="btn btn-primary" (click)="searchEmployess()">Search Employess</button>
+            </div>
+        </div>
+        <div class="row mx-5">
+            <div class="container">
+                <h4>Show All Employess</h4>
+                <hr>
+                <div>
+                    <select [(ngModel)]="selectedEmployess" name="first">
+                        <option *ngFor="let lv of employess">{{ lv.level }}</option>
+                    </select>
+                    <select [(ngModel)]="selectedDay1" name="first">
+                        <option *ngFor="let day of days">{{ day }}</option>
+                    </select>
+                    <select [(ngModel)]="selectedShift1" name="first">
+                        <option *ngFor="let shift of shifts">{{ shift }}</option>
+                    </select>
+                </div>
+                <div id="listAll">
+                        
+                </div>
+                <br><br>
+                <button class="btn btn-primary" (click)="showAll()">Show All</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Show shift of employee</h4>
+        <div class="col text-right">
+            <select [(ngModel)]="selectedSearch" name="first">
+                <option *ngFor="let us of users">{{ us.nick_name }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row" *ngIf="status === 'denied'">
+            <div class="col">
+                <div class="alert alert-success">
+                    No exist shift for this week
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="status === 'no-exist'">
+            <div class="col">
+                <div class="alert alert-success">
+                    No exist shift for this user
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="status === 'show'">
+            <div class="col-md-8">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th colspan="8" class="text-center">{{ shiftUser.emitter.name + ' ' + shiftUser.emitter.last_name }}</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th class="text-center" *ngFor="let day of days">{{ day }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mornirng</td>
+                            <td *ngFor="let day of days">
+                                {{ shiftUser[day].morning }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Afternoon</td>
+                            <td *ngFor="let day of days">
+                                {{ shiftUser[day].afternoon }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Night</td>
+                            <td *ngFor="let day of days">
+                                {{ shiftUser[day].night }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary" (click)="showAll()">Show All</button>
+                        {{ shiftUser.message }}
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col">
-                        <h4>Show shift of employee</h4>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <select [(ngModel)]="selectedSearch" name="first">
-                            <option *ngFor="let us of users">{{ us.nick_name }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row" *ngIf="status === 'show'">
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th></th>
-                                  <th class="text-center" *ngFor="let day of days">{{ day }}</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                                <td>Mornirng</td>
-                                <td *ngFor="let day of days">
-                                    {{ shiftUser[day].morning }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Afternoon</td>
-                                <td *ngFor="let day of days">
-                                    {{ shiftUser[day].afternoon }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Night</td>
-                                <td *ngFor="let day of days">
-                                    {{ shiftUser[day].night }}
-                                </td>
-                            </tr>
-                          </tbody>
-                      </table> 
-                      <div class="row">
-                          <div class="col">
-                              {{ shiftUser.message }}
-                          </div>
-                      </div> 
-                </div>
-                <br><br>            
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary" (click)="searchShift()">Show Shift</button>
-                    </div>
-                </div>
+            <div class="col text-center">
+                <button class="btn btn-primary" (click)="searchShift()">Show Shift</button>
             </div>
         </div>
+
     </div>
 </div>

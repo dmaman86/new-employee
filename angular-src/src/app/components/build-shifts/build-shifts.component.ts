@@ -23,6 +23,7 @@ export class BuildShiftsComponent implements OnInit {
   public optionTeamLeader: any;
   public optionEmployee: any;
   public finalManagement: any;
+  public tempFinalManagement: any;
   public dates;
   public selectedDay;
   public selectedDay1;
@@ -34,12 +35,16 @@ export class BuildShiftsComponent implements OnInit {
   public users: User[];
   public responseShift;
   public shiftUser;
+  public checkId: boolean;
+  public table: boolean;
+  public test: boolean;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService
   ) {
+    this.test = false;
     this.users = [];
     this.indentity = this._userService.getIdentity();
     this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
@@ -64,6 +69,8 @@ export class BuildShiftsComponent implements OnInit {
       { level: 'TEAM_LEADER', value: 1},
       { level: 'EMPLOYEE', value: 2}
     ];
+    this.checkId = false;
+    this.table = false;
   }
 
   ngOnInit() {
@@ -71,90 +78,114 @@ export class BuildShiftsComponent implements OnInit {
       this._router.navigate(['/home']);
     }
     this.getUsers();
-    this.fulldate = new Date();
-    this.fulldate = this._userService.getWeekNumber( this.fulldate );
+    this.getMethodShifts();
+    this.resetWeek();
+  }
+
+  getUsers() {
+    this._userService.getUsersToSearch().subscribe(
+      response => {
+        // console.log( response );
+        if ( response.ok ) {
+          // this.users = response.users;
+          for ( let i = 0; i < response.users.length; i++ ) {
+            const user = new User('', '', '', '', '', undefined, undefined, '');
+            const temp = response.users[i];
+
+            user._id = temp._id;
+            user.name = temp.name;
+            user.last_name = temp.last_name;
+            user.nick_name = temp.nick_name;
+            user.email = temp.email;
+            user.level = temp.level;
+
+            this.users.push( user );
+          }
+        }
+      }, error => {
+        console.log( error );
+      }
+    );
+  }
+
+  getMethodShifts() {
+    this._userService.getValuesRequest().subscribe(
+      response => {
+        if ( response.ok ) {
+          this.method = response.values.method;
+        }
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+  resetWeek() {
+    this.fulldate = this._userService.getWeekNumber( new Date() );
     this.weekAndyear.year = this.fulldate[0];
     this.weekAndyear.week = this.fulldate[1];
 
-    this.getMethodShifts();
-    this.getAllShifts( this.weekAndyear );
-    // console.log( this.week );
+    this.started();
+  }
+
+  incrementWeek( ) {
+    this.weekAndyear.week++;
+
+    if ( this.weekAndyear.week === 53 ) {
+      this.weekAndyear.week = 0;
+      this.weekAndyear.year++;
+    }
+
+    this.started();
+  }
+
+  decrementWeek() {
+    this.weekAndyear.week--;
+
+    if ( this.weekAndyear.week === -1 ) {
+      this.weekAndyear.week = 52;
+      this.weekAndyear.year--;
+    }
+
+    this.started();
+  }
+
+  started() {
     setTimeout( () => {
+      this.getTempShifts();
+
+      setTimeout( () => {
+        console.log( this.finalManagement );
+      }, 1000);
+
+      this.getAllShifts( this.weekAndyear );
       this.setNames( this.week );
-      console.log( this.responseShift );
-      // console.log( this.optionEmployee );
-      // console.log( this.optionTeamLeader );
-      // console.log( this.users );
+      this.dates = this._userService.getDates( this.weekAndyear );
+      this.test = true;
     }, 1000);
-
-    this.dates = this.getDates( this.weekAndyear );
+    /*this.getTempShifts();
+    this.getAllShifts( this.weekAndyear );
+    this.setNames( this.week );
+    // this.dates = this.getDates( this.weekAndyear );
+    this.dates = this._userService.getDates( this.weekAndyear );*/
   }
 
-  allowDrop(ev) {
-    // console.log( ev );
-    ev.preventDefault();
-  }
-
-  drag( ev ) {
-    ev.dataTransfer.setData( 'text', ev.target.id );
-  }
-
-  drop( ev, shift, day ) {
-    // console.log(shift, day);
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData('text');
-    const x = document.getElementById(data);
-    // console.log(ev.target);
-    // console.log( ev.target.id );
-    const index = ev.target.id;
-    ev.target.innerText = x.innerText;
-    // console.log( this.finalManagement[day][shift] );
-
-    for ( const user of this.users ) {
-      if ( user.nick_name === x.innerText ) {
-        this.finalManagement[day][shift][index] = user;
-        break;
+  getTempShifts() {
+    this._userService.getFinalManagement( this.weekAndyear ).subscribe(
+      response => {
+        console.log( response );
+        if ( response.ok ) {
+          // console.log( response.management );
+          this.finalManagement = response.management;
+          this.checkId = true;
+          this.table = true;
+        }
+      }, error => {
+        console.log( error );
+        this.checkId = false;
+        this.table = false;
       }
-    }
-
-    // console.log( this.finalManagement[day][shift] );
-  }
-
-  remove( shift, day ) {
-    const list = document.getElementById( 'mat[' + shift + '][' + day + ']' );
-
-    list.addEventListener('click', ( e ) => {
-      if ( (<HTMLElement>e.target) && (<HTMLElement>e.target).nodeName === 'BUTTON') {
-        ( <HTMLElement>( <HTMLElement>e.target ).parentNode ).remove();
-      }
-    });
-  }
-
-  added ( shift, day ) {
-    const list = document.getElementById('mat[' + shift + '][' + day + ']' );
-    const max = list.childElementCount;
-    // console.log( max );
-    const newElement = document.createElement('LI');
-    // newElement.setAttribute('ondrop', 'drop(event)');
-    // newElement.setAttribute('ondragover', 'allowDrop(event)');
-    newElement.setAttribute('id', String(max) );
-    newElement.setAttribute( 'drop' , 'this.drop' );
-    newElement.addEventListener( 'dragover', this.allowDrop, false );
-    // newElement.setAttribute('style', 'color:blue');
-    newElement.innerHTML = '<button id=`btn`>X</button>';
-    list.appendChild( newElement );
-  }
-
-  getDates( yearAndweek ) {
-    const year = yearAndweek.year;
-    const week = yearAndweek.week;
-    const dates = [];
-
-    for ( const day of this.days ) {
-      const temp = moment().day( day ).year( year ).week( week ).toDate();
-      dates[day] = temp;
-    }
-    return dates;
+    );
   }
 
   getAllShifts( weekAndyear ) {
@@ -171,18 +202,6 @@ export class BuildShiftsComponent implements OnInit {
         if ( errorMessage !== null ) {
           this.status = 'error';
         }
-      }
-    );
-  }
-
-  getMethodShifts() {
-    this._userService.getValuesRequest().subscribe(
-      response => {
-        if ( response.ok ) {
-          this.method = response.values.method;
-        }
-      }, error => {
-        console.log(error);
       }
     );
   }
@@ -210,78 +229,115 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   setNames( JsonWeek ) {
-    // console.log( JsonWeek );
-    let j = 0, k = 0;
-    for ( const day of this.days ) {
-      for ( const shift of this.shifts ) {
-        const temp = JsonWeek[day][shift];
-        for ( let i = 0; i < temp.length; i++ ) {
-          if ( temp[i].level === 'TEAM_LEADER' ) {
-            this.optionTeamLeader[day][shift][j] = temp[i];
-            j++;
-          } else {
-            this.optionEmployee[day][shift][k] = temp[i];
-            k++;
+    setTimeout( () => {
+      // console.log( JsonWeek );
+      let j = 0, k = 0;
+      for ( const day of this.days ) {
+        for ( const shift of this.shifts ) {
+          const temp = JsonWeek[day][shift];
+          for ( let i = 0; i < temp.length; i++ ) {
+            if ( temp[i].level === 'TEAM_LEADER' ) {
+              this.optionTeamLeader[day][shift][j] = temp[i];
+              j++;
+            } else {
+              this.optionEmployee[day][shift][k] = temp[i];
+              k++;
+            }
           }
+          j = 0;
+          k = 0;
         }
-        j = 0;
-        k = 0;
+      }
+    }, 1000);
+  }
+
+  allowDrop(ev) {
+    // console.log( ev );
+    ev.preventDefault();
+  }
+
+  drag( ev ) {
+    ev.dataTransfer.setData( 'text', ev.target.id );
+  }
+
+  drop( ev ) {
+    // console.log(shift, day);
+    let boo;
+    let res;
+    let id;
+    let index;
+    let day = '', shift = '';
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData('text');
+    const x = document.getElementById(data);
+    console.log( x ); // li de origin
+    console.log(ev.target); // li receptor
+    console.log( ev.target.id ); // id del li receptor
+
+    console.log( ev.target.nodeName );
+
+    if ( ev.target.nodeName === 'SPAN' || ev.target.nodeName === 'I' ) {
+      console.log((((ev.target).parentNode).parentNode).id );
+      id = (((ev.target).parentNode).parentNode).id;
+      index = (ev.target).parentNode.id;
+      boo = false;
+    } else {
+      console.log( (ev.target).parentNode.id );
+      id = (ev.target).parentNode.id;
+      index = ev.target.id;
+      boo = true;
+    }
+
+    res = id.split(/[ .:;?!~,`"&|()<>{}\[\]\r\n/\\]+/);
+    console.log( id, res, index );
+
+    day = res[2];
+    shift = res[1];
+
+    console.log( day, shift );
+
+    if ( !boo )  {
+      ((ev.target).parentNode).innerText = x.innerText;
+    } else {
+      ev.target.innerText = x.innerText;
+    }
+    this.inserIntoFinal(day, shift, index, x.innerText );
+  }
+
+  inserIntoFinal(day, shift, index, name ) {
+    console.log( this.finalManagement );
+    console.log( this.finalManagement[day][shift] );
+
+    for ( const user of this.users ) {
+      if ( user.nick_name === name ) {
+        this.finalManagement[day][shift][index] = user;
+        break;
       }
     }
   }
 
-  getName( userId ) {
-    // const user = new User('', '', '', '', '', undefined, undefined, '');
-    const user = {
-      _id: '',
-      name: '',
-      last_name: '',
-      nick_name: '',
-      email: '',
-      level: ''
-    };
-    this._userService.getUser( userId ).subscribe(
-      response => {
-        if ( response.ok ) {
-         user._id = response.user._id;
-         user.name = response.user.name;
-         user.last_name = response.user.last_name;
-         user.nick_name = response.user.nick_name;
-         user.email = response.user.email;
-         user.level = response.user.level;
-        }
-      }, error => {
-        console.log( error );
-      }
-    );
-
-    return user;
+  added (event, shift, day ) {
+    const list = document.getElementById('mat[' + shift + '][' + day + ']' );
+    const max = list.childElementCount;
+    // console.log( max );
+    const newElement = document.createElement('LI');
+    newElement.setAttribute('id', String(max) );
+    newElement.addEventListener( 'dragover', this.allowDrop, false );
+    newElement.addEventListener('drop', this.drop, false);
+    // newElement.setAttribute('style', 'color:blue');
+    newElement.innerHTML = '<i class="fas fa-minus-circle"></i>';
+    list.appendChild( newElement );
+    console.log( list );
   }
 
-  getUsers() {
-    this._userService.getUsersToSearch().subscribe(
-      response => {
-        // console.log( response );
-        if ( response.ok ) {
-          // this.users = response.users;
-          for ( let i = 0; i < response.users.length; i++ ) {
-            const user = new User('', '', '', '', '', undefined, undefined, '');
-            const temp = response.users[i];
+  remove( shift, day ) {
+    const list = document.getElementById( 'mat[' + shift + '][' + day + ']' );
 
-            user._id = temp._id;
-            user.name = temp.name;
-            user.last_name = temp.last_name;
-            user.nick_name = temp.nick_name;
-            user.email = temp.email;
-            user.level = temp.level;
-
-            this.users.push( user );
-          }
-        }
-      }, error => {
-        console.log( error );
+    list.addEventListener('click', ( e ) => {
+      if ( (<HTMLElement>e.target) && (<HTMLElement>e.target).nodeName === 'I') {
+        ( <HTMLElement>( <HTMLElement>e.target ).parentNode ).remove();
       }
-    );
+    });
   }
 
   autoBuild() {
@@ -468,42 +524,95 @@ export class BuildShiftsComponent implements OnInit {
 
   saveBuild() {
     console.log( this.finalManagement );
-    this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
-      response => {
-        if ( response.ok ) {
-          this.status = 'success';
+    if ( this.finalManagement._id ) {
+      this._userService.updateFinalManagement( this.finalManagement ).subscribe(
+        response => {
+          if ( response.ok ) {
+            this.status = 'update';
+          }
+        }, error => console.log( error )
+      );
+    } else {
+      this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
+        response => {
+          if ( response.ok ) {
+            this.status = 'success';
+          }
+        }, error => {
+          console.log( error );
         }
-      }, error => {
-        console.log( error );
-      }
-    );
+      );
+    }
   }
 
   searchShift() {
     const nick_name = this.selectedSearch;
     let tmp_user;
+    let i;
 
-    for ( let i = 0; i < this.users.length; i++ ) {
-      const temp = this.users[i];
+    for ( let j = 0; j < this.users.length; j++ ) {
+      const temp = this.users[j];
       if ( temp.nick_name === nick_name ) {
         tmp_user = temp;
         break;
       }
     }
 
-    for ( let i = 0; i < this.responseShift.length; i++ ) {
-      const temp = this.responseShift[i];
+    if ( this.responseShift.length > 0 ) {
+      for ( i = 0; i < this.responseShift.length; i++ ) {
+        const temp = this.responseShift[i];
 
-      if ( tmp_user._id === temp.emitter ) {
-        this.shiftUser = temp;
-        break;
+        if ( tmp_user._id === temp.emitter ) {
+          this.shiftUser = temp;
+          break;
+        }
       }
-    }
 
-    this.status = 'show';
-    setTimeout( () => {
-      console.log( this.shiftUser );
-    }, 1000);
+      if ( i === this.responseShift.length ) {
+        this.status = 'no-exist';
+      }
+
+      setTimeout( () => {
+        if ( this.shiftUser !== undefined ) {
+          this.shiftUser.emitter = this.getName( this.shiftUser.emitter );
+          this.status = 'show';
+        } else {
+          this.status = 'no-exist';
+        }
+        console.log( this.shiftUser );
+      }, 1000);
+
+    } else {
+      this.status = 'denied';
+    }
+  }
+
+  getName( userId ) {
+    // const user = new User('', '', '', '', '', undefined, undefined, '');
+    const user = {
+      _id: '',
+      name: '',
+      last_name: '',
+      nick_name: '',
+      email: '',
+      level: ''
+    };
+    this._userService.getUser( userId ).subscribe(
+      response => {
+        if ( response.ok ) {
+         user._id = response.user._id;
+         user.name = response.user.name;
+         user.last_name = response.user.last_name;
+         user.nick_name = response.user.nick_name;
+         user.email = response.user.email;
+         user.level = response.user.level;
+        }
+      }, error => {
+        console.log( error );
+      }
+    );
+
+    return user;
   }
 
 }

@@ -27,19 +27,54 @@ export class ShowShiftsComponent implements OnInit {
     this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     this.shifts = ['morning', 'afternoon', 'night'];
     this.weekAndyear = {};
-  }
-
-  ngOnInit() {
     this.full_date = this._userService.getWeekNumber( new Date() );
     this.weekAndyear.year = this.full_date[0];
     this.weekAndyear.week = this.full_date[1];
+    this.dates = this.getDates( this.weekAndyear );
+  }
+
+  ngOnInit() {
+    /*this.full_date = this._userService.getWeekNumber( new Date() );
+    this.weekAndyear.year = this.full_date[0];
+    this.weekAndyear.week = this.full_date[1];*/
 
     this.getShifts( this.weekAndyear );
     setTimeout( () => {
       // console.log( this.finalManagement );
       // console.log( this.status );
     }, 1000 );
+    // this.dates = this.getDates( this.weekAndyear );
+  }
+
+  incrementWeek( ) {
+    this.weekAndyear.week++;
+
+    if ( this.weekAndyear.week === 53 ) {
+      this.weekAndyear.week = 0;
+      this.weekAndyear.year++;
+    }
+
     this.dates = this.getDates( this.weekAndyear );
+    this.getShifts( this.weekAndyear );
+  }
+
+  decrementWeek() {
+    this.weekAndyear.week--;
+
+    if ( this.weekAndyear.week === -1 ) {
+      this.weekAndyear.week = 52;
+      this.weekAndyear.year--;
+    }
+    this.dates = this.getDates( this.weekAndyear );
+    this.getShifts( this.weekAndyear );
+  }
+
+  resetWeek() {
+    this.full_date = this._userService.getWeekNumber( new Date() );
+    this.weekAndyear.year = this.full_date[0];
+    this.weekAndyear.week = this.full_date[1];
+    this.dates = this.getDates( this.weekAndyear );
+    this.getShifts( this.weekAndyear );
   }
 
   getDates( yearAndweek ) {

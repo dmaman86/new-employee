@@ -1,10 +1,19 @@
 <h3>Shifts</h3>
 <hr>
+<div class="row">
+    <div class="col text-center">
+        <button id="decrement" class="btn btn-primary" (click)="decrementWeek()">Last Week</button>
+        &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;
+        <a><span class="pseudolink" (click)="resetWeek()">return to actual week</span></a>&nbsp;&nbsp;
+        <button id="increment" class="btn btn-primary" (click)="incrementWeek()">Next Week</button>
+    </div>
+</div>
 <div *ngIf="status === 'rejected'">
     <div class="alert alert-danger">
         No exist shifts for this week
     </div>
 </div>
+<br><br>
 <div *ngIf="status === 'success'">
     <div class="row">
         <div class="col-md-12">

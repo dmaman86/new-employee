@@ -6,6 +6,7 @@ import { Message } from '../models/message';
 import { RequestWeekUser } from '../models/requestWeek_user';
 import { RequestWeek } from '../models/requestWeek';
 import { GLOBAL } from './global';
+import * as moment from 'moment';
 
 @Injectable()
 export class UserService {
@@ -15,9 +16,11 @@ export class UserService {
     public week;
     public token;
     public status;
+    public days;
 
     constructor( public _http: HttpClient ) {
         this.url = GLOBAL.url;
+        this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     }
 
     /* Registration and Login */
@@ -75,6 +78,19 @@ export class UserService {
           year++;
         }
         return [year, weekNo];
+    }
+
+    getDates( yearAndweek: any ) {
+        const year = yearAndweek.year;
+        const week = yearAndweek.week;
+        const dates = [];
+
+        for ( const day of this.days ) {
+            const temp = moment().day( day ).year( year ).week( week ).toDate();
+            dates[day] = temp;
+        }
+
+        return dates;
     }
 
     /* Home and Home Admin */
@@ -174,6 +190,12 @@ export class UserService {
         const params = JSON.stringify( weekAndyear );
         const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.post( this.url + 'get-management', params, { headers: headers });
+    }
+
+    updateFinalManagement( finalManagement: any ): Observable<any> {
+        const params = JSON.stringify( finalManagement );
+        const headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put( this.url + 'update-management/' + finalManagement._id, params, { headers: headers });
     }
 
     /* For Admin set how much shifts */

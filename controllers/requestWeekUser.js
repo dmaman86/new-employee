@@ -307,6 +307,31 @@ function saveFinalManagement(req, res) {
     });
 }
 
+function updateFinalManagement(req, res) {
+    var params = req.body;
+    var requestId = req.params.id;
+
+    if ( req.user.role !== 'ADMIN_ROLE' ) {
+        return res.status(500).send({
+            ok: false,
+            message: `you do not have authorization for this method`
+        });
+    }
+
+    FinalManagement.findByIdAndUpdate( requestId, params, { new: true }, (err, updateFinalManagement) => {
+        if(err){
+            return res.status(400).send({
+                ok: false,
+                message: `Error in request: ${ err }`
+            });
+        }
+        res.status(200).send({
+            ok: true,
+            management: updateFinalManagement
+        });
+    });
+}
+
 function getFinalManagement(req, res) {
     var params = req.body;
 
@@ -344,5 +369,6 @@ module.exports = {
     getRequestWeek,
     getAllRequestWeek,
     saveFinalManagement,
+    updateFinalManagement,
     getFinalManagement
 }

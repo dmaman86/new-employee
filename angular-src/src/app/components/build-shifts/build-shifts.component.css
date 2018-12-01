@@ -1,0 +1,9 @@
+.pseudolink { 
+    color:blue; 
+    text-decoration:underline; 
+    cursor:pointer; 
+}
+
+#column-2{
+    padding-top: 100px;
+}

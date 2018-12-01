@@ -12,5 +12,6 @@ api.post('/get-request-user', md_Auth.ensureAuth, RequestCtrl.getRequestWeek );
 api.post('/get-all-request', md_Auth.ensureAuth, RequestCtrl.getAllRequestWeek );
 api.post('/save-management/:week/:year', md_Auth.ensureAuth, RequestCtrl.saveFinalManagement );
 api.post('/get-management', md_Auth.ensureAuth, RequestCtrl.getFinalManagement );
+api.put('/update-management/:id', md_Auth.ensureAuth, RequestCtrl.updateFinalManagement );
 
 module.exports = api;

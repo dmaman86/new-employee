@@ -3721,7 +3721,7 @@ var AboutMeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvYnVpbGQtc2hpZnRzL2J1aWxkLXNoaWZ0cy5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".pseudolink { \n    color:blue; \n    text-decoration:underline; \n    cursor:pointer; \n}\n\n#column-2{\n    padding-top: 100px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9idWlsZC1zaGlmdHMvYnVpbGQtc2hpZnRzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxXQUFXO0lBQ1gsMEJBQTBCO0lBQzFCLGVBQWU7Q0FDbEI7O0FBRUQ7SUFDSSxtQkFBbUI7Q0FDdEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2J1aWxkLXNoaWZ0cy9idWlsZC1zaGlmdHMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wc2V1ZG9saW5rIHsgXG4gICAgY29sb3I6Ymx1ZTsgXG4gICAgdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTsgXG4gICAgY3Vyc29yOnBvaW50ZXI7IFxufVxuXG4jY29sdW1uLTJ7XG4gICAgcGFkZGluZy10b3A6IDEwMHB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -3732,7 +3732,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Build Table Employess</h3>\n<hr>\n<div class=\"alert alert-success\" *ngIf=\"status === 'success' \">\n    Employee assignment saved successfully\n </div>\n<div class=\"row\">\n    <div class=\"col-md-8\">\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"7\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr *ngFor=\"let shift of shifts; let j = index\">\n                    <td *ngFor=\"let day of days; let i = index\">\n                        <ul id=\"mat[{{ shift }}][{{ day }}]\" (click)=\"remove( shift, day )\">\n                            <li id=\"0\" (drop)=\"drop($event, shift, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"1\" (drop)=\"drop($event, shift, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"2\" (drop)=\"drop($event, shift, day)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                        </ul>\n                        <ul>\n                            <li (click)=\"added( shift, day )\"><i class=\"fa fa-plus-circle\"></i></li>\n                        </ul>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)=\"autoBuild()\">Auto Build</button>&nbsp;&nbsp;\n                <button type=\"submit\" class=\"btn btn-success\" (click)=\"saveBuild()\">Save Build</button>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4\">\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <h4>Search Employess</h4>\n                        <hr>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                            <option *ngFor=\"let day of days\">{{ day }}</option>\n                        </select>\n                        <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                            <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                        </select>\n                    </div>\n                </div>\n                <div class=\"row\" id=\"listOpt\">\n                \n                </div>\n                        \n                <div class=\"row\">\n                    <div class=\"col\">\n                        <button class=\"btn btn-primary\" (click)=\"searchEmployess()\">Search Employess</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <h4>Show All Employess</h4>\n                        <hr>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <select [(ngModel)]=\"selectedEmployess\" name=\"first\">\n                            <option *ngFor=\"let lv of employess\">{{ lv.level }}</option>\n                        </select>\n                        <select [(ngModel)]=\"selectedDay1\" name=\"first\">\n                            <option *ngFor=\"let day of days\">{{ day }}</option>\n                        </select>\n                        <select [(ngModel)]=\"selectedShift1\" name=\"first\">\n                            <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                        </select>\n                    </div>\n                </div>\n                <div class=\"row\" id=\"listAll\">\n                        \n                </div>\n                                \n                <div class=\"row\">\n                    <div class=\"col\">\n                        <button class=\"btn btn-primary\" (click)=\"showAll()\">Show All</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <h4>Show shift of employee</h4>\n                        <hr>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <select [(ngModel)]=\"selectedSearch\" name=\"first\">\n                            <option *ngFor=\"let us of users\">{{ us.nick_name }}</option>\n                        </select>\n                    </div>\n                </div>\n                <div class=\"row\" *ngIf=\"status === 'show'\">\n                      <table class=\"table table-bordered\">\n                          <thead>\n                              <tr>\n                                  <th></th>\n                                  <th class=\"text-center\" *ngFor=\"let day of days\">{{ day }}</th>\n                              </tr>\n                          </thead>\n                          <tbody>\n                            <tr>\n                                <td>Mornirng</td>\n                                <td *ngFor=\"let day of days\">\n                                    {{ shiftUser[day].morning }}\n                                </td>\n                            </tr>\n                            <tr>\n                                <td>Afternoon</td>\n                                <td *ngFor=\"let day of days\">\n                                    {{ shiftUser[day].afternoon }}\n                                </td>\n                            </tr>\n                            <tr>\n                                <td>Night</td>\n                                <td *ngFor=\"let day of days\">\n                                    {{ shiftUser[day].night }}\n                                </td>\n                            </tr>\n                          </tbody>\n                      </table> \n                      <div class=\"row\">\n                          <div class=\"col\">\n                              {{ shiftUser.message }}\n                          </div>\n                      </div> \n                </div>\n                <br><br>            \n                <div class=\"row\">\n                    <div class=\"col\">\n                        <button class=\"btn btn-primary\" (click)=\"searchShift()\">Show Shift</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<h3>Build Table Employess</h3>\n<hr>\n<div class=\"alert alert-success\" *ngIf=\"status === 'success' \">\n    Employee assignment saved successfully\n</div>\n<div class=\"alert alert-success\" *ngIf=\"status === 'update' \">\n    Employee assignment was update successfully\n</div>\n<div *ngIf=\"test\" class=\"row\">\n    <div class=\"col-md-8\">\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button id=\"decrement\" class=\"btn btn-primary\" (click)=\"decrementWeek()\">Last Week</button>\n                &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;\n                <a><span class=\"pseudolink\" (click)=\"resetWeek()\">return to actual week</span></a>&nbsp;&nbsp;\n                <button id=\"increment\" class=\"btn btn-primary\" (click)=\"incrementWeek()\">Next Week</button>\n            </div>\n        </div>\n        <br><br>\n        <table class=\"table table-bordered\">\n            <thead>\n                <tr>\n                    <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                </tr>\n                <tr>\n                    <th></th>\n                    <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>Morning</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngIf=\"checkId && table\" id=\"mat[morning][{{ day }}]\" (click)=\"remove( 'morning', day )\">\n                            <li *ngFor=\"let user of finalManagement[day].morning; let i=index\" id=\"{{ i }}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n                                <!--<span id=\"{{ i }}\" *ngIf=\"user === 'undefined'\"></span>\n                                <span id=\"{{ i }}\" *ngIf=\"user === null\"></span>\n                                <span id=\"{{ i }}\" *ngIf=\"user\">{{ user.nick_name }}</span>-->\n                                <i  *ngIf=\"user === 'undefined'\" class=\"fas fa-minus-circle\"></i>\n                                <i  *ngIf=\"user === null\" class=\"fas fa-minus-circle\"></i>\n                                <i *ngIf=\"user\">{{ user.nick_name }}</i>\n                            </li>\n                        </ul>\n                        <ul *ngIf=\"!checkId && !table\" id=\"mat[morning][{{ day }}]\" (click)=\"remove( 'morning', day )\">\n                            <li id=\"0\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><i class=\"fas fa-minus-circle\"></i></li>\n                            <li id=\"1\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><i class=\"fas fa-minus-circle\"></i></li>\n                            <li id=\"2\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><i class=\"fas fa-minus-circle\"></i></li>\n                        </ul>\n                        <ul>\n                            <li (click)=\"added($event,'morning', day )\"><i class=\"fa fa-plus-circle\"></i></li>\n                        </ul>\n                    </td>\n                </tr>\n                <tr>\n                    <td>Afternoon</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngIf=\"checkId && table\" id=\"mat[afternoon][{{ day }}]\" (click)=\"remove( 'afternoon', day )\">\n                            <li *ngFor=\"let user of finalManagement[day].afternoon; let i=index\" id=\"{{ i }}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n                                <span *ngIf=\"user === 'undefined'\"></span>\n                                <span *ngIf=\"user === null\"></span>\n                                <span *ngIf=\"user\">{{ user.nick_name }}</span>\n                            </li>\n                        </ul>\n                        <ul *ngIf=\"!checkId && !table\" id=\"mat[afternoon][{{ day }}]\" (click)=\"remove( 'afternoon', day )\">\n                            <li id=\"0\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"1\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"2\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                        </ul>\n                        <ul>\n                            <li (click)=\"added($event, 'afternoon', day )\"><i class=\"fa fa-plus-circle\"></i></li>\n                        </ul>\n                    </td>\n                </tr>\n                <tr>\n                    <td>Night</td>\n                    <td *ngFor=\"let day of days\">\n                        <ul *ngIf=\"checkId && table\" id=\"mat[night][{{ day }}]\" (click)=\"remove( 'night', day )\">\n                            <li *ngFor=\"let user of finalManagement[day].night; let i=index\" id=\"{{ i }}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\">\n                                <span *ngIf=\"user === 'undefined'\"></span>\n                                <span *ngIf=\"user === null\"></span>\n                                <span *ngIf=\"user\">{{ user.nick_name }}</span>\n                            </li>\n                        </ul>\n                        <ul *ngIf=\"!checkId && !table\" id=\"mat[night][{{ day }}]\" (click)=\"remove( 'night', day )\">\n                            <li id=\"0\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"1\" (drop)=\"drop($even)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                            <li id=\"2\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\"><button id=\"btn\">X</button></li>\n                        </ul>\n                        <ul>\n                            <li (click)=\"added($event, 'night', day )\"><i class=\"fa fa-plus-circle\"></i></li>\n                        </ul>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)=\"autoBuild()\">Auto Build</button>&nbsp;&nbsp;\n                <button type=\"submit\" class=\"btn btn-success\" (click)=\"saveBuild()\">Save Build</button>\n            </div>\n        </div>\n    </div>\n    <div id=\"column-2\" class=\"col-md-4\">\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Search Employees</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>\n                </div>\n                <div id=\"listOpt\">\n                        \n                </div>\n                <br><br>\n                <button class=\"btn btn-primary\" (click)=\"searchEmployess()\">Search Employess</button>\n            </div>\n        </div>\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Show All Employess</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedEmployess\" name=\"first\">\n                        <option *ngFor=\"let lv of employess\">{{ lv.level }}</option>\n                    </select>\n                    <select [(ngModel)]=\"selectedDay1\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    <select [(ngModel)]=\"selectedShift1\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>\n                </div>\n                <div id=\"listAll\">\n                        \n                </div>\n                <br><br>\n                <button class=\"btn btn-primary\" (click)=\"showAll()\">Show All</button>\n            </div>\n        </div>\n    </div>\n</div>\n<br><br>\n<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h4>Show shift of employee</h4>\n        <div class=\"col text-right\">\n            <select [(ngModel)]=\"selectedSearch\" name=\"first\">\n                <option *ngFor=\"let us of users\">{{ us.nick_name }}</option>\n            </select>\n        </div>\n    </div>\n    <div class=\"panel-body\">\n        <div class=\"row\" *ngIf=\"status === 'denied'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this week\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'no-exist'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this user\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'show'\">\n            <div class=\"col-md-8\">\n                <table class=\"table table-bordered\">\n                    <thead>\n                        <tr>\n                            <th colspan=\"8\" class=\"text-center\">{{ shiftUser.emitter.name + ' ' + shiftUser.emitter.last_name }}</th>\n                        </tr>\n                        <tr>\n                            <th></th>\n                            <th class=\"text-center\" *ngFor=\"let day of days\">{{ day }}</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>Mornirng</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].morning }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Afternoon</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].afternoon }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Night</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].night }}\n                            </td>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        {{ shiftUser.message }}\n                    </div>\n                </div> \n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button class=\"btn btn-primary\" (click)=\"searchShift()\">Show Shift</button>\n            </div>\n        </div>\n\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -3750,8 +3750,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var src_app_models_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/models/user */ "./src/app/models/user.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3765,13 +3763,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var BuildShiftsComponent = /** @class */ (function () {
     function BuildShiftsComponent(_route, _router, _userService) {
         this._route = _route;
         this._router = _router;
         this._userService = _userService;
         this.weekAndyear = {};
+        this.test = false;
         this.users = [];
         this.indentity = this._userService.getIdentity();
         this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
@@ -3798,87 +3796,104 @@ var BuildShiftsComponent = /** @class */ (function () {
             { level: 'TEAM_LEADER', value: 1 },
             { level: 'EMPLOYEE', value: 2 }
         ];
+        this.checkId = false;
+        this.table = false;
     }
     BuildShiftsComponent.prototype.ngOnInit = function () {
-        var _this = this;
         if (this.indentity.role !== 'ADMIN_ROLE') {
             this._router.navigate(['/home']);
         }
         this.getUsers();
-        this.fulldate = new Date();
-        this.fulldate = this._userService.getWeekNumber(this.fulldate);
-        this.weekAndyear.year = this.fulldate[0];
-        this.weekAndyear.week = this.fulldate[1];
         this.getMethodShifts();
-        this.getAllShifts(this.weekAndyear);
-        // console.log( this.week );
-        setTimeout(function () {
-            _this.setNames(_this.week);
-            console.log(_this.responseShift);
-            // console.log( this.optionEmployee );
-            // console.log( this.optionTeamLeader );
-            // console.log( this.users );
-        }, 1000);
-        this.dates = this.getDates(this.weekAndyear);
+        this.resetWeek();
     };
-    BuildShiftsComponent.prototype.allowDrop = function (ev) {
-        // console.log( ev );
-        ev.preventDefault();
-    };
-    BuildShiftsComponent.prototype.drag = function (ev) {
-        ev.dataTransfer.setData('text', ev.target.id);
-    };
-    BuildShiftsComponent.prototype.drop = function (ev, shift, day) {
-        // console.log(shift, day);
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData('text');
-        var x = document.getElementById(data);
-        // console.log(ev.target);
-        // console.log( ev.target.id );
-        var index = ev.target.id;
-        ev.target.innerText = x.innerText;
-        // console.log( this.finalManagement[day][shift] );
-        for (var _i = 0, _a = this.users; _i < _a.length; _i++) {
-            var user = _a[_i];
-            if (user.nick_name === x.innerText) {
-                this.finalManagement[day][shift][index] = user;
-                break;
+    BuildShiftsComponent.prototype.getUsers = function () {
+        var _this = this;
+        this._userService.getUsersToSearch().subscribe(function (response) {
+            // console.log( response );
+            if (response.ok) {
+                // this.users = response.users;
+                for (var i = 0; i < response.users.length; i++) {
+                    var user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_3__["User"]('', '', '', '', '', undefined, undefined, '');
+                    var temp = response.users[i];
+                    user._id = temp._id;
+                    user.name = temp.name;
+                    user.last_name = temp.last_name;
+                    user.nick_name = temp.nick_name;
+                    user.email = temp.email;
+                    user.level = temp.level;
+                    _this.users.push(user);
+                }
             }
-        }
-        // console.log( this.finalManagement[day][shift] );
-    };
-    BuildShiftsComponent.prototype.remove = function (shift, day) {
-        var list = document.getElementById('mat[' + shift + '][' + day + ']');
-        list.addEventListener('click', function (e) {
-            if (e.target && e.target.nodeName === 'BUTTON') {
-                e.target.parentNode.remove();
-            }
+        }, function (error) {
+            console.log(error);
         });
     };
-    BuildShiftsComponent.prototype.added = function (shift, day) {
-        var list = document.getElementById('mat[' + shift + '][' + day + ']');
-        var max = list.childElementCount;
-        // console.log( max );
-        var newElement = document.createElement('LI');
-        // newElement.setAttribute('ondrop', 'drop(event)');
-        // newElement.setAttribute('ondragover', 'allowDrop(event)');
-        newElement.setAttribute('id', String(max));
-        newElement.setAttribute('drop', 'this.drop');
-        newElement.addEventListener('dragover', this.allowDrop, false);
-        // newElement.setAttribute('style', 'color:blue');
-        newElement.innerHTML = '<button id=`btn`>X</button>';
-        list.appendChild(newElement);
+    BuildShiftsComponent.prototype.getMethodShifts = function () {
+        var _this = this;
+        this._userService.getValuesRequest().subscribe(function (response) {
+            if (response.ok) {
+                _this.method = response.values.method;
+            }
+        }, function (error) {
+            console.log(error);
+        });
     };
-    BuildShiftsComponent.prototype.getDates = function (yearAndweek) {
-        var year = yearAndweek.year;
-        var week = yearAndweek.week;
-        var dates = [];
-        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
-            var day = _a[_i];
-            var temp = moment__WEBPACK_IMPORTED_MODULE_4__().day(day).year(year).week(week).toDate();
-            dates[day] = temp;
+    BuildShiftsComponent.prototype.resetWeek = function () {
+        this.fulldate = this._userService.getWeekNumber(new Date());
+        this.weekAndyear.year = this.fulldate[0];
+        this.weekAndyear.week = this.fulldate[1];
+        this.started();
+    };
+    BuildShiftsComponent.prototype.incrementWeek = function () {
+        this.weekAndyear.week++;
+        if (this.weekAndyear.week === 53) {
+            this.weekAndyear.week = 0;
+            this.weekAndyear.year++;
         }
-        return dates;
+        this.started();
+    };
+    BuildShiftsComponent.prototype.decrementWeek = function () {
+        this.weekAndyear.week--;
+        if (this.weekAndyear.week === -1) {
+            this.weekAndyear.week = 52;
+            this.weekAndyear.year--;
+        }
+        this.started();
+    };
+    BuildShiftsComponent.prototype.started = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.getTempShifts();
+            setTimeout(function () {
+                console.log(_this.finalManagement);
+            }, 1000);
+            _this.getAllShifts(_this.weekAndyear);
+            _this.setNames(_this.week);
+            _this.dates = _this._userService.getDates(_this.weekAndyear);
+            _this.test = true;
+        }, 1000);
+        /*this.getTempShifts();
+        this.getAllShifts( this.weekAndyear );
+        this.setNames( this.week );
+        // this.dates = this.getDates( this.weekAndyear );
+        this.dates = this._userService.getDates( this.weekAndyear );*/
+    };
+    BuildShiftsComponent.prototype.getTempShifts = function () {
+        var _this = this;
+        this._userService.getFinalManagement(this.weekAndyear).subscribe(function (response) {
+            console.log(response);
+            if (response.ok) {
+                // console.log( response.management );
+                _this.finalManagement = response.management;
+                _this.checkId = true;
+                _this.table = true;
+            }
+        }, function (error) {
+            console.log(error);
+            _this.checkId = false;
+            _this.table = false;
+        });
     };
     BuildShiftsComponent.prototype.getAllShifts = function (weekAndyear) {
         var _this = this;
@@ -3894,16 +3909,6 @@ var BuildShiftsComponent = /** @class */ (function () {
             if (errorMessage !== null) {
                 _this.status = 'error';
             }
-        });
-    };
-    BuildShiftsComponent.prototype.getMethodShifts = function () {
-        var _this = this;
-        this._userService.getValuesRequest().subscribe(function (response) {
-            if (response.ok) {
-                _this.method = response.values.method;
-            }
-        }, function (error) {
-            console.log(error);
         });
     };
     BuildShiftsComponent.prototype.searchPotentials = function (method, searchJson) {
@@ -3930,72 +3935,107 @@ var BuildShiftsComponent = /** @class */ (function () {
         }
     };
     BuildShiftsComponent.prototype.setNames = function (JsonWeek) {
-        // console.log( JsonWeek );
-        var j = 0, k = 0;
-        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
-            var day = _a[_i];
-            for (var _b = 0, _c = this.shifts; _b < _c.length; _b++) {
-                var shift = _c[_b];
-                var temp = JsonWeek[day][shift];
-                for (var i = 0; i < temp.length; i++) {
-                    if (temp[i].level === 'TEAM_LEADER') {
-                        this.optionTeamLeader[day][shift][j] = temp[i];
-                        j++;
+        var _this = this;
+        setTimeout(function () {
+            // console.log( JsonWeek );
+            var j = 0, k = 0;
+            for (var _i = 0, _a = _this.days; _i < _a.length; _i++) {
+                var day = _a[_i];
+                for (var _b = 0, _c = _this.shifts; _b < _c.length; _b++) {
+                    var shift = _c[_b];
+                    var temp = JsonWeek[day][shift];
+                    for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].level === 'TEAM_LEADER') {
+                            _this.optionTeamLeader[day][shift][j] = temp[i];
+                            j++;
+                        }
+                        else {
+                            _this.optionEmployee[day][shift][k] = temp[i];
+                            k++;
+                        }
                     }
-                    else {
-                        this.optionEmployee[day][shift][k] = temp[i];
-                        k++;
-                    }
+                    j = 0;
+                    k = 0;
                 }
-                j = 0;
-                k = 0;
+            }
+        }, 1000);
+    };
+    BuildShiftsComponent.prototype.allowDrop = function (ev) {
+        // console.log( ev );
+        ev.preventDefault();
+    };
+    BuildShiftsComponent.prototype.drag = function (ev) {
+        ev.dataTransfer.setData('text', ev.target.id);
+    };
+    BuildShiftsComponent.prototype.drop = function (ev) {
+        // console.log(shift, day);
+        var boo;
+        var res;
+        var id;
+        var index;
+        var day = '', shift = '';
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData('text');
+        var x = document.getElementById(data);
+        console.log(x); // li de origin
+        console.log(ev.target); // li receptor
+        console.log(ev.target.id); // id del li receptor
+        console.log(ev.target.nodeName);
+        if (ev.target.nodeName === 'SPAN' || ev.target.nodeName === 'I') {
+            console.log((((ev.target).parentNode).parentNode).id);
+            id = (((ev.target).parentNode).parentNode).id;
+            index = (ev.target).parentNode.id;
+            boo = false;
+        }
+        else {
+            console.log((ev.target).parentNode.id);
+            id = (ev.target).parentNode.id;
+            index = ev.target.id;
+            boo = true;
+        }
+        res = id.split(/[ .:;?!~,`"&|()<>{}\[\]\r\n/\\]+/);
+        console.log(id, res, index);
+        day = res[2];
+        shift = res[1];
+        console.log(day, shift);
+        if (!boo) {
+            ((ev.target).parentNode).innerText = x.innerText;
+        }
+        else {
+            ev.target.innerText = x.innerText;
+        }
+        this.inserIntoFinal(day, shift, index, x.innerText);
+    };
+    BuildShiftsComponent.prototype.inserIntoFinal = function (day, shift, index, name) {
+        console.log(this.finalManagement);
+        console.log(this.finalManagement[day][shift]);
+        for (var _i = 0, _a = this.users; _i < _a.length; _i++) {
+            var user = _a[_i];
+            if (user.nick_name === name) {
+                this.finalManagement[day][shift][index] = user;
+                break;
             }
         }
     };
-    BuildShiftsComponent.prototype.getName = function (userId) {
-        // const user = new User('', '', '', '', '', undefined, undefined, '');
-        var user = {
-            _id: '',
-            name: '',
-            last_name: '',
-            nick_name: '',
-            email: '',
-            level: ''
-        };
-        this._userService.getUser(userId).subscribe(function (response) {
-            if (response.ok) {
-                user._id = response.user._id;
-                user.name = response.user.name;
-                user.last_name = response.user.last_name;
-                user.nick_name = response.user.nick_name;
-                user.email = response.user.email;
-                user.level = response.user.level;
-            }
-        }, function (error) {
-            console.log(error);
-        });
-        return user;
+    BuildShiftsComponent.prototype.added = function (event, shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        var max = list.childElementCount;
+        // console.log( max );
+        var newElement = document.createElement('LI');
+        newElement.setAttribute('id', String(max));
+        newElement.addEventListener('dragover', this.allowDrop, false);
+        newElement.addEventListener('drop', this.drop, false);
+        // newElement.setAttribute('style', 'color:blue');
+        newElement.innerHTML = '<i class="fas fa-minus-circle"></i>';
+        list.appendChild(newElement);
+        console.log(list);
     };
-    BuildShiftsComponent.prototype.getUsers = function () {
-        var _this = this;
-        this._userService.getUsersToSearch().subscribe(function (response) {
-            // console.log( response );
-            if (response.ok) {
-                // this.users = response.users;
-                for (var i = 0; i < response.users.length; i++) {
-                    var user = new src_app_models_user__WEBPACK_IMPORTED_MODULE_3__["User"]('', '', '', '', '', undefined, undefined, '');
-                    var temp = response.users[i];
-                    user._id = temp._id;
-                    user.name = temp.name;
-                    user.last_name = temp.last_name;
-                    user.nick_name = temp.nick_name;
-                    user.email = temp.email;
-                    user.level = temp.level;
-                    _this.users.push(user);
-                }
+    BuildShiftsComponent.prototype.remove = function (shift, day) {
+        var list = document.getElementById('mat[' + shift + '][' + day + ']');
+        list.addEventListener('click', function (e) {
+            if (e.target && e.target.nodeName === 'I') {
+                e.target.parentNode.remove();
             }
-        }, function (error) {
-            console.log(error);
         });
     };
     BuildShiftsComponent.prototype.autoBuild = function () {
@@ -4175,36 +4215,84 @@ var BuildShiftsComponent = /** @class */ (function () {
     BuildShiftsComponent.prototype.saveBuild = function () {
         var _this = this;
         console.log(this.finalManagement);
-        this._userService.saveFinalManagement(this.weekAndyear.week, this.weekAndyear.year, this.finalManagement).subscribe(function (response) {
-            if (response.ok) {
-                _this.status = 'success';
-            }
-        }, function (error) {
-            console.log(error);
-        });
+        if (this.finalManagement._id) {
+            this._userService.updateFinalManagement(this.finalManagement).subscribe(function (response) {
+                if (response.ok) {
+                    _this.status = 'update';
+                }
+            }, function (error) { return console.log(error); });
+        }
+        else {
+            this._userService.saveFinalManagement(this.weekAndyear.week, this.weekAndyear.year, this.finalManagement).subscribe(function (response) {
+                if (response.ok) {
+                    _this.status = 'success';
+                }
+            }, function (error) {
+                console.log(error);
+            });
+        }
     };
     BuildShiftsComponent.prototype.searchShift = function () {
         var _this = this;
         var nick_name = this.selectedSearch;
         var tmp_user;
-        for (var i = 0; i < this.users.length; i++) {
-            var temp = this.users[i];
+        var i;
+        for (var j = 0; j < this.users.length; j++) {
+            var temp = this.users[j];
             if (temp.nick_name === nick_name) {
                 tmp_user = temp;
                 break;
             }
         }
-        for (var i = 0; i < this.responseShift.length; i++) {
-            var temp = this.responseShift[i];
-            if (tmp_user._id === temp.emitter) {
-                this.shiftUser = temp;
-                break;
+        if (this.responseShift.length > 0) {
+            for (i = 0; i < this.responseShift.length; i++) {
+                var temp = this.responseShift[i];
+                if (tmp_user._id === temp.emitter) {
+                    this.shiftUser = temp;
+                    break;
+                }
             }
+            if (i === this.responseShift.length) {
+                this.status = 'no-exist';
+            }
+            setTimeout(function () {
+                if (_this.shiftUser !== undefined) {
+                    _this.shiftUser.emitter = _this.getName(_this.shiftUser.emitter);
+                    _this.status = 'show';
+                }
+                else {
+                    _this.status = 'no-exist';
+                }
+                console.log(_this.shiftUser);
+            }, 1000);
         }
-        this.status = 'show';
-        setTimeout(function () {
-            console.log(_this.shiftUser);
-        }, 1000);
+        else {
+            this.status = 'denied';
+        }
+    };
+    BuildShiftsComponent.prototype.getName = function (userId) {
+        // const user = new User('', '', '', '', '', undefined, undefined, '');
+        var user = {
+            _id: '',
+            name: '',
+            last_name: '',
+            nick_name: '',
+            email: '',
+            level: ''
+        };
+        this._userService.getUser(userId).subscribe(function (response) {
+            if (response.ok) {
+                user._id = response.user._id;
+                user.name = response.user.name;
+                user.last_name = response.user.last_name;
+                user.nick_name = response.user.nick_name;
+                user.email = response.user.email;
+                user.level = response.user.level;
+            }
+        }, function (error) {
+            console.log(error);
+        });
+        return user;
     };
     BuildShiftsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5508,7 +5596,7 @@ var NavbarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2hvdy1zaGlmdHMvc2hvdy1zaGlmdHMuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".pseudolink { \n    color:blue; \n    text-decoration:underline; \n    cursor:pointer; \n    }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9zaG93LXNoaWZ0cy9zaG93LXNoaWZ0cy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztJQUNYLDBCQUEwQjtJQUMxQixlQUFlO0tBQ2QiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL3Nob3ctc2hpZnRzL3Nob3ctc2hpZnRzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHNldWRvbGluayB7IFxuICAgIGNvbG9yOmJsdWU7IFxuICAgIHRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7IFxuICAgIGN1cnNvcjpwb2ludGVyOyBcbiAgICB9Il19 */"
 
 /***/ }),
 
@@ -5519,7 +5607,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shifts</h3>\n<hr>\n<div *ngIf=\"status === 'rejected'\">\n    <div class=\"alert alert-danger\">\n        No exist shifts for this week\n    </div>\n</div>\n<div *ngIf=\"status === 'success'\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <table class=\"table table-bordered\">\n                <thead>\n                    <tr>\n                        <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>Morning</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].morning\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Afternoon</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].afternoon\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Night</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].night\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<h3>Shifts</h3>\n<hr>\n<div class=\"row\">\n    <div class=\"col text-center\">\n        <button id=\"decrement\" class=\"btn btn-primary\" (click)=\"decrementWeek()\">Last Week</button>\n        &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;\n        <a><span class=\"pseudolink\" (click)=\"resetWeek()\">return to actual week</span></a>&nbsp;&nbsp;\n        <button id=\"increment\" class=\"btn btn-primary\" (click)=\"incrementWeek()\">Next Week</button>\n    </div>\n</div>\n<div *ngIf=\"status === 'rejected'\">\n    <div class=\"alert alert-danger\">\n        No exist shifts for this week\n    </div>\n</div>\n<br><br>\n<div *ngIf=\"status === 'success'\">\n    <div class=\"row\">\n        <div class=\"col-md-12\">\n            <table class=\"table table-bordered\">\n                <thead>\n                    <tr>\n                        <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n                    </tr>\n                    <tr>\n                        <th></th>\n                        <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>Morning</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].morning\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Afternoon</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].afternoon\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                    <tr>\n                        <td>Night</td>\n                        <td *ngFor=\"let day of days\">\n                            <ul *ngFor=\"let user of finalManagement[day].night\">\n                                <li *ngIf=\"user === 'undefined'\"></li>\n                                <li *ngIf=\"user === null\"></li>\n                                <li *ngIf=\"user\">{{ user.nick_name }}</li>\n                            </ul> \n                        </td>\n                    </tr>\n                </tbody>\n            </table>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -5559,17 +5647,46 @@ var ShowShiftsComponent = /** @class */ (function () {
         this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
         this.shifts = ['morning', 'afternoon', 'night'];
         this.weekAndyear = {};
-    }
-    ShowShiftsComponent.prototype.ngOnInit = function () {
         this.full_date = this._userService.getWeekNumber(new Date());
         this.weekAndyear.year = this.full_date[0];
         this.weekAndyear.week = this.full_date[1];
+        this.dates = this.getDates(this.weekAndyear);
+    }
+    ShowShiftsComponent.prototype.ngOnInit = function () {
+        /*this.full_date = this._userService.getWeekNumber( new Date() );
+        this.weekAndyear.year = this.full_date[0];
+        this.weekAndyear.week = this.full_date[1];*/
         this.getShifts(this.weekAndyear);
         setTimeout(function () {
             // console.log( this.finalManagement );
             // console.log( this.status );
         }, 1000);
+        // this.dates = this.getDates( this.weekAndyear );
+    };
+    ShowShiftsComponent.prototype.incrementWeek = function () {
+        this.weekAndyear.week++;
+        if (this.weekAndyear.week === 53) {
+            this.weekAndyear.week = 0;
+            this.weekAndyear.year++;
+        }
         this.dates = this.getDates(this.weekAndyear);
+        this.getShifts(this.weekAndyear);
+    };
+    ShowShiftsComponent.prototype.decrementWeek = function () {
+        this.weekAndyear.week--;
+        if (this.weekAndyear.week === -1) {
+            this.weekAndyear.week = 52;
+            this.weekAndyear.year--;
+        }
+        this.dates = this.getDates(this.weekAndyear);
+        this.getShifts(this.weekAndyear);
+    };
+    ShowShiftsComponent.prototype.resetWeek = function () {
+        this.full_date = this._userService.getWeekNumber(new Date());
+        this.weekAndyear.year = this.full_date[0];
+        this.weekAndyear.week = this.full_date[1];
+        this.dates = this.getDates(this.weekAndyear);
+        this.getShifts(this.weekAndyear);
     };
     ShowShiftsComponent.prototype.getDates = function (yearAndweek) {
         var year = yearAndweek.year;
@@ -6385,6 +6502,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global */ "./src/app/services/global.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6397,10 +6516,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var UserService = /** @class */ (function () {
     function UserService(_http) {
         this._http = _http;
         this.url = _global__WEBPACK_IMPORTED_MODULE_2__["GLOBAL"].url;
+        this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     }
     /* Registration and Login */
     UserService.prototype.register = function (user) {
@@ -6454,6 +6575,17 @@ var UserService = /** @class */ (function () {
             year++;
         }
         return [year, weekNo];
+    };
+    UserService.prototype.getDates = function (yearAndweek) {
+        var year = yearAndweek.year;
+        var week = yearAndweek.week;
+        var dates = [];
+        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+            var day = _a[_i];
+            var temp = moment__WEBPACK_IMPORTED_MODULE_3__().day(day).year(year).week(week).toDate();
+            dates[day] = temp;
+        }
+        return dates;
     };
     /* Home and Home Admin */
     UserService.prototype.getMessage = function () {
@@ -6535,6 +6667,11 @@ var UserService = /** @class */ (function () {
         var params = JSON.stringify(weekAndyear);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
         return this._http.post(this.url + 'get-management', params, { headers: headers });
+    };
+    UserService.prototype.updateFinalManagement = function (finalManagement) {
+        var params = JSON.stringify(finalManagement);
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json').set('Authorization', this.getToken());
+        return this._http.put(this.url + 'update-management/' + finalManagement._id, params, { headers: headers });
     };
     /* For Admin set how much shifts */
     UserService.prototype.setValuesRequest = function (requestWeek) {
