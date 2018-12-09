@@ -77,6 +77,12 @@ export class UserService {
           weekNo = 1;
           year++;
         }
+
+        const day = new Date().getDay();
+
+        if ( day === 0 ) {
+            weekNo++;
+        }
         return [year, weekNo];
     }
 

@@ -3822,20 +3822,6 @@ var BuildShiftsComponent = /** @class */ (function () {
             // console.log( response );
             if (response.ok) {
                 _this.users = response.users;
-                // console.log( response.users );
-                /*for ( let i = 0; i < response.users.length; i++ ) {
-                  const user = new User('', '', '', '', '', undefined, undefined, '');
-                  const temp = response.users[i];
-      
-                  user._id = temp._id;
-                  user.name = temp.name;
-                  user.last_name = temp.last_name;
-                  user.nick_name = temp.nick_name;
-                  user.email = temp.email;
-                  user.level = temp.level;
-      
-                  this.users.push( user );
-                }*/
             }
         }, function (error) {
             console.log(error);
@@ -6503,6 +6489,10 @@ var UserService = /** @class */ (function () {
         if (weekNo === 53) {
             weekNo = 1;
             year++;
+        }
+        var day = new Date().getDay();
+        if (day === 0) {
+            weekNo++;
         }
         return [year, weekNo];
     };
