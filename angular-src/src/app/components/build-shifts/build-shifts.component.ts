@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { User } from 'src/app/models/user';
-import * as moment from 'moment';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-build-shifts',
@@ -12,18 +11,17 @@ import * as moment from 'moment';
 })
 export class BuildShiftsComponent implements OnInit {
 
-  public indentity;
+  public identity;
   public fulldate;
-  public weekAndyear: any = {};
+  public weekAndyear: any;
   public status;
-  public days: any;
-  public shifts: any;
-  public method: string;
-  public week: any;
-  public optionTeamLeader: any;
-  public optionEmployee: any;
-  public finalManagement: any;
-  public tempFinalManagement: any;
+  public days;
+  public shifts;
+  public method;
+  public week;
+  public optionTeamLeader;
+  public optionEmployee;
+  public finalManagement;
   public dates;
   public selectedDay;
   public selectedDay1;
@@ -38,6 +36,10 @@ export class BuildShiftsComponent implements OnInit {
   public checkId: boolean;
   public table: boolean;
   public test: boolean;
+  public searchEm: any;
+  public booSearchEm: boolean;
+  public searchByPosition;
+  public boolSearchPos;
 
   constructor(
     private _route: ActivatedRoute,
@@ -45,10 +47,38 @@ export class BuildShiftsComponent implements OnInit {
     private _userService: UserService
   ) {
     this.test = false;
+    this.checkId = false;
+    this.table = false;
+    this.searchEm = [];
+    this.booSearchEm = false;
+    this.searchByPosition = [];
+    this.boolSearchPos = false;
+    this.weekAndyear = {};
     this.users = [];
-    this.indentity = this._userService.getIdentity();
+    this.identity = this._userService.getIdentity();
     this.days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     this.shifts = ['morning', 'afternoon', 'night'];
+    this.employess = [
+      { level: 'TEAM_LEADER', value: 1},
+      { level: 'EMPLOYEE', value: 2}
+    ];
+  }
+
+  ngOnInit() {
+    if ( this.identity.role !== 'ADMIN_ROLE' ) {
+      this._router.navigate(['/home']);
+    }
+    this.createObjects();
+    this.getUsers();
+    setTimeout( () => {
+      console.log( this.users );
+    }, 1000);
+
+    this.getMethodShifts();
+    this.resetWeek();
+  }
+
+  createObjects() {
     this.week = {};
     this.optionTeamLeader = {};
     this.optionEmployee = {};
@@ -65,21 +95,6 @@ export class BuildShiftsComponent implements OnInit {
         this.finalManagement[day][shift] = [];
       }
     }
-    this.employess = [
-      { level: 'TEAM_LEADER', value: 1},
-      { level: 'EMPLOYEE', value: 2}
-    ];
-    this.checkId = false;
-    this.table = false;
-  }
-
-  ngOnInit() {
-    if ( this.indentity.role !== 'ADMIN_ROLE' ) {
-      this._router.navigate(['/home']);
-    }
-    this.getUsers();
-    this.getMethodShifts();
-    this.resetWeek();
   }
 
   getUsers() {
@@ -87,8 +102,9 @@ export class BuildShiftsComponent implements OnInit {
       response => {
         // console.log( response );
         if ( response.ok ) {
-          // this.users = response.users;
-          for ( let i = 0; i < response.users.length; i++ ) {
+          this.users = response.users;
+          // console.log( response.users );
+          /*for ( let i = 0; i < response.users.length; i++ ) {
             const user = new User('', '', '', '', '', undefined, undefined, '');
             const temp = response.users[i];
 
@@ -100,7 +116,7 @@ export class BuildShiftsComponent implements OnInit {
             user.level = temp.level;
 
             this.users.push( user );
-          }
+          }*/
         }
       }, error => {
         console.log( error );
@@ -124,7 +140,6 @@ export class BuildShiftsComponent implements OnInit {
     this.fulldate = this._userService.getWeekNumber( new Date() );
     this.weekAndyear.year = this.fulldate[0];
     this.weekAndyear.week = this.fulldate[1];
-
     this.started();
   }
 
@@ -132,7 +147,7 @@ export class BuildShiftsComponent implements OnInit {
     this.weekAndyear.week++;
 
     if ( this.weekAndyear.week === 53 ) {
-      this.weekAndyear.week = 0;
+      this.weekAndyear.week = 1;
       this.weekAndyear.year++;
     }
 
@@ -142,7 +157,7 @@ export class BuildShiftsComponent implements OnInit {
   decrementWeek() {
     this.weekAndyear.week--;
 
-    if ( this.weekAndyear.week === -1 ) {
+    if ( this.weekAndyear.week === 0 ) {
       this.weekAndyear.week = 52;
       this.weekAndyear.year--;
     }
@@ -151,23 +166,23 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   started() {
+    this.dates = this._userService.getDates( this.weekAndyear );
+    this.getTempShifts(); // if we worked some shifts we need to show
+    this.getAllShifts( this.weekAndyear ); // all shifts by next week
     setTimeout( () => {
-      this.getTempShifts();
-
-      setTimeout( () => {
-        console.log( this.finalManagement );
-      }, 1000);
-
-      this.getAllShifts( this.weekAndyear );
-      this.setNames( this.week );
-      this.dates = this._userService.getDates( this.weekAndyear );
-      this.test = true;
+      console.log( this.finalManagement );
+      console.log( this.responseShift );
     }, 1000);
-    /*this.getTempShifts();
-    this.getAllShifts( this.weekAndyear );
-    this.setNames( this.week );
-    // this.dates = this.getDates( this.weekAndyear );
-    this.dates = this._userService.getDates( this.weekAndyear );*/
+
+    setTimeout( () => {
+      this.setNames( this.week ); // this.week -> json with all id by day and shift
+    }, 1000);
+
+    setTimeout( () => {
+      console.log( this.week );
+      console.log( this.optionEmployee );
+      console.log( this.optionTeamLeader );
+    }, 1000);
   }
 
   getTempShifts() {
@@ -175,7 +190,7 @@ export class BuildShiftsComponent implements OnInit {
       response => {
         console.log( response );
         if ( response.ok ) {
-          // console.log( response.management );
+          console.log( response.management );
           this.finalManagement = response.management;
           this.checkId = true;
           this.table = true;
@@ -183,7 +198,6 @@ export class BuildShiftsComponent implements OnInit {
       }, error => {
         console.log( error );
         this.checkId = false;
-        this.table = false;
       }
     );
   }
@@ -229,319 +243,23 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   setNames( JsonWeek ) {
-    setTimeout( () => {
       // console.log( JsonWeek );
-      let j = 0, k = 0;
-      for ( const day of this.days ) {
-        for ( const shift of this.shifts ) {
-          const temp = JsonWeek[day][shift];
-          for ( let i = 0; i < temp.length; i++ ) {
-            if ( temp[i].level === 'TEAM_LEADER' ) {
-              this.optionTeamLeader[day][shift][j] = temp[i];
-              j++;
-            } else {
-              this.optionEmployee[day][shift][k] = temp[i];
-              k++;
-            }
-          }
-          j = 0;
-          k = 0;
-        }
-      }
-    }, 1000);
-  }
-
-  allowDrop(ev) {
-    // console.log( ev );
-    ev.preventDefault();
-  }
-
-  drag( ev ) {
-    ev.dataTransfer.setData( 'text', ev.target.id );
-  }
-
-  drop( ev ) {
-    // console.log(shift, day);
-    let boo;
-    let res;
-    let id;
-    let index;
-    let day = '', shift = '';
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData('text');
-    const x = document.getElementById(data);
-    console.log( x ); // li de origin
-    console.log(ev.target); // li receptor
-    console.log( ev.target.id ); // id del li receptor
-
-    console.log( ev.target.nodeName );
-
-    if ( ev.target.nodeName === 'SPAN' || ev.target.nodeName === 'I' ) {
-      console.log((((ev.target).parentNode).parentNode).id );
-      id = (((ev.target).parentNode).parentNode).id;
-      index = (ev.target).parentNode.id;
-      boo = false;
-    } else {
-      console.log( (ev.target).parentNode.id );
-      id = (ev.target).parentNode.id;
-      index = ev.target.id;
-      boo = true;
-    }
-
-    res = id.split(/[ .:;?!~,`"&|()<>{}\[\]\r\n/\\]+/);
-    console.log( id, res, index );
-
-    day = res[2];
-    shift = res[1];
-
-    console.log( day, shift );
-
-    if ( !boo )  {
-      ((ev.target).parentNode).innerText = x.innerText;
-    } else {
-      ev.target.innerText = x.innerText;
-    }
-    this.inserIntoFinal(day, shift, index, x.innerText );
-  }
-
-  inserIntoFinal(day, shift, index, name ) {
-    console.log( this.finalManagement );
-    console.log( this.finalManagement[day][shift] );
-
-    for ( const user of this.users ) {
-      if ( user.nick_name === name ) {
-        this.finalManagement[day][shift][index] = user;
-        break;
-      }
-    }
-  }
-
-  added (event, shift, day ) {
-    const list = document.getElementById('mat[' + shift + '][' + day + ']' );
-    const max = list.childElementCount;
-    // console.log( max );
-    const newElement = document.createElement('LI');
-    newElement.setAttribute('id', String(max) );
-    newElement.addEventListener( 'dragover', this.allowDrop, false );
-    newElement.addEventListener('drop', this.drop, false);
-    // newElement.setAttribute('style', 'color:blue');
-    newElement.innerHTML = '<i class="fas fa-minus-circle"></i>';
-    list.appendChild( newElement );
-    console.log( list );
-  }
-
-  remove( shift, day ) {
-    const list = document.getElementById( 'mat[' + shift + '][' + day + ']' );
-
-    list.addEventListener('click', ( e ) => {
-      if ( (<HTMLElement>e.target) && (<HTMLElement>e.target).nodeName === 'I') {
-        ( <HTMLElement>( <HTMLElement>e.target ).parentNode ).remove();
-      }
-    });
-  }
-
-  autoBuild() {
-    let i = 1;
+    let j = 0, k = 0;
     for ( const day of this.days ) {
       for ( const shift of this.shifts ) {
-        const temp = this.optionTeamLeader[day][shift];
-        const cur = this.funcRandHead( temp );
-        if ( typeof cur !== 'undefined' ) {
-          this.finalManagement[day][shift][0] = cur;
-        }
-      }
-    }
-
-    for ( const day of this.days ) {
-      for ( const shift of this.shifts ) {
-        const temp = this.optionEmployee[day][shift];
-        // console.log( temp, day, shift );
-        const max = this.countList( shift, day );
-        const cur = this.funcRandEmployee( temp, max );
-
-        // console.log( cur );
-        if ( typeof cur !== 'undefined' ) {
-          for ( let k = 0; k < cur.length; k++ ) {
-            const current = cur[k];
-            // console.log( current );
-            this.finalManagement[day][shift][i] = current;
-            // console.log( current );
-            i++;
+        const temp = JsonWeek[day][shift];
+        for ( let i = 0; i < temp.length; i++ ) {
+          if ( temp[i].level === 'TEAM_LEADER' ) {
+            this.optionTeamLeader[day][shift][j] = temp[i];
+            j++;
+          } else {
+            this.optionEmployee[day][shift][k] = temp[i];
+            k++;
           }
-          i = 1;
         }
+        j = 0;
+        k = 0;
       }
-    }
-
-    for ( const day of this.days ) {
-      for ( const shift of this.shifts ) {
-        this.showInTable( this.finalManagement[day][shift], shift, day );
-      }
-    }
-  }
-
-  countList( shift, day ) {
-    const list = document.getElementById( 'mat[' + shift + '][' + day + ']' );
-    return list.childElementCount - 1;
-  }
-
-  funcRandHead( teamLeader ) {
-    if ( teamLeader.length === 0 ) {
-      return;
-    } else if ( teamLeader.length === 1 ) {
-      return teamLeader[0];
-    } else {
-      const num = Math.floor( Math.random() * teamLeader.length );
-      return teamLeader[num];
-    }
-  }
-
-  funcRandEmployee( employees, max ) {
-    let num;
-    const dump = [];
-
-    if ( employees.length === 0 ) {
-      return;
-    } else if ( employees.length <= max ) {
-      return employees;
-    } else {
-      let count = max;
-      while ( count > 0 ) {
-        if ( dump.length === 0 ) {
-          num = Math.floor( Math.random() * employees.length );
-          dump.push( employees[num] );
-        } else {
-          do {
-            num = Math.floor( Math.random() * employees.length );
-          }while ( dump.indexOf( employees[num] ) !== -1 );
-          dump.push( employees[num] );
-        }
-        count--;
-      }
-      return dump;
-    }
-  }
-
-  showInTable( finalManagement, shift, day ) {
-    const list = document.getElementById('mat[' + shift + '][' + day + ']');
-
-    // console.log( finalManagement );
-    // console.log( finalManagement.length );
-
-    for ( let i = 0; i < finalManagement.length; i++ ) {
-      const user = finalManagement[i];
-      // console.log( user );
-      if ( user ) {
-        list.children[i].innerHTML = user.nick_name;
-      }
-    }
-  }
-
-  searchEmployess() {
-    const i = 0;
-    const list = document.getElementById('listOpt');
-
-    if ( list.style.display === 'block' ) {
-      const lis = document.getElementById('myUL');
-      while ( lis.hasChildNodes() ) {
-        lis.removeChild( lis.childNodes[i] );
-      }
-      list.removeChild( lis );
-    } else {
-      list.style.display = 'block';
-    }
-
-    const first = document.createElement('UL');
-    first.setAttribute('id', 'myUL');
-    list.appendChild( first );
-
-    const dd = this.selectedDay;
-    const sh = this.selectedShift;
-
-    // console.log( dd, sh );
-
-    const temp = this.week[dd][sh];
-    for ( let k = 0, t = 0; k < temp.length; k++ ) {
-      const node = document.createElement('LI');
-      const textNode = document.createTextNode( temp[k].nick_name );
-      node.setAttribute('id', 'dragg_' + t );
-      node.draggable = true;
-      node.addEventListener('dragstart', this.drag, false);
-      node.appendChild( textNode );
-      document.getElementById('myUL').appendChild( node );
-      t++;
-    }
-  }
-
-  showAll() {
-    const level = this.selectedEmployess;
-    const dd = this.selectedDay1;
-    const sh = this.selectedShift1;
-
-    const i = 0;
-    const list = document.getElementById('listAll');
-
-    if ( list.style.display === 'block' ) {
-      const lis = document.getElementById('otherUL');
-      while ( lis.hasChildNodes() ) {
-        lis.removeChild( lis.childNodes[i] );
-      }
-      list.removeChild( lis );
-    } else {
-      list.style.display = 'block';
-    }
-
-    const first = document.createElement('UL');
-    first.setAttribute('id', 'otherUL');
-    list.appendChild( first );
-
-    if ( level === 'TEAM_LEADER' ) {
-      const temp = this.optionTeamLeader[dd][sh];
-      for ( let k = 0, t = 0; k < temp.length; k++ ) {
-        const node = document.createElement('LI');
-        const textNode = document.createTextNode( temp[k].nick_name );
-        node.setAttribute('id', 'drag_' + t);
-        node.draggable = true;
-        node.addEventListener('dragstart', this.drag, false);
-        node.appendChild( textNode );
-        document.getElementById('otherUL').appendChild(node);
-        t++;
-      }
-    } else {
-      const temp = this.optionEmployee[dd][sh];
-      for ( let k = 0, t = 0; k < temp.length; k++ ) {
-        const node = document.createElement('LI');
-        const textNode = document.createTextNode( temp[k].nick_name );
-        node.setAttribute('id', 'drag_' + t);
-        node.draggable = true;
-        node.addEventListener('dragstart', this.drag, false);
-        node.appendChild( textNode );
-        document.getElementById('otherUL').appendChild(node);
-        t++;
-      }
-    }
-  }
-
-  saveBuild() {
-    console.log( this.finalManagement );
-    if ( this.finalManagement._id ) {
-      this._userService.updateFinalManagement( this.finalManagement ).subscribe(
-        response => {
-          if ( response.ok ) {
-            this.status = 'update';
-          }
-        }, error => console.log( error )
-      );
-    } else {
-      this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
-        response => {
-          if ( response.ok ) {
-            this.status = 'success';
-          }
-        }, error => {
-          console.log( error );
-        }
-      );
     }
   }
 
@@ -569,18 +287,14 @@ export class BuildShiftsComponent implements OnInit {
       }
 
       if ( i === this.responseShift.length ) {
+        this.shiftUser = undefined;
         this.status = 'no-exist';
       }
 
-      setTimeout( () => {
-        if ( this.shiftUser !== undefined ) {
-          this.shiftUser.emitter = this.getName( this.shiftUser.emitter );
-          this.status = 'show';
-        } else {
-          this.status = 'no-exist';
-        }
-        console.log( this.shiftUser );
-      }, 1000);
+      if ( this.shiftUser !== undefined ) {
+        this.shiftUser.emitter = this.getName( this.shiftUser.emitter );
+        this.status = 'show';
+      }
 
     } else {
       this.status = 'denied';
@@ -615,4 +329,242 @@ export class BuildShiftsComponent implements OnInit {
     return user;
   }
 
+  add( day, shift ) {
+    const list = document.getElementById('mat[' + day + '][' + shift + ']' );
+    let max;
+
+    if ( list.hasChildNodes() ) {
+      max = list.childElementCount;
+    } else {
+      max = 0;
+    }
+
+    const newElement = document.createElement('LI');
+    newElement.setAttribute('id', String(max));
+    newElement.setAttribute('class', day + '' + shift );
+    newElement.addEventListener('dragover', this.allowDrop, false);
+    newElement.addEventListener('drop', this.drop, false);
+    newElement.addEventListener('click', ( e: Event ) => {
+      if ( (<HTMLElement>e.target) && (<HTMLElement>e.target).nodeName === 'I') {
+        ( <HTMLElement>( <HTMLElement>e.target ).parentNode ).remove();
+      }
+    });
+    newElement.innerHTML = '<i class="fas fa-minus-circle"></i>';
+    this.finalManagement[day][shift] = new Array(max);
+    list.appendChild( newElement );
+
+  }
+
+  remove(day, shift, index) {
+    const list = document.getElementById('mat[' + day + '][' + shift + ']' );
+
+    list.parentNode.removeChild( list[index] );
+
+  }
+
+  searchEmployess() {
+    const dd = this.selectedDay;
+    const sh = this.selectedShift;
+
+    this.searchEm = this.week[dd][sh];
+    this.booSearchEm = true;
+  }
+
+  showAll() {
+    const level = this.selectedEmployess;
+    const dd = this.selectedDay1;
+    const sh = this.selectedShift1;
+
+    if ( level === 'TEAM_LEADER' ) {
+      this.searchByPosition = this.optionTeamLeader[dd][sh];
+      this.boolSearchPos = true;
+    } else {
+      this.searchByPosition = this.optionEmployee[dd][sh];
+      this.boolSearchPos = true;
+    }
+  }
+
+  dragEnd(event, user: User, index) {
+    /*console.log( event );
+    console.log( user );
+    console.log( index );
+    console.log(this.selectedDay, this.selectedShift);*/
+  }
+
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  drag(ev) {
+    ev.dataTransfer.setData('text', ev.target.id);
+  }
+
+  drop(ev) {
+    ev.preventDefault();
+    let boo;
+    const data = ev.dataTransfer.getData('text');
+    const x = document.getElementById(data);
+
+    console.log( ev.target.nodeName );
+
+    if ( ev.target.nodeName === 'I' ) {
+      boo = false;
+    } else {
+      boo = true;
+    }
+
+    if ( !boo ) {
+      ((ev.target).parentNode).innerText = x.innerText;
+    } else {
+      ev.target.innerText = x.innerText;
+    }
+  }
+
+  autoBuild() {
+    let i = 1;
+    for ( const day of this.days ) {
+      for ( const shift of this.shifts ) {
+        const temp = this.optionTeamLeader[day][shift];
+        const cur = this.funcRanHead( temp );
+
+        if ( typeof cur !== 'undefined' ) {
+          this.finalManagement[day][shift][0] = cur;
+        }
+      }
+    }
+
+    for ( const day of this.days ) {
+      for ( const shift of this.shifts ) {
+        const temp = this.optionEmployee[day][shift];
+        // console.log( temp, day, shift );
+        const max = this.countList( shift, day );
+        const cur = this.funcRandEmployee( temp, max );
+
+        // console.log( cur );
+        if ( typeof cur !== 'undefined' ) {
+          for ( let k = 0; k < cur.length; k++ ) {
+            const current = cur[k];
+            // console.log( current );
+            this.finalManagement[day][shift][i] = current;
+            // console.log( current );
+            i++;
+          }
+          i = 1;
+        }
+      }
+    }
+
+    for ( const day of this.days ) {
+      for ( const shift of this.shifts ) {
+        this.showInTable( this.finalManagement[day][shift], shift, day );
+      }
+    }
+  }
+
+  funcRanHead( teamLeader ) {
+    if ( teamLeader.length === 0 ) {
+      return;
+    } else if ( teamLeader.length === 1 ) {
+      return teamLeader[0];
+    } else {
+      const num = Math.floor( Math.random() * teamLeader.length );
+      return teamLeader[num];
+    }
+  }
+
+  countList( shift, day ) {
+    const list = document.getElementById( 'mat[' + day + '][' + shift + ']' );
+    return list.childElementCount - 1;
+  }
+
+  funcRandEmployee( employees, max ) {
+    let num;
+    const dump = [];
+
+    if ( employees.length === 0 ) {
+      return;
+    } else if ( employees.length <= max ) {
+      return employees;
+    } else {
+      let count = max;
+      while ( count > 0 ) {
+        if ( dump.length === 0 ) {
+          num = Math.floor( Math.random() * employees.length );
+          dump.push( employees[num] );
+        } else {
+          do {
+            num = Math.floor( Math.random() * employees.length );
+          }while ( dump.indexOf( employees[num] ) !== -1 );
+          dump.push( employees[num] );
+        }
+        count--;
+      }
+      return dump;
+    }
+  }
+
+  showInTable( finalManagement, shift, day ) {
+    const list = document.getElementById('mat[' + day + '][' + shift + ']');
+
+    // console.log( finalManagement );
+    // console.log( finalManagement.length );
+
+    for ( let i = 0; i < finalManagement.length; i++ ) {
+      const user = finalManagement[i];
+      // console.log( user );
+      if ( user ) {
+        list.children[i].innerHTML = user.nick_name;
+      } else {
+        list.children[i].innerHTML = '';
+      }
+    }
+  }
+
+  saveBuild() {
+
+    this.checkObject();
+
+    setTimeout( () => {
+      console.log( this.finalManagement );
+
+      if ( this.finalManagement._id ) {
+        this._userService.updateFinalManagement( this.finalManagement ).subscribe(
+          response => {
+            if ( response.ok ) {
+              this.status = 'update';
+            }
+          }, error => console.log( error )
+        );
+      } else {
+        this._userService.saveFinalManagement( this.weekAndyear.week, this.weekAndyear.year, this.finalManagement ).subscribe(
+          response => {
+            if ( response.ok ) {
+              this.status = 'success';
+            }
+          }, error => console.log( error )
+        );
+      }
+    }, 1000);
+
+  }
+
+  checkObject() {
+    let i = 0;
+    for ( const day of this.days ) {
+      for ( const shift of this.shifts ) {
+        const list = document.getElementsByClassName(day + '' + shift);
+
+        for ( i = 0; i < list.length; i++ ) {
+          // console.log( list[i].nodeName );
+
+          this.finalManagement[day][shift][i] = {};
+          for ( const user of this.users ) {
+            if ( user.nick_name === list[i].innerHTML ) {
+              this.finalManagement[day][shift][i] = user;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -31,6 +31,7 @@ export class UserWeekComponent implements OnInit {
   public dates: any[];
   public requestWeek: RequestWeek;
   public message: string;
+  public weekAndyear: any;
 
   constructor(
     private _route: ActivatedRoute,
@@ -47,53 +48,36 @@ export class UserWeekComponent implements OnInit {
     this.count_weekend = 0;
     this.week = [];
     this.message = '';
+    this.weekAndyear = {};
 
     for ( let i = 0; i < this.days.length; i++ ) {
       const tmp = this.days[i];
       this.week[tmp] = new Shift('', '', '');
     }
+
+
   }
 
   ngOnInit() {
     this.number_week = this._userService.getWeekNumber( new Date() ); // [0] = year, [1]= number next week
+    this.weekAndyear.year = this.number_week[0];
+    this.weekAndyear.week = this.number_week[1];
     // console.log( this.number_week );
-    this.dates = this.getFirstAndLastDates( this.number_week );
+    // this.dates = this.getFirstAndLastDates( this.number_week );
+    this.dates = this._userService.getDates( this.weekAndyear );
     // console.log( this.dates );
     this.setValuesRequest();
     // console.log( this.number_week[1] );
-    const nWeek = this.checkSunday( this.number_week[1] );
+    const nWeek = this.checkSunday( this.weekAndyear.week );
     // console.log( nWeek );
     this.requestUser.setEmitter( this.identity._id );
     this.requestUser.setNumberWeek( String( nWeek ) );
-    this.requestUser.setYear( String( this.number_week[0] ) );
+    this.requestUser.setYear( String( this.weekAndyear.year ) );
 
     setTimeout( () => {
       this.shiftsUser( this.requestUser );
       this.checkDay();
     }, 2000);
-  }
-
-  getFirstAndLastDates( numberWeek ) {
-    // const moment = require('moment');
-    // console.log( numberWeek );
-    const year = numberWeek[0];
-    let week = numberWeek[1];
-    const dates = [];
-
-    const day = new Date().getDay();
-
-    if ( day === 0 ) {
-      week++;
-    }
-    // console.log( week );
-
-    for ( let i = 0; i < this.days.length; i++) {
-      const d = this.days[i];
-      const test = moment().day(d).year(year).week(week).toDate();
-      dates[d] = test;
-    }
-    // console.log( dates );
-    return dates;
   }
 
   shiftsUser( requestUser: RequestWeekUser ) {

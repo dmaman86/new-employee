@@ -74,7 +74,7 @@ export class UserService {
         // Return array of year and week number
         let year = full_date.getUTCFullYear();
         if ( weekNo === 53 ) {
-          weekNo = 0;
+          weekNo = 1;
           year++;
         }
         return [year, weekNo];

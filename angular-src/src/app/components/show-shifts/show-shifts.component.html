@@ -8,8 +8,9 @@
         <button id="increment" class="btn btn-primary" (click)="incrementWeek()">Next Week</button>
     </div>
 </div>
+<br><br>
 <div *ngIf="status === 'rejected'">
-    <div class="alert alert-danger">
+    <div class="alert alert-danger text-center">
         No exist shifts for this week
     </div>
 </div>
@@ -33,7 +34,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Morning</td>
+                        <td class="text-center">Morning</td>
                         <td *ngFor="let day of days">
                             <ul *ngFor="let user of finalManagement[day].morning">
                                 <li *ngIf="user === 'undefined'"></li>
@@ -43,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Afternoon</td>
+                        <td class="text-center">Afternoon</td>
                         <td *ngFor="let day of days">
                             <ul *ngFor="let user of finalManagement[day].afternoon">
                                 <li *ngIf="user === 'undefined'"></li>
@@ -53,7 +54,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Night</td>
+                        <td class="text-center">Night</td>
                         <td *ngFor="let day of days">
                             <ul *ngFor="let user of finalManagement[day].night">
                                 <li *ngIf="user === 'undefined'"></li>
