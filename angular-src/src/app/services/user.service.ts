@@ -98,40 +98,24 @@ export class UserService {
     }
 
     getDates( yearAndweek: any ) {
-        /*const year = yearAndweek.year;
-        const week = yearAndweek.week;
-        const dates = [];
-
-        for ( const day of this.days ) {
-            const temp = moment().day( day ).year( year ).week( week ).toDate();
-            dates[day] = temp;
-        }*/
         const dates = [];
         let week;
         let temp_year;
-        const year = new Date().getFullYear();
 
-        if ( yearAndweek.year > year ) {
-            if ( yearAndweek.week - 1 < 1 ) {
-                week = 52;
-                temp_year = yearAndweek.year - 1;
-            } else {
-                week = yearAndweek.week - 1;
-                temp_year = yearAndweek.year;
-            }
-            for ( let i = 0; i < this.days.length; i++ ) {
-                const day = this.days[i];
-                if ( i === 0 ) {
-                    dates[day] = this.weekdate( temp_year, week, i + 6 );
-                } else {
-                    dates[day] = this.weekdate( yearAndweek.year , yearAndweek.week, i - 1 );
-                }
-            }
-
+        if ( yearAndweek.week - 1 < 1 ) {
+            week = 52;
+            temp_year = yearAndweek.year - 1;
         } else {
-            for ( const day of this.days ) {
-                const temp = moment().day( day ).year( yearAndweek.year ).week( yearAndweek.week ).toDate();
-                dates[day] = temp;
+            week = yearAndweek.week - 1;
+            temp_year = yearAndweek.year;
+        }
+
+        for ( let i = 0; i < this.days.length; i++ ) {
+            const day = this.days[i];
+            if ( i === 0 ) {
+                dates[day] = this.weekdate( temp_year, week, i + 6 );
+            } else {
+                dates[day] = this.weekdate( yearAndweek.year, yearAndweek.week, i - 1 );
             }
         }
 

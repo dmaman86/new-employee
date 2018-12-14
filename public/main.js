@@ -6416,8 +6416,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global */ "./src/app/services/global.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6427,7 +6425,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -6517,32 +6514,46 @@ var UserService = /** @class */ (function () {
         var week;
         var temp_year;
         var year = new Date().getFullYear();
-        if (yearAndweek.year > year) {
-            if (yearAndweek.week - 1 < 1) {
-                week = 52;
-                temp_year = yearAndweek.year - 1;
+        if (yearAndweek.week - 1 < 1) {
+            week = 52;
+            temp_year = yearAndweek.year - 1;
+        }
+        else {
+            week = yearAndweek.week - 1;
+            temp_year = yearAndweek.year;
+        }
+        for (var i = 0; i < this.days.length; i++) {
+            var day = this.days[i];
+            if (i === 0) {
+                dates[day] = this.weekdate(temp_year, week, i + 6);
             }
             else {
+                dates[day] = this.weekdate(yearAndweek.year, yearAndweek.week, i - 1);
+            }
+        }
+        /*if ( yearAndweek.year > year ) {
+            if ( yearAndweek.week - 1 < 1 ) {
+                week = 52;
+                temp_year = yearAndweek.year - 1;
+            } else {
                 week = yearAndweek.week - 1;
                 temp_year = yearAndweek.year;
             }
-            for (var i = 0; i < this.days.length; i++) {
-                var day = this.days[i];
-                if (i === 0) {
-                    dates[day] = this.weekdate(temp_year, week, i + 6);
-                }
-                else {
-                    dates[day] = this.weekdate(yearAndweek.year, yearAndweek.week, i - 1);
+            for ( let i = 0; i < this.days.length; i++ ) {
+                const day = this.days[i];
+                if ( i === 0 ) {
+                    dates[day] = this.weekdate( temp_year, week, i + 6 );
+                } else {
+                    dates[day] = this.weekdate( yearAndweek.year , yearAndweek.week, i - 1 );
                 }
             }
-        }
-        else {
-            for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
-                var day = _a[_i];
-                var temp = moment__WEBPACK_IMPORTED_MODULE_3__().day(day).year(yearAndweek.year).week(yearAndweek.week).toDate();
+
+        } else {
+            for ( const day of this.days ) {
+                const temp = moment().day( day ).year( yearAndweek.year ).week( yearAndweek.week ).toDate();
                 dates[day] = temp;
             }
-        }
+        }*/
         return dates;
     };
     /* Home and Home Admin */
