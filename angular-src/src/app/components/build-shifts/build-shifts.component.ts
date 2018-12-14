@@ -130,22 +130,22 @@ export class BuildShiftsComponent implements OnInit {
   }
 
   incrementWeek( ) {
-    this.weekAndyear.week++;
+    this.weekAndyear.week += 1;
 
     if ( this.weekAndyear.week === 53 ) {
       this.weekAndyear.week = 1;
-      this.weekAndyear.year++;
+      this.weekAndyear.year += 1;
     }
 
     this.started();
   }
 
   decrementWeek() {
-    this.weekAndyear.week--;
+    this.weekAndyear.week -= 1;
 
     if ( this.weekAndyear.week === 0 ) {
       this.weekAndyear.week = 52;
-      this.weekAndyear.year--;
+      this.weekAndyear.year -= 1;
     }
 
     this.started();
@@ -153,6 +153,7 @@ export class BuildShiftsComponent implements OnInit {
 
   started() {
     this.dates = this._userService.getDates( this.weekAndyear );
+    console.log( this.dates );
     this.getTempShifts(); // if we worked some shifts we need to show
     this.getAllShifts( this.weekAndyear ); // all shifts by next week
     setTimeout( () => {

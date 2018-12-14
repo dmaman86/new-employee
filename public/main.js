@@ -3732,7 +3732,7 @@ module.exports = ".pseudolink { \n    color:blue; \n    text-decoration:underlin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Buil Table Employees</h3>\n<hr>\n<div class=\"alert alert-success text-center\" *ngIf=\"status === 'success' \">\n    Employee assignment saved successfully\n</div>\n<div class=\"alert alert-success text-center\" *ngIf=\"status === 'update' \">\n    Employee assignment was update successfully\n</div>\n<div class=\"row\">\n   <div class=\"col-md-8\">\n    <div class=\"row\">\n        <div class=\"col text-center\">\n            <button id=\"decrement\" class=\"btn btn-primary\" (click)=\"decrementWeek()\">Last Week</button>\n            &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;\n            <a><span class=\"pseudolink\" (click)=\"resetWeek()\">return to actual week</span></a>&nbsp;&nbsp;\n            <button id=\"increment\" class=\"btn btn-primary\" (click)=\"incrementWeek()\">Next Week</button>\n        </div>\n    </div>\n    <br><br>\n    <table class=\"table table-bordered\">\n        <thead>\n            <tr>\n                <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n            </tr>\n            <tr>\n                <th></th>\n                <th class=\"text-center\" *ngFor=\"let d of days\">{{ dates[d] | date }}</th>\n            </tr>\n            <tr>\n                <th></th>\n                <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td class=\"text-center\">Morning</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][morning]\">\n                        <li *ngFor=\"let user of finalManagement[day].morning; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}morning\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][morning]\">\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'morning' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n            <tr>\n                <td class=\"text-center\">Afternoon</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][afternoon]\">\n                        <li *ngFor=\"let user of finalManagement[day].afternoon; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}afternoon\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][afternoon]\">\n\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'afternoon' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n            <tr>\n                <td class=\"text-center\">Night</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][night]\">\n                        <li *ngFor=\"let user of finalManagement[day].night; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}night\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][night]\">\n\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'night' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row\">\n        <div class=\"col text-center\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"autoBuild()\">Auto Build</button>&nbsp;&nbsp;\n            <button type=\"submit\" class=\"btn btn-success\" (click)=\"saveBuild()\">Save Build</button>\n        </div>\n    </div>\n   </div>\n   <div id=\"column-2\" class=\"col-md-4\">\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <table class=\"table table-bordered\">\n                    <thead>\n                        <tr>\n                            <th>TEAM_LEADER</th>\n                            <th>EMPLOYEE</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>\n                                <ul *ngFor=\"let user of users; let i=index\">\n                                    <li *ngIf=\"user.level === 'TEAM_LEADER'\" id=\"drak_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                                </ul>\n                            </td>\n                            <td>\n                                <ul *ngFor=\"let user of users; let i=index\">\n                                    <li *ngIf=\"user.level === 'EMPLOYEE'\" id=\"dral_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                                </ul>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Search by day and shift</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>\n                    <button class=\"btn btn-primary\" (click)=\"searchEmployess()\">Search</button>\n                </div>\n                <br>\n                <div *ngIf=\"booSearchEm\">\n                    <ul>\n                        <li *ngFor=\"let user of searchEm; let i = index\" id=\"dragg_{{ i }}\" draggable=\"true\" (dragstart)=\"drag($event, user, i)\" (dragend)=\"dragEnd($event)\">{{ user.nick_name }}</li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Search by position, day and shift</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedEmployess\" name=\"first\">\n                        <option *ngFor=\"let lv of employess\">{{ lv.level }}</option>\n                    </select>\n                    &nbsp;&nbsp;\n                    <select [(ngModel)]=\"selectedDay1\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    &nbsp;&nbsp;\n                    <select [(ngModel)]=\"selectedShift1\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>&nbsp;&nbsp;\n                    <button class=\"btn btn-primary\" (click)=\"showAll()\">Show</button>\n                </div>\n                <br>\n                <div *ngIf=\"boolSearchPos\">\n                    <ul>\n                        <li *ngFor=\"let user of searchByPosition; let i = index\" id=\"drag_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                    </ul>      \n                </div>\n            </div>\n        </div>\n   </div>\n</div>\n<br><br>\n<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h4>Show shift of employee</h4>\n        <div class=\"col text-right\">\n            <select [(ngModel)]=\"selectedSearch\" name=\"first\">\n                <option *ngFor=\"let us of users\">{{ us.nick_name }}</option>\n            </select>\n        </div>\n    </div>\n    <div class=\"panel-body\">\n        <div class=\"row\" *ngIf=\"status === 'denied'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this week\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'no-exist'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this user\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'show'\">\n            <div class=\"col-md-8\">\n                <table class=\"table table-bordered\">\n                    <thead>\n                        <tr>\n                            <th colspan=\"8\" class=\"text-center\">{{ shiftUser.emitter.name + ' ' + shiftUser.emitter.last_name }}</th>\n                        </tr>\n                        <tr>\n                            <th></th>\n                            <th class=\"text-center\" *ngFor=\"let day of days\">{{ day }}</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>Mornirng</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].morning }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Afternoon</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].afternoon }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Night</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].night }}\n                            </td>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        {{ shiftUser.message }}\n                    </div>\n                </div> \n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button class=\"btn btn-primary\" (click)=\"searchShift()\">Show Shift</button>\n            </div>\n        </div>\n\n    </div>\n</div>\n"
+module.exports = "<h3>Buil Table Employees</h3>\n<hr>\n<div class=\"alert alert-success text-center\" *ngIf=\"status === 'success' \">\n    Employee assignment saved successfully\n</div>\n<div class=\"alert alert-success text-center\" *ngIf=\"status === 'update' \">\n    Employee assignment was update successfully\n</div>\n<div class=\"row\">\n   <div class=\"col-md-8\">\n    <div class=\"row\">\n        <div class=\"col text-center\">\n            <button id=\"decrement\" class=\"btn btn-primary\" (click)=\"decrementWeek()\">Last Week</button>\n            &nbsp;&nbsp;From {{ dates.sunday | date }} To {{ dates.saturday | date }}&nbsp;&nbsp;\n            <a><span class=\"pseudolink\" (click)=\"resetWeek()\">return to actual week</span></a>&nbsp;&nbsp;\n            <button id=\"increment\" class=\"btn btn-primary\" (click)=\"incrementWeek()\">Next Week</button>\n        </div>\n    </div>\n    <br><br>\n    <table class=\"table table-bordered\">\n        <thead>\n            <tr>\n                <th colspan=\"8\" class=\"text-center\">Number Week {{ weekAndyear.week }}</th>\n            </tr>\n            <tr>\n                <th></th>\n                <th class=\"text-center\" *ngFor=\"let day of days\">{{ dates[day] | date }}</th>\n            </tr>\n            <tr>\n                <th></th>\n                <th class=\"text-center\" *ngFor=\"let day of days\">{{ day | titlecase }}</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td class=\"text-center\">Morning</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][morning]\">\n                        <li *ngFor=\"let user of finalManagement[day].morning; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}morning\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][morning]\">\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'morning' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n            <tr>\n                <td class=\"text-center\">Afternoon</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][afternoon]\">\n                        <li *ngFor=\"let user of finalManagement[day].afternoon; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}afternoon\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][afternoon]\">\n\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'afternoon' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n            <tr>\n                <td class=\"text-center\">Night</td>\n                <td *ngFor=\"let day of days\">\n                    <ul *ngIf=\"checkId\" id=\"mat[{{day}}][night]\">\n                        <li *ngFor=\"let user of finalManagement[day].night; let i=index\" id=\"{{i}}\" (drop)=\"drop($event)\" (dragover)=\"allowDrop($event)\" class=\"{{day}}night\">{{ user == null? '' : user.nick_name }}</li>\n                    </ul>\n                    <ul *ngIf=\"!checkId\" id=\"mat[{{day}}][night]\">\n\n                    </ul>\n                    <ul>\n                        <li (click)=\"add( day, 'night' )\"><i class=\"fa fa-plus-circle\"></i></li>\n                    </ul>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row\">\n        <div class=\"col text-center\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"autoBuild()\">Auto Build</button>&nbsp;&nbsp;\n            <button type=\"submit\" class=\"btn btn-success\" (click)=\"saveBuild()\">Save Build</button>\n        </div>\n    </div>\n   </div>\n   <div id=\"column-2\" class=\"col-md-4\">\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <table class=\"table table-bordered\">\n                    <thead>\n                        <tr>\n                            <th>TEAM_LEADER</th>\n                            <th>EMPLOYEE</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>\n                                <ul *ngFor=\"let user of users; let i=index\">\n                                    <li *ngIf=\"user.level === 'TEAM_LEADER'\" id=\"drak_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                                </ul>\n                            </td>\n                            <td>\n                                <ul *ngFor=\"let user of users; let i=index\">\n                                    <li *ngIf=\"user.level === 'EMPLOYEE'\" id=\"dral_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                                </ul>\n                            </td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Search by day and shift</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedDay\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    <select [(ngModel)]=\"selectedShift\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>\n                    <button class=\"btn btn-primary\" (click)=\"searchEmployess()\">Search</button>\n                </div>\n                <br>\n                <div *ngIf=\"booSearchEm\">\n                    <ul>\n                        <li *ngFor=\"let user of searchEm; let i = index\" id=\"dragg_{{ i }}\" draggable=\"true\" (dragstart)=\"drag($event, user, i)\" (dragend)=\"dragEnd($event)\">{{ user.nick_name }}</li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n        <div class=\"row mx-5\">\n            <div class=\"container\">\n                <h4>Search by position, day and shift</h4>\n                <hr>\n                <div>\n                    <select [(ngModel)]=\"selectedEmployess\" name=\"first\">\n                        <option *ngFor=\"let lv of employess\">{{ lv.level }}</option>\n                    </select>\n                    &nbsp;&nbsp;\n                    <select [(ngModel)]=\"selectedDay1\" name=\"first\">\n                        <option *ngFor=\"let day of days\">{{ day }}</option>\n                    </select>\n                    &nbsp;&nbsp;\n                    <select [(ngModel)]=\"selectedShift1\" name=\"first\">\n                        <option *ngFor=\"let shift of shifts\">{{ shift }}</option>\n                    </select>&nbsp;&nbsp;\n                    <button class=\"btn btn-primary\" (click)=\"showAll()\">Show</button>\n                </div>\n                <br>\n                <div *ngIf=\"boolSearchPos\">\n                    <ul>\n                        <li *ngFor=\"let user of searchByPosition; let i = index\" id=\"drag_{{ i }}\" (dragstart)=\"drag($event)\" (dragend)=\"dragEnd($event)\" draggable=\"true\">{{ user.nick_name }}</li>\n                    </ul>      \n                </div>\n            </div>\n        </div>\n   </div>\n</div>\n<br><br>\n<div class=\"panel panel-default\">\n    <div class=\"panel-heading\">\n        <h4>Show shift of employee</h4>\n        <div class=\"col text-right\">\n            <select [(ngModel)]=\"selectedSearch\" name=\"first\">\n                <option *ngFor=\"let us of users\">{{ us.nick_name }}</option>\n            </select>\n        </div>\n    </div>\n    <div class=\"panel-body\">\n        <div class=\"row\" *ngIf=\"status === 'denied'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this week\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'no-exist'\">\n            <div class=\"col\">\n                <div class=\"alert alert-success\">\n                    No exist shift for this user\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"status === 'show'\">\n            <div class=\"col-md-8\">\n                <table class=\"table table-bordered\">\n                    <thead>\n                        <tr>\n                            <th colspan=\"8\" class=\"text-center\">{{ shiftUser.emitter.name + ' ' + shiftUser.emitter.last_name }}</th>\n                        </tr>\n                        <tr>\n                            <th></th>\n                            <th class=\"text-center\" *ngFor=\"let day of days\">{{ day }}</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <td>Mornirng</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].morning }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Afternoon</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].afternoon }}\n                            </td>\n                        </tr>\n                        <tr>\n                            <td>Night</td>\n                            <td *ngFor=\"let day of days\">\n                                {{ shiftUser[day].night }}\n                            </td>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        {{ shiftUser.message }}\n                    </div>\n                </div> \n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col text-center\">\n                <button class=\"btn btn-primary\" (click)=\"searchShift()\">Show Shift</button>\n            </div>\n        </div>\n\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -3844,24 +3844,25 @@ var BuildShiftsComponent = /** @class */ (function () {
         this.started();
     };
     BuildShiftsComponent.prototype.incrementWeek = function () {
-        this.weekAndyear.week++;
+        this.weekAndyear.week += 1;
         if (this.weekAndyear.week === 53) {
             this.weekAndyear.week = 1;
-            this.weekAndyear.year++;
+            this.weekAndyear.year += 1;
         }
         this.started();
     };
     BuildShiftsComponent.prototype.decrementWeek = function () {
-        this.weekAndyear.week--;
+        this.weekAndyear.week -= 1;
         if (this.weekAndyear.week === 0) {
             this.weekAndyear.week = 52;
-            this.weekAndyear.year--;
+            this.weekAndyear.year -= 1;
         }
         this.started();
     };
     BuildShiftsComponent.prototype.started = function () {
         var _this = this;
         this.dates = this._userService.getDates(this.weekAndyear);
+        console.log(this.dates);
         this.getTempShifts(); // if we worked some shifts we need to show
         this.getAllShifts(this.weekAndyear); // all shifts by next week
         setTimeout(function () {
@@ -5558,8 +5559,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "../node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5569,7 +5568,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 
@@ -5584,7 +5582,7 @@ var ShowShiftsComponent = /** @class */ (function () {
         this.full_date = this._userService.getWeekNumber(new Date());
         this.weekAndyear.year = this.full_date[0];
         this.weekAndyear.week = this.full_date[1];
-        this.dates = this.getDates(this.weekAndyear);
+        this.dates = this._userService.getDates(this.weekAndyear);
     }
     ShowShiftsComponent.prototype.ngOnInit = function () {
         /*this.full_date = this._userService.getWeekNumber( new Date() );
@@ -5600,39 +5598,39 @@ var ShowShiftsComponent = /** @class */ (function () {
     ShowShiftsComponent.prototype.incrementWeek = function () {
         this.weekAndyear.week++;
         if (this.weekAndyear.week === 53) {
-            this.weekAndyear.week = 0;
+            this.weekAndyear.week = 1;
             this.weekAndyear.year++;
         }
-        this.dates = this.getDates(this.weekAndyear);
+        this.dates = this._userService.getDates(this.weekAndyear);
         this.getShifts(this.weekAndyear);
     };
     ShowShiftsComponent.prototype.decrementWeek = function () {
         this.weekAndyear.week--;
-        if (this.weekAndyear.week === -1) {
+        if (this.weekAndyear.week === 0) {
             this.weekAndyear.week = 52;
             this.weekAndyear.year--;
         }
-        this.dates = this.getDates(this.weekAndyear);
+        this.dates = this._userService.getDates(this.weekAndyear);
         this.getShifts(this.weekAndyear);
     };
     ShowShiftsComponent.prototype.resetWeek = function () {
         this.full_date = this._userService.getWeekNumber(new Date());
         this.weekAndyear.year = this.full_date[0];
         this.weekAndyear.week = this.full_date[1];
-        this.dates = this.getDates(this.weekAndyear);
+        this.dates = this._userService.getDates(this.weekAndyear);
         this.getShifts(this.weekAndyear);
     };
-    ShowShiftsComponent.prototype.getDates = function (yearAndweek) {
-        var year = yearAndweek.year;
-        var week = yearAndweek.week;
-        var dates = [];
-        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
-            var day = _a[_i];
-            var temp = moment__WEBPACK_IMPORTED_MODULE_3__().day(day).year(year).week(week).toDate();
-            dates[day] = temp;
-        }
-        return dates;
-    };
+    /*getDates( yearAndweek ) {
+      const year = yearAndweek.year;
+      const week = yearAndweek.week;
+      const dates = [];
+  
+      for ( const day of this.days ) {
+        const temp = moment().day( day ).year( year ).week( week ).toDate();
+        dates[day] = temp;
+      }
+      return dates;
+    }*/
     ShowShiftsComponent.prototype.getShifts = function (weekAndyear) {
         var _this = this;
         this._userService.getFinalManagement(weekAndyear).subscribe(function (response) {
@@ -6486,24 +6484,64 @@ var UserService = /** @class */ (function () {
         var weekNo = Math.ceil((((full_date - yearStart) / 86400000) + 1) / 7) + 1;
         // Return array of year and week number
         var year = full_date.getUTCFullYear();
+        var day = new Date().getDay();
+        /* we generate number week and year by some date */
+        /* if to day is sunday ( week start in monday ) we want a next week number */
+        if (day === 0) {
+            weekNo++;
+        }
+        /* operation ++ add one but we can get out of range
+        ( in some year we have only 52 week), because we check that */
         if (weekNo === 53) {
             weekNo = 1;
             year++;
         }
-        var day = new Date().getDay();
-        if (day === 0) {
-            weekNo++;
-        }
         return [year, weekNo];
     };
+    UserService.prototype.weekdate = function (year, week, dayNumber) {
+        var j1 = new Date(year, 0, 10, 12, 0, 0);
+        var j2 = new Date(year, 0, 4, 12, 0, 0);
+        var mon1 = j2.getTime() - j1.getDay() * 86400000;
+        return new Date(mon1 + ((week - 1) * 7 + dayNumber) * 86400000);
+    };
     UserService.prototype.getDates = function (yearAndweek) {
-        var year = yearAndweek.year;
-        var week = yearAndweek.week;
-        var dates = [];
-        for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
-            var day = _a[_i];
-            var temp = moment__WEBPACK_IMPORTED_MODULE_3__().day(day).year(year).week(week).toDate();
+        /*const year = yearAndweek.year;
+        const week = yearAndweek.week;
+        const dates = [];
+
+        for ( const day of this.days ) {
+            const temp = moment().day( day ).year( year ).week( week ).toDate();
             dates[day] = temp;
+        }*/
+        var dates = [];
+        var week;
+        var temp_year;
+        var year = new Date().getFullYear();
+        if (yearAndweek.year > year) {
+            if (yearAndweek.week - 1 < 1) {
+                week = 52;
+                temp_year = yearAndweek.year - 1;
+            }
+            else {
+                week = yearAndweek.week - 1;
+                temp_year = yearAndweek.year;
+            }
+            for (var i = 0; i < this.days.length; i++) {
+                var day = this.days[i];
+                if (i === 0) {
+                    dates[day] = this.weekdate(temp_year, week, i + 6);
+                }
+                else {
+                    dates[day] = this.weekdate(yearAndweek.year, yearAndweek.week, i - 1);
+                }
+            }
+        }
+        else {
+            for (var _i = 0, _a = this.days; _i < _a.length; _i++) {
+                var day = _a[_i];
+                var temp = moment__WEBPACK_IMPORTED_MODULE_3__().day(day).year(yearAndweek.year).week(yearAndweek.week).toDate();
+                dates[day] = temp;
+            }
         }
         return dates;
     };

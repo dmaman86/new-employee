@@ -73,27 +73,66 @@ export class UserService {
         let weekNo = Math.ceil(( ( (full_date - yearStart) / 86400000) + 1) / 7) + 1;
         // Return array of year and week number
         let year = full_date.getUTCFullYear();
-        if ( weekNo === 53 ) {
-          weekNo = 1;
-          year++;
-        }
 
         const day = new Date().getDay();
 
+        /* we generate number week and year by some date */
+        /* if to day is sunday ( week start in monday ) we want a next week number */
         if ( day === 0 ) {
             weekNo++;
+        }
+        /* operation ++ add one but we can get out of range
+        ( in some year we have only 52 week), because we check that */
+        if ( weekNo === 53 ) {
+            weekNo = 1;
+            year++;
         }
         return [year, weekNo];
     }
 
+    weekdate( year, week, dayNumber ) {
+        const j1 = new Date( year, 0, 10, 12, 0, 0);
+        const j2 = new Date( year, 0, 4, 12, 0, 0);
+        const mon1 = j2.getTime() - j1.getDay() * 86400000;
+        return new Date(mon1 + ((week - 1)  * 7  + dayNumber) * 86400000);
+    }
+
     getDates( yearAndweek: any ) {
-        const year = yearAndweek.year;
+        /*const year = yearAndweek.year;
         const week = yearAndweek.week;
         const dates = [];
 
         for ( const day of this.days ) {
             const temp = moment().day( day ).year( year ).week( week ).toDate();
             dates[day] = temp;
+        }*/
+        const dates = [];
+        let week;
+        let temp_year;
+        const year = new Date().getFullYear();
+
+        if ( yearAndweek.year > year ) {
+            if ( yearAndweek.week - 1 < 1 ) {
+                week = 52;
+                temp_year = yearAndweek.year - 1;
+            } else {
+                week = yearAndweek.week - 1;
+                temp_year = yearAndweek.year;
+            }
+            for ( let i = 0; i < this.days.length; i++ ) {
+                const day = this.days[i];
+                if ( i === 0 ) {
+                    dates[day] = this.weekdate( temp_year, week, i + 6 );
+                } else {
+                    dates[day] = this.weekdate( yearAndweek.year , yearAndweek.week, i - 1 );
+                }
+            }
+
+        } else {
+            for ( const day of this.days ) {
+                const temp = moment().day( day ).year( yearAndweek.year ).week( yearAndweek.week ).toDate();
+                dates[day] = temp;
+            }
         }
 
         return dates;

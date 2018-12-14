@@ -30,7 +30,7 @@ export class ShowShiftsComponent implements OnInit {
     this.full_date = this._userService.getWeekNumber( new Date() );
     this.weekAndyear.year = this.full_date[0];
     this.weekAndyear.week = this.full_date[1];
-    this.dates = this.getDates( this.weekAndyear );
+    this.dates = this._userService.getDates( this.weekAndyear );
   }
 
   ngOnInit() {
@@ -50,22 +50,22 @@ export class ShowShiftsComponent implements OnInit {
     this.weekAndyear.week++;
 
     if ( this.weekAndyear.week === 53 ) {
-      this.weekAndyear.week = 0;
+      this.weekAndyear.week = 1;
       this.weekAndyear.year++;
     }
 
-    this.dates = this.getDates( this.weekAndyear );
+    this.dates = this._userService.getDates( this.weekAndyear );
     this.getShifts( this.weekAndyear );
   }
 
   decrementWeek() {
     this.weekAndyear.week--;
 
-    if ( this.weekAndyear.week === -1 ) {
+    if ( this.weekAndyear.week === 0 ) {
       this.weekAndyear.week = 52;
       this.weekAndyear.year--;
     }
-    this.dates = this.getDates( this.weekAndyear );
+    this.dates = this._userService.getDates( this.weekAndyear );
     this.getShifts( this.weekAndyear );
   }
 
@@ -73,11 +73,11 @@ export class ShowShiftsComponent implements OnInit {
     this.full_date = this._userService.getWeekNumber( new Date() );
     this.weekAndyear.year = this.full_date[0];
     this.weekAndyear.week = this.full_date[1];
-    this.dates = this.getDates( this.weekAndyear );
+    this.dates = this._userService.getDates( this.weekAndyear );
     this.getShifts( this.weekAndyear );
   }
 
-  getDates( yearAndweek ) {
+  /*getDates( yearAndweek ) {
     const year = yearAndweek.year;
     const week = yearAndweek.week;
     const dates = [];
@@ -87,7 +87,7 @@ export class ShowShiftsComponent implements OnInit {
       dates[day] = temp;
     }
     return dates;
-  }
+  }*/
 
   getShifts( weekAndyear ) {
     this._userService.getFinalManagement( weekAndyear ).subscribe(
