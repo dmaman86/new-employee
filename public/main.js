@@ -3659,7 +3659,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\t<div class=\"col text-center\">\n\t\t<h2>Employee Management App</h2>\n\t\t<hr>\n\t</div>\n</div>\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<br><br>\n\t\t<img src=\"../../../assets/me.jpg\" class=\"img-fluid\" alt=\"created\">\n\t\t<p class=\"text-center\"><small class=\"text-muted\">Me in Prague, Czech Republic ( 2017 )</small></p>\n\t\t<br><br>\n\t</div><!-- Finish col md 4 -->\n\t<div class=\"col-md-8\">\n\t\t<h4><ins>About Me</ins></h4>\n\t\t<p>\n\t\t\tMy name is David Maman, I am a developer and this is my second project.\n\t\t\t<br>\n\t\t\tMy first project was an application for sending messages to Android phones.\n\t\t\tA very challenging project where I learned a lot about how to work on server and client side.\n\t\t\tThe server side was written in PHP and the client side in JAVA.\n\t\t</p>\n\t\t<h4><ins>About Employee Managament</ins></h4>\n\t\t<p>\n\t\t\tFor a few years I have been working as a security guard, currently working at the <i><b>President's Residence</b></i>.\n\t\t\t<br>\n\t\t\tWorking as a security guard means working shifts.\n\t\t\tUp until a few years ago employee shift management was done manually, employees would send the manager what shifts they can / can not work during a week and the manager tried to take the requests into consideration.\n\t\t\tIf their are a small amount of guards then this would be an easy proccess to do manually, but if their are a lot of employees, manual shift managment can become very problematic.\n\t\t\tI've created my project to try to provide a management solution.\n\t\t\t<br>\n\t\t\tOn this project I am working with NodeJS, Express, Mongodb, MLab, Angular and Heroku.\n\t\t</p>\n\t\t<h4><ins>How It Works</ins></h4>\n\t\t<p>\n\t\t\tRegistration is solely for the employee.<br>\n\t\t\tTo register you need to contact the manager.<br>\n\t\t\tAfter log-in there are several options and administrator notifications.<br>\n\t\t\tOptions in Home Page:<br>\n\t\t\t<li><i><b>Profile</b></i> page: This page shows the user's data. You can go to the <i><b>'Edit Personal Details'</b></i> page or go back to the main page.</li>\n\t\t\t<li><i><b>Contact</b></i> page: List of contacts in the system records. Mailing option is currently inactive.</li>\n\t\t\t<li><i><b>Shifts</b></i> page: Here the employee is shown the number of shifts he or she is required to <i>open</i>.</li>\n\t\t\t<br>\n\t\t\tTo receive admin privileges please contact me by email.\n\t\t</p>\n\t</div><!-- Finish col md 8-->\n</div>\n"
+module.exports = "<div class=\"row\">\n\t<div class=\"col text-center\">\n\t\t<h2>Employee Management App</h2>\n\t\t<hr>\n\t</div>\n</div>\n<div class=\"row\">\n\t<div class=\"col-md-4\">\n\t\t<br><br>\n\t\t<img src=\"../../../assets/me.jpg\" class=\"img-fluid\" alt=\"created\" style=\"padding-top: 100px;\">\n\t\t<p class=\"text-center\"><small class=\"text-muted\">Me in Prague, Czech Republic ( 2017 )</small></p>\n\t\t<br><br>\n\t</div><!-- Finish col md 4 -->\n\t<div class=\"col-md-8\">\n\t\t<h4><ins>About Me</ins></h4>\n\t\t<p>\n\t\t\tMy name is David Maman, I am a developer and this is my second project.\n\t\t\t<br>\n\t\t\tMy first project was an application for sending messages to Android phones.\n\t\t\tA very challenging project where I learned a lot about how to work on server and client side.\n\t\t\tThe server side was written in PHP and the client side in JAVA.\n\t\t</p>\n\t\t<h4><ins>About Employee Managament</ins></h4>\n\t\t<p>\n\t\t\tFor a few years I have been working as a security guard, currently working at the <i><b>President's Residence</b></i>.\n\t\t\t<br>\n\t\t\tWorking as a security guard means working shifts.\n\t\t\tUp until a few years ago employee shift management was done manually, employees would send the manager what shifts they can / can not work during a week and the manager tried to take the requests into consideration.\n\t\t\tIf their are a small amount of guards then this would be an easy proccess to do manually, but if their are a lot of employees, manual shift managment can become very problematic.\n\t\t\tI've created my project to try to provide a management solution.\n\t\t\t<br>\n\t\t\tOn this project I am working with NodeJS, Express, Mongodb, MLab, Angular and Heroku.\n\t\t</p>\n\t\t<h4><ins>How It Works</ins></h4>\n\t\t<p>\n\t\t\tRegistration is solely for the employee.<br>\n\t\t\tTo register you need to contact the manager.<br>\n\t\t\tAfter log-in there are several options and administrator notifications.<br>\n\t\t\tOptions in User Home Page:<br>\n\t\t\t<li><i><b>Profile</b></i> page: This page shows the user's data. You can go to the <i><b>'Edit Personal Details'</b></i> page or go back to the main page.</li>\n\t\t\t<li><i><b>Contact</b></i> page: List of contacts in the system records. Mailing option is currently inactive.</li>\n\t\t\t<li><i><b>Shifts</b></i> page: Here the employee is shown the number of shifts he or she is required to <i>open</i>.</li>\n\t\t\t<li><i><b>Show Shifts</b></i> page: Here the employee can see the current weekly or last week's placement or future placement. </li>\n\t\t\t<br>\n\t\t\tOptions in Admin Home Page:<br>\n\t\t\t<li><i><b>Contact</b></i> page: List of contacts in system records with new options, such as reset password, deletion.</li>\n\t\t\t<li><i><b>Build Shifts</b></i> page: Here the admin can see all the employees' requests.\n\t\t\t\tAfter he selects how many employees need by the shift he can embed them automatically or manually</li>\n\t\t\t<br>\n\t\t\tTo receive admin privileges please contact me by email.\n\t\t</p>\n\t</div><!-- Finish col md 8-->\n</div>\n"
 
 /***/ }),
 
@@ -6502,18 +6502,9 @@ var UserService = /** @class */ (function () {
         return new Date(mon1 + ((week - 1) * 7 + dayNumber) * 86400000);
     };
     UserService.prototype.getDates = function (yearAndweek) {
-        /*const year = yearAndweek.year;
-        const week = yearAndweek.week;
-        const dates = [];
-
-        for ( const day of this.days ) {
-            const temp = moment().day( day ).year( year ).week( week ).toDate();
-            dates[day] = temp;
-        }*/
         var dates = [];
         var week;
         var temp_year;
-        var year = new Date().getFullYear();
         if (yearAndweek.week - 1 < 1) {
             week = 52;
             temp_year = yearAndweek.year - 1;
@@ -6531,29 +6522,6 @@ var UserService = /** @class */ (function () {
                 dates[day] = this.weekdate(yearAndweek.year, yearAndweek.week, i - 1);
             }
         }
-        /*if ( yearAndweek.year > year ) {
-            if ( yearAndweek.week - 1 < 1 ) {
-                week = 52;
-                temp_year = yearAndweek.year - 1;
-            } else {
-                week = yearAndweek.week - 1;
-                temp_year = yearAndweek.year;
-            }
-            for ( let i = 0; i < this.days.length; i++ ) {
-                const day = this.days[i];
-                if ( i === 0 ) {
-                    dates[day] = this.weekdate( temp_year, week, i + 6 );
-                } else {
-                    dates[day] = this.weekdate( yearAndweek.year , yearAndweek.week, i - 1 );
-                }
-            }
-
-        } else {
-            for ( const day of this.days ) {
-                const temp = moment().day( day ).year( yearAndweek.year ).week( yearAndweek.week ).toDate();
-                dates[day] = temp;
-            }
-        }*/
         return dates;
     };
     /* Home and Home Admin */
